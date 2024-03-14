@@ -1,4 +1,4 @@
-public class Accesorios extends Articulo{
+public abstract class Accesorios extends Articulo{
 
     private String estilo;
     private boolean personalizado;

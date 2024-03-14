@@ -3,9 +3,9 @@ public class Bolsos extends Accesorios {
     private String tipoDeCierre;
     private double capacidadDelBolso;
     
-    public Bolsos(int codigo, String nombre, double precio, String marca, String descripcion, String estilo,
+    public Bolsos(int codigo, String nombre, double precio, String marca, String descripcion, Material material, String estilo,
             boolean personalizado, String tipoDeCierre, double capacidadDelBolso) {
-        super(codigo, nombre, precio, marca, descripcion, estilo, personalizado);
+        super(codigo, nombre, precio, marca, descripcion, material, estilo, personalizado);
         this.tipoDeCierre = tipoDeCierre;
         this.capacidadDelBolso = capacidadDelBolso;
     }

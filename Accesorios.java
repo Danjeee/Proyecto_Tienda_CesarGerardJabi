@@ -3,9 +3,9 @@ public class Accesorios extends Articulo{
     private String estilo;
     private boolean personalizado;
     
-    public Accesorios(int codigo, String nombre, double precio, String marca, String descripcion, String estilo,
+    public Accesorios(int codigo, String nombre, double precio, String marca, String descripcion, Material material, String estilo,
             boolean personalizado) {
-        super(codigo, nombre, precio, marca, descripcion);
+        super(codigo, nombre, precio, marca, descripcion, material);
         this.estilo = estilo;
         this.personalizado = personalizado;
     }

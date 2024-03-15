@@ -1,3 +1,7 @@
+package Programacion.Articulos.Accesorios;
+import Programacion.Articulos.Material;
+import Programacion.Articulos.Articulo;
+
 public abstract class Accesorios extends Articulo{
 
     private String estilo;

@@ -1,3 +1,8 @@
+package Programacion.Articulos.Ropa;
+
+import Programacion.Articulos.Articulo;
+import Programacion.Articulos.Material;
+
 public abstract class Ropa extends Articulo{
     private String talla;
     private String color;

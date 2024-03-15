@@ -1,3 +1,7 @@
+package Programacion.Articulos.Ropa;
+
+import Programacion.Articulos.Material;
+
 public class Camisa extends Ropa{
     private String tipoCierre;
     private String tipoManga;

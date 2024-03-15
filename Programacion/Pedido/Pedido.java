@@ -1,3 +1,4 @@
+package Programacion.Pedido;
 public class Pedido {
     
     private int numero;

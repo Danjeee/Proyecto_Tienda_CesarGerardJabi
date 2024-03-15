@@ -1,3 +1,7 @@
+package Programacion.Articulos.Ropa;
+
+import Programacion.Articulos.Material;
+
 public class Pantalon extends Ropa{
     private String tipoCierre;
     private boolean tieneBolsillos;

@@ -1,6 +1,4 @@
-/**
- * Articulo
- */
+package Programacion.Articulos;
 public abstract class Articulo {
 
     private int codigo;

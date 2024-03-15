@@ -1,3 +1,7 @@
+package Programacion.Articulos.Accesorios;
+
+import Programacion.Articulos.Material;
+
 public class Bolsos extends Accesorios {
     
     private String tipoDeCierre;

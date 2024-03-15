@@ -1,4 +1,6 @@
-import java.util.List;
+package Programacion.Usuarios;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Clientes extends Usuario{
     
@@ -6,19 +8,19 @@ public class Clientes extends Usuario{
     private int numPedidos;
     private String direccionEnvio;
     private boolean registrado;
-    private List<MetodoPago> metodoPago;
+    private Set<MetodoPago> metodoPago = new HashSet<>();
     private Clientes cliente;
 
     
     public Clientes(String dni, String nombre, String apellidos, int telefono, String fechaNacimiento, String direccion,
             String email, String cuenta, int numPedidos, String direccionEnvio, boolean registrado,
-            List<MetodoPago> metodoPago, Clientes cliente) {
+            MetodoPago metodoPago, Clientes cliente) {
         super(dni, nombre, apellidos, telefono, fechaNacimiento, direccion, email);
         this.cuenta = cuenta;
         this.numPedidos = numPedidos;
         this.direccionEnvio = direccionEnvio;
         this.registrado = registrado;
-        this.metodoPago = metodoPago;
+        this.metodoPago.add(metodoPago);
         this.cliente = cliente;
     }
 
@@ -46,10 +48,10 @@ public class Clientes extends Usuario{
     public void setRegistrado(boolean registrado) {
         this.registrado = registrado;
     }
-    public List<MetodoPago> getMetodoPago() {
+    public Set<MetodoPago> getMetodoPago() {
         return metodoPago;
     }
-    public void setMetodoPago(List<MetodoPago> metodoPago) {
+    public void setMetodoPago(Set<MetodoPago> metodoPago) {
         this.metodoPago = metodoPago;
     }
     public Clientes getCliente() {

@@ -1,3 +1,4 @@
+package Programacion.Usuarios;
 public class MetodoPago {
     
     private String codigo;
@@ -31,6 +32,13 @@ public class MetodoPago {
             }
             return Integer.parseInt(code);
 
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        MetodoPago metodo = (MetodoPago) obj;
+        return codigo.equals(metodo.codigo);
     }
     
 }

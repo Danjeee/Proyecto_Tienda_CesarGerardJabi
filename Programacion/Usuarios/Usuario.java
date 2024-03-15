@@ -1,3 +1,4 @@
+package Programacion.Usuarios;
 public abstract class Usuario {
 
     private String dni;

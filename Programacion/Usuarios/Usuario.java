@@ -1,4 +1,8 @@
 package Programacion.Usuarios;
+
+import java.util.HashSet;
+import java.util.Set;
+
 public abstract class Usuario {
 
     private String dni;
@@ -8,6 +12,7 @@ public abstract class Usuario {
     private String fechaNacimiento;
     private String direccion;
     private String email;
+    private Set<MetodoPago> metodosPago = new HashSet<>();
 
     public Usuario(String dni, String nombre, String apellidos, int telefono, String fechaNacimiento, String direccion,
             String email) {
@@ -18,6 +23,9 @@ public abstract class Usuario {
         this.fechaNacimiento = fechaNacimiento;
         this.direccion = direccion;
         this.email = email;
+    }
+    public void añadirMetodoPago(MetodoPago a){
+        this.metodosPago.add(a);
     }
 
     public String getDni() {

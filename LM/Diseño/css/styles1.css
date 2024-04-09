@@ -1,0 +1,28 @@
+.button{
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-size: 100%;
+}
+.menu{
+    -fx-background-image: url(./menu.png);
+}
+.user{
+    -fx-background-image: url(./user.png);
+}
+.cart{
+    -fx-background-image: url(./cart.png);
+}
+.hhbox{
+    -fx-background-color: #fff;
+}
+.search{
+    -fx-background-color: #fff;
+    -fx-border-color: #000;
+    -fx-border-width: 1;
+}
+.ropa{
+    -fx-background-image: url(./ropa.jpg);
+    -fx-background-size: 150%;
+}
+.acc{
+    -fx-background-image: url(./accesorios.jpg);
+}

@@ -42,6 +42,18 @@
     -fx-padding: 5;
     -fx-border-radius: 25;
 }
+.logincart .textfield{
+    -fx-background-color: rgba(0, 0, 0, 0);
+    
+}
+.cartbckgr{
+    -fx-background-color: #ecf1f3;
+    -fx-background-radius: 50;
+}
+.sp > .viewport{
+    -fx-background-color: #ecf1f3;
+    -fx-border-width: 0;
+}
 #button{
 
     -fx-background-color: black;

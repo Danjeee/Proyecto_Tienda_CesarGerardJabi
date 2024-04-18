@@ -35,6 +35,13 @@
 .add{
     -fx-background-color: #000;
 }
+.flowpane .label{
+    -fx-background-color: #fff;
+    -fx-border-color: #000;
+    -fx-border-width: 1;
+    -fx-padding: 5;
+    -fx-border-radius: 25;
+}
 #button{
 
     -fx-background-color: black;

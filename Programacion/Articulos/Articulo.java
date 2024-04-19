@@ -65,3 +65,4 @@ public abstract class Articulo {
         this.descripcion = descripcion;
     }    
 }
+

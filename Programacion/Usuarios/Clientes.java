@@ -1,4 +1,4 @@
-package Programacion.Usuarios;
+package Usuarios;
 import java.util.HashSet;
 import java.util.Set;
 

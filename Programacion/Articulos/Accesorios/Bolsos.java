@@ -1,6 +1,6 @@
-package Programacion.Articulos.Accesorios;
+package Articulos.Accesorios;
 
-import Programacion.Articulos.Material;
+import Articulos.Material;
 
 public class Bolsos extends Accesorios {
     

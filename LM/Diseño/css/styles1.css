@@ -1,0 +1,86 @@
+.button{
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-size: 100%;
+}
+.menu{
+    -fx-background-image: url(../Seleccion/menu.png);
+}
+.user{
+    -fx-background-image: url(../Seleccion/user.png);
+}
+.cart{
+    -fx-background-image: url(../Seleccion/cart.png);
+}
+.hhbox{
+    -fx-background-color: #fff;
+}
+.search{
+    -fx-background-color: #fff;
+    -fx-border-color: #000;
+    -fx-border-width: 1;
+}
+.ropa{
+    -fx-background-image: url(../Seleccion/ropa.jpg);
+    -fx-background-size: 150%;
+}
+.acc{
+    -fx-background-image: url(../Seleccion/accesorios.jpg);
+}
+.bck{
+    -fx-background-image: url(../ProductView/bck.png);
+}
+.imagen{
+    -fx-background-image: url(../Seleccion/ropa.jpg);
+}
+.add{
+    -fx-background-color: #000;
+}
+.flowpane .label{
+    -fx-background-color: #fff;
+    -fx-border-color: #000;
+    -fx-border-width: 1;
+    -fx-padding: 5;
+    -fx-border-radius: 25;
+}
+.logincart .textfield{
+    -fx-background-color: rgba(0, 0, 0, 0);
+    
+}
+.cartbckgr{
+    -fx-background-color: #ecf1f3;
+    -fx-background-radius: 50;
+}
+.sp > .viewport{
+    -fx-background-color: #ecf1f3;
+    -fx-border-width: 0;
+}
+#button{
+
+    -fx-background-color: black;
+    -fx-background-radius: 30;
+    -fx-background-insests: 0;
+    -fx-text-fill: white;
+    -fx-start-margin: 50;
+}
+
+#botonBlanco{
+    -fx-background-color: white;
+    -fx-background-radius: 50;
+    -fx-background-insests: 0;
+    -fx-border-color:black;
+    -fx-border-radius: 50;
+    -fx-border-width: 2px;
+}   
+
+#botonfooter{
+    -fx-background-color: rgb(224, 222, 222);
+    -fx-background-radius: 30;
+    -fx-background-insests: 0;
+    -fx-text-fill: black;
+}   
+
+#boton2footer{
+    -fx-background-color: rgb(224, 222, 222);
+    -fx-background-insests: 0;
+    -fx-text-fill: black;    
+}

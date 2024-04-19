@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" prefHeight="75.0" prefWidth="1920.0" styleClass="hhbox" stylesheets="@../css/styles1.css">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="menu" stylesheets="@../css/styles1.css">
+               <HBox.margin>
+                  <Insets right="200.0" />
+               </HBox.margin>
+            </Button>
+            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="1370.0">
+               <children>
+                  <Label contentDisplay="CENTER" prefHeight="54.0" prefWidth="135.0" text="second" textAlignment="CENTER">
+                     <font>
+                        <Font name="Calibri" size="46.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="101.0" text="hand" textAlignment="CENTER">
+                     <font>
+                        <Font name="Calibri Bold" size="46.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <TextField promptText=" 🔎 Buscar" styleClass="search">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="user" stylesheets="@../css/styles1.css">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="cart" stylesheets="@../css/styles1.css">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="1008.0" prefWidth="1960.0" style="-fx-background-color: #fff;">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="980.0">
+               <children>
+                  <Label text="Carrito">
+                     <font>
+                        <Font name="Calibri Bold" size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="ARROW_LEFT" translateX="-10.0" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets left="50.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <VBox prefHeight="500.0" prefWidth="305.0" styleClass="logincart" stylesheets="@../css/styles1.css">
+                     <VBox.margin>
+                        <Insets left="320.0" right="320.0" top="200.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label text="Usuario:">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <FontAwesomeIconView glyphName="CLOSE" GridPane.columnIndex="1" />
+                              <TextField promptText="Escribe tu nombre de usuario" styleClass="textfield" stylesheets="@../css/styles1.css" />
+                           </children>
+                        </GridPane>
+                        <Separator prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets right="160.0" />
+                           </VBox.margin>
+                        </Separator>
+                        <Label text="Contraseña:">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <GridPane>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <FontAwesomeIconView glyphName="CLOSE" GridPane.columnIndex="1" />
+                              <TextField promptText="Escribe tu contraseña" styleClass="textfield" stylesheets="@../css/styles1.css" />
+                           </children>
+                        </GridPane>
+                        <Separator prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets right="160.0" />
+                           </VBox.margin>
+                        </Separator>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="305.0" style="-fx-background-color: #000;" text="Iniciar sesión" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" text="¿Has olvidado tu contraseña?">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Label alignment="CENTER" prefHeight="28.0" prefWidth="308.0" text="¿Necesitas una cuenta?">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="100.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="305.0" style="-fx-background-color: #000;" text="Registrate" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="980.0" styleClass="cartbckgr" stylesheets="@../css/styles1.css">
+               <children>
+                  <ScrollPane prefHeight="365.0" prefWidth="730.0" styleClass="sp" stylesheets="@../css/styles1.css" />
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Separator>
+               </children>
+               <padding>
+                  <Insets left="100.0" right="100.0" top="100.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

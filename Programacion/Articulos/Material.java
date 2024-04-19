@@ -1,4 +1,4 @@
-package Programacion.Articulos;
+package Articulos;
 public class Material {
     private String codigo;
     private String denominacion;

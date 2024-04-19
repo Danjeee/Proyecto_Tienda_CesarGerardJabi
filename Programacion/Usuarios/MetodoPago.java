@@ -1,4 +1,4 @@
-package Programacion.Usuarios;
+package Usuarios;
 public class MetodoPago {
     
     private String codigo;

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" prefHeight="75.0" prefWidth="1920.0" styleClass="hhbox" stylesheets="@../css/styles1.css">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="menu" stylesheets="@../css/styles1.css">
+               <HBox.margin>
+                  <Insets right="200.0" />
+               </HBox.margin>
+            </Button>
+            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="1370.0">
+               <children>
+                  <Label contentDisplay="CENTER" prefHeight="54.0" prefWidth="135.0" text="second" textAlignment="CENTER">
+                     <font>
+                        <Font name="Calibri" size="46.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="101.0" text="hand" textAlignment="CENTER">
+                     <font>
+                        <Font name="Calibri Bold" size="46.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <TextField promptText=" 🔎 Buscar" styleClass="search">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="user" stylesheets="@../css/styles1.css">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="cart" stylesheets="@../css/styles1.css">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="788.0" prefWidth="1920.0">
+         <children>
+            <Pane prefHeight="788.0" prefWidth="960.0" styleClass="imagen" stylesheets="@../css/styles1.css">
+               <children>
+                  <Button layoutX="30.0" layoutY="30.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="bck" stylesheets="@../css/styles1.css" />
+               </children>
+            </Pane>
+            <VBox prefHeight="788.0" prefWidth="960.0">
+               <children>
+                  <Label text="Ropa &gt; Camisas &gt; ">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Blusa de flores">
+                     <font>
+                        <Font name="Calibri" size="32.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin></Label>
+                  <Label text="19.99€">
+                     <font>
+                        <Font name="Calibri Bold" size="67.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="-15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="175.0" style="-fx-background-color: #000;" stylesheets="@../css/styles1.css" text="Añadir al carrito" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="PLUS" styleClass="b" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Label text="descripción">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Separator prefHeight="0.0" prefWidth="800.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" right="50.0" top="10.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="6.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" wrappingWidth="851.469970703125" />
+                     </children>
+                  </Pane>
+                  <Label text="¿como soy?">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Separator prefHeight="0.0" prefWidth="800.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <FlowPane hgap="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="flowpane" stylesheets="@../css/styles1.css" vgap="10.0">
+                     <children>
+                        <Label text="color lila">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="cierre de cordón">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="estampado de flores">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </FlowPane>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets left="60.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+      <GridPane alignment="CENTER" prefHeight="218.0" prefWidth="1920.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="176.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="82.0" minHeight="1.0" prefHeight="42.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Pane prefHeight="170.0" prefWidth="640.0" styleClass="foot" stylesheets="@../css/styles1.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Text fill="#a1a1a1" layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Politica de privacidad" />
+                  <Text fill="#a1a1a1" layoutX="154.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condiciones de compras" />
+                  <Text fill="#a1a1a1" layoutX="432.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preferencias de cookies" />
+                  <Text fill="#a1a1a1" layoutX="308.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Política de cookies" />
+                  <Text fill="#a1a1a1" layoutX="139.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="|" wrappingWidth="12.87109375" />
+                  <Text fill="#a1a1a1" layoutX="295.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="|" wrappingWidth="12.87109375" />
+                  <Text fill="#a1a1a1" layoutX="419.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="|" wrappingWidth="12.87109375" />
+               </children>
+            </Pane>
+            <Pane prefHeight="155.0" prefWidth="279.0" styleClass="ayuda" stylesheets="@../css/styles1.css">
+               <children>
+                  <Text layoutX="66.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AYUDA">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="65.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preguntas frecuentes">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="65.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado de mi pedido">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="65.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Devoluciones">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="65.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Envíos">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="145.0" prefWidth="326.0" styleClass="metodo" stylesheets="@../css/styles1.css" GridPane.columnIndex="1">
+               <children>
+                  <Text layoutX="52.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MÉTODOS DE PAGO">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="boton2footer" layoutX="52.0" layoutY="45.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" />
+                  <Button fx:id="boton2footer" layoutX="138.0" layoutY="45.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" />
+                  <Button fx:id="boton2footer" layoutX="226.0" layoutY="45.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" />
+               </children>
+            </Pane>
+            <Pane prefHeight="145.0" prefWidth="200.0" styleClass="sig" stylesheets="@../css/styles1.css" GridPane.columnIndex="2">
+               <children>
+                  <Text layoutX="5.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¡SÍGUENOS!">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="botonfooter" layoutX="6.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+                  <Button fx:id="botonfooter" layoutX="44.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+                  <Button fx:id="botonfooter" layoutX="83.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+                  <Button fx:id="botonfooter" layoutX="123.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+               </children>
+            </Pane>
+         </children>
+      </GridPane>
+   </children>
+</VBox>

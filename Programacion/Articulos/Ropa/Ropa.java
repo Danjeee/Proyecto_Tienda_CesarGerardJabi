@@ -1,7 +1,7 @@
 package Articulos.Ropa;
 
 import Articulos.Articulo;
-import Articulos.Material;
+importArticulos.Material;
 
 public abstract class Ropa extends Articulo{
     private String talla;

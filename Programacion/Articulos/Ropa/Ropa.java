@@ -1,7 +1,7 @@
-package Programacion.Articulos.Ropa;
+package Articulos.Ropa;
 
-import Programacion.Articulos.Articulo;
-import Programacion.Articulos.Material;
+import Articulos.Articulo;
+import Articulos.Material;
 
 public abstract class Ropa extends Articulo{
     private String talla;

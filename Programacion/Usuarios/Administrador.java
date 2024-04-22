@@ -1,4 +1,4 @@
-package Programacion.Usuarios;
+package Usuarios;
 public class Administrador extends Usuario{
     
     private boolean tienePrivilegios;

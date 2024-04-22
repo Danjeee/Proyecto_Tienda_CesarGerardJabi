@@ -3,27 +3,23 @@ package productview;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class SecondaryController {
     @FXML
-    public Button b;
+    private GridPane grid;
+    @FXML
+    private HBox main;
     @FXML
     private void press() throws IOException{
-        Stage stage = (Stage) this.b.getScene().getWindow();
-        try {
-            PrimaryController.current = 2;
-            App.setRoot("productview");
-            stage.setTitle("Tienda");
-            stage.show();
-          } catch (IOException e) {
-            System.err.println(String.format("Error creando ventana: %s", e.getMessage()));
-          }
-
+        GridPane a = grid;
+        main.getChildren().add(a);
+        
     }
     
 }

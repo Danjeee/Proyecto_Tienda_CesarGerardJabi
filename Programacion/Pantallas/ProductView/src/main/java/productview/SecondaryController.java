@@ -16,7 +16,7 @@ public class SecondaryController {
     private void press() throws IOException{
         Stage stage = (Stage) this.b.getScene().getWindow();
         try {
-            PrimaryController.current = 3;
+            PrimaryController.current = 2;
             App.setRoot("productview");
             stage.setTitle("Tienda");
             stage.show();

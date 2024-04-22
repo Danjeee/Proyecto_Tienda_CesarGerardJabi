@@ -2,6 +2,7 @@
     -fx-background-color: rgba(0, 0, 0, 0);
     -fx-background-size: 100%;
 }
+
 .hhbox{
     -fx-background-color: #fff;
 }
@@ -22,6 +23,9 @@
 }
 .add{
     -fx-background-color: #000;
+}
+.add:hover{
+    -fx-background-color: #696969;
 }
 .flowpane .label{
     -fx-background-color: #fff;

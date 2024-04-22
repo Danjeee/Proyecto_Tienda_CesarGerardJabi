@@ -28,6 +28,7 @@
     -fx-border-color: #000;
     -fx-border-width: 1;
     -fx-padding: 5;
+    -fx-background-radius: 25;
     -fx-border-radius: 25;
 }
 .logincart .textfield{

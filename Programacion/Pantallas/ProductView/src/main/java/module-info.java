@@ -5,6 +5,6 @@ module productview {
     requires javafx.graphics;
     requires de.jensd.fx.glyphs.fontawesome;
 
-    opens productview to javafx.fxml;
-    exports productview;
+    opens tienda_javi_gerard_cesar to javafx.fxml;
+    exports tienda_javi_gerard_cesar;
 }

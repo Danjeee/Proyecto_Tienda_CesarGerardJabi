@@ -1,6 +1,7 @@
-package productview;
+package tienda_javi_gerard_cesar;
 
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,20 +10,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class PrimaryController {
+public class ProductView {
 
     public static int current;
+    @FXML
+    private Pane imagen;
     @FXML
     private Label nom;
 
@@ -55,26 +56,6 @@ public class PrimaryController {
         return con;
     }
 
-    /*
-     * private String[] leer(){
-     * String[] a = {};
-     * try{
-     * FileReader fr = new
-     * FileReader("./src/main/resources/productview/current.data");
-     * Scanner sc = new Scanner(fr);
-     * String b = "";
-     * while (sc.hasNext()) {
-     * b += sc.next();
-     * }
-     * a = b.split(";");
-     * sc.close();
-     * } catch (IOException e){
-     * System.out.println(e);
-     * }
-     * return a;
-     * }
-     */
-
     private ArrayList<String> atributos(Connection con) {
         ArrayList<String> a = new ArrayList<>();
         try {
@@ -83,14 +64,14 @@ public class PrimaryController {
             Boolean esArticulo = false;
             ResultSet art = st.executeQuery("SELECT cod_art FROM accesorio");
             while (art.next()) {
-                if (PrimaryController.current == art.getInt("cod_art")) {
+                if (ProductView.current == art.getInt("cod_art")) {
                     esArticulo = true;
                     break;
                 }
             }
             ResultSet ropa = st.executeQuery("SELECT cod_art FROM ropa");
             while (ropa.next()) {
-                if (PrimaryController.current == ropa.getInt("cod_art")) {
+                if (ProductView.current == ropa.getInt("cod_art")) {
                     esRopa = true;
                     break;
                 }
@@ -98,7 +79,7 @@ public class PrimaryController {
             if (esArticulo) {
                 Statement aa = con.createStatement();
                 ResultSet atr1 = aa
-                        .executeQuery("SELECT * FROM accesorio WHERE cod_art = " + PrimaryController.current);
+                        .executeQuery("SELECT * FROM accesorio WHERE cod_art = " + ProductView.current);
                 while (atr1.next()) {
                     String tipo = atr1.getString("tipo_accesorio");
                     a.add("Accesorio > "+tipo +" > ");
@@ -120,7 +101,7 @@ public class PrimaryController {
             }
             if (esRopa) {
                 Statement bb = con.createStatement();
-                ResultSet atr1 = bb.executeQuery("SELECT * FROM ropa WHERE cod_art = " + PrimaryController.current);
+                ResultSet atr1 = bb.executeQuery("SELECT * FROM ropa WHERE cod_art = " + ProductView.current);
                 while (atr1.next()) {
                     String tipo = atr1.getString("tipo_ropa");
                     a.add("Ropa > "+tipo +" > ");
@@ -153,7 +134,7 @@ public class PrimaryController {
 
     private String[] leer() {
         Connection con = conenct();
-        int id = PrimaryController.current;
+        int id = ProductView.current;
         String[] datos = new String[3];
         try {
             Statement st = con.createStatement();
@@ -186,9 +167,11 @@ public class PrimaryController {
 
         atr.getChildren().clear();
         atr.getChildren().addAll(atrib);
-        /*
-         * Image imgg = new Image("./src/main/resources/productview/img.jpg");
-         * img.setImage(imgg);
-         */
+
+        imagen.setStyle("-fx-background-image: url(imagen1.jpg)");
+    }
+    @FXML
+    private void back() throws IOException{
+        App.setRoot("main");
     }
 }

@@ -1,4 +1,4 @@
-package productview;
+package tienda_javi_gerard_cesar;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -6,37 +6,22 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Collection;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.StrokeLineCap;
-import javafx.scene.shape.StrokeLineJoin;
-import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 
-public class SecondaryController {
+public class Main {
     @FXML
     private GridPane baseGrid;
     @FXML
@@ -63,12 +48,13 @@ public class SecondaryController {
         Connection con = conenct();
         try {
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT nombre, precio, imagen FROM articulo");
+            ResultSet rs = st.executeQuery("SELECT nombre, precio, imagen, cod_art FROM articulo");
             while (rs.next()) {
+                int cod = rs.getInt("cod_art");
                 String nombre = rs.getString("nombre");
                 String precio = rs.getString("precio");
                 String img = rs.getString("imagen");
-                main.getChildren().add(createItem(nombre, precio, img));
+                main.getChildren().add(createItem(nombre, precio, img, cod));
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -84,7 +70,7 @@ public class SecondaryController {
         return con;
     }
     
-    private GridPane createItem(String nombre, String precio, String img){
+    private GridPane createItem(String nombre, String precio, String img, int cod){
         /* 
         *
         Creacion de items
@@ -121,6 +107,7 @@ public class SecondaryController {
         imgg.setStyle("-fx-background-image: url(./src/main/resources/productview/images/"+img+")");
         imgg.setOnAction(e -> {
             try {
+                ProductView.current = cod;
                 App.setRoot("productview");
             } catch (IOException e1) {
                 e1.printStackTrace();
@@ -168,7 +155,7 @@ public class SecondaryController {
         a.getRowConstraints().add(rr);
         a.add(imgg, 0, 0);
         a.add(fp, 0 ,1);
-        a.styleProperty().set("-fx-background-color: #fff");;
+        a.setStyle("-fx-background-color: #F9F9F9");;
         return a;
     }
 

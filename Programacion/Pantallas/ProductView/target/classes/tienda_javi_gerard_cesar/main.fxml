@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="productview.SecondaryController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.Main">
    <children>
       <HBox alignment="CENTER" prefHeight="75.0" prefWidth="1920.0" styleClass="hhbox" stylesheets="@styles1.css">
          <children>
@@ -80,9 +80,12 @@
             </Button>
          </children>
       </HBox>
-      <ScrollPane prefHeight="744.0" prefWidth="1440.0">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="744.0" prefWidth="1440.0">
          <content>
-            <FlowPane fx:id="main" hgap="10.0" prefHeight="736.0" prefWidth="1434.0" vgap="10.0" />
+            <FlowPane fx:id="main" columnHalignment="RIGHT" hgap="40.0" prefHeight="736.0" prefWidth="1434.0" style="-fx-background-color: #fff;" vgap="10.0">
+               <padding>
+                  <Insets left="10.0" top="20.0" />
+               </padding></FlowPane>
          </content>
       </ScrollPane>
       <GridPane alignment="CENTER" prefHeight="218.0" prefWidth="1920.0" stylesheets="@styles1.css">

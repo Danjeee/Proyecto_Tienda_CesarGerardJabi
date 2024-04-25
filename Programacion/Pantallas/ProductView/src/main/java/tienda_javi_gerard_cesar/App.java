@@ -1,9 +1,10 @@
-package productview;
+package tienda_javi_gerard_cesar;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,8 +18,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Pantalla4_Gerard"), 1440, 1024);
+        scene = new Scene(loadFXML("main"), 1440, 1024);
         stage.setScene(scene);
+        stage.setTitle("secondHand");
+        /*stage.getIcons().add(new Image(App.class.getResourceAsStream("icon.png")));*/
         stage.show();
     }
 

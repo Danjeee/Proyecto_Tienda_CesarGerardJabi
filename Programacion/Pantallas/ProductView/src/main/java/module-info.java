@@ -3,6 +3,7 @@ module productview {
     requires javafx.fxml;
     requires java.sql;
     requires javafx.graphics;
+    requires de.jensd.fx.glyphs.fontawesome;
 
     opens productview to javafx.fxml;
     exports productview;

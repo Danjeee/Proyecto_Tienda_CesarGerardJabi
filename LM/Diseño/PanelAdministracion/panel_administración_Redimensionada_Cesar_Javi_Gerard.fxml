@@ -10,98 +10,106 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox layoutX="153.0" layoutY="178.0" prefHeight="126.0" prefWidth="130.0">
+      <VBox layoutX="518.0" layoutY="403.0" prefHeight="205.0" prefWidth="202.0">
          <children>
-            <Pane prefHeight="52.0" prefWidth="158.0">
+            <Pane prefHeight="90.0" prefWidth="251.0">
                <children>
-                  <Button layoutX="2.0" layoutY="4.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="126.0" style="-fx-background-color: #000000;" text="Dar de alta &#10;producto" textFill="WHITE">
+                  <Button layoutX="2.0" layoutY="4.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Dar de alta &#10;producto" textFill="WHITE">
                      <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="14" wrappingWidth="21.285714149475098" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="23" wrappingWidth="43.95240116119385" />
                      </graphic>
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
                   </Button>
                </children>
             </Pane>
-            <Pane prefHeight="73.0" prefWidth="110.0">
+            <Pane prefHeight="105.0" prefWidth="334.0">
                <children>
-                  <Button layoutX="2.0" layoutY="14.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="126.0" style="-fx-background-color: #000000;" text="Administrar &#10;empleados " textFill="WHITE">
+                  <Button layoutX="2.0" layoutY="14.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;empleados " textFill="WHITE">
                      <graphic>
-
-                        <FontAwesomeIconView fill="WHITE" glyphName="ADDRESS_BOOK" size="14" wrappingWidth="21.0" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="ADDRESS_BOOK" size="23" wrappingWidth="43.666656494140625" />
                      </graphic>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
                   </Button>
                </children>
             </Pane>
          </children>
       </VBox>
-      <VBox layoutX="300.0" layoutY="178.0" prefHeight="126.0" prefWidth="117.0">
+      <VBox layoutX="742.0" layoutY="403.0" prefHeight="205.0" prefWidth="201.0">
          <children>
-            <Pane prefHeight="52.0" prefWidth="158.0">
+            <Pane prefHeight="90.0" prefWidth="354.0">
                <children>
-                  <Button layoutY="4.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="126.0" style="-fx-background-color: #000000;" text="Administrar &#10;productos" textFill="WHITE">
+                  <Button layoutY="4.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;productos" textFill="WHITE">
                      <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="TAGS" size="14" wrappingWidth="21.0" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="TAGS" size="23" wrappingWidth="43.66668701171875" />
                      </graphic>
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
                   </Button>
                </children>
             </Pane>
-            <Pane prefHeight="61.0" prefWidth="117.0">
+            <Pane prefHeight="105.0" prefWidth="354.0">
                <children>
-                  <Button layoutY="14.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="126.0" style="-fx-background-color: #000000;" text="Administrar &#10;usuarios" textFill="WHITE">
+                  <Button layoutY="14.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;usuarios" textFill="WHITE">
                      <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="14" wrappingWidth="21.0" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="23" wrappingWidth="43.6666259765625" />
                      </graphic>
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
                   </Button>
                </children>
             </Pane>
          </children>
       </VBox>
-      <Pane layoutX="12.0" layoutY="54.0" prefHeight="38.0" prefWidth="206.0">
+      <Pane layoutX="89.0" layoutY="162.0" prefHeight="38.0" prefWidth="362.0">
          <children>
-            <Label layoutX="40.0" layoutY="6.0" text="Panel de administración">
+            <Label layoutX="45.0" layoutY="-2.0" text="Panel de administración">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="27.0" />
                </font>
             </Label>
-            <Button layoutX="7.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="⬅">
+            <Button layoutX="-6.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
                <font>
                   <Font size="15.0" />
                </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="ARROW_LEFT" size="25" />
+               </graphic>
             </Button>
          </children>
       </Pane>
       <Button layoutX="12.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: invisible;" />
       <Button layoutX="822.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: inivisible;" />
       <Button layoutX="840.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: invisible;" />
-      <Pane layoutX="186.0" layoutY="117.0" prefHeight="38.0" prefWidth="206.0">
+      <Pane layoutX="186.0" layoutY="117.0" prefHeight="38.0" prefWidth="206.0" />
+      <Label layoutX="547.0" layoutY="282.0" text="¡bienvenidx, User!">
+         <font>
+            <Font size="47.0" />
+         </font>
+      </Label>
+      <Pane layoutX="-1.0" layoutY="1.0" prefHeight="80.0" prefWidth="1440.0">
          <children>
-            <Label layoutX="-3.0" text="¡bienvenidx, User!">
-               <font>
-                  <Font size="27.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Pane layoutY="4.0" prefHeight="40.0" prefWidth="600.0">
-         <children>
-            <ImageView fitHeight="40.0" fitWidth="216.0" layoutX="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="80.0" fitWidth="317.0" layoutX="562.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../LogoImagen/logosecondhand-removebg-preview.png" />
+                  <Image url="@logosecondhand-removebg-preview.png" />
                </image>
             </ImageView>
-            <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" prefHeight="13.0" prefWidth="16.0" style="-fx-background-color: invisible;">
-               <graphic>
-                  <FontAwesomeIconView glyphName="NAVICON" size="13" />
-               </graphic>
-            </Button>
-            <FontAwesomeIconView glyphName="SHOPPING_CART" layoutX="580.0" layoutY="24.0" size="13" />
-            <FontAwesomeIconView glyphName="USER" layoutX="565.0" layoutY="24.0" size="12" text="" />
-            <TextField layoutX="439.0" layoutY="7.0" prefHeight="24.0" prefWidth="117.0" promptText="🔍   Buscar">
+            <FontAwesomeIconView glyphName="NAVICON" layoutX="49.0" layoutY="48.0" size="30" wrappingWidth="28.071428775787354">
                <font>
-                  <Font size="11.0" />
+                  <Font size="70.0" />
                </font>
-            </TextField>
+            </FontAwesomeIconView>
+            <TextField layoutX="1134.0" layoutY="27.0" prefHeight="30.0" prefWidth="180.0" promptText="Buscar" />
+            <FontAwesomeIconView glyphName="SEARCH" layoutX="1089.0" layoutY="51.0" size="30" text="" />
+            <FontAwesomeIconView glyphName="USER" layoutX="1339.0" layoutY="52.0" size="30" />
+            <FontAwesomeIconView glyphName="SHOPPING_CART" layoutX="1379.0" layoutY="51.0" size="30" />
          </children>
       </Pane>
    </children>

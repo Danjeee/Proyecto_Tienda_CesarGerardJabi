@@ -27,6 +27,7 @@
                <children>
                   <Button layoutX="2.0" layoutY="14.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="126.0" style="-fx-background-color: #000000;" text="Administrar &#10;empleados " textFill="WHITE">
                      <graphic>
+
                         <FontAwesomeIconView fill="WHITE" glyphName="ADDRESS_BOOK" size="14" wrappingWidth="21.0" />
                      </graphic>
                   </Button>

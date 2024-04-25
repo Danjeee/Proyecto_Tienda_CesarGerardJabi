@@ -1,3 +1,4 @@
+package panel_admin;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -10,10 +11,12 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 
 
-public class Ventanas extends Application{
+/**
+ * JavaFX App
+ */
+public class App extends Application {
     private Stage stagePrincipal;
     private Parent root;
 
@@ -22,13 +25,13 @@ public class Ventanas extends Application{
    @Override
     public void start(Stage stagePrincipal) throws Exception {
        this.stagePrincipal = stagePrincipal;
-       mostrarVentanaPrincipal();
+       mostrarVentana_panelAdmin();
    }
 
-    private void mostrarVentanaPrincipal() {
-       this.stagePrincipal.setTitle("BBDD Ver Articulos ");
+    private void mostrarVentana_panelAdmin() {
+       this.stagePrincipal.setTitle("Panel de Administración");
         try {
-            root = FXMLLoader.load(getClass().getResource("FXML_Articulos.fxml")); //carga la vista
+            root = FXMLLoader.load(getClass().getResource("panel_administración_Redimensionada_Cesar_Javi_Gerard.fxml")); //carga la vista
             Scene scene = new Scene(root); //crea escena
             stagePrincipal.setScene(scene); //pone la escena en el escenario
             stagePrincipal.show(); //muestra el escenario
@@ -39,7 +42,7 @@ public class Ventanas extends Application{
 
 
 
-    public void mostrarVentanaSecundaria(ActionEvent event, String ruta) {
+    public void mostrarVentana_altaProductos(ActionEvent event, String ruta) {
         try {
 
             Object eventSource = event.getSource();
@@ -61,9 +64,9 @@ public class Ventanas extends Application{
         }
     }
 
-    public static void main(String[] args) {
-        launch(args); //lama al método start()
-    }
-    
-}
 
+    public static void main(String[] args) {
+        launch();
+    }
+
+}

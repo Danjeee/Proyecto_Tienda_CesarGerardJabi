@@ -31,7 +31,7 @@ public class App extends Application {
     private void mostrarVentana_panelAdmin() {
        this.stagePrincipal.setTitle("Panel de Administración");
         try {
-            root = FXMLLoader.load(getClass().getResource("panel_administración_Redimensionada_Cesar_Javi_Gerard.fxml")); //carga la vista
+            root = FXMLLoader.load(getClass().getResource("C:\\Users\\CicloM\\Documents\\GitHub\\Proyecto_Tienda_CesarGerardJabi\\LM\\Diseño\\PanelAdministracion\\panel_administración_Redimensionada_Cesar_Javi_Gerard.fxml")); //carga la vista
             Scene scene = new Scene(root); //crea escena
             stagePrincipal.setScene(scene); //pone la escena en el escenario
             stagePrincipal.show(); //muestra el escenario

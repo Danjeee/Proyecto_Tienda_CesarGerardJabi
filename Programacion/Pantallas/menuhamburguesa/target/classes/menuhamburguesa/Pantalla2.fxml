@@ -22,11 +22,15 @@
                </image>
             </ImageView>
             <TextField layoutX="1183.0" layoutY="26.0" />
-            <Button layoutX="48.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: TRANSPARENT;">
+
+            
+            <Button id="botonMenu" layoutX="48.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: TRANSPARENT;">
                <graphic>
                   <FontAwesomeIconView glyphName="NAVICON" size="25" />
                </graphic>
             </Button>
+
+
             <Button layoutX="290.0" layoutY="42.0" mnemonicParsing="false" style="-fx-background-color: TRANSPARENT;" />
             <FontAwesomeIconView glyphName="SEARCH" layoutX="1145.0" layoutY="46.0" size="25" />
             <FontAwesomeIconView glyphName="USER" layoutX="1352.0" layoutY="45.0" size="25" />

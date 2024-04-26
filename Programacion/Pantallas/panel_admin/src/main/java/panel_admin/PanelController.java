@@ -1,5 +1,7 @@
 package panel_admin;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -11,23 +13,23 @@ public class PanelController {
     private App PantallaPrincipal = new App();
 
     @FXML
-    public void cargarVentana_AltaProducto(ActionEvent actionEvent) {
-        PantallaPrincipal.mostrarVentana_altaProductos(actionEvent, "Alta");
+    public void cargarVentana_AltaProducto(ActionEvent actionEvent) throws IOException {
+        App.setRoot("alta");
     }
 
     @FXML
-    public void cargarVentana_AdministrarUsuario(ActionEvent actionEvent) {
-        PantallaPrincipal.mostrarVentana_altaProductos(actionEvent, "Editar_Empleado.fxml");
+    public void cargarVentana_AdministrarEmpleado(ActionEvent actionEvent) throws IOException {
+        App.setRoot("alta");
     }
 
     @FXML
-    public void cargarVentana_AdministrarProducto(ActionEvent actionEvent) {
-        PantallaPrincipal.mostrarVentana_altaProductos(actionEvent, "Administrar_Producto.fxml");
+    public void cargarVentana_AdministrarProducto(ActionEvent actionEvent) throws IOException {
+        App.setRoot("alta");
     }
-    
+
     @FXML
-    public void cargarVentana_AdministrarEmpleados(ActionEvent actionEvent) {
-        PantallaPrincipal.mostrarVentana_altaProductos(actionEvent, "Administrar_Empleados.fxml");
+    public void cargarVentana_AdministrarUsuario(ActionEvent actionEvent) throws IOException {
+        App.setRoot("alta");
     }
     
 }

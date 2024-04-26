@@ -2,10 +2,12 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -16,19 +18,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="productview.SecondaryController">
    <children>
-      <HBox alignment="CENTER" prefHeight="75.0" prefWidth="1920.0" styleClass="hhbox" stylesheets="@../css/styles1.css">
+      <HBox alignment="CENTER" prefHeight="75.0" prefWidth="1920.0" styleClass="hhbox" stylesheets="@styles1.css">
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="menu" stylesheets="@../css/styles1.css">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="menu" stylesheets="@styles1.css">
                <HBox.margin>
                   <Insets right="200.0" />
                </HBox.margin>
                <graphic>
                   <FontAwesomeIconView glyphName="NAVICON" size="30" />
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="1370.0">
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="879.0">
                <children>
                   <Label contentDisplay="CENTER" prefHeight="54.0" prefWidth="135.0" text="second" textAlignment="CENTER">
                      <font>
@@ -50,131 +55,90 @@
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="user" stylesheets="@../css/styles1.css">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="user" stylesheets="@styles1.css">
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
                <graphic>
-                  <FontAwesomeIconView glyphName="USER" size="30" />
+                  <FontAwesomeIconView glyphName="USER" size="30">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </FontAwesomeIconView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="cart" stylesheets="@../css/styles1.css">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="cart" stylesheets="@styles1.css">
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
                <graphic>
-                  <FontAwesomeIconView glyphName="SHOPPING_CART" selectionEnd="1" size="30" />
+                  <FontAwesomeIconView glyphName="SHOPPING_CART" selectionEnd="1" size="30">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </FontAwesomeIconView>
                </graphic>
             </Button>
          </children>
       </HBox>
-      <HBox prefHeight="788.0" prefWidth="1920.0">
-         <children>
-            <Pane prefHeight="788.0" prefWidth="960.0" styleClass="imagen" stylesheets="@../css/styles1.css">
+      <ScrollPane prefHeight="744.0" prefWidth="1440.0">
+         <content>
+            <FlowPane fx:id="main" prefHeight="736.0" prefWidth="1434.0">
                <children>
-                  <Button layoutX="30.0" layoutY="30.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="bck" stylesheets="@../css/styles1.css">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="ARROW_LEFT" size="30" />
-                     </graphic></Button>
-               </children>
-            </Pane>
-            <VBox prefHeight="788.0" prefWidth="960.0">
-               <children>
-                  <Label text="Ropa &gt; Camisas &gt; ">
-                     <font>
-                        <Font name="Calibri" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Blusa de flores">
-                     <font>
-                        <Font name="Calibri" size="32.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin></Label>
-                  <Label text="19.99€">
-                     <font>
-                        <Font name="Calibri Bold" size="67.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="-15.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="175.0" style="-fx-background-color: #000;" stylesheets="@../css/styles1.css" text="Añadir al carrito" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri" size="18.0" />
-                     </font>
-                     <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="PLUS" styleClass="b" />
-                     </graphic>
-                     <VBox.margin>
-                        <Insets top="50.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Label text="descripción">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Separator prefHeight="0.0" prefWidth="800.0">
-                     <VBox.margin>
-                        <Insets bottom="10.0" right="50.0" top="10.0" />
-                     </VBox.margin>
-                  </Separator>
-                  <Pane prefHeight="200.0" prefWidth="200.0">
+                  <GridPane fx:id="baseGrid" prefHeight="250.0" prefWidth="200.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="165.3333282470703" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="50.66667175292969" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <children>
-                        <Text layoutX="6.0" layoutY="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TEXT" wrappingWidth="610.0" />
+                        <Button mnemonicParsing="false" prefHeight="160.0" prefWidth="200.0" stylesheets="@styles1.css">
+                           <graphic>
+                              <ImageView fitHeight="160.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                        <FlowPane prefHeight="56.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Blusa de flores">
+                                 <font>
+                                    <Font name="Inter Regular" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: black; -fx-background-radius: 0;" textFill="WHITE">
+                                 <FlowPane.margin>
+                                    <Insets left="50.0" top="10.0" />
+                                 </FlowPane.margin>
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS" />
+                                 </graphic>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: black; -fx-background-radius: 0;" textFill="WHITE">
+                                 <FlowPane.margin>
+                                    <Insets top="10.0" />
+                                 </FlowPane.margin>
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_CART" />
+                                 </graphic>
+                              </Button>
+                              <Label text="00.0 €">
+                                 <font>
+                                    <Font name="Inter Regular" size="15.0" />
+                                 </font>
+                                 <FlowPane.margin>
+                                    <Insets top="-15.0" />
+                                 </FlowPane.margin>
+                              </Label>
+                           </children>
+                        </FlowPane>
                      </children>
-                  </Pane>
-                  <Label text="¿como soy?">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Separator prefHeight="0.0" prefWidth="800.0">
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Separator>
-                  <FlowPane hgap="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="flowpane" stylesheets="@../css/styles1.css" vgap="10.0">
-                     <children>
-                        <Label text="color lila">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label text="cierre de cordón">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label text="estampado de flores">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </FlowPane>
+                  </GridPane>
                </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <padding>
-                  <Insets left="60.0" />
-               </padding>
-            </VBox>
-         </children>
-      </HBox>
-      <GridPane alignment="CENTER" prefHeight="218.0" prefWidth="1920.0">
+            </FlowPane>
+         </content>
+      </ScrollPane>
+      <GridPane alignment="CENTER" prefHeight="218.0" prefWidth="1920.0" stylesheets="@styles1.css">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -185,7 +149,7 @@
             <RowConstraints maxHeight="82.0" minHeight="1.0" prefHeight="42.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Pane prefHeight="170.0" prefWidth="640.0" styleClass="foot" stylesheets="@../css/styles1.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Pane prefHeight="170.0" prefWidth="640.0" styleClass="foot" stylesheets="@styles1.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Text fill="#a1a1a1" layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Politica de privacidad" />
                   <Text fill="#a1a1a1" layoutX="154.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condiciones de compras" />
@@ -196,7 +160,7 @@
                   <Text fill="#a1a1a1" layoutX="419.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="|" wrappingWidth="12.87109375" />
                </children>
             </Pane>
-            <Pane prefHeight="155.0" prefWidth="279.0" styleClass="ayuda" stylesheets="@../css/styles1.css">
+            <Pane prefHeight="155.0" prefWidth="279.0" styleClass="ayuda" stylesheets="@styles1.css">
                <children>
                   <Text layoutX="66.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AYUDA">
                      <font>
@@ -225,19 +189,19 @@
                   </Text>
                </children>
             </Pane>
-            <Pane prefHeight="145.0" prefWidth="326.0" styleClass="metodo" stylesheets="@../css/styles1.css" GridPane.columnIndex="1">
+            <Pane prefHeight="145.0" prefWidth="326.0" styleClass="metodo" stylesheets="@styles1.css" GridPane.columnIndex="1">
                <children>
                   <Text layoutX="52.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MÉTODOS DE PAGO">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <Button fx:id="boton2footer" layoutX="52.0" layoutY="45.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" />
+                  <Button fx:id="boton2footer" layoutX="52.0" layoutY="45.0" mnemonicParsing="false" onAction="#press" prefHeight="25.0" prefWidth="73.0" />
                   <Button fx:id="boton2footer" layoutX="138.0" layoutY="45.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" />
                   <Button fx:id="boton2footer" layoutX="226.0" layoutY="45.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" />
                </children>
             </Pane>
-            <Pane prefHeight="145.0" prefWidth="200.0" styleClass="sig" stylesheets="@../css/styles1.css" GridPane.columnIndex="2">
+            <Pane prefHeight="145.0" prefWidth="200.0" styleClass="sig" stylesheets="@styles1.css" GridPane.columnIndex="2">
                <children>
                   <Text layoutX="5.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¡SÍGUENOS!">
                      <font>

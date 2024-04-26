@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -14,8 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER" prefHeight="75.0" prefWidth="1920.0" styleClass="hhbox" stylesheets="@../css/styles1.css">
          <children>
@@ -23,8 +23,11 @@
                <HBox.margin>
                   <Insets right="200.0" />
                </HBox.margin>
+               <graphic>
+                  <FontAwesomeIconView glyphName="NAVICON" size="30" />
+               </graphic>
             </Button>
-            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="1370.0">
+            <HBox alignment="CENTER" prefHeight="54.0" prefWidth="883.0">
                <children>
                   <Label contentDisplay="CENTER" prefHeight="54.0" prefWidth="135.0" text="second" textAlignment="CENTER">
                      <font>
@@ -50,131 +53,152 @@
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
+               <graphic>
+                  <FontAwesomeIconView glyphName="USER" size="30" />
+               </graphic>
             </Button>
             <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="cart" stylesheets="@../css/styles1.css">
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
+               <graphic>
+                  <FontAwesomeIconView glyphName="SHOPPING_CART" size="30" />
+               </graphic>
             </Button>
          </children>
       </HBox>
       <HBox prefHeight="1008.0" prefWidth="1960.0" style="-fx-background-color: #fff;">
          <children>
-            <VBox prefHeight="200.0" prefWidth="980.0">
+            <VBox alignment="CENTER" prefHeight="920.0" prefWidth="1328.0" styleClass="cartbckgr" stylesheets="@../css/styles1.css">
                <children>
-                  <Label text="Carrito">
-                     <font>
-                        <Font name="Calibri Bold" size="24.0" />
-                     </font>
-                     <graphic>
-                        <FontAwesomeIconView glyphName="ARROW_LEFT" translateX="-10.0" />
-                     </graphic>
-                     <VBox.margin>
-                        <Insets left="50.0" top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <VBox prefHeight="500.0" prefWidth="305.0" styleClass="logincart" stylesheets="@../css/styles1.css">
-                     <VBox.margin>
-                        <Insets left="320.0" right="320.0" top="200.0" />
-                     </VBox.margin>
-                     <children>
-                        <Label text="Usuario:">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="10.0" top="20.0" />
-                           </VBox.margin>
-                        </Label>
-                        <GridPane>
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                  <ScrollPane prefHeight="365.0" prefWidth="892.0" styleClass="sp" stylesheets="@../css/styles1.css">
+                     <content>
+                        <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="700.0" styleClass="cont" stylesheets="@../css/styles1.css">
                            <children>
-                              <FontAwesomeIconView glyphName="CLOSE" GridPane.columnIndex="1" />
-                              <TextField promptText="Escribe tu nombre de usuario" styleClass="textfield" stylesheets="@../css/styles1.css" />
+                              <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label prefHeight="75.0" prefWidth="400.0" styleClass="it" stylesheets="@../css/styles1.css" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="it" stylesheets="@../css/styles1.css">
+                                 <HBox.margin>
+                                    <Insets left="100.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="70" />
+                                 </graphic>
+                              </Button>
                            </children>
-                        </GridPane>
-                        <Separator prefWidth="200.0">
-                           <VBox.margin>
-                              <Insets right="160.0" />
-                           </VBox.margin>
-                        </Separator>
-                        <Label text="Contraseña:">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="10.0" top="20.0" />
-                           </VBox.margin>
-                        </Label>
-                        <GridPane>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <FontAwesomeIconView glyphName="CLOSE" GridPane.columnIndex="1" />
-                              <TextField promptText="Escribe tu contraseña" styleClass="textfield" stylesheets="@../css/styles1.css" />
-                           </children>
-                        </GridPane>
-                        <Separator prefWidth="200.0">
-                           <VBox.margin>
-                              <Insets right="160.0" />
-                           </VBox.margin>
-                        </Separator>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="305.0" style="-fx-background-color: #000;" text="Iniciar sesión" textFill="WHITE">
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" text="¿Has olvidado tu contraseña?">
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Label alignment="CENTER" prefHeight="28.0" prefWidth="308.0" text="¿Necesitas una cuenta?">
-                           <font>
-                              <Font name="System Bold" size="19.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="100.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="305.0" style="-fx-background-color: #000;" text="Registrate" textFill="WHITE">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-               </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="980.0" styleClass="cartbckgr" stylesheets="@../css/styles1.css">
-               <children>
-                  <ScrollPane prefHeight="365.0" prefWidth="730.0" styleClass="sp" stylesheets="@../css/styles1.css" />
+                        </HBox>
+                     </content>
+                     <VBox.margin>
+                        <Insets left="300.0" right="500.0" />
+                     </VBox.margin></ScrollPane>
                   <Separator prefWidth="200.0">
                      <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="300.0" right="500.0" top="10.0" />
                      </VBox.margin>
                   </Separator>
+                  <GridPane alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="535.0" minWidth="10.0" prefWidth="535.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="353.0" minWidth="10.0" prefWidth="195.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField prefHeight="50.0" prefWidth="724.0" promptText="Escribe tu codigo de descuento" styleClass="cod" stylesheets="@../css/styles1.css">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </TextField>
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" styleClass="apply" stylesheets="@../css/styles1.css" text="Aplicar" textFill="WHITE" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="33.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Button>
+                        <Label contentDisplay="RIGHT" text="Subtotal" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="ARROW_RIGHT" selectionEnd="1" selectionStart="1" />
+                           </graphic>
+                        </Label>
+                        <Label contentDisplay="RIGHT" text="Gastos de envío" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="ARROW_RIGHT" selectionEnd="1" selectionStart="1" />
+                           </graphic>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="47.0" prefWidth="160.0" text="40.75€" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="47.0" prefWidth="160.0" text="00.00€" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                  </GridPane>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="300.0" right="500.0" />
+                     </VBox.margin></Separator>
+                  <GridPane alignment="CENTER" prefHeight="105.0" prefWidth="1026.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="535.0" minWidth="10.0" prefWidth="535.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="353.0" minWidth="10.0" prefWidth="195.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label contentDisplay="RIGHT" text="Total del pago">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="ARROW_RIGHT" selectionEnd="1" selectionStart="1" />
+                           </graphic>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="47.0" prefWidth="160.0" text="40.75€" textAlignment="RIGHT" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <Label text="Incluye 8.55 de impuestos" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
                </children>
-               <padding>
-                  <Insets left="100.0" right="100.0" top="100.0" />
-               </padding>
                <HBox.margin>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                  <Insets bottom="25.0" left="50.0" right="50.0" top="25.0" />
                </HBox.margin>
+               <padding>
+                  <Insets right="-200.0" />
+               </padding>
             </VBox>
          </children>
       </HBox>

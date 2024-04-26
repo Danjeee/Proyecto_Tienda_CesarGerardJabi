@@ -63,19 +63,25 @@ public class Main {
     private FontAwesomeIconView cart;
     @FXML
     private FlowPane main;
-    
+
     @FXML
-    private void searchBar(ActionEvent e) throws IOException{
+    private void searchBar(ActionEvent e) throws IOException {
         TextField sb = (TextField) e.getSource();
-        resultados.add(sb.getText());
-        buscar();
+        if (sb.getText().isEmpty()) {
+            initialize();
+        } else {
+            resultados.add(sb.getText());
+            buscar();
+        }
+
     }
+
     @FXML
-    private void filtro(ActionEvent e) throws IOException{
+    private void filtro(ActionEvent e) throws IOException {
         Button src = (Button) e.getSource();
         String word = src.getId().toString();
         Boolean esta = false;
-        for (String i : resultados){
+        for (String i : resultados) {
             if (word.equals(i)) {
                 resultados.remove(i);
                 esta = true;
@@ -96,24 +102,33 @@ public class Main {
             src.setStyle("-fx-background-color: #fff");
             src.setGraphic(null);
         }
-        buscar();
+        if (resultados.isEmpty()) {
+            initialize();
+        } else {
+            buscar();
+        }
+       
     }
-    @FXML private Alert alerta(String tipo, String header, String titulo, String cont){
+
+    @FXML
+    private Alert alerta(String tipo, String header, String titulo, String cont) {
         Alert a = new Alert(Alert.AlertType.valueOf(tipo));
         a.setHeaderText(header);
         a.setTitle(titulo);
         a.setContentText(cont);
         return a;
     }
+
     @FXML
-    private void buscar() throws IOException{
+    private void buscar() throws IOException {
         main.getChildren().clear();
         Connection con = conenct();
         HashSet<Articulo> busq = new HashSet();
-        for (String i : resultados){
+        for (String i : resultados) {
             try {
                 Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery("SELECT nombre, precio, imagen, cod_art FROM articulo WHERE nombre like(\"%"+i+"%\")");
+                ResultSet rs = st.executeQuery(
+                        "SELECT nombre, precio, imagen, cod_art FROM articulo WHERE nombre like(\"%" + i + "%\")");
                 while (rs.next()) {
                     int cod = rs.getInt("cod_art");
                     String nombre = rs.getString("nombre");
@@ -121,25 +136,27 @@ public class Main {
                     String img = rs.getString("imagen");
                     busq.add(new Articulo(cod, nombre, precio, img));
                 }
-            } catch (SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        for (Articulo i : busq){
+        for (Articulo i : busq) {
             int cod = i.getCodigo();
             String nombre = i.getNombre();
             String precio = i.getPrecio().toString();
             String img = i.getImg();
             main.getChildren().add(createItem(nombre, precio, img, cod));
         }
-        if (main.getChildren().isEmpty()){
-            Alert a = alerta("Error", "No hay resultados para tu busqueda", "Error", null);
+        if (main.getChildren().isEmpty()) {
+            Alert a = alerta("Error", "No hay resultados para tu busqueda", "Error", "a");
             a.showAndWait();
             initialize();
         }
     }
+
     @FXML
-    private void initialize() throws IOException{
+    private void initialize() throws IOException {
+        main.getChildren().clear();
         Connection con = conenct();
         try {
             Statement st = con.createStatement();
@@ -151,10 +168,11 @@ public class Main {
                 String img = rs.getString("imagen");
                 main.getChildren().add(createItem(nombre, precio, img, cod));
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     private Connection conenct() {
         Connection con = null;
         try {
@@ -164,13 +182,13 @@ public class Main {
         }
         return con;
     }
-    
-    private GridPane createItem(String nombre, String precio, String img, int cod){
-        /* 
-        *
-        Creacion de items
-        * 
-        */
+
+    private GridPane createItem(String nombre, String precio, String img, int cod) {
+        /*
+         *
+         * Creacion de items
+         * 
+         */
         GridPane a = new GridPane();
         ColumnConstraints c = new ColumnConstraints();
         c.setPrefWidth(200);
@@ -184,23 +202,24 @@ public class Main {
         FontAwesomeIconView plusicon = new FontAwesomeIconView();
         FontAwesomeIconView carticon = new FontAwesomeIconView();
         Button imgg = new Button();
-        /*Iconos */
+        /* Iconos */
         plusicon.glyphNameProperty().set("PLUS");
         carticon.glyphNameProperty().set("SHOPPING_CART");
         Color color = Color.WHITE;
         plusicon.fillProperty().set(color);
         carticon.fillProperty().set(color);
         /*
-        *
-        Estilos
-        * 
-        */
-        /*Imagen*/
+         *
+         * Estilos
+         * 
+         */
+        /* Imagen */
         imgg.setPrefHeight(200);
         imgg.setPrefWidth(200);
         imgg.setText("");
         if (img.equals("imagen1.jpg")) {
-            ImageView fondo = new ImageView(new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/"+img)));
+            ImageView fondo = new ImageView(
+                    new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/" + img)));
             fondo.setFitHeight(175);
             fondo.setFitWidth(150);
             imgg.setGraphic(fondo);
@@ -213,7 +232,7 @@ public class Main {
                 e1.printStackTrace();
             }
         });
-        /*Grid2 */
+        /* Grid2 */
         RowConstraints datos = new RowConstraints();
         datos.setPrefHeight(50);
         ColumnConstraints datosCol = new ColumnConstraints();
@@ -225,7 +244,7 @@ public class Main {
         fp.getColumnConstraints().add(bot);
         fp.getRowConstraints().add(datos);
         fp.getColumnConstraints().get(0).setPrefWidth(150);
-        /*Botones */
+        /* Botones */
         plus.setStyle("-fx-background-color: #000;-fx-background-radius: 0");
         cart.setStyle("-fx-background-color: #000;-fx-background-radius: 0");
         cart.setPrefHeight(25);
@@ -238,24 +257,25 @@ public class Main {
         botones.setPrefHeight(25);
         botones.setPrefWidth(50);
         botones.getChildren().addAll(plus, cart);
-        
-        /*Label */
+
+        /* Label */
         ll.setFont(new Font("System", 15));
-        /*FlowPane */
+        /* FlowPane */
         fp.add(l, 0, 0);
         fp.add(ll, 0, 1);
         fp.add(botones, 1, 0);
-        /*Row */
+        /* Row */
         r.setPrefHeight(185);
         rr.setPrefHeight(50);
         r.setValignment(VPos.TOP);
         a.getColumnConstraints().add(c);
-        /*Añadir column y row */
+        /* Añadir column y row */
         a.getRowConstraints().add(r);
         a.getRowConstraints().add(rr);
         a.add(imgg, 0, 0);
-        a.add(fp, 0 ,1);
-        a.setStyle("-fx-background-color: #F9F9F9");;
+        a.add(fp, 0, 1);
+        a.setStyle("-fx-background-color: #F9F9F9");
+        ;
         return a;
     }
 

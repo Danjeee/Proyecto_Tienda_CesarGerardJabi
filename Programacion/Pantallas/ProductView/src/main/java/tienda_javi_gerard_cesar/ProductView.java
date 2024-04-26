@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,7 +35,7 @@ public class ProductView {
     public void setCurrent(int current) {
         this.current = current;
     }
-
+    
     @FXML
     private Label where;
     @FXML
@@ -135,7 +136,7 @@ public class ProductView {
     private String[] leer() {
         Connection con = conenct();
         int id = ProductView.current;
-        String[] datos = new String[3];
+        String[] datos = new String[4];
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM articulo WHERE cod_art = " + id);
@@ -143,6 +144,7 @@ public class ProductView {
                 datos[0] = rs.getString("nombre");
                 datos[1] = rs.getString("precio");
                 datos[2] = rs.getString("descripcion");
+                datos[3] = rs.getString("imagen");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -155,6 +157,8 @@ public class ProductView {
         nom.setText(datos[0]);
         precio.setText(datos[1] + "€");
         desc.setText(datos[2]);
+        /*img.setImage(new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/"+datos[3])));*/
+        
         ArrayList<String> atribtxt = atributos(conenct());
         ArrayList<Label> atrib = new ArrayList<Label>();
         where.setText(atribtxt.get(0)+nom.getText());
@@ -168,7 +172,7 @@ public class ProductView {
         atr.getChildren().clear();
         atr.getChildren().addAll(atrib);
 
-        imagen.setStyle("-fx-background-image: url(imagen1.jpg)");
+
     }
     @FXML
     private void back() throws IOException{

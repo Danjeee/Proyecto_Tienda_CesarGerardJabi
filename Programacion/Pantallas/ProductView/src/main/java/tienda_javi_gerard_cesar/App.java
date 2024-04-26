@@ -21,7 +21,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("main"), 1440, 1024);
         stage.setScene(scene);
         stage.setTitle("secondHand");
-        /*stage.getIcons().add(new Image(App.class.getResourceAsStream("icon.png")));*/
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/icon.jpg")));
         stage.show();
     }
 

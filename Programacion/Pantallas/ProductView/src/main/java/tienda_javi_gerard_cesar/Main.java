@@ -1,17 +1,26 @@
 package tienda_javi_gerard_cesar;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.VPos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
@@ -20,8 +29,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import tienda_javi_gerard_cesar.Clases.Articulo;
 
 public class Main {
+    private ArrayList<String> resultados = new ArrayList<>();
+    @FXML
+    private Button camisa;
+    @FXML
+    private Button chaqueta;
+    @FXML
+    private Button pantalon;
+    @FXML
+    private Button bolso;
+    @FXML
+    private Button zapato;
     @FXML
     private GridPane baseGrid;
     @FXML
@@ -41,8 +62,82 @@ public class Main {
     @FXML
     private FontAwesomeIconView cart;
     @FXML
-
     private FlowPane main;
+    
+    @FXML
+    private void searchBar(ActionEvent e) throws IOException{
+        TextField sb = (TextField) e.getSource();
+        resultados.add(sb.getText());
+        buscar();
+    }
+    @FXML
+    private void filtro(ActionEvent e) throws IOException{
+        Button src = (Button) e.getSource();
+        String word = src.getId().toString();
+        Boolean esta = false;
+        for (String i : resultados){
+            if (word.equals(i)) {
+                resultados.remove(i);
+                esta = true;
+                break;
+            }
+        }
+        if (!esta) {
+            resultados.add(word);
+            src.setTextFill(Color.WHITE);
+            src.setStyle("-fx-background-color: #000");
+            FontAwesomeIconView ico = new FontAwesomeIconView();
+            ico.setGlyphName("CLOSE");
+            ico.setFill(Color.WHITE);
+            src.setContentDisplay(ContentDisplay.RIGHT);
+            src.setGraphic(ico);
+        } else {
+            src.setTextFill(Color.BLACK);
+            src.setStyle("-fx-background-color: #fff");
+            src.setGraphic(null);
+        }
+        buscar();
+    }
+    @FXML private Alert alerta(String tipo, String header, String titulo, String cont){
+        Alert a = new Alert(Alert.AlertType.valueOf(tipo));
+        a.setHeaderText(header);
+        a.setTitle(titulo);
+        a.setContentText(cont);
+        return a;
+    }
+    @FXML
+    private void buscar() throws IOException{
+        main.getChildren().clear();
+        Connection con = conenct();
+        HashSet<Articulo> busq = new HashSet();
+        for (String i : resultados){
+            try {
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery("SELECT nombre, precio, imagen, cod_art FROM articulo WHERE nombre like(\"%"+i+"%\")");
+                while (rs.next()) {
+                    int cod = rs.getInt("cod_art");
+                    String nombre = rs.getString("nombre");
+                    BigDecimal precio = rs.getBigDecimal("precio");
+                    String img = rs.getString("imagen");
+                    busq.add(new Articulo(cod, nombre, precio, img));
+                }
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        for (Articulo i : busq){
+            int cod = i.getCodigo();
+            String nombre = i.getNombre();
+            String precio = i.getPrecio().toString();
+            String img = i.getImg();
+            main.getChildren().add(createItem(nombre, precio, img, cod));
+        }
+        if (main.getChildren().isEmpty()){
+            Alert a = alerta("Error", "No hay resultados para tu busqueda", "Error", null);
+            a.showAndWait();
+            initialize();
+        }
+    }
     @FXML
     private void initialize() throws IOException{
         Connection con = conenct();
@@ -104,7 +199,12 @@ public class Main {
         imgg.setPrefHeight(200);
         imgg.setPrefWidth(200);
         imgg.setText("");
-        imgg.setStyle("-fx-background-image: url(./src/main/resources/productview/images/"+img+")");
+        if (img.equals("imagen1.jpg")) {
+            ImageView fondo = new ImageView(new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/"+img)));
+            fondo.setFitHeight(175);
+            fondo.setFitWidth(150);
+            imgg.setGraphic(fondo);
+        }
         imgg.setOnAction(e -> {
             try {
                 ProductView.current = cod;
@@ -124,7 +224,7 @@ public class Main {
         fp.getColumnConstraints().add(datosCol);
         fp.getColumnConstraints().add(bot);
         fp.getRowConstraints().add(datos);
-        fp.getColumnConstraints().get(0).setPrefWidth(140);
+        fp.getColumnConstraints().get(0).setPrefWidth(150);
         /*Botones */
         plus.setStyle("-fx-background-color: #000;-fx-background-radius: 0");
         cart.setStyle("-fx-background-color: #000;-fx-background-radius: 0");

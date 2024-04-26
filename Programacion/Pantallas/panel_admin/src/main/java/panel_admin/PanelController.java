@@ -12,22 +12,22 @@ public class PanelController {
 
     @FXML
     public void cargarVentana_AltaProducto(ActionEvent actionEvent) {
-        PantallaPrincipal.mostrarVentana_altaProductos(actionEvent, "C:\\Users\\CicloM\\Documents\\GitHub\\Proyecto_Tienda_CesarGerardJabi\\LM\\Diseño\\PanelAdministracion\\panel_administración_Redimensionada_Cesar_Javi_Gerard.fxml");
+        PantallaPrincipal.mostrarVentana_altaProductos(actionEvent, "Alta");
     }
 
     @FXML
     public void cargarVentana_AdministrarUsuario(ActionEvent actionEvent) {
-        PantallaPrincipal.mostrarVentana_altaProductos(actionEvent, "Proyecto_Tienda_CesarGerardJabi.LM.Diseño.EditarEmpleado.pantalla3.fxml");
+        PantallaPrincipal.mostrarVentana_altaProductos(actionEvent, "Editar_Empleado.fxml");
     }
 
     @FXML
     public void cargarVentana_AdministrarProducto(ActionEvent actionEvent) {
-        PantallaPrincipal.mostrarVentana_altaProductos(actionEvent, "Administrar_Producto_Redimensionado_Cesar_Javi_Gerard.fxml");
+        PantallaPrincipal.mostrarVentana_altaProductos(actionEvent, "Administrar_Producto.fxml");
     }
     
     @FXML
     public void cargarVentana_AdministrarEmpleados(ActionEvent actionEvent) {
-        PantallaPrincipal.mostrarVentana_altaProductos(actionEvent, "Administrar_Empleados_Redimensionado_Cesar_Javi_Gerard.fxml");
+        PantallaPrincipal.mostrarVentana_altaProductos(actionEvent, "Administrar_Empleados.fxml");
     }
     
 }

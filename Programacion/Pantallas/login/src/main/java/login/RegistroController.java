@@ -6,13 +6,13 @@ import javax.swing.Action;
 
 import javafx.fxml.FXML;
 
-public class PrimaryController {
+public class RegistroController {
 
     @FXML
     private App PantallaPrincipal = new App();
 
     @FXML
-    public void cargarventana_Seleccion(ActionEvent actionEvent) throws Exception{
-        App.setRoot("seleccion");
+    public void cargarventana_Registro(ActionEvent actionEvent) throws Exception{
+        App.setRoot("Pantalla2.fxml");
     }
 }

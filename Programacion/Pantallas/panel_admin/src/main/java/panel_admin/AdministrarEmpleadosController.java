@@ -8,13 +8,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
-public class AltaController {
+public class AdministrarEmpleadosController {
 
     @FXML
     private App PantallaPrincipal = new App();
 
     @FXML
-    public void cargarVentana_AltaProducto(ActionEvent actionEvent) throws IOException {
-        App.setRoot("panel");
+    public void retroceder_PanelAdmin(ActionEvent actionEvent) throws IOException {
+        App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
     }
+
 }

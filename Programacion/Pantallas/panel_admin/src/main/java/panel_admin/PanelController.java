@@ -14,22 +14,17 @@ public class PanelController {
 
     @FXML
     public void cargarVentana_AltaProducto(ActionEvent actionEvent) throws IOException {
-        App.setRoot("alta");
+        App.setRoot("AltaProductos_Cesar_Javi_Gerard");
     }
 
     @FXML
-    public void cargarVentana_AdministrarEmpleado(ActionEvent actionEvent) throws IOException {
-        App.setRoot("alta");
+    public void cargarVentana_AdministrarEmpleados(ActionEvent actionEvent) throws IOException {
+        App.setRoot("AdministrarEmpleados_Cesar_Javi_Gerard");
     }
 
     @FXML
-    public void cargarVentana_AdministrarProducto(ActionEvent actionEvent) throws IOException {
-        App.setRoot("alta");
+    public void cargarVentana_AdministrarUsuarios(ActionEvent actionEvent) throws IOException {
+        App.setRoot("AdministrarUsuarios_Cesar_Javi_Gerard");
     }
 
-    @FXML
-    public void cargarVentana_AdministrarUsuario(ActionEvent actionEvent) throws IOException {
-        App.setRoot("alta");
-    }
-    
 }

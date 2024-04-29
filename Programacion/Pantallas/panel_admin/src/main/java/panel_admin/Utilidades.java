@@ -1,28 +1,32 @@
-package com.example.basedatosempresafx;
+package panel_admin;
 
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 public class Utilidades {
 
-    public static Articulo obtenArt(String id, TextField nombre, TextField precio, TextField codigo, TextField grupo) {
+    public static Articulo obtenArt(TextField nombre, TextField precio, ChoiceBox marca, TextField descripcion, CheckBox activo, Button nombre_imagen, ChoiceBox material) {
         Articulo art;
-        String ide;
         String nom;
-        float pre;
-        String cod;
-        int gru;
+        double pre;
+        String marc;
+        String descrip;
+        Material mater;
+        boolean activ;
+        String nom_imagen;
 
-        ide = id;
         nom = nombre.getText();
-        pre = Float.parseFloat(precio.getText());
-        cod = codigo.getText();
-        gru = Integer.parseInt(grupo.getText());
+        pre = Double.parseDouble(precio.getText());
+        marc =
+        descrip = descripcion.getText();
+        mater =
+        activ = activo.isActivo();
+        nom_imagen = nombre_imagen.getText();
 
-        if (ide.equalsIgnoreCase("")) {
-            art = new Articulo("", nom, pre, cod, gru);
-        } else {
-            art = new Articulo(ide, nom, pre, cod, gru);
-        }
+
+        art = new Articulo(nom, pre, marc, descrip, mater, activ, nom_imagen);
 
         return art;
     }

@@ -1,5 +1,5 @@
 
-package com.example.basedatosempresafx;
+package panel_admin;
 
 import java.sql.*;
 
@@ -76,96 +76,15 @@ public class ConectaBBDD {
         return upd;
     }
 
-    public boolean irFinal() {
-        boolean ok = false;
-        try {
-            ok = rs.last();
-        } catch (SQLException ex) {
-            System.out.println("\nERROR: No se ha podido ir al último");
-        }
-        return ok;
-    }
-
-    public boolean irSiguiente() {
-        boolean ok = false;
-        try {
-            ok = rs.next();
-        } catch (SQLException ex) {
-            System.out.println("\nERROR: No se ha podido ir al siguiente");
-        }
-        return ok;
-    }
-
-    public boolean irAnterior() {
-        boolean ok = false;
-        try {
-            ok = rs.previous();
-        } catch (SQLException ex) {
-            System.out.println("\nERROR: No se ha podido ir al anterior");
-        }
-        return ok;
-    }
-
-    public boolean irPrimero() {
-        boolean ok = false;
-        try {
-            ok = rs.first();
-        } catch (SQLException ex) {
-            System.out.println("\nERROR: No se ha podido ir al primero");
-            ex.printStackTrace();
-        }
-        return ok;
-    }
-
-    public int tamanyo() throws SQLException {
-        int tam = 0, origen = 0;
-        origen = rs.getRow();
-        rs.last();
-        tam = rs.getRow();
-        rs.absolute(origen);
-        return tam;
-    }
-
-    public Articulo devRegistroActual() {
-        Articulo art = null;
-        try {
-            art = new Articulo(String.valueOf(rs.getInt("id")), rs.getString("nombre"),
-                     rs.getFloat("precio"), rs.getString("codigo"), rs.getInt("grupo"));
-        } catch (SQLException e) {
-            System.out.println("\nERROR: No se ha podido obtener el Artículo");
-        }
-        return (art);
-    }
 
     public int grabaRegistro(Articulo art) throws SQLException {
         int ok = -1;
-        String sql = "INSERT INTO articulos(nombre,precio,codigo,grupo) VALUES "
-                + "('" + art.getNombre() + "'," + art.getPrecio() + ",'" + art.getCodigo() + "'," + art.getGrupo() + ")";
+        String sql = "INSERT INTO articulos(nombre, precio, marca, descripcion, activo, imagen, material) VALUES "
+                + "('" + art.getNombre() + "'," + art.getPrecio() + ",'" + art.getMarca() + "'," + art.getDescripcion() + "'," + art.isActivo() + "'," + art.getNombre_imagen() + "'," + art.getMaterial() + ")";
         ok = this.updateSQL(sql);
 
         return (ok);
     }
 
-    public int modiRegistro(Articulo art) throws SQLException {
-        int ok = -1;
-
-        String sql = "UPDATE articulos SET nombre = '" + art.getNombre() + "', precio =" + art.getPrecio()
-                + ", codigo ='" + art.getCodigo() + "', grupo = " + art.getGrupo() + " WHERE id = " + art.getId();
-
-        ok = this.updateSQL(sql);
-        return (ok);
-    }
-
-    public boolean isPrimero() throws SQLException {
-        return rs.isFirst();
-    }
-
-    public boolean isUltimo() throws SQLException {
-        return rs.isLast();
-    }
-    
-    public int posActual() throws SQLException{
-        return rs.getRow();
-    }
 
 }

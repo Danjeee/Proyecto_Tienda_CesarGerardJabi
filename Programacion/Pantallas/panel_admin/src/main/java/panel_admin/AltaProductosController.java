@@ -1,6 +1,5 @@
 package panel_admin;
 
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,9 +8,28 @@ import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 public class AltaProductosController {
+    
+    @FXML
+    private TextField nombre;
+    @FXML
+    private TextField precio;
+    @FXML
+    private ChoiceBox marca;
+    @FXML
+    private TextField descripcion;
+    @FXML
+    private CheckBox activo;
+    @FXML
+    private Button nombre_imagen;
+    @FXML
+    private ChoiceBox material;
+    
 
     @FXML
     private App PantallaPrincipal = new App();
@@ -30,7 +48,44 @@ public class AltaProductosController {
         }
         return con;
     }
-    
-    
 
+    @FXML
+    private void guardarCambios() {
+        Articulo art1;
+        int graba;
+        ConectaBBDD con2 = new ConectaBBDD();
+        // creamos la alerta
+        Alert a = new Alert(Alert.AlertType.NONE);
+            try {
+                con2.conecta();
+                con2.crearSentencia();
+                // recogemos los valores de la ventana
+                art1 = Utilidades.obtenArt(nombre,precio,marca,descripcion,activo,nombre_imagen,material);
+                graba = con2.grabaRegistro(art1);
+                if (graba == 1) {
+                    a.setAlertType(Alert.AlertType.INFORMATION);
+                    a.setHeaderText(null);
+                    a.setContentText("\"* * * Artículo insertado * * * \"");
+                    a.show();
+                } else if (graba == -1) {
+                    a.setAlertType(Alert.AlertType.ERROR);
+                    a.setHeaderText(null);
+                    a.setContentText("ERROR: integridad referencial o SQL truncada");
+                    a.show();
+                } else {
+                    a.setAlertType(Alert.AlertType.ERROR);
+                    a.setHeaderText(null);
+                    a.setContentText("* * * no se pudo insertar Artículo * * *");
+                    a.show();
+                }
+                con2.cerrarConexion();
+            } catch (Exception ex) {
+                a.setAlertType(Alert.AlertType.ERROR);
+                a.setHeaderText(null);
+                a.setContentText("ERROR: con la BBDD.");
+                a.show();
+            }
+        
+    }
+    
 }

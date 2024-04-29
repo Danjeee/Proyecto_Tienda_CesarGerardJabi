@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../../../LM/Diseño/cssprueba/BOTON.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../../../LM/Diseño/cssprueba/BOTON.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
    <children>
       <ImageView fitHeight="869.0" fitWidth="1440.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -138,7 +138,7 @@
                               <FontAwesomeIconView fill="WHITE" glyphName="REMOVE" size="15" />
                            </graphic>
                         </Button>
-                        <Button layoutX="100.0" layoutY="202.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: black; -fx-background-radius: 0;" text="Iniciar sesión" textFill="WHITE">
+                        <Button layoutX="100.0" layoutY="202.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" onAction="#cargarVentana_seleccion" style="-fx-background-color: black; -fx-background-radius: 0;" text="Iniciar sesión" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -166,7 +166,7 @@
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="79.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: black; -fx-background-radius: 0;" text="Registrate" textFill="WHITE">
+                        <Button layoutX="79.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0"  onAction="#cargarVentana_registro" prefWidth="200.0" style="-fx-background-color: black; -fx-background-radius: 0;" text="Registrate" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>

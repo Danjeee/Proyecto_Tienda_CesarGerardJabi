@@ -13,22 +13,31 @@ import java.util.HashSet;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import tienda_javi_gerard_cesar.Clases.Articulo;
 
 public class Main {
@@ -66,18 +75,137 @@ public class Main {
     private FlowPane main;
     @FXML
     private FlowPane filtCont;
+    @FXML
+    private AnchorPane cont;
+    @FXML
+    private VBox popupHamb;
+
+    @FXML
+    private Button menuHamb() {
+        Button a = new Button();
+        a.setText("");
+        a.setPrefHeight(30);
+        a.setPrefWidth(30);
+        FontAwesomeIconView ico = new FontAwesomeIconView();
+        ico.setSize("30");
+        ico.setGlyphName("NAVICON");
+        a.setGraphic(ico);
+        a.setLayoutX(25);
+        a.setLayoutY(25);
+        a.setOnAction(e -> popupHambShow());
+        return a;
+    }
+
+    private Button smallButton(String texto, String id) {
+        Button pant = new Button(texto);
+        pant.setId(id);
+        pant.setAlignment(Pos.CENTER_LEFT);
+        pant.setPrefWidth(500);
+        pant.setFont(new Font("System", 20));
+        pant.setOnAction(e -> {
+            try {
+                filtrar(id);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+        return pant;
+    }
+
+    private void popupHambMake() {
+        /* VBOX propiedades */
+        popupHamb = new VBox();
+        popupHamb.setLayoutX(-500);
+        popupHamb.setPrefHeight(1024);
+        popupHamb.setPrefWidth(500);
+        popupHamb.setDisable(false);
+        popupHamb.setPadding(new Insets(80, 20, 20, 20));
+        popupHamb.setStyle("-fx-background-color: #fff");
+        /* Botones */
+        Button ropa = new Button("Ropa");
+        ropa.setAlignment(Pos.CENTER_LEFT);
+        ropa.setPrefWidth(500);
+        ropa.setFont(new Font("System", 25));
+        String[] multifiltro = {"Camisa", "Pantalon", "Chaqueta"};
+        ropa.setOnAction(e -> {
+            try {
+                multiFiltrar(multifiltro);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+        popupHamb.getChildren().add(ropa);
+
+        popupHamb.getChildren().add(smallButton("     Chaquetas", "Chaqueta"));
+
+        popupHamb.getChildren().add(smallButton("     Pantalones", "Pantalon"));
+
+        popupHamb.getChildren().add(smallButton("     Camisas", "Camisa"));
+
+        Button acc = new Button("Accesorios");
+        acc.setAlignment(Pos.CENTER_LEFT);
+        acc.setPrefWidth(500);
+        acc.setFont(new Font("System", 25));
+        String[] multifiltro2 = {"Camisa", "Pantalon", "Chaqueta"};
+        ropa.setOnAction(e -> {
+            try {
+                multiFiltrar(multifiltro2);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+        popupHamb.getChildren().add(acc);
+
+        popupHamb.getChildren().add(smallButton("     Zapatos", "Zapatos"));
+
+        popupHamb.getChildren().add(smallButton("     Bolsos", "Bolso"));
+    }
+
+    private void popupHambShow() {
+        if (popupHamb.getLayoutX() == 0) {
+            popupHamb.setLayoutX(-500);
+        } else {
+            popupHamb.setLayoutX(0);
+        }
+    }
 
     @FXML
     private void searchBar(ActionEvent e) throws IOException {
         TextField sb = (TextField) e.getSource();
         resultados.clear();
         if (sb.getText().isEmpty()) {
-            initialize();
+            buscar();
         } else {
             resultados.add(sb.getText());
             buscar();
-        } 
+        }
 
+    }
+
+    private void multiFiltrar(String[] mult) throws IOException{
+        filtros.clear();
+        for (String i : mult){
+            filtrar(i);
+        }
+    }
+
+    private void filtrar(String word) throws IOException {
+        Boolean esta = false;
+        for (String i : filtros) {
+            if (word.equals(i)) {
+                resultados.remove(i);
+                esta = true;
+                break;
+            }
+        }
+        if (!esta) {
+            filtros.add(word);
+        } else {
+            filtros.remove(word);
+        }
+
+        buscar();
+        popupHambShow();
     }
 
     @FXML
@@ -94,25 +222,12 @@ public class Main {
         }
         if (!esta) {
             filtros.add(word);
-            src.setTextFill(Color.WHITE);
-            src.setStyle("-fx-background-color: #000");
-            FontAwesomeIconView ico = new FontAwesomeIconView();
-            ico.setGlyphName("CLOSE");
-            ico.setFill(Color.WHITE);
-            src.setContentDisplay(ContentDisplay.RIGHT);
-            src.setGraphic(ico);
-            System.out.println(filtros);
+
         } else {
             filtros.remove(word);
-            src.setTextFill(Color.BLACK);
-            src.setStyle("-fx-background-color: #fff");
-            src.setGraphic(null);
+
         }
-        if (filtros.isEmpty()) {
-            initialize();
-        } else {
-            buscar();
-        }
+        buscar();
 
     }
 
@@ -130,6 +245,8 @@ public class Main {
         main.getChildren().clear();
         Connection con = conenct();
         HashSet<Articulo> busq = new HashSet();
+        HashSet<Articulo> busqaux = new HashSet();
+        HashSet<Articulo> busqaux2 = new HashSet();
         for (String i : resultados) {
             try {
                 Statement st = con.createStatement();
@@ -140,10 +257,27 @@ public class Main {
                     String nombre = rs.getString("nombre");
                     BigDecimal precio = rs.getBigDecimal("precio");
                     String img = rs.getString("imagen");
-                    busq.add(new Articulo(cod, nombre, precio, img));
+                    busqaux.add(new Articulo(cod, nombre, precio, img));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+            }
+        }
+        for (Node i : filtCont.getChildren()) {
+            if (i.getClass() == Button.class) {
+                if (filtros.contains(i.getId())) {
+                    ((Button) i).setTextFill(Color.WHITE);
+                    ((Button) i).setStyle("-fx-background-color: #000");
+                    FontAwesomeIconView ico = new FontAwesomeIconView();
+                    ico.setGlyphName("CLOSE");
+                    ico.setFill(Color.WHITE);
+                    ((Button) i).setContentDisplay(ContentDisplay.RIGHT);
+                    ((Button) i).setGraphic(ico);
+                } else {
+                    ((Button) i).setTextFill(Color.BLACK);
+                    ((Button) i).setStyle("-fx-background-color: #fff");
+                    ((Button) i).setGraphic(null);
+                }
             }
         }
         for (String word : filtros) {
@@ -164,13 +298,30 @@ public class Main {
                     String nombre = rs.getString("nombre");
                     BigDecimal precio = rs.getBigDecimal("precio");
                     String img = rs.getString("imagen");
-                    busq.add(new Articulo(cod, nombre, precio, img));
+                    busqaux2.add(new Articulo(cod, nombre, precio, img));
                 }
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
         }
-
+        if (!filtros.isEmpty()) {
+            if (resultados.isEmpty()) {
+                busq.addAll(busqaux2);
+            } else {
+                for (Articulo i : busqaux) {
+                    for (Articulo j : busqaux2) {
+                        if (i.getCodigo() == j.getCodigo()) {
+                            busq.add(j);
+                        }
+                    }
+                }
+            }
+        } else {
+            busq.addAll(busqaux);
+            if (resultados.isEmpty()) {
+                initialize();
+            }
+        }
         for (Articulo i : busq) {
             int cod = i.getCodigo();
             String nombre = i.getNombre();
@@ -178,15 +329,21 @@ public class Main {
             String img = i.getImg();
             main.getChildren().add(createItem(nombre, precio, img, cod));
         }
-        if (main.getChildren().isEmpty()) {
-            Alert a = alerta("Error", "No hay resultados para tu busqueda", "Error", "a");
-            a.showAndWait();
-            initialize();
-        }
+        /*
+         * if (main.getChildren().isEmpty()) {
+         * Alert a = alerta("Error", "No hay resultados para tu busqueda", "Error",
+         * "a");
+         * a.showAndWait();
+         * initialize();
+         * }
+         */
     }
 
     @FXML
     private void initialize() throws IOException {
+        popupHambMake();
+        cont.getChildren().add(popupHamb);
+        cont.getChildren().add(menuHamb());
         main.getChildren().clear();
         Connection con = conenct();
         try {

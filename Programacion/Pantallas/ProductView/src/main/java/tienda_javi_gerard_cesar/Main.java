@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.VPos;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -33,16 +33,17 @@ import tienda_javi_gerard_cesar.Clases.Articulo;
 
 public class Main {
     private ArrayList<String> resultados = new ArrayList<>();
+    private ArrayList<String> filtros = new ArrayList<>();
     @FXML
-    private Button camisa;
+    private Button Camisa;
     @FXML
-    private Button chaqueta;
+    private Button Chaqueta;
     @FXML
-    private Button pantalon;
+    private Button Pantalon;
     @FXML
-    private Button bolso;
+    private Button Bolso;
     @FXML
-    private Button zapato;
+    private Button Zapatos;
     @FXML
     private GridPane baseGrid;
     @FXML
@@ -63,16 +64,19 @@ public class Main {
     private FontAwesomeIconView cart;
     @FXML
     private FlowPane main;
+    @FXML
+    private FlowPane filtCont;
 
     @FXML
     private void searchBar(ActionEvent e) throws IOException {
         TextField sb = (TextField) e.getSource();
+        resultados.clear();
         if (sb.getText().isEmpty()) {
             initialize();
         } else {
             resultados.add(sb.getText());
             buscar();
-        }
+        } 
 
     }
 
@@ -81,7 +85,7 @@ public class Main {
         Button src = (Button) e.getSource();
         String word = src.getId().toString();
         Boolean esta = false;
-        for (String i : resultados) {
+        for (String i : filtros) {
             if (word.equals(i)) {
                 resultados.remove(i);
                 esta = true;
@@ -89,7 +93,7 @@ public class Main {
             }
         }
         if (!esta) {
-            resultados.add(word);
+            filtros.add(word);
             src.setTextFill(Color.WHITE);
             src.setStyle("-fx-background-color: #000");
             FontAwesomeIconView ico = new FontAwesomeIconView();
@@ -97,17 +101,19 @@ public class Main {
             ico.setFill(Color.WHITE);
             src.setContentDisplay(ContentDisplay.RIGHT);
             src.setGraphic(ico);
+            System.out.println(filtros);
         } else {
+            filtros.remove(word);
             src.setTextFill(Color.BLACK);
             src.setStyle("-fx-background-color: #fff");
             src.setGraphic(null);
         }
-        if (resultados.isEmpty()) {
+        if (filtros.isEmpty()) {
             initialize();
         } else {
             buscar();
         }
-       
+
     }
 
     @FXML
@@ -140,6 +146,31 @@ public class Main {
                 e.printStackTrace();
             }
         }
+        for (String word : filtros) {
+            try {
+                Statement st = con.createStatement();
+                ResultSet rs = null;
+                if (word.equals("Camisa") || word.equals("Pantalon") || word.equals("Chaqueta")) {
+                    rs = st.executeQuery(
+                            "SELECT A.* FROM articulo A, ropa R WHERE A.cod_art = R.cod_art and R.tipo_ropa=\"" + word
+                                    + "\"");
+                } else if (word.equals("Bolso") || word.equals("Zapatos")) {
+                    rs = st.executeQuery(
+                            "SELECT A.* FROM articulo A, accesorio R WHERE A.cod_art = R.cod_art and R.tipo_accesorio=\""
+                                    + word + "\"");
+                }
+                while (rs.next()) {
+                    int cod = rs.getInt("cod_art");
+                    String nombre = rs.getString("nombre");
+                    BigDecimal precio = rs.getBigDecimal("precio");
+                    String img = rs.getString("imagen");
+                    busq.add(new Articulo(cod, nombre, precio, img));
+                }
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+
         for (Articulo i : busq) {
             int cod = i.getCodigo();
             String nombre = i.getNombre();

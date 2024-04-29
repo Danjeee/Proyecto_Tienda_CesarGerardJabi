@@ -80,7 +80,7 @@
             </Button>
          </children>
       </HBox>
-      <FlowPane hgap="20.0" prefHeight="112.0" prefWidth="1440.0" style="-fx-background-color: #fff;" styleClass="filters" stylesheets="@styles1.css" vgap="5.0">
+      <FlowPane fx:id="filtCont" hgap="20.0" prefHeight="112.0" prefWidth="1440.0" style="-fx-background-color: #fff;" styleClass="filters" stylesheets="@styles1.css" vgap="5.0">
          <children>
             <Label text="¿Qué estás buscando?">
                <font>
@@ -90,11 +90,11 @@
                   <Insets right="2000000.0" />
                </FlowPane.margin>
             </Label>
-            <Button fx:id="camisa" mnemonicParsing="false" onAction="#filtro" text="camisas" />
-            <Button fx:id="chaqueta" mnemonicParsing="false" onAction="#filtro" text="chaquetas" />
-            <Button fx:id="pantalon" mnemonicParsing="false" onAction="#filtro" text="pantalones" />
-            <Button fx:id="bolso" mnemonicParsing="false" onAction="#filtro" text="bolsos" />
-            <Button fx:id="zapato" mnemonicParsing="false" onAction="#filtro" text="zapatos" />
+            <Button fx:id="Camisa" mnemonicParsing="false" onAction="#filtro" text="camisas" />
+            <Button fx:id="Chaqueta" mnemonicParsing="false" onAction="#filtro" text="chaquetas" />
+            <Button fx:id="Pantalon" mnemonicParsing="false" onAction="#filtro" text="pantalones" />
+            <Button fx:id="Bolso" mnemonicParsing="false" onAction="#filtro" text="bolsos" />
+            <Button fx:id="Zapatos" mnemonicParsing="false" onAction="#filtro" text="zapatos" />
          </children>
          <padding>
             <Insets left="50.0" />

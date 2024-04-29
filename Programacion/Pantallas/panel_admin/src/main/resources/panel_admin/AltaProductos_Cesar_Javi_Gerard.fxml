@@ -38,7 +38,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Button layoutX="-6.0" layoutY="59.0" mnemonicParsing="false" prefHeight="204.0" prefWidth="377.0" style="-fx-background-color: WHITE; -fx-border-color: grey;">
+                  <Button layoutX="-6.0" layoutY="124.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="377.0" style="-fx-background-color: WHITE; -fx-border-color: grey;">
                      <graphic>
                         <FontAwesomeIconView glyphName="PHOTO" />
                      </graphic>
@@ -46,6 +46,11 @@
                         <Font size="17.0" />
                      </font>
                   </Button>
+                  <TextField layoutX="-5.0" layoutY="70.0" prefHeight="42.0" prefWidth="377.0" promptText="Nombre del archivo" style="-fx-border-color: grey;">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
                </children>
             </Pane>
          </children>
@@ -156,7 +161,7 @@
                         <Font size="25.0" />
                      </font>
                   </Label>
-                  <CheckBox contentDisplay="GRAPHIC_ONLY" layoutX="8.0" layoutY="67.0" mnemonicParsing="false" style="-fx-background-color: white;">
+                  <CheckBox contentDisplay="GRAPHIC_ONLY" layoutX="8.0" layoutY="67.0" mnemonicParsing="false" selected="true" style="-fx-background-color: white;">
                      <font>
                         <Font size="25.0" />
                      </font>

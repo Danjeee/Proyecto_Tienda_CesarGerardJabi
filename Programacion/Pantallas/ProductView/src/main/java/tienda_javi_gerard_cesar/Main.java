@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -23,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -38,11 +42,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Duration;
 import tienda_javi_gerard_cesar.Clases.Articulo;
+import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
 public class Main {
-    private ArrayList<String> resultados = new ArrayList<>();
-    private ArrayList<String> filtros = new ArrayList<>();
+    public static ArrayList<String> resultados = new ArrayList<>();
+    public static ArrayList<String> filtros = new ArrayList<>();
     @FXML
     private Button Camisa;
     @FXML
@@ -77,10 +83,8 @@ public class Main {
     private FlowPane filtCont;
     @FXML
     private AnchorPane cont;
-    @FXML
-    private VBox popupHamb;
 
-    @FXML
+    /*@FXML
     private Button menuHamb() {
         Button a = new Button();
         a.setText("");
@@ -102,18 +106,28 @@ public class Main {
         pant.setAlignment(Pos.CENTER_LEFT);
         pant.setPrefWidth(500);
         pant.setFont(new Font("System", 20));
-        pant.setOnAction(e -> {
-            try {
-                filtrar(id);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        });
+        if (id.equals("Pantalon") || id.equals("Camisa") || id.equals("Chaqueta") || id.equals("Zapatos") || id.equals("Bolso")) {
+            pant.setOnAction(e -> {
+                try {
+                    filtrar(id, "");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            });
+        } else {
+            /*pant.setOnAction(e -> {
+                try {
+                    App.setRoot(id);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            });
+        }
         return pant;
     }
 
     private void popupHambMake() {
-        /* VBOX propiedades */
+        /* VBOX propiedades 
         popupHamb = new VBox();
         popupHamb.setLayoutX(-500);
         popupHamb.setPrefHeight(1024);
@@ -121,12 +135,20 @@ public class Main {
         popupHamb.setDisable(false);
         popupHamb.setPadding(new Insets(80, 20, 20, 20));
         popupHamb.setStyle("-fx-background-color: #fff");
-        /* Botones */
+        /* Shadow 
+        menuShadow = new AnchorPane();
+        menuShadow.setLayoutX(0);
+        menuShadow.setPrefHeight(1024);
+        menuShadow.setPrefWidth(1440);
+        menuShadow.setOpacity(0);
+        menuShadow.setDisable(true);
+        menuShadow.setStyle("-fx-background-color: #000");
+        /* Botones 
         Button ropa = new Button("Ropa");
         ropa.setAlignment(Pos.CENTER_LEFT);
         ropa.setPrefWidth(500);
         ropa.setFont(new Font("System", 25));
-        String[] multifiltro = {"Camisa", "Pantalon", "Chaqueta"};
+        String[] multifiltro = { "Camisa", "Pantalon", "Chaqueta" };
         ropa.setOnAction(e -> {
             try {
                 multiFiltrar(multifiltro);
@@ -146,8 +168,8 @@ public class Main {
         acc.setAlignment(Pos.CENTER_LEFT);
         acc.setPrefWidth(500);
         acc.setFont(new Font("System", 25));
-        String[] multifiltro2 = {"Camisa", "Pantalon", "Chaqueta"};
-        ropa.setOnAction(e -> {
+        String[] multifiltro2 = { "Zapatos", "Bolso" };
+        acc.setOnAction(e -> {
             try {
                 multiFiltrar(multifiltro2);
             } catch (IOException e1) {
@@ -159,15 +181,46 @@ public class Main {
         popupHamb.getChildren().add(smallButton("     Zapatos", "Zapatos"));
 
         popupHamb.getChildren().add(smallButton("     Bolsos", "Bolso"));
+
+        Pane separator = new Pane();
+        separator.setPrefHeight(500);
+        popupHamb.getChildren().add(separator);
+
+        Button adminPanel = new Button("Acceso a panel de administración");
+        adminPanel.setAlignment(Pos.CENTER_LEFT);
+        adminPanel.setPrefWidth(500);
+        adminPanel.setFont(new Font("System", 25));
+        popupHamb.getChildren().add(adminPanel);
+
+        popupHamb.getChildren().add(smallButton("    Preguntas frecuentes", "preguntas"));
+        popupHamb.getChildren().add(smallButton("    Estado de mi pedido", "estado"));
+        popupHamb.getChildren().add(smallButton("    Devoluciones", "devoluciones"));
+        popupHamb.getChildren().add(smallButton("    Envios", "envios"));
+
     }
 
     private void popupHambShow() {
-        if (popupHamb.getLayoutX() == 0) {
-            popupHamb.setLayoutX(-500);
+        if (menued) {
+            final Timeline timeline = new Timeline();
+            timeline.setCycleCount(1);
+            final KeyValue kv = new KeyValue(popupHamb.layoutXProperty(), -500);
+            final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
+            timeline.getKeyFrames().add(kf);
+            timeline.play();
+            menuShadow.setOpacity(0);
+            menued = false;
         } else {
+            final Timeline timeline = new Timeline();
+            timeline.setCycleCount(1);
+            final KeyValue kv = new KeyValue(popupHamb.layoutXProperty(), 0);
+            final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
+            timeline.getKeyFrames().add(kf);
+            timeline.play();
+            menuShadow.setOpacity(0.2);
             popupHamb.setLayoutX(0);
+            menued = true;
         }
-    }
+    }*/
 
     @FXML
     private void searchBar(ActionEvent e) throws IOException {
@@ -181,33 +234,37 @@ public class Main {
         }
 
     }
-
-    private void multiFiltrar(String[] mult) throws IOException{
-        filtros.clear();
-        for (String i : mult){
-            filtrar(i);
+/*
+    private void multiFiltrar(String[] mult) throws IOException {
+        Main.filtros.clear();
+        for (String i : mult) {
+            filtrar(i, "a");
         }
     }
 
-    private void filtrar(String word) throws IOException {
+    private void filtrar(String word, String mult) throws IOException {
         Boolean esta = false;
+        if (mult.isEmpty()) {
+            Main.filtros.clear();
+        }
         for (String i : filtros) {
             if (word.equals(i)) {
-                resultados.remove(i);
+                Main.resultados.remove(i);
                 esta = true;
                 break;
             }
         }
         if (!esta) {
-            filtros.add(word);
+            Main.filtros.add(word);
         } else {
-            filtros.remove(word);
+            Main.filtros.remove(word);
         }
-
+        if (menued) {
+            popupHambShow();
+        }
         buscar();
-        popupHambShow();
     }
-
+*/
     @FXML
     private void filtro(ActionEvent e) throws IOException {
         Button src = (Button) e.getSource();
@@ -341,9 +398,10 @@ public class Main {
 
     @FXML
     private void initialize() throws IOException {
-        popupHambMake();
-        cont.getChildren().add(popupHamb);
-        cont.getChildren().add(menuHamb());
+        MenuHamb.popupHambMake();
+        cont.getChildren().add(MenuHamb.menuShadow);
+        cont.getChildren().add(MenuHamb.popupHamb);
+        cont.getChildren().add(MenuHamb.menuHamb());
         main.getChildren().clear();
         Connection con = conenct();
         try {
@@ -358,6 +416,9 @@ public class Main {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        if (!resultados.isEmpty() || !filtros.isEmpty()) {
+            buscar();
         }
     }
 

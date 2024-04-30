@@ -8,6 +8,7 @@ public class Articulo {
     private String nombre;
     private BigDecimal precio;
     private String marca;
+    private int cant;
     public String getImg() {
         return img;
     }
@@ -24,6 +25,15 @@ public class Articulo {
         this.nombre = nombre;
         this.precio = precio;
         this.img = img;
+    
+    }
+
+    public int getCant() {
+        return cant;
+    }
+
+    public void setCant(int cant) {
+        this.cant = cant;
     }
 
     public int getCodigo() {

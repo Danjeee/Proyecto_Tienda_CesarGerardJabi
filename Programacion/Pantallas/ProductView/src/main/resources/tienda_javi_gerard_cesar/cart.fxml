@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -69,12 +70,12 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="920.0" prefWidth="1328.0" styleClass="cartbckgr" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css">
                      <children>
-                        <ScrollPane prefHeight="365.0" prefWidth="892.0" styleClass="sp" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css">
+                        <ScrollPane prefHeight="365.0" prefWidth="375.0" styleClass="sp" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css">
                            <VBox.margin>
                               <Insets left="300.0" right="500.0" />
                            </VBox.margin>
                            <content>
-                              <AnchorPane fx:id="main" prefHeight="362.0" prefWidth="717.0" style="-fx-background-color: #fff;" />
+                              <FlowPane fx:id="main" prefHeight="360.0" prefWidth="725.0" vgap="20.0" />
                            </content>
                         </ScrollPane>
                         <Separator prefWidth="200.0">
@@ -88,6 +89,7 @@
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="353.0" minWidth="10.0" prefWidth="195.0" />
                            </columnConstraints>
                            <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
@@ -128,6 +130,19 @@
                                  </font>
                               </Label>
                               <Label fx:id="envio" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="47.0" prefWidth="160.0" text="00.00€" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="32.0" />
+                                 </font>
+                              </Label>
+                              <Label contentDisplay="RIGHT" text="Descuento" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="32.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="ARROW_RIGHT" selectionEnd="1" selectionStart="1" />
+                                 </graphic>
+                              </Label>
+                              <Label fx:id="des" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="47.0" prefWidth="160.0" text="00.00€" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="32.0" />
                                  </font>

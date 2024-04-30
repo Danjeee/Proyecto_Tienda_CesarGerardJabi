@@ -397,6 +397,14 @@ public class Main {
     }
 
     @FXML
+    private void cartButton(){
+        try {
+            App.setRoot("cart");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
     private void initialize() throws IOException {
         MenuHamb.popupHambMake();
         cont.getChildren().add(MenuHamb.menuShadow);

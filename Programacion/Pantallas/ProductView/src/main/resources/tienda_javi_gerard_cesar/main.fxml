@@ -61,7 +61,7 @@
                         </FontAwesomeIconView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="cart" stylesheets="@styles1.css">
+                  <Button mnemonicParsing="false" onAction="#cartButton" prefHeight="25.0" prefWidth="25.0" styleClass="cart" stylesheets="@styles1.css">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>

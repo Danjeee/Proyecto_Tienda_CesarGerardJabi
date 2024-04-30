@@ -1,4 +1,4 @@
-package panel_admin;
+package panel_admin.Clases;
 public abstract class Articulo {
 
     private int cod_art;

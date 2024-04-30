@@ -12,9 +12,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import panel_admin.Clases.Articulo;
+import panel_admin.MenuHamburguesa.MenuHamb;
 
 public class AltaProductosController {
-    
+
+    @FXML
+    private AnchorPane cont;
+
     @FXML
     private TextField nombre;
     @FXML
@@ -88,4 +94,10 @@ public class AltaProductosController {
         
     }
     
+    public void initialize() {
+        MenuHamb.popupHambMake();
+        cont.getChildren().add(MenuHamb.menuShadow);
+        cont.getChildren().add(MenuHamb.popupHamb);
+        cont.getChildren().add(MenuHamb.menuHamb());
+    }
 }

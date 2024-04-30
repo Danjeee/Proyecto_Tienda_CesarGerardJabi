@@ -1,4 +1,4 @@
-package panel_admin;
+package panel_admin.Clases;
 public class Material {
     private String codigo;
     private String denominacion;

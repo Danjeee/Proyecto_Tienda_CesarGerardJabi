@@ -3,6 +3,8 @@ package panel_admin;
 
 import java.sql.*;
 
+import panel_admin.Clases.Articulo;
+
 public class ConectaBBDD {
 
     private Connection conn = null;

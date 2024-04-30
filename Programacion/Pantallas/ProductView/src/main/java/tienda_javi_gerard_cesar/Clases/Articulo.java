@@ -1,20 +1,29 @@
-package Articulos;
-public abstract class Articulo {
+package tienda_javi_gerard_cesar.Clases;
+
+import java.math.BigDecimal;
+
+public class Articulo {
 
     private int codigo;
     private String nombre;
-    private double precio;
+    private BigDecimal precio;
     private String marca;
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
     private String descripcion;
     private Material material;
+    private String img;
     
-    public Articulo(int codigo, String nombre, double precio, String marca, String descripcion, Material material) {
+    public Articulo(int codigo, String nombre, BigDecimal precio, String img) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.precio = precio;
-        this.marca = marca;
-        this.descripcion = descripcion;
-        this.material = material;
+        this.img = img;
     }
 
     public int getCodigo() {
@@ -41,11 +50,11 @@ public abstract class Articulo {
         this.nombre = nombre;
     }
 
-    public double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 
@@ -63,6 +72,9 @@ public abstract class Articulo {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }    
+    }
+    @Override
+    public int hashCode() {
+        return this.codigo;
+    }
 }
-

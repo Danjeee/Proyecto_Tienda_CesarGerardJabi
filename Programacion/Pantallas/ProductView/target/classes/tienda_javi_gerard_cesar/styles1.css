@@ -2,6 +2,19 @@
     -fx-background-color: rgba(0, 0, 0, 0);
     -fx-background-size: 100%;
 }
+.button:hover{
+    -fx-background-color: #ECECEC;
+}
+.filters .button{
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-background-color: #fff;
+    -fx-border-color: #000;
+    -fx-border-width: 2;
+}
+.filters .button:hover{
+    -fx-background-color: #ECECEC;
+}
 
 .hhbox{
     -fx-background-color: #fff;

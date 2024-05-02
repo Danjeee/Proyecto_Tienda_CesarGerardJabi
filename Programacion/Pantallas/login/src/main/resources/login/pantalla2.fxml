@@ -123,9 +123,9 @@
             <TextField layoutX="544.0" layoutY="596.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su dirección aquí." style="-fx-background-color: trasnsparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
             <TextField layoutX="126.0" layoutY="599.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su teléfono aquí." style="-fx-background-color: trasnsparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
             <PasswordField layoutX="119.0" layoutY="396.0" prefHeight="41.0" prefWidth="239.0" promptText="Introduce su contraseñá aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px;" />
-            <Button layoutX="49.0" layoutY="26.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" onAction="#flecha_volver">
+            <Button layoutX="49.0" layoutY="26.0" mnemonicParsing="false" onAction="#flecha_volver" prefHeight="34.0" prefWidth="37.0" style="-fx-background-color: TRANSPARENT;">
                <graphic>
-                  <FontAwesomeIconView glyphName="ARROW_LEFT" size="25" text="" />
+                  <FontAwesomeIconView glyphName="ARROW_LEFT" size="25" />
                </graphic>
             </Button>
          </children>

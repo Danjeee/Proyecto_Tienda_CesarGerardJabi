@@ -19,6 +19,9 @@
 .hhbox{
     -fx-background-color: #fff;
 }
+.default{
+    -fx-background-color: #000;
+}
 .search{
     -fx-background-color: #fff;
     -fx-border-color: #000;

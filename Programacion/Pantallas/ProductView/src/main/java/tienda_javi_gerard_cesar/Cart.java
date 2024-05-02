@@ -14,8 +14,11 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -48,6 +51,7 @@ public class Cart {
     @FXML
     private Label des;
     private int descuento = 15;
+    private ArrayList<Articulo> articulos;
 
     private Connection conenct() {
         Connection con = null;
@@ -190,9 +194,33 @@ public class Cart {
         ico.setSize("50");
         trash.setGraphic(ico);
         a.getChildren().add(trash);
-
         return a;
 
+    }
+    private String formatDouble(Double a){
+        String aa = String.valueOf(a);
+        if (aa.charAt(0) == ('.')) {
+            aa = "00" +aa;
+        }
+        if (!aa.contains(".")) {
+            return aa+"€";
+        }
+        if (aa.charAt(aa.length()-1) == ('.')) {
+            return aa.substring(0, aa.length()-2) + "€";
+        }
+        for (int i = 0; i<aa.length(); i++){
+            if (aa.charAt(i) == '.') {
+                int ii = i+2;
+                if (aa.length() == ii) {
+                    System.out.println(aa.substring(0,i++));
+                    return aa.substring(0, ii) + "0€";
+                    
+                } else{
+                    return aa.substring(0, ii++) + "0€";
+                }
+            }
+        }
+        return aa;
     }
 
     private ArrayList<Articulo> cargarItems(){
@@ -218,28 +246,39 @@ public class Cart {
         return a;
     }
     private String imp(){
-        Long desc = Long.valueOf(0);
-        desc = (Long.parseLong(subtotal.getText()) * Integer.toUnsignedLong(21)) / 100;
-        return String.valueOf(desc);
+        Double desc = Double.valueOf(0);
+        System.out.println(subtotal.getText());
+        desc = (Double.parseDouble(subtotal.getText().substring(0, subtotal.getText().length()-2)) * Integer.toUnsignedLong(21)) / 100;
+        return formatDouble(desc);
     }
     private String subtotal(ArrayList<String> precios){
-        Long subt = Long.valueOf(0);
+        Double subt = Double.valueOf(0);
         for (String i : precios){
-            subt += Long.parseLong(i);
+            subt += Double.parseDouble(i);
         }
-        return String.valueOf(subt);
+        return formatDouble(subt);
     }
     private String descuento(){
-        Long desc = Long.valueOf(0);
-        desc = (Long.parseLong(subtotal.getText()) * Integer.toUnsignedLong(descuento)) / 100;
-        return String.valueOf(desc);
+        Double desc = Double.valueOf(0);
+        desc = (Double.parseDouble(subtotal.getText().substring(0,subtotal.getText().length()-2)) * Integer.toUnsignedLong(descuento)) / 100;
+        return formatDouble(desc);
     }
     private String total(){
-        Long subt = Long.parseLong(subtotal.getText());
-        Long desc = Long.parseLong(des.getText());
-        Long impp = Long.parseLong(imp.getText());
-        Long total = subt + impp - desc;
-        return String.valueOf(total);
+        Double subt = Double.parseDouble(subtotal.getText().substring(0,subtotal.getText().length()-2));
+        Double desc = Double.parseDouble(des.getText().substring(0, des.getText().length()-2));
+        Double impp = Double.parseDouble(imp.getText().substring(0, imp.getText().length()-2));
+        Double total = subt + impp - desc;
+        return formatDouble(total);
+    }
+    @FXML
+    private void actualizar(){
+        Connection con = conenct();
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate("UPDATE FROM linea_pedido WHERE num_pedido = (SELECT L.num_pedido from linea_pedido L, pedido P WHERE L.num_pedido = P.numero and P.DNI_cliente = \""+App.user+"\")");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public void initialize() {
@@ -249,7 +288,8 @@ public class Cart {
         cont.getChildren().add(MenuHamb.menuHamb());
         main.getChildren().clear();
         ArrayList<String> precios = new ArrayList<>();
-        for (Articulo i : cargarItems()){
+        articulos = cargarItems();
+        for (Articulo i : articulos){
             String nom = i.getNombre();
             int cant = i.getCant();
             String precio = i.getPrecio().toString();

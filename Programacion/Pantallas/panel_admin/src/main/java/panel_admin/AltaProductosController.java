@@ -26,7 +26,7 @@ public class AltaProductosController {
     @FXML
     private TextField precio;
     @FXML
-    private ChoiceBox marca;
+    private TextField marca;
     @FXML
     private TextField descripcion;
     @FXML
@@ -34,8 +34,9 @@ public class AltaProductosController {
     @FXML
     private Button nombre_imagen;
     @FXML
-    private ChoiceBox material;
-    
+    private ChoiceBox<Integer> material;
+    private Integer[] opciones = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
 
     @FXML
     private App PantallaPrincipal = new App();
@@ -62,6 +63,7 @@ public class AltaProductosController {
         ConectaBBDD con2 = new ConectaBBDD();
         // creamos la alerta
         Alert a = new Alert(Alert.AlertType.NONE);
+        if (Utilidades.valida()) {
             try {
                 con2.conecta();
                 con2.crearSentencia();
@@ -91,13 +93,15 @@ public class AltaProductosController {
                 a.setContentText("ERROR: con la BBDD.");
                 a.show();
             }
-        
+        }
     }
-    
+
     public void initialize() {
         MenuHamb.popupHambMake();
         cont.getChildren().add(MenuHamb.menuShadow);
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
+
+        material.getItems().addAll(opciones);
     }
 }

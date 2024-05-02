@@ -1,11 +1,18 @@
 package panel_admin.Clases;
 public class Material {
-    private String codigo;
+
+    private int codigo;
     private String denominacion;
-    public String getCodigo() {
+
+    public Material(int codigo, String denominacion) {
+        this.codigo = codigo;
+        this.denominacion = denominacion;
+    }
+
+    public int getCodigo() {
         return codigo;
     }
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
     public String getDenominacion() {
@@ -14,8 +21,6 @@ public class Material {
     public void setDenominacion(String denominacion) {
         this.denominacion = denominacion;
     }
-    public Material(String codigo, String denominacion) {
-        this.codigo = codigo;
-        this.denominacion = denominacion;
-    }
+   
+    
 }

@@ -15,16 +15,15 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="cont" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="panel_admin.AltaProductosController">
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0"> 
+      <Pane layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0"> 
          <children>
             <VBox layoutX="564.0" layoutY="257.0" prefHeight="557.0" prefWidth="360.0">
                <children>
                   <Pane prefHeight="194.0" prefWidth="360.0">
                      <children>
-                        <TextArea layoutX="-7.0" layoutY="44.0" prefHeight="110.0" prefWidth="377.0" style="-fx-border-color: grey;" />
+                        <TextArea layoutX="-7.0" layoutY="44.0" prefHeight="117.0" prefWidth="377.0" style="-fx-border-color: grey;" />
                         <Label layoutX="-4.0" layoutY="5.0" text="Descripción">
                            <font>
                               <Font size="25.0" />
@@ -43,7 +42,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Button layoutX="-6.0" layoutY="124.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="377.0" style="-fx-background-color: WHITE; -fx-border-color: grey;">
+                        <Button layoutX="-6.0" layoutY="115.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="377.0" style="-fx-background-color: WHITE; -fx-border-color: grey;">
                            <graphic>
                               <FontAwesomeIconView glyphName="PHOTO" />
                            </graphic>
@@ -51,7 +50,7 @@
                               <Font size="17.0" />
                            </font>
                         </Button>
-                        <TextField layoutX="-5.0" layoutY="70.0" prefHeight="42.0" prefWidth="377.0" promptText="Nombre del archivo" style="-fx-border-color: grey;">
+                        <TextField layoutX="-6.0" layoutY="63.0" prefHeight="42.0" prefWidth="377.0" promptText="Nombre del archivo" style="-fx-border-color: grey;">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -72,20 +71,20 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane prefHeight="173.0" prefWidth="295.0">
+                  <Pane prefHeight="164.0" prefWidth="310.0">
                      <children>
-                        <ChoiceBox layoutX="-1.0" layoutY="35.0" prefHeight="68.0" prefWidth="308.0" style="-fx-background-color: white; -fx-border-color: grey;" />
-                        <Label layoutX="-1.0" layoutY="-5.0" text="Tipos de producto">
+                        <Label layoutX="-1.0" layoutY="-5.0" text="Marca">
                            <font>
                               <Font size="25.0" />
                            </font>
                         </Label>
+                        <TextField layoutX="-3.0" layoutY="31.0" prefHeight="68.0" prefWidth="308.0" style="-fx-border-color: grey;" />
                      </children>
                   </Pane>
                   <Pane prefHeight="127.0" prefWidth="295.0">
                      <children>
                         <ChoiceBox layoutX="-1.0" layoutY="35.0" prefHeight="68.0" prefWidth="308.0" style="-fx-background-color: white; -fx-border-color: grey;" />
-                        <Label layoutX="-1.0" layoutY="-5.0" text="Tipo">
+                        <Label layoutX="-1.0" layoutY="-5.0" text="Material">
                            <font>
                               <Font size="25.0" />
                            </font>

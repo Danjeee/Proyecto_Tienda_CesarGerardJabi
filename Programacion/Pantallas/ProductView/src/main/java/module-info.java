@@ -4,7 +4,8 @@ module productview {
     requires java.sql;
     requires javafx.graphics;
     requires de.jensd.fx.glyphs.fontawesome;
+    requires javafx.base;
 
-    opens productview to javafx.fxml;
-    exports productview;
+    opens tienda_javi_gerard_cesar to javafx.fxml;
+    exports tienda_javi_gerard_cesar;
 }

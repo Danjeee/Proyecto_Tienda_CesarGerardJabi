@@ -87,4 +87,8 @@ public class Articulo {
     public int hashCode() {
         return this.codigo;
     }
+    @Override
+    public String toString() {
+        return this.getNombre() +", " + this.getCant(); 
+    }
 }

@@ -13,6 +13,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ContextMenu;
@@ -52,6 +53,7 @@ public class Cart {
     private Label des;
     private int descuento = 15;
     private ArrayList<Articulo> articulos;
+    private int cod_pedido;
 
     private Connection conenct() {
         Connection con = null;
@@ -63,26 +65,30 @@ public class Cart {
         return con;
     }
 
-    private String setCant(String cant, int op){
+    private String setCant(Articulo i, String cant, int op) {
         int cantt = Integer.parseInt(cant);
         switch (op) {
             case 0:
                 cantt += 1;
+                i.setCant(cantt);
                 return String.valueOf(cantt);
             case 1:
                 if (cantt == 1) {
+                    i.setCant(cantt);
                     return String.valueOf(cantt);
                 } else {
                     cantt -= 1;
+                    i.setCant(cantt);
                     return String.valueOf(cantt);
                 }
-        
+
             default:
+                i.setCant(cantt);
                 return String.valueOf(cantt);
         }
     }
 
-    private HBox createItem(String img, String nombre, String precio, int cant, int cod){
+    private HBox createItem(String img, String nombre, String precio, int cant, int cod, Articulo i) {
         HBox a = new HBox();
         a.setPrefHeight(75);
         a.setPrefWidth(725);
@@ -160,7 +166,7 @@ public class Cart {
         ico2.setSize("15");
         up.setGraphic(ico2);
         up.setOnAction(e -> {
-            cantt.setText(setCant(cantt.getText(), 0));
+            cantt.setText(setCant(i, cantt.getText(), 0));
         });
         butCont.getChildren().add(up);
 
@@ -178,12 +184,11 @@ public class Cart {
         ico3.setSize("15");
         down.setGraphic(ico3);
         down.setOnAction(e -> {
-            cantt.setText(setCant(cantt.getText(), 1));
+            cantt.setText(setCant(i, cantt.getText(), 1));
         });
         butCont.getChildren().add(down);
         a.getChildren().add(butCont);
 
-        
         Button trash = new Button("");
         trash.setPrefHeight(70);
         trash.setPrefWidth(125);
@@ -193,29 +198,30 @@ public class Cart {
         ico.setFill(Color.WHITE);
         ico.setSize("50");
         trash.setGraphic(ico);
+        trash.setOnAction(e -> delete(i));
         a.getChildren().add(trash);
         return a;
 
     }
-    private String formatDouble(Double a){
+
+    private String formatDouble(Double a) {
         String aa = String.valueOf(a);
         if (aa.charAt(0) == ('.')) {
-            aa = "00" +aa;
+            aa = "00" + aa;
         }
         if (!aa.contains(".")) {
-            return aa+"€";
+            return aa + "€";
         }
-        if (aa.charAt(aa.length()-1) == ('.')) {
-            return aa.substring(0, aa.length()-2) + "€";
+        if (aa.charAt(aa.length() - 1) == ('.')) {
+            return aa.substring(0, aa.length() - 2) + "€";
         }
-        for (int i = 0; i<aa.length(); i++){
+        for (int i = 0; i < aa.length(); i++) {
             if (aa.charAt(i) == '.') {
-                int ii = i+2;
+                int ii = i + 2;
                 if (aa.length() == ii) {
-                    System.out.println(aa.substring(0,i++));
                     return aa.substring(0, ii) + "0€";
-                    
-                } else{
+
+                } else {
                     return aa.substring(0, ii++) + "0€";
                 }
             }
@@ -223,12 +229,14 @@ public class Cart {
         return aa;
     }
 
-    private ArrayList<Articulo> cargarItems(){
+    private ArrayList<Articulo> cargarItems() {
         ArrayList<Articulo> a = new ArrayList<>();
         Connection con = conenct();
         try {
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT A.*, L.cantidad FROM articulo A, linea_pedido L, pedido P WHERE A.cod_art = L.cod_art and L.num_pedido = P.numero and P.DNI_cliente = "+"\""+App.user+"\" and P.estado = \"En proceso\"");
+            ResultSet rs = st.executeQuery(
+                    "SELECT A.*, L.cantidad FROM articulo A, linea_pedido L, pedido P WHERE A.cod_art = L.cod_art and L.num_pedido = P.numero and P.DNI_cliente = "
+                            + "\"" + App.user + "\" and P.estado = \"En proceso\"");
             while (rs.next()) {
                 String nom = rs.getString("nombre");
                 BigDecimal precio = rs.getBigDecimal("precio");
@@ -245,40 +253,68 @@ public class Cart {
         }
         return a;
     }
-    private String imp(){
+
+    private String imp() {
         Double desc = Double.valueOf(0);
-        System.out.println(subtotal.getText());
-        desc = (Double.parseDouble(subtotal.getText().substring(0, subtotal.getText().length()-2)) * Integer.toUnsignedLong(21)) / 100;
+        desc = (Double.parseDouble(subtotal.getText().substring(0, subtotal.getText().length() - 2))
+                * Integer.toUnsignedLong(21)) / 100;
         return formatDouble(desc);
     }
-    private String subtotal(ArrayList<String> precios){
+
+    private String subtotal() {
         Double subt = Double.valueOf(0);
-        for (String i : precios){
-            subt += Double.parseDouble(i);
+        for (Articulo i : articulos) {
+            subt += i.getPrecio().doubleValue() * i.getCant();
         }
         return formatDouble(subt);
     }
-    private String descuento(){
+
+    private String descuento() {
         Double desc = Double.valueOf(0);
-        desc = (Double.parseDouble(subtotal.getText().substring(0,subtotal.getText().length()-2)) * Integer.toUnsignedLong(descuento)) / 100;
+        desc = (Double.parseDouble(subtotal.getText().substring(0, subtotal.getText().length() - 2))
+                * Integer.toUnsignedLong(descuento)) / 100;
         return formatDouble(desc);
     }
-    private String total(){
-        Double subt = Double.parseDouble(subtotal.getText().substring(0,subtotal.getText().length()-2));
-        Double desc = Double.parseDouble(des.getText().substring(0, des.getText().length()-2));
-        Double impp = Double.parseDouble(imp.getText().substring(0, imp.getText().length()-2));
+
+    private String total() {
+        Double subt = Double.parseDouble(subtotal.getText().substring(0, subtotal.getText().length() - 2));
+        Double desc = Double.parseDouble(des.getText().substring(0, des.getText().length() - 2));
+        Double impp = Double.parseDouble(imp.getText().substring(0, imp.getText().length() - 2));
         Double total = subt + impp - desc;
         return formatDouble(total);
     }
+
     @FXML
-    private void actualizar(){
+    private void actualizar() {
+        Connection con = conenct();
+        for (Articulo i : articulos) {
+            try {
+                Statement st = con.createStatement();
+                st.executeUpdate(
+                        "UPDATE linea_pedido SET cantidad = " + i.getCant()
+                                + " WHERE num_pedido = (SELECT DISTINCT L.num_pedido from linea_pedido L, pedido P WHERE L.num_pedido = P.numero and P.DNI_cliente = \""
+                                + App.user + "\" and P.estado = \"En proceso\") and cod_art = " + i.getCodigo());
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        initialize();
+    }
+
+    @FXML
+    private void delete(Articulo i) {
         Connection con = conenct();
         try {
             Statement st = con.createStatement();
-            st.executeUpdate("UPDATE FROM linea_pedido WHERE num_pedido = (SELECT L.num_pedido from linea_pedido L, pedido P WHERE L.num_pedido = P.numero and P.DNI_cliente = \""+App.user+"\")");
-        } catch (SQLException e){
+            st.executeUpdate(
+                    "DELETE FROM linea_pedido WHERE num_pedido = (SELECT DISTINCT L.num_pedido from linea_pedido L, pedido P WHERE L.num_pedido = P.numero and P.DNI_cliente = \""
+                    + App.user + "\" and P.estado = \"En proceso\") and cod_art = " + i.getCodigo());
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+        initialize();
     }
 
     public void initialize() {
@@ -287,20 +323,19 @@ public class Cart {
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
         main.getChildren().clear();
-        ArrayList<String> precios = new ArrayList<>();
         articulos = cargarItems();
-        for (Articulo i : articulos){
+        for (Articulo i : articulos) {
             String nom = i.getNombre();
             int cant = i.getCant();
             String precio = i.getPrecio().toString();
-            precios.add(precio);
             String img = i.getImg();
             int cod = i.getCodigo();
-            main.getChildren().add(createItem(img, nom, precio, cant, cod));
+            main.getChildren().add(createItem(img, nom, precio, cant, cod, i));
         }
-        subtotal.setText(subtotal(precios));
+        subtotal.setText(subtotal());
         imp.setText(imp());
         des.setText(descuento());
         total.setText(total());
+        imp.setText("Contiene " + imp() + " de impuestos");
     }
 }

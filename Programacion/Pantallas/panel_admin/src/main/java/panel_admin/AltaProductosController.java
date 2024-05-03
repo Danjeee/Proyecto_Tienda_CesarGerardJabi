@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+import panel_admin.ConectaBBDD;
+import panel_admin.Clases.*;
+import panel_admin.Utilidades;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -46,7 +48,7 @@ public class AltaProductosController {
         App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
     }
 
-    private Connection conenct() {
+    private Connection connect() {
         Connection con = null;
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");

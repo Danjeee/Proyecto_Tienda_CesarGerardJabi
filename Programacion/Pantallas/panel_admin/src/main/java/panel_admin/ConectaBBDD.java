@@ -16,14 +16,12 @@ public class ConectaBBDD {
     public void conecta() {
 
         try {// Establece la conexión
-            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/empresa", "root",
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root",
                     "");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
 

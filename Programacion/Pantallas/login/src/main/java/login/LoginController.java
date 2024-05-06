@@ -48,6 +48,16 @@ public class LoginController {
     }
 
     @FXML
+    public void limpiarBotonUser (ActionEvent Event){
+        usuario.setText(null);
+    }
+
+    @FXML
+    private void limpiarBotonPwd(ActionEvent event){
+        contra.setText(null);
+    }
+
+    @FXML
     public void cargarVentana_olvidar(ActionEvent actionEvent) {
         try {
             App.setRoot("OlvidarContraseña");

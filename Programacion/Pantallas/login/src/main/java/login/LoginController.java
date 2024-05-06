@@ -4,15 +4,15 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javax.naming.spi.DirStateFactory.Result;
-import javax.swing.JOptionPane;
-
-import com.mysql.cj.protocol.a.SqlDateValueEncoder;
+import login.ConectaBBDD.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +21,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import login.Clases.MenuHamb;
+import login.Clases.User;
 
 public class LoginController {
 
@@ -29,9 +31,16 @@ public class LoginController {
     private AnchorPane cont;
 
     @FXML
-    private App PantallaPrincipal = new App();
+    private TextField usuario;
+
     @FXML
-    public void initialize(){
+    private PasswordField contra;
+
+    @FXML
+    private App PantallaPrincipal = new App();
+
+    @FXML
+    public void initialize() {
         MenuHamb.popupHambMake();
         cont.getChildren().add(MenuHamb.menuShadow);
         cont.getChildren().add(MenuHamb.popupHamb);
@@ -39,8 +48,13 @@ public class LoginController {
     }
 
     @FXML
-    public void cargarVentana_olvidar(ActionEvent actionEvent) throws IOException {
-        App.setRoot("OlvidarContraseña");
+    public void cargarVentana_olvidar(ActionEvent actionEvent) {
+        try {
+            App.setRoot("OlvidarContraseña");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -54,7 +68,7 @@ public class LoginController {
     }
 
     @FXML
-    public void flecha_volver(ActionEvent actionEvent) throws IOException{
+    public void flecha_volver(ActionEvent actionEvent) throws IOException {
         App.setRoot("Login");
     }
 
@@ -68,53 +82,65 @@ public class LoginController {
     private Button btnLogin;
 
     @FXML
-    private void eventAction(ActionEvent event) throws SQLException{
+    private void comprobarLog() {
 
-        Object obj = event.getSource();
-        if (obj.equals(btnLogin)){
+        Connection connection = conenct();
 
-            if (!textFieldCorreo.getText().isEmpty() && !pwdFieldContra.getText().isEmpty()) {
+        try {
 
-                String user = textFieldCorreo.getText();
-                String pwd = pwdFieldContra.getText();
-
-                int state = comprobarLog(user, pwd);    
-                if (state!= 1) {
-                    if (state == 1) {
-                        
-                        JOptionPane.showMessageDialog(null, "Ha iniciado sesion.");
-                        PantallaPrincipal.cargarVentana_seleccion(event, "seleccion.fxml");
-                    } else{
-                        JOptionPane.showMessageDialog(null, "Los datos introducidos son incorrectos ")
-                    }     
-                }
+            Statement pst = connection.createStatement();
+            ResultSet rs = pst.executeQuery("Select email, pass, DNI from cliente");
+            Statement st2 = connection.createStatement();
+            ResultSet rs2 = st2.executeQuery("Select email, pass, DNI from empleado");
+            ArrayList<User> usuarios = new ArrayList<>();
+            while (rs.next()) {
+                String mail = rs.getString("email");
+                String pass = rs.getString("pass");
+                String DNI = rs.getString("DNI");
+                usuarios.add(new User(mail, pass, DNI));
             }
-        }
-    } 
+            ;
 
-    @FXML
-    private int comprobarLog(String user, String pwd){
-        int state = -1;
+            while (rs2.next()) {
+                String mail = rs2.getString("email");
+                String pass = rs2.getString("pass");
+                String DNI = rs2.getString("DNI");
+                usuarios.add(new User(mail, pass, DNI));
+            }
+            ;
 
-        try (Connection connection = BDConnector.getConnection();
-            PreparedStatement pst = connection.prepareStatement("SELECT * FROM CLIENTE WHERE dni=? and pass=?")){
-
-            pst.setString(1, user);
-            pst.setString(2, user);
-
-            try(ResultSet rs = pst.executeQuery()){
-                if (rs.next()) {
-                    state = 1;                        
+            for (User i : usuarios) {
+                if (i.getMail().equals(usuario.getText())) {
+                    if (i.getPasw().equals(contra.getText())) {
+                        App.user = i.getDNI();
+                        try {
+                            App.setRoot("seleccion");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
                 } else {
-                    state = 0;
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("INICIO DE SESIÓN INCORRECTO.");
+                    alert.setTitle("ERROR");
+                    alert.setContentText("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
+                    alert.showAndWait();
+                    break;
                 }
-                BDConnector.closeCon(Connection);
-            } catch (SQLException e) {
-                System.err.println("Error al ejecutar la consulta: " +e.getMessage());
             }
-        } catch (SQLException e){
-            System.err.println("Error al conectar la base de datos: " +e.getMessage());
+        } catch (SQLException e) {
+            System.err.println("Error al conectar la base de datos: " + e.getMessage());
         }
-        return state;
+    }
+
+    private Connection conenct() {
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return con;
     }
 }

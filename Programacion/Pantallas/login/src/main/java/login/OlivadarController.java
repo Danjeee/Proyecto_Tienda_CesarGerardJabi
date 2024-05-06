@@ -14,4 +14,9 @@ public class OlivadarController {
     public void cargarVentana_olvidar(ActionEvent actionEvent) throws IOException {
         App.setRoot("Login");
     }
+
+    @FXML
+    public void flecha_volver(ActionEvent actionEvent) throws IOException {
+        App.setRoot("Login");
+    }
 }

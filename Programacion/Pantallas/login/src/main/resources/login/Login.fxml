@@ -105,7 +105,7 @@
                      <children>
                         <Pane prefHeight="370.0" prefWidth="405.0">
                            <children>
-                              <PasswordField layoutX="40.0" layoutY="141.0" prefHeight="35.0" prefWidth="279.0" promptText="Escriba aquí su contraseña." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: white; -fx-border-width: 2px;">
+                              <PasswordField fx:id="contra" layoutX="40.0" layoutY="141.0" prefHeight="35.0" prefWidth="279.0" promptText="Escriba aquí su contraseña." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: white; -fx-border-width: 2px;">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -120,7 +120,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <TextField layoutX="40.0" layoutY="56.0" prefHeight="35.0" prefWidth="279.0" promptText="Escriba su correo electrónico." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: white;">
+                              <TextField fx:id="usuario" layoutX="40.0" layoutY="56.0" prefHeight="35.0" prefWidth="279.0" promptText="Escriba su correo electrónico." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: white;">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -131,12 +131,12 @@
                                     <FontAwesomeIconView fill="WHITE" glyphName="REMOVE" size="15" />
                                  </graphic>
                               </Button>
-                              <Button layoutX="102.0" layoutY="200.0" mnemonicParsing="false" onAction="#cargarVentana_seleccion" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: black; -fx-background-radius: 0;" text="Iniciar sesión" textFill="WHITE">
+                              <Button layoutX="102.0" layoutY="200.0" mnemonicParsing="false" onAction="#comprobarLog" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: black; -fx-background-radius: 0;" text="Iniciar sesión" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="87.0" layoutY="243.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="231.0" style="-fx-background-color: trasnparent;" onAction="cargarVentana_olvidar" text="¿Has olvidado tu contraseña?" textFill="WHITE">
+                              <Button layoutX="87.0" layoutY="243.0" mnemonicParsing="false" onAction="#cargarVentana_olvidar" prefHeight="33.0" prefWidth="231.0" style="-fx-background-color: trasnparent;" text="¿Has olvidado tu contraseña?" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

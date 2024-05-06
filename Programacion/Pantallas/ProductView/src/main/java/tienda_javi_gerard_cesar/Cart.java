@@ -51,9 +51,12 @@ public class Cart {
     private Label imp;
     @FXML
     private Label des;
+    @FXML
+    private Button codButton;
     private int descuento = 15;
     private ArrayList<Articulo> articulos;
     private int cod_pedido;
+    private ArrayList<String> descuentosUsados;
 
     private Connection conenct() {
         Connection con = null;
@@ -63,6 +66,32 @@ public class Cart {
             e.printStackTrace();
         }
         return con;
+    }
+
+    @FXML
+    private void checkCodDes(){
+        if (codDes.getText().isEmpty()) {
+            codButton.setStyle("-fx-background-color: #d3d3d3");
+            codButton.setOnAction(null);
+            codButton.setOnMouseEntered(null);
+            codButton.setOnMouseExited(null);
+        } else {
+            codButton.setStyle("-fx-background-color: #000");
+            codButton.setOnAction(e -> checkDescuento());
+            codButton.setOnMouseEntered(e -> codButton.setStyle("-fx-background-color: #808080"));
+            codButton.setOnMouseExited(e -> codButton.setStyle("-fx-background-color: #000"));
+        }
+    }
+
+    private void checkDescuento(){
+        Connection con = conenct();
+        ArrayList<String> descuentos = new ArrayList<>();
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT descuento FROM descuentos");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private String setCant(Articulo i, String cant, int op) {

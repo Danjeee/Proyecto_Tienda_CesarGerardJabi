@@ -94,12 +94,12 @@
                               <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <TextField fx:id="codDes" prefHeight="50.0" prefWidth="724.0" promptText="Escribe tu codigo de descuento" styleClass="cod" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css">
+                              <TextField fx:id="codDes" onKeyPressed="#checkCodDes" prefHeight="50.0" prefWidth="724.0" promptText="Escribe tu codigo de descuento" styleClass="cod" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css">
                                  <font>
                                     <Font size="19.0" />
                                  </font>
                               </TextField>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" styleClass="apply" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css" text="Aplicar" textFill="WHITE" GridPane.columnIndex="1">
+                              <Button fx:id="codButton" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" styleClass="apply" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css" text="Aplicar" textFill="WHITE" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets left="33.0" />
                                  </GridPane.margin>

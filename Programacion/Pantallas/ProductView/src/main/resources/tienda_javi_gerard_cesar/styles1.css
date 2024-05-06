@@ -74,6 +74,9 @@
 .apply{
     -fx-background-color: #d3d3d3;
 }
+.apply:hover{
+    -fx-background-color: #d3d3d3;
+}
 #button{
 
     -fx-background-color: black;

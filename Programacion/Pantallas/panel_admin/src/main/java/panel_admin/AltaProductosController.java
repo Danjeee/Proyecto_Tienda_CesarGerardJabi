@@ -1,14 +1,14 @@
 package panel_admin;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import panel_admin.ConectaBBDD;
+import panel_admin.ConexionSQL;
 import panel_admin.Clases.*;
-import panel_admin.Utilidades;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -17,7 +17,17 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.FileChooser.ExtensionFilter;
 import panel_admin.Clases.Articulo;
 import panel_admin.MenuHamburguesa.MenuHamb;
 
@@ -42,6 +52,10 @@ public class AltaProductosController {
     private ChoiceBox<Integer> material;
     private Integer[] opciones = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
+    @FXML
+    private Button imagen;
+
+    
 
 
     @FXML
@@ -52,41 +66,56 @@ public class AltaProductosController {
         App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
     }
 
-    private Connection connect() {
-        Connection con = null;
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return con;
-    }
-
     @FXML
     private void guardarCambios() {
 
-        Articulo art1;
-        int graba;
-        ConectaBBDD con2 = new ConectaBBDD();
-        // creamos la alerta
-        Alert a = new Alert(Alert.AlertType.NONE);
+        ConexionSQL con = new ConexionSQL();
+
+        Alert alerta = new Alert(Alert.AlertType.NONE);
+
             try {
-                Connection conection1 = con2.conecta();
-                Statement st = conection1.createStatement();
+                Connection connection1 = con.conecta();
+                Statement st = connection1.createStatement();
+
                 st.executeUpdate("INSERT INTO articulo(nombre, precio, marca, descripcion, activo, imagen, material) VALUES "
                 + "('" + nombre.getText() + "'," + precio.getText() + ",'" + marca.getText() + "','" + descripcion.getText() + "'," + activo.isSelected() + ",'" + nombre_imagen.getText() + "'," + material.getValue() + ")");
                 
-            
-                con2.cerrarConexion();
+                alerta.setAlertType(Alert.AlertType.INFORMATION);
+                alerta.setHeaderText(null);
+                alerta.setContentText("El artículo se ha insertado CORRECTAMENTE.");
+                alerta.show();
+                
+                con.cerrarConexion();
 
             } catch (Exception ex) {
                 System.out.println(ex.getClass());
-                a.setAlertType(Alert.AlertType.ERROR);
-                a.setHeaderText(null);
-                a.setContentText("ERROR: con la BBDD.");
-                a.show();
+                alerta.setAlertType(Alert.AlertType.ERROR);
+                alerta.setHeaderText(null);
+                alerta.setContentText("Error al insertar Articulo en la BBDD.");
+                alerta.show();
             }
     }
+
+    public void abrirImagen(ActionEvent e){
+        
+        Stage stage = (Stage) nombre.getScene().getWindow();
+
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccionar una imagen");
+        fileChooser.setInitialDirectory(new File("C:\\Users\\CicloM\\Downloads"));
+
+        File imagenSeleccionada = fileChooser.showOpenDialog(stage);
+
+        String nombreImag = imagenSeleccionada.getName();
+        nombre_imagen.setText(nombreImag);
+        
+        ImageView imageView = new ImageView(getClass().getResource("C:\\Users\\CicloM\\Downloads\\crocs.jpg").toExternalForm());
+        imagen.setGraphic(imageView);
+
+       
+
+        }
 
     public void initialize() {
         MenuHamb.popupHambMake();

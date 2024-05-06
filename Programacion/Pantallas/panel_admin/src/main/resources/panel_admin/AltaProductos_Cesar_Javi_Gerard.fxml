@@ -42,7 +42,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Button layoutX="-6.0" layoutY="115.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="377.0" style="-fx-background-color: WHITE; -fx-border-color: grey;">
+                        <Button fx:id="imagen" layoutX="-6.0" layoutY="115.0" mnemonicParsing="false" onAction="#abrirImagen" prefHeight="136.0" prefWidth="377.0" style="-fx-background-color: WHITE; -fx-border-color: grey;">
                            <graphic>
                               <FontAwesomeIconView glyphName="PHOTO" />
                            </graphic>

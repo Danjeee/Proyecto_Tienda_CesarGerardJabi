@@ -8,10 +8,10 @@ public class Articulo {
     private String descripcion;
     private boolean activo = true;
     private String nombre_imagen;
-    private Material material;
+    public Integer material;
     
     public Articulo(String cod_art, String nombre, double precio, String marca, String descripcion, boolean activo,
-            String nombre_imagen, Material material) {
+            String nombre_imagen, Integer mater) {
         this.cod_art = cod_art;
         this.nombre = nombre;
         this.precio = precio;
@@ -19,7 +19,7 @@ public class Articulo {
         this.descripcion = descripcion;
         this.activo = activo;
         this.nombre_imagen = nombre_imagen;
-        this.material = material;
+        this.material = mater;
     }
     public String getCod_art() {
         return cod_art;
@@ -63,10 +63,10 @@ public class Articulo {
     public void setNombre_imagen(String nombre_imagen) {
         this.nombre_imagen = nombre_imagen;
     }
-    public Material getMaterial() {
+    public Integer getMaterial() {
         return material;
     }
-    public void setMaterial(Material material) {
+    public void setMaterial(Integer material) {
         this.material = material;
     }
 

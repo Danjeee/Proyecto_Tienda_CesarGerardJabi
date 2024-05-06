@@ -3,13 +3,14 @@ package panel_admin;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import panel_admin.Clases.Articulo;
 import panel_admin.Clases.Material;
 
 public class Utilidades {
 
-    public static Articulo obtenArt(TextField nombre, TextField precio, TextField marca, TextField descripcion, CheckBox activo, Button nombre_imagen, ChoiceBox material) {
+    public static Articulo obtenArt(TextField nombre, TextField precio, TextField marca, TextArea descripcion, CheckBox activo, TextField nombre_imagen, ChoiceBox<Integer> material) {
         
         Articulo art;
 
@@ -19,7 +20,7 @@ public class Utilidades {
         String descrip;
         boolean activ = activo.isSelected();
         String nom_imagen;
-        Material mater;
+        Integer mater;
 
 
         nom = nombre.getText();
@@ -27,8 +28,7 @@ public class Utilidades {
         marc = marca.getText();
         descrip = descripcion.getText();
         nom_imagen = nombre_imagen.getText();
-        mater = (Material) material.getValue();
-        
+        mater = material.getValue();
 
         
         art = new Articulo("", nom, pre, marc, descrip, activ, nom_imagen, mater);

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import panel_admin.ConectaBBDD;
 import panel_admin.Clases.*;
 import panel_admin.Utilidades;
@@ -13,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import panel_admin.Clases.Articulo;
@@ -30,14 +33,15 @@ public class AltaProductosController {
     @FXML
     private TextField marca;
     @FXML
-    private TextField descripcion;
+    private TextArea descripcion;
     @FXML
     private CheckBox activo;
     @FXML
-    private Button nombre_imagen;
+    private TextField nombre_imagen;
     @FXML
     private ChoiceBox<Integer> material;
     private Integer[] opciones = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
 
 
     @FXML
@@ -60,42 +64,28 @@ public class AltaProductosController {
 
     @FXML
     private void guardarCambios() {
+
         Articulo art1;
         int graba;
         ConectaBBDD con2 = new ConectaBBDD();
         // creamos la alerta
         Alert a = new Alert(Alert.AlertType.NONE);
-        if (Utilidades.valida()) {
             try {
-                con2.conecta();
-                con2.crearSentencia();
-                // recogemos los valores de la ventana
-                art1 = Utilidades.obtenArt(nombre,precio,marca,descripcion,activo,nombre_imagen,material);
-                graba = con2.grabaRegistro(art1);
-                if (graba == 1) {
-                    a.setAlertType(Alert.AlertType.INFORMATION);
-                    a.setHeaderText(null);
-                    a.setContentText("\"* * * Artículo insertado * * * \"");
-                    a.show();
-                } else if (graba == -1) {
-                    a.setAlertType(Alert.AlertType.ERROR);
-                    a.setHeaderText(null);
-                    a.setContentText("ERROR: integridad referencial o SQL truncada");
-                    a.show();
-                } else {
-                    a.setAlertType(Alert.AlertType.ERROR);
-                    a.setHeaderText(null);
-                    a.setContentText("* * * no se pudo insertar Artículo * * *");
-                    a.show();
-                }
+                Connection conection1 = con2.conecta();
+                Statement st = conection1.createStatement();
+                st.executeUpdate("INSERT INTO articulo(nombre, precio, marca, descripcion, activo, imagen, material) VALUES "
+                + "('" + nombre.getText() + "'," + precio.getText() + ",'" + marca.getText() + "','" + descripcion.getText() + "'," + activo.isSelected() + ",'" + nombre_imagen.getText() + "'," + material.getValue() + ")");
+                
+            
                 con2.cerrarConexion();
+
             } catch (Exception ex) {
+                System.out.println(ex.getClass());
                 a.setAlertType(Alert.AlertType.ERROR);
                 a.setHeaderText(null);
                 a.setContentText("ERROR: con la BBDD.");
                 a.show();
             }
-        }
     }
 
     public void initialize() {

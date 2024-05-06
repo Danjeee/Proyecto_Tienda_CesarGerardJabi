@@ -13,15 +13,18 @@ public class ConectaBBDD {
 
     public ConectaBBDD(){}
 
-    public void conecta() {
+    public Connection conecta() {
 
         try {// Establece la conexión
             conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root",
                     "");
+                    return (conn);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return (conn);
     }
 
 
@@ -80,7 +83,7 @@ public class ConectaBBDD {
     public int grabaRegistro(Articulo art) throws SQLException {
         int ok = -1;
         String sql = "INSERT INTO articulos(nombre, precio, marca, descripcion, activo, imagen, material) VALUES "
-                + "('" + art.getNombre() + "'," + art.getPrecio() + ",'" + art.getMarca() + "'," + art.getDescripcion() + "'," + art.isActivo() + "'," + art.getNombre_imagen() + "'," + art.getMaterial() + ")";
+                + "('" + art.getNombre() + "'," + art.getPrecio() + ",'" + art.getMarca() + "','" + art.getDescripcion() + "'," + art.isActivo() + ",'" + art.getNombre_imagen() + "'," + art.getMaterial() + ")";
         ok = this.updateSQL(sql);
 
         return (ok);

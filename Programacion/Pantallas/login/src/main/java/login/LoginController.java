@@ -48,12 +48,12 @@ public class LoginController {
     }
 
     @FXML
-    public void limpiarBotonUser (ActionEvent Event){
+    public void limpiarBotonUser(ActionEvent Event) {
         usuario.setText(null);
     }
 
     @FXML
-    private void limpiarBotonPwd(ActionEvent event){
+    private void limpiarBotonPwd(ActionEvent event) {
         contra.setText(null);
     }
 
@@ -129,14 +129,14 @@ public class LoginController {
                             e.printStackTrace();
                         }
                         break;
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText("INICIO DE SESIÓN INCORRECTO.");
+                        alert.setTitle("ERROR");
+                        alert.setContentText("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
+                        alert.showAndWait();
+                        break;
                     }
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText("INICIO DE SESIÓN INCORRECTO.");
-                    alert.setTitle("ERROR");
-                    alert.setContentText("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
-                    alert.showAndWait();
-                    break;
                 }
             }
         } catch (SQLException e) {

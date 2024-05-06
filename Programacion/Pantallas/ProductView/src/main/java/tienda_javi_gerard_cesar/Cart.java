@@ -32,6 +32,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import tienda_javi_gerard_cesar.Clases.Articulo;
+import tienda_javi_gerard_cesar.Clases.Descuento;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
 public class Cart {
@@ -56,8 +57,14 @@ public class Cart {
     private int descuento = 15;
     private ArrayList<Articulo> articulos;
     private int cod_pedido;
-    private ArrayList<String> descuentosUsados;
-
+    private ArrayList<String> descuentosUsados = new ArrayList<>();
+    private Descuento descuentoActivo = new Descuento("0", 0, false);
+    private Double subtotalValor;
+    private Double totalValor;
+    private Double impValor;
+    private Double envioValor;
+    private Double descuentoValor;
+    
     private Connection conenct() {
         Connection con = null;
         try {
@@ -66,6 +73,12 @@ public class Cart {
             e.printStackTrace();
         }
         return con;
+    }
+
+    @FXML
+    private void clearCodDes(){
+        codDes.setText("");
+        codDes.setStyle("-fx-text-inner-color: black;");
     }
 
     @FXML
@@ -83,12 +96,50 @@ public class Cart {
         }
     }
 
+    private void pagar(){
+        
+    }
+
     private void checkDescuento(){
         Connection con = conenct();
-        ArrayList<String> descuentos = new ArrayList<>();
+        ArrayList<Descuento> descuentos = new ArrayList<>();
         try {
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT descuento FROM descuentos");
+            ResultSet rs = st.executeQuery("SELECT * FROM descuentos");
+            while (rs.next()) {
+                String nombre = rs.getString("descuento");
+                int cant = rs.getInt("cant");
+                Boolean fs = rs.getBoolean("freeShip");
+                descuentos.add(new Descuento(nombre, cant, fs));
+            }
+            Boolean esta = false;
+            for (String i : descuentosUsados){
+                if (i.equals(codDes.getText())) {
+                    codDes.setText("Código ya usado");
+                    codDes.setStyle("-fx-text-inner-color: red;");
+                    esta = true;
+                    break;
+                }
+            }
+            if (!esta) {
+                for (Descuento i : descuentos){
+                    if (codDes.getText().equals(i.getNombre())){
+                        descuentoActivo  = i;
+                        codDes.setText("Código activado (Se canjeara al pagar)");
+                        codDes.setStyle("-fx-text-inner-color: green;");
+                        actualizar();
+                        break;
+                    }
+                }
+                if (descuentoActivo.getNombre().equals("0")) {
+                    codDes.setText("El codigo no existe / ha expirado");
+                    codDes.setStyle("-fx-text-inner-color: red;");
+                } else {
+                    codDes.setText("Código activo: "+descuentoActivo.getNombre());
+                    codDes.setStyle("-fx-text-inner-color: green;");
+                }
+            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -239,19 +290,21 @@ public class Cart {
             aa = "00" + aa;
         }
         if (!aa.contains(".")) {
-            return aa + "€";
+            return aa + ".00€";
         }
         if (aa.charAt(aa.length() - 1) == ('.')) {
             return aa.substring(0, aa.length() - 2) + "€";
+        }
+        if (aa.charAt(1) == '.') {
+            aa = "0"+ aa;
         }
         for (int i = 0; i < aa.length(); i++) {
             if (aa.charAt(i) == '.') {
                 int ii = i + 2;
                 if (aa.length() == ii) {
                     return aa.substring(0, ii) + "0€";
-
                 } else {
-                    return aa.substring(0, ii++) + "0€";
+                    return aa.substring(0, ii) +aa.charAt(ii) +"€";
                 }
             }
         }
@@ -283,34 +336,45 @@ public class Cart {
         return a;
     }
 
+    private String envio(){
+        envioValor = 0.0;
+        if (descuentoActivo.getFreeShip()) {
+            envioValor = 0.0;
+            return "GRATIS";
+        }
+        if (subtotalValor>0.0) {
+            envioValor = 4.99;
+            return formatDouble(envioValor);
+        }
+        return formatDouble(envioValor);
+    }
+
     private String imp() {
-        Double desc = Double.valueOf(0);
-        desc = (Double.parseDouble(subtotal.getText().substring(0, subtotal.getText().length() - 2))
-                * Integer.toUnsignedLong(21)) / 100;
-        return formatDouble(desc);
+        impValor = 0.0;
+        impValor = ((subtotalValor-descuentoValor)*21)/100;
+        return formatDouble(impValor);
     }
 
     private String subtotal() {
-        Double subt = Double.valueOf(0);
+        subtotalValor = 0.0;
         for (Articulo i : articulos) {
-            subt += i.getPrecio().doubleValue() * i.getCant();
+            subtotalValor += i.getPrecio().doubleValue() * i.getCant();
         }
-        return formatDouble(subt);
+        return formatDouble(subtotalValor);
     }
 
     private String descuento() {
-        Double desc = Double.valueOf(0);
-        desc = (Double.parseDouble(subtotal.getText().substring(0, subtotal.getText().length() - 2))
-                * Integer.toUnsignedLong(descuento)) / 100;
-        return formatDouble(desc);
+        descuentoValor = 0.0;
+        descuentoValor = (subtotalValor * descuentoActivo.getCantidad())/100;
+        return formatDouble(descuentoValor);
     }
 
     private String total() {
-        Double subt = Double.parseDouble(subtotal.getText().substring(0, subtotal.getText().length() - 2));
-        Double desc = Double.parseDouble(des.getText().substring(0, des.getText().length() - 2));
-        Double impp = Double.parseDouble(imp.getText().substring(0, imp.getText().length() - 2));
-        Double total = subt + impp - desc;
-        return formatDouble(total);
+        totalValor = subtotalValor + impValor - descuentoValor;
+        if (totalValor<0) {
+            totalValor = 0.0;
+        }
+        return formatDouble(totalValor);
     }
 
     @FXML
@@ -362,8 +426,9 @@ public class Cart {
             main.getChildren().add(createItem(img, nom, precio, cant, cod, i));
         }
         subtotal.setText(subtotal());
-        imp.setText(imp());
         des.setText(descuento());
+        imp.setText(imp());
+        envio.setText(envio());
         total.setText(total());
         imp.setText("Contiene " + imp() + " de impuestos");
     }

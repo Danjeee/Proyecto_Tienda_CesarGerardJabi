@@ -32,6 +32,11 @@ public class PanelController {
         App.setRoot("AdministrarUsuarios_Cesar_Javi_Gerard");
     }
 
+    @FXML
+    public void cargarVentana_AdministrarProductos(ActionEvent actionEvent) throws IOException {
+        App.setRoot("AdministrarProductos_Cesar_Javi_Gerard");
+    }
+
     public void initialize() {
         MenuHamb.popupHambMake();
         cont.getChildren().add(MenuHamb.menuShadow);

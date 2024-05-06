@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+import panel_admin.ConectaBBDD;
+import panel_admin.Clases.*;
+import panel_admin.Utilidades;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -26,7 +28,7 @@ public class AltaProductosController {
     @FXML
     private TextField precio;
     @FXML
-    private ChoiceBox marca;
+    private TextField marca;
     @FXML
     private TextField descripcion;
     @FXML
@@ -34,8 +36,9 @@ public class AltaProductosController {
     @FXML
     private Button nombre_imagen;
     @FXML
-    private ChoiceBox material;
-    
+    private ChoiceBox<Integer> material;
+    private Integer[] opciones = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
 
     @FXML
     private App PantallaPrincipal = new App();
@@ -45,7 +48,7 @@ public class AltaProductosController {
         App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
     }
 
-    private Connection conenct() {
+    private Connection connect() {
         Connection con = null;
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
@@ -62,6 +65,7 @@ public class AltaProductosController {
         ConectaBBDD con2 = new ConectaBBDD();
         // creamos la alerta
         Alert a = new Alert(Alert.AlertType.NONE);
+        if (Utilidades.valida()) {
             try {
                 con2.conecta();
                 con2.crearSentencia();
@@ -91,13 +95,15 @@ public class AltaProductosController {
                 a.setContentText("ERROR: con la BBDD.");
                 a.show();
             }
-        
+        }
     }
-    
+
     public void initialize() {
         MenuHamb.popupHambMake();
         cont.getChildren().add(MenuHamb.menuShadow);
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
+
+        material.getItems().addAll(opciones);
     }
 }

@@ -48,7 +48,7 @@
                <children>
                   <Pane prefHeight="90.0" prefWidth="354.0">
                      <children>
-                        <Button layoutY="4.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;productos" textFill="WHITE">
+                        <Button layoutY="4.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarProductos" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;productos" textFill="WHITE">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="TAGS" size="23" wrappingWidth="43.66668701171875" />
                            </graphic>

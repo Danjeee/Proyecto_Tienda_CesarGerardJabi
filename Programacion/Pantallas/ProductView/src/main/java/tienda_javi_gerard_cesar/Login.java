@@ -1,4 +1,4 @@
-package login;
+package tienda_javi_gerard_cesar;
 
 import java.io.IOException;
 import java.net.URI;
@@ -12,8 +12,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import login.ConectaBBDD.*;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -22,10 +20,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import login.Clases.MenuHamb;
-import login.Clases.User;
+import tienda_javi_gerard_cesar.Clases.MenuHamb;
+import tienda_javi_gerard_cesar.Clases.User;
 
-public class LoginController {
+public class Login {
 
     @FXML
     private AnchorPane cont;

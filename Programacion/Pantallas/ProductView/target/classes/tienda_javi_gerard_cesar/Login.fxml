@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="cont" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
+<AnchorPane fx:id="cont" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.Login">
    <children>
       <Pane prefHeight="1024.0" prefWidth="1440.0" stylesheets="C:\Users\CicloM\Documents\GitHub\Proyecto_Tienda\Programacion\Pantallas\login\src\main\resources\login\BOTON.css">
          <children>
@@ -126,7 +126,7 @@
                                  </font>
                               </TextField>
                               <Button layoutX="283.0" layoutY="42.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="16.0" style="-fx-background-color: r;" />
-                              <Button fx:id="transparente" layoutX="286.0" onAction="#limpiarBotonPwd" layoutY="145.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
+                              <Button fx:id="transparente" layoutX="286.0" layoutY="145.0" mnemonicParsing="false" onAction="#limpiarBotonPwd" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
                                  <graphic>
                                     <FontAwesomeIconView fill="WHITE" glyphName="REMOVE" size="15" />
                                  </graphic>
@@ -143,7 +143,7 @@
                               </Button>
                               <Button layoutX="286.0" layoutY="61.0" mnemonicParsing="false" onAction="#limpiarBotonUser" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
                                  <graphic>
-                                    <FontAwesomeIconView fx:id="BOTPRUEBA" fill="WHITE" glyphName="REMOVE"  size="15" text="" />
+                                    <FontAwesomeIconView fx:id="BOTPRUEBA" fill="WHITE" glyphName="REMOVE" size="15" text="" />
                                  </graphic>
                               </Button>
                            </children>

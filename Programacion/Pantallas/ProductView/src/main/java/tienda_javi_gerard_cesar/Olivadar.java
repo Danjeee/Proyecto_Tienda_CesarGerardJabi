@@ -1,18 +1,17 @@
-package login;
+package tienda_javi_gerard_cesar;
+import java.io.IOError;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
 
-public class RegistroController {
+public class Olivadar {
 
     @FXML
     private App PantallaPrincipal = new App();
 
     @FXML
-    public void cargarVentana_registro(ActionEvent actionEvent) throws IOException {
+    public void cargarVentana_olvidar(ActionEvent actionEvent) throws IOException {
         App.setRoot("Login");
     }
 

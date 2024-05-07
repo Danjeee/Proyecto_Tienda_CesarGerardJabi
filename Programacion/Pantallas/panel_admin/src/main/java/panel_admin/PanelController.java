@@ -37,6 +37,10 @@ public class PanelController {
         App.setRoot("AdministrarProductos_Cesar_Javi_Gerard");
     }
 
+    private boolean privilegiosPanel(){
+        
+    }
+
     public void initialize() {
         MenuHamb.popupHambMake();
         cont.getChildren().add(MenuHamb.menuShadow);

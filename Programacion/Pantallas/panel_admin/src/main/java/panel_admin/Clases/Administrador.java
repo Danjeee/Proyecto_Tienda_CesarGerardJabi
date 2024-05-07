@@ -1,7 +1,10 @@
 package panel_admin.Clases;
+
+import java.time.LocalDate;
+
 public class Administrador extends Usuario{
     
-    private boolean tienePrivilegios;
+    public boolean tienePrivilegios;
     private String rol;
     private int nivelAcceso;
     private Departamento departamento;
@@ -15,6 +18,7 @@ public class Administrador extends Usuario{
         this.departamento = departamento;
         departamento.añadirAdmin(this.getDni(), this);
     }
+
 
     public boolean isTienePrivilegios() {
         return tienePrivilegios;
@@ -47,4 +51,5 @@ public class Administrador extends Usuario{
     public void setNivelAcceso(int nivelAcceso) {
         this.nivelAcceso = nivelAcceso;
     }    
+
 }

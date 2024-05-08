@@ -39,6 +39,8 @@ public class Cart {
     @FXML
     private FlowPane main;
     @FXML
+    private VBox all;
+    @FXML
     private AnchorPane cont;
     @FXML
     private TextField codDes;
@@ -54,9 +56,7 @@ public class Cart {
     private Label des;
     @FXML
     private Button codButton;
-    private int descuento = 15;
     private ArrayList<Articulo> articulos;
-    private int cod_pedido;
     private ArrayList<String> descuentosUsados = new ArrayList<>();
     private Descuento descuentoActivo = new Descuento("0", 0, false);
     private Double subtotalValor;
@@ -97,7 +97,6 @@ public class Cart {
     }
 
     private void pagar(){
-        
     }
 
     private void checkDescuento(){

@@ -44,6 +44,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import tienda_javi_gerard_cesar.Clases.Articulo;
+import tienda_javi_gerard_cesar.Clases.ImportantGUI;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
 public class Main {
@@ -85,26 +86,7 @@ public class Main {
     private AnchorPane cont;
     private int pedido;
 
-    private Label mensaje(Double x, Double y, String texto){
-        Label a = new Label(texto);
-        a.setId("mensaje");
-        a.setFont(new Font("System", 12));
-        a.setStyle("-fx-background-color: #fff; -fx-background-radius: 20");
-        a.setPrefHeight(30);
-        a.setPrefWidth(110);
-        a.setAlignment(Pos.CENTER);
-        a.setOpacity(1);
-        a.setLayoutX(x);
-        a.setDisable(true);
-        a.setLayoutY(y);
-        final Timeline timeline = new Timeline();
-        timeline.setCycleCount(1);
-        final KeyValue kv = new KeyValue(a.opacityProperty(), 0);
-        final KeyFrame kf = new KeyFrame(Duration.millis(1500), kv);
-        timeline.getKeyFrames().add(kf);
-        timeline.play();
-        return a;
-    }
+    
 
     /*
      * @FXML
@@ -312,7 +294,7 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        Label a = mensaje(x, y, "Añadido al carrito");
+        Label a = ImportantGUI.mensaje(x, y, "Añadido al carrito");
         if (cont.getChildren().contains(a)) {
             cont.getChildren().remove(a);
         }
@@ -369,11 +351,11 @@ public class Main {
     @FXML
     private void searchBar(ActionEvent e) throws IOException {
         TextField sb = (TextField) e.getSource();
-        resultados.clear();
+        Main.resultados.clear();
         if (sb.getText().isEmpty()) {
             buscar();
         } else {
-            resultados.add(sb.getText());
+            Main.resultados.add(sb.getText());
             buscar();
         }
 
@@ -559,22 +541,26 @@ public class Main {
         main.getChildren().clear();
         Connection con = conenct();
         try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT nombre, precio, imagen, cod_art FROM articulo");
-            while (rs.next()) {
-                int cod = rs.getInt("cod_art");
-                String nombre = rs.getString("nombre");
-                BigDecimal precio = rs.getBigDecimal("precio");
-                String precioo = rs.getString("precio");
-                String img = rs.getString("imagen");
-                Articulo i = new Articulo(cod, nombre, precio, img);
-                main.getChildren().add(createItem(nombre, precioo, img, cod, i));
-            }
-            rs = st.executeQuery(
-                    "SELECT DISTINCT L.num_pedido from linea_pedido L, pedido P WHERE L.num_pedido = P.numero and P.DNI_cliente = \""
-                            + App.user + "\" and P.estado = \"En proceso\"");
-            while (rs.next()) {
-                pedido = rs.getInt("num_pedido");
+            if (!Main.resultados.isEmpty()) {
+                buscar();
+            } else {
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery("SELECT nombre, precio, imagen, cod_art FROM articulo");
+                while (rs.next()) {
+                    int cod = rs.getInt("cod_art");
+                    String nombre = rs.getString("nombre");
+                    BigDecimal precio = rs.getBigDecimal("precio");
+                    String precioo = rs.getString("precio");
+                    String img = rs.getString("imagen");
+                    Articulo i = new Articulo(cod, nombre, precio, img);
+                    main.getChildren().add(createItem(nombre, precioo, img, cod, i));
+                }
+                rs = st.executeQuery(
+                        "SELECT DISTINCT L.num_pedido from linea_pedido L, pedido P WHERE L.num_pedido = P.numero and P.DNI_cliente = \""
+                                + App.user + "\" and P.estado = \"En proceso\"");
+                while (rs.next()) {
+                    pedido = rs.getInt("num_pedido");
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -667,7 +653,7 @@ public class Main {
         cart.setOnAction(e -> addGoing(i));
         plus.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
-               addWOgoing(i, event.getSceneX(), event.getSceneY());
+                addWOgoing(i, event.getSceneX(), event.getSceneY());
             }
         });
         HBox botones = new HBox();

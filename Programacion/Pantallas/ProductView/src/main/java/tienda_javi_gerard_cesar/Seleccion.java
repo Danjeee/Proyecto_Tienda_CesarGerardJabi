@@ -22,6 +22,8 @@ public class Seleccion {
         try {
             MenuHamb.multiFiltrar(multifiltro);
             App.setRoot("main");
+            int شسيشسيشس = 0;
+            System.out.println(شسيشسيشس);
         } catch (IOException e) {
             e.printStackTrace();
         }

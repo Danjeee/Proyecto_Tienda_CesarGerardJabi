@@ -176,6 +176,6 @@ public class ProductView {
     }
     @FXML
     private void back() throws IOException{
-        App.setRoot("main");
+        App.setRoot(App.getLast());
     }
 }

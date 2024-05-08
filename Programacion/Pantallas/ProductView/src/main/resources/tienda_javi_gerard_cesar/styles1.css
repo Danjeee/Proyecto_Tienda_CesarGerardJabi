@@ -12,6 +12,13 @@
     -fx-border-color: #000;
     -fx-border-width: 2;
 }
+.menu-button > .arrow-button {
+    -fx-padding: 0;
+}
+
+.menu-button > .arrow-button > .arrow {
+    -fx-padding: 0;
+}
 .filters .button:hover{
     -fx-background-color: #ECECEC;
 }
@@ -21,11 +28,6 @@
 }
 .default{
     -fx-background-color: #000;
-}
-.search{
-    -fx-background-color: #fff;
-    -fx-border-color: #000;
-    -fx-border-width: 1;
 }
 .ropa{
     -fx-background-image: url(../Seleccion/ropa.jpg);

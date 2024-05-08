@@ -19,7 +19,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import tienda_javi_gerard_cesar.Clases.ImportantGUI;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 import tienda_javi_gerard_cesar.Clases.User;
 
@@ -27,6 +29,9 @@ public class Login {
 
     @FXML
     private AnchorPane cont;
+
+    @FXML
+    private VBox all;
 
     @FXML
     private TextField usuario;
@@ -43,6 +48,7 @@ public class Login {
         cont.getChildren().add(MenuHamb.menuShadow);
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
+        all.getChildren().add(0, ImportantGUI.generateHeader());
     }
 
     @FXML

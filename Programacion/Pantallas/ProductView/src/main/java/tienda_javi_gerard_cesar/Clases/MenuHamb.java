@@ -32,7 +32,7 @@ public class MenuHamb {
         ico.setGlyphName("NAVICON");
         a.setGraphic(ico);
         a.setLayoutX(25);
-        a.setLayoutY(25);
+        a.setLayoutY(13);
         a.setOnAction(e -> popupHambShow());
         return a;
     }

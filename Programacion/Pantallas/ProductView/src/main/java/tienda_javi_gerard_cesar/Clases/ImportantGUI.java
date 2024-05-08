@@ -9,6 +9,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
@@ -19,6 +20,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import tienda_javi_gerard_cesar.App;
@@ -26,11 +28,11 @@ import tienda_javi_gerard_cesar.Main;
 
 public class ImportantGUI {
 
-    private static void userMenu(){
+    private static void userMenu() {
 
     }
 
-    private static void notLogged(){
+    private static void notLogged() {
         try {
             if (App.user.equals("guest")) {
                 App.setRoot("login");
@@ -40,7 +42,7 @@ public class ImportantGUI {
         }
     }
 
-    private static void searchBar(ActionEvent e){
+    private static void searchBar(ActionEvent e) {
         TextField sb = (TextField) e.getSource();
         Main.resultados.clear();
         if (sb.getText().isEmpty()) {
@@ -59,7 +61,7 @@ public class ImportantGUI {
         }
     }
 
-    public static HBox generateHeader(){
+    public static HBox generateHeader() {
         HBox a = new HBox();
         a.setAlignment(Pos.CENTER_LEFT);
         a.setPrefHeight(125);
@@ -73,7 +75,7 @@ public class ImportantGUI {
 
         Label hand = new Label("hand");
         hand.setAlignment(Pos.CENTER_LEFT);
-        hand.setPrefWidth(250);
+        hand.setPrefWidth(450);
         hand.setFont(new Font("Calibri", 46));
         hand.setStyle("-fx-font-weight: bold");
 
@@ -103,7 +105,7 @@ public class ImportantGUI {
         });
         MenuItem logout = new MenuItem("Cerrar sesión");
         logout.setOnAction(e -> {
-            App.user="guest";
+            App.user = "guest";
             try {
                 App.setRoot("login");
             } catch (IOException e1) {
@@ -123,8 +125,32 @@ public class ImportantGUI {
         } else {
             user.getItems().addAll(cuenta, new SeparatorMenuItem(), logout);
         }
+        Button cart = new Button();
+        cart.setPrefHeight(25);
+        cart.setPrefHeight(25);
+        cart.setStyle("-fx-background-color: #fff;");
+        FontAwesomeIconView cartIco = new FontAwesomeIconView();
+        cartIco.setGlyphName("SHOPPING_CART");
+        cartIco.setSize("30");
+        cart.setText("");
+        cart.setGraphic(cartIco);
+        if (App.user.equals("guest")) {
+            cartIco.setCursor(Cursor.CROSSHAIR);
+            cart.setDisable(true);
+        }
+        cart.setOnAction(e -> {
+            try {
+                if (App.user.equals("guest")) {
+                    App.setRoot("login");
+                } else {
+                    App.setRoot("cart");
+                }
+            } catch (IOException ee) {
+                ee.printStackTrace();
+            }
+        });
 
-        a.getChildren().addAll(second, hand, lupa, user);
+        a.getChildren().addAll(second, hand, lupa, user, cart);
         return a;
 
     }
@@ -149,7 +175,9 @@ public class ImportantGUI {
         timeline.play();
         return a;
     }
-    /*public static HBox generateFooter(){
-
-    }*/
+    /*
+     * public static HBox generateFooter(){
+     * 
+     * }
+     */
 }

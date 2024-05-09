@@ -5,25 +5,26 @@ import java.sql.*;
 
 import panel_admin.Clases.Articulo;
 
-public class ConectaBBDD {
+public class ConexionSQL {
 
     private Connection conn = null;
     private Statement sentenciaSQL = null;
     private ResultSet rs = null;
 
-    public ConectaBBDD(){}
+    public ConexionSQL(){}
 
-    public void conecta() {
-
+    public Connection conecta() {
         try {// Establece la conexión
             conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root",
                     "");
+                    return (conn);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
 
+        return (conn);
+    }
 
     public void crearSentencia() {
         try {
@@ -75,16 +76,4 @@ public class ConectaBBDD {
         }
         return upd;
     }
-
-
-    public int grabaRegistro(Articulo art) throws SQLException {
-        int ok = -1;
-        String sql = "INSERT INTO articulos(nombre, precio, marca, descripcion, activo, imagen, material) VALUES "
-                + "('" + art.getNombre() + "'," + art.getPrecio() + ",'" + art.getMarca() + "'," + art.getDescripcion() + "'," + art.isActivo() + "'," + art.getNombre_imagen() + "'," + art.getMaterial() + ")";
-        ok = this.updateSQL(sql);
-
-        return (ok);
-    }
-
-
 }

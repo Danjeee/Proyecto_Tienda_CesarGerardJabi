@@ -119,29 +119,40 @@ public class LoginController {
             }
             ;
 
-            for (User i : usuarios) {
-                if (i.getMail().equals(usuario.getText())) {
-                    if (i.getPasw().equals(contra.getText())) {
-                        App.user = i.getDNI();
-                        try {
-                            App.setRoot("seleccion");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        break;
-                    } else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setHeaderText("INICIO DE SESIÓN INCORRECTO.");
-                        alert.setTitle("ERROR");
-                        alert.setContentText("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
-                        alert.showAndWait();
-                        break;
-                    }
+            User i = buscarUser(usuarios);
+            if (i != null) {
+
+                App.user = i.getDNI();
+                try {
+                    App.setRoot("seleccion");
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("INICIO DE SESIÓN INCORRECTO.");
+                alert.setTitle("ERROR");
+                alert.setContentText("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
+                alert.showAndWait();
+
             }
+
         } catch (SQLException e) {
             System.err.println("Error al conectar la base de datos: " + e.getMessage());
         }
+    }
+
+    private User buscarUser(ArrayList<User> usuarios) {
+        User u = null;
+
+        for (User i : usuarios) {
+            if (i.getMail().equals(usuario.getText()) && i.getPasw().equals(contra.getText())) {
+                u = i;
+            }
+        }
+        return u;
+
     }
 
     private Connection conenct() {

@@ -40,10 +40,10 @@ public class Login {
     @FXML
     private PasswordField contra;
 
-   /*@FXML
+   @FXML
     public void initialize(){
         all.getChildren().add(ImportantGUI.generateFooter());
-    }*/
+    }
 
     @FXML
     public void limpiarBotonUser(ActionEvent Event) {

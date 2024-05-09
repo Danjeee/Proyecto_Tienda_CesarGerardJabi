@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.KeyFrame;
@@ -37,19 +38,6 @@ import tienda_javi_gerard_cesar.Main;
 
 public class ImportantGUI {
 
-    private static void userMenu() {
-
-    }
-
-    private static void notLogged() {
-        try {
-            if (App.user.equals("guest")) {
-                App.setRoot("login");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private static void searchBar(ActionEvent e) {
         TextField sb = (TextField) e.getSource();
@@ -202,15 +190,15 @@ public class ImportantGUI {
 
         VBox ayuda = new VBox();
         ayuda.setPrefHeight(180);
-        ayuda.setPrefWidth(520);
+        ayuda.setPrefWidth(400);
         ayuda.setAlignment(Pos.CENTER);
         VBox mp = new VBox();
         mp.setPrefHeight(200);
-        mp.setPrefWidth(460);
+        mp.setPrefWidth(600);
         mp.setAlignment(Pos.CENTER);
         VBox sigenos = new VBox();
         sigenos.setPrefHeight(180);
-        sigenos.setPrefWidth(460);
+        sigenos.setPrefWidth(400);
         sigenos.setAlignment(Pos.CENTER);
         Font def = new Font("System", 12);
         Font tit = new Font("System", 16);
@@ -278,10 +266,13 @@ public class ImportantGUI {
         Label mptit = new Label("MÉTODOS DE PAGO");
         mptit.setFont(tit);
         mptit.setStyle(bold);
+        mptit.setAlignment(Pos.TOP_CENTER);
+        mptit.setPrefHeight(50);
 
         FlowPane mpcont = new FlowPane();
         mpcont.setPrefWidth(480);
-        mpcont.setAlignment(Pos.CENTER);
+        mpcont.setPrefHeight(110);
+        mpcont.setAlignment(Pos.TOP_CENTER);
         mpcont.setVgap(10);
         mpcont.setHgap(20);
         for (String i : metodos){
@@ -291,9 +282,59 @@ public class ImportantGUI {
             ii.setAlignment(Pos.CENTER);
             mpcont.getChildren().add(ii);
         }
-        mp.getChildren().addAll(mptit, mpcont);
+        FlowPane extra = new FlowPane();
+        extra.setPrefWidth(520);
+        extra.setPrefHeight(35);
+        String[] extracont = {"Politica de privacidad", "Condiciones de compras", "Politica de cookies", "Preferencias de cookies"};
+        for (int i = 0; i<extracont.length; i++){
+            Button ee = new Button(extracont[i]);
+            ee.setStyle("-fx-background-color: rgba(0,0,0,0)");
+            ee.setFont(def);
+            extra.getChildren().add(ee);
+            if (i!=extracont.length-1) {
+                extra.getChildren().add(new Separator(Orientation.VERTICAL));
+            }
+        }
+
+        mp.getChildren().addAll(mptit, mpcont, extra);
         a.getChildren().add(mp);
+
+        Label sig = new Label("¡SIGUENOS!");
+        sig.setFont(tit);
+        sig.setStyle(bold);
+        sig.setAlignment(Pos.TOP_CENTER);
+        sig.setPrefHeight(50);
+
+        FlowPane redes = new FlowPane();
+        redes.setPrefWidth(520);
+        redes.setPrefHeight(35);
+        redes.setVgap(10);
+        redes.setHgap(20);
+        redes.setAlignment(Pos.TOP_CENTER);
+        HashMap<String, String> redescont = new HashMap<>();
+        redescont.put("INSTAGRAM", "https://www.instagram.com/_danje69_");
+        redescont.put("YOUTUBE", "https://www.youtube.com/watch?v=vXYVfk7agqU");
+        redescont.put("GITHUB", "https://github.com/Danjeee/Proyecto_Tienda_CesarGerardJabi");
+        redescont.put("TWITTER", "https://x.com/KFC_ES");
+        for (int i = 0; i<redescont.size(); i++){
+            Button ee = new Button("");
+            ee.setStyle("-fx-background-color: #fff; -fx-background-radius: 20");
+            ee.setPrefSize(30, 30);
+            FontAwesomeIconView rs = new FontAwesomeIconView();
+            rs.setGlyphName((String)redescont.keySet().toArray()[i]);
+            rs.setSize("30");
+            ee.setGraphic(rs);
+            /*ee.setOnAction(e -> Desktop);*/
+
+            redes.getChildren().add(ee);
+        }
+        sigenos.getChildren().addAll(sig, redes);
+        a.getChildren().add(sigenos);
+
         return a;
+    }
+    private static void urlOpener(String url){
+        
     }
 
      

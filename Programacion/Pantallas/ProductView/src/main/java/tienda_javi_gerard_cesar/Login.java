@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import tienda_javi_gerard_cesar.Clases.ImportantGUI;
+import tienda_javi_gerard_cesar.Clases.Mail;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 import tienda_javi_gerard_cesar.Clases.User;
 
@@ -39,10 +40,10 @@ public class Login {
     @FXML
     private PasswordField contra;
 
-    @FXML
+   /*@FXML
     public void initialize(){
         all.getChildren().add(ImportantGUI.generateFooter());
-    }
+    }*/
 
     @FXML
     public void limpiarBotonUser(ActionEvent Event) {

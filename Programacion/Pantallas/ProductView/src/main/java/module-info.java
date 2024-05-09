@@ -5,7 +5,7 @@ module productview {
     requires javafx.graphics;
     requires de.jensd.fx.glyphs.fontawesome;
     requires javafx.base;
-    requires javax.mail.api;
+    requires jakarta.mail;
 
     opens tienda_javi_gerard_cesar to javafx.fxml;
     exports tienda_javi_gerard_cesar;

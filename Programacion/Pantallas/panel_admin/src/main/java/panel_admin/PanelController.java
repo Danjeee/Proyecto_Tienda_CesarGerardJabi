@@ -61,8 +61,8 @@ public class PanelController {
     static Alert alerta = new Alert(Alert.AlertType.NONE);
 
 
-    public void privilegiosAdmin(int dpto){
-        
+    public void privilegiosAdmin(int dpto) throws IOException{
+
             if (dpto == 1){
                 Alta_productos.setVisible(true);
                 Administrar_productos.setVisible(true);
@@ -76,14 +76,15 @@ public class PanelController {
                 Administrar_usuarios.setVisible(false);
             
             }else{
+                cont.setVisible(false);;
                 alerta.setAlertType(Alert.AlertType.ERROR);
                 alerta.setHeaderText(null);
-                alerta.setContentText("No tienes privilegios.");
+                alerta.setContentText("No tienes permisos.");
                 alerta.show();
             } 
     }
 
-    public void initialize() {
+    public void initialize() throws IOException {
         MenuHamb.popupHambMake();
         cont.getChildren().add(MenuHamb.menuShadow);
         cont.getChildren().add(MenuHamb.popupHamb);
@@ -95,10 +96,10 @@ public class PanelController {
             Connection connection1 = con.conecta();
             Statement st = connection1.createStatement();
 
-            ResultSet r = st.executeQuery("select E.dpto from empleado E inner join departamento D ON D.codigo = E.dpto where E.nombre='Elena'");
+            ResultSet r = st.executeQuery("select E.dpto from empleado E inner join departamento D ON D.codigo = E.dpto where E.nombre='Ana'");
             
             int dpto = 0;
-            if (r.next()) {
+            if (r.next()){
                 dpto = r.getInt("dpto");
             }
 

@@ -9,6 +9,7 @@ import java.sql.Statement;
 
 import panel_admin.ConexionSQL;
 import panel_admin.Clases.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -132,24 +133,25 @@ public class AltaProductosController {
 
     public void abrirImagen(ActionEvent e){
         
-        Stage stage = (Stage) nombre.getScene().getWindow();
-
+        Stage stage = (Stage) imagen.getScene().getWindow();
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar una imagen");
         fileChooser.setInitialDirectory(new File("C:\\Users\\CicloM\\Downloads"));
-
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.png"));
+        
         File imagenSeleccionada = fileChooser.showOpenDialog(stage);
 
         String nombreImag = imagenSeleccionada.getName();
         nombre_imagen.setText(nombreImag);
-        
-        ImageView imageView = new ImageView(getClass().getResource("C:\\Users\\CicloM\\Downloads\\crocs.jpg").toExternalForm());
-        imagen.setGraphic(imageView);
+   
+        Image imagen2 = new Image(imagenSeleccionada.toURI().toString());
 
-       
+        BackgroundImage backgroundImage = new BackgroundImage(imagen2, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background fondoImagen = new Background(backgroundImage);
 
-        }
+        imagen.setBackground(fondoImagen);
+    }
 
     public void initialize() {
         MenuHamb.popupHambMake();

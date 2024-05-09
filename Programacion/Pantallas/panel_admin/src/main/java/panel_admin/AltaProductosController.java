@@ -146,11 +146,13 @@ public class AltaProductosController {
         nombre_imagen.setText(nombreImag);
    
         Image imagen2 = new Image(imagenSeleccionada.toURI().toString());
+        
+        ImageView imageView = new ImageView(imagen2);
+        imageView.setFitWidth(350);
+        imageView.setFitHeight(200);
 
-        BackgroundImage backgroundImage = new BackgroundImage(imagen2, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        Background fondoImagen = new Background(backgroundImage);
+        imagen.setGraphic(imageView);
 
-        imagen.setBackground(fondoImagen);
     }
 
     public void initialize() {

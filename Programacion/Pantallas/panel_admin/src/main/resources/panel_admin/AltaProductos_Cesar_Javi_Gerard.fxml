@@ -31,7 +31,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane prefHeight="272.0" prefWidth="360.0">
+                  <Pane prefHeight="351.0" prefWidth="360.0">
                      <children>
                         <Pane layoutX="4.0" layoutY="9.0" prefHeight="48.0" prefWidth="272.0">
                            <children>
@@ -42,7 +42,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Button fx:id="imagen" layoutX="-6.0" layoutY="115.0" mnemonicParsing="false" onAction="#abrirImagen" prefHeight="136.0" prefWidth="377.0" style="-fx-background-color: WHITE; -fx-border-color: grey;">
+                        <Button fx:id="imagen" layoutX="-6.0" layoutY="117.0" mnemonicParsing="false" onAction="#abrirImagen" prefHeight="220.0" prefWidth="377.0" style="-fx-border-color: grey;">
                            <graphic>
                               <FontAwesomeIconView glyphName="PHOTO" />
                            </graphic>
@@ -108,7 +108,7 @@
             <Button layoutX="12.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: invisible;" />
             <Button layoutX="822.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: inivisible;" />
             <Button layoutX="840.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: invisible;" />
-            <Line endX="-100.0" endY="405.0" layoutX="1098.0" layoutY="355.0" startX="-100.0" startY="-109.66667175292969" stroke="#404040" strokeWidth="0.2" />
+            <Line endX="-100.0" endY="455.0" layoutX="1098.0" layoutY="350.0" startX="-100.0" startY="-109.66667175292969" stroke="#404040" strokeWidth="0.2" />
             <Pane layoutY="4.0" prefHeight="80.0" prefWidth="1440.0">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="317.0" layoutX="562.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
@@ -171,7 +171,7 @@
                   </Pane>
                </children>
             </VBox>
-            <Line endX="-100.0" endY="405.66668701171875" layoutX="594.0" layoutY="351.0" startX="-100.0" startY="-109.66667175292969" stroke="#404040" strokeWidth="0.2" />
+            <Line endX="-100.0" endY="455.0" layoutX="594.0" layoutY="351.0" startX="-100.0" startY="-109.66667175292969" stroke="#404040" strokeWidth="0.2" />
          </children>
       </Pane>
    </children>

@@ -147,7 +147,7 @@ public class LoginController {
     private Connection conenct() {
         Connection con = null;
         try {
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tienda_ropa", "root", "mysql23");
         } catch (SQLException e) {
             e.printStackTrace();
         }

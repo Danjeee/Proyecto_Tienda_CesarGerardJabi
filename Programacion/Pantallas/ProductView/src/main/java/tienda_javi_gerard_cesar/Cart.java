@@ -33,6 +33,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import tienda_javi_gerard_cesar.Clases.Articulo;
 import tienda_javi_gerard_cesar.Clases.Descuento;
+import tienda_javi_gerard_cesar.Clases.ImportantGUI;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
 public class Cart {
@@ -415,6 +416,7 @@ public class Cart {
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
         main.getChildren().clear();
+        all.getChildren().add(0, ImportantGUI.generateHeader());
         articulos = cargarItems();
         for (Articulo i : articulos) {
             String nom = i.getNombre();

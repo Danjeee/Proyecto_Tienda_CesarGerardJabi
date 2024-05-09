@@ -14,15 +14,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import tienda_javi_gerard_cesar.Clases.ImportantGUI;
+import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
 import java.util.ArrayList;
 
 public class ProductView {
 
     public static int current;
+    @FXML
+    private VBox all;
+    @FXML
+    private AnchorPane cont;
     @FXML
     private Pane imagen;
     @FXML
@@ -153,6 +161,11 @@ public class ProductView {
     }
 
     public void initialize() {
+        MenuHamb.popupHambMake();
+        cont.getChildren().add(MenuHamb.menuShadow);
+        cont.getChildren().add(MenuHamb.popupHamb);
+        cont.getChildren().add(MenuHamb.menuHamb());
+        all.getChildren().add(0, ImportantGUI.generateHeader());
         String[] datos = leer();
         nom.setText(datos[0]);
         precio.setText(datos[1] + "€");

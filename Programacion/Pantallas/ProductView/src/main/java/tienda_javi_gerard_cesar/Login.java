@@ -40,15 +40,8 @@ public class Login {
     private PasswordField contra;
 
     @FXML
-    private App PantallaPrincipal = new App();
-
-    @FXML
-    public void initialize() {
-        MenuHamb.popupHambMake();
-        cont.getChildren().add(MenuHamb.menuShadow);
-        cont.getChildren().add(MenuHamb.popupHamb);
-        cont.getChildren().add(MenuHamb.menuHamb());
-        all.getChildren().add(0, ImportantGUI.generateHeader());
+    public void initialize(){
+        all.getChildren().add(ImportantGUI.generateFooter());
     }
 
     @FXML
@@ -66,7 +59,6 @@ public class Login {
         try {
             App.setRoot("OlvidarContraseña");
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

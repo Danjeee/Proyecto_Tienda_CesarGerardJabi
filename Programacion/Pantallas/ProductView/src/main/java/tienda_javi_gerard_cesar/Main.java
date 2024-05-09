@@ -39,6 +39,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
@@ -84,6 +85,8 @@ public class Main {
     private FlowPane filtCont;
     @FXML
     private AnchorPane cont;
+    @FXML
+    private VBox all;
     private int pedido;
 
     
@@ -539,6 +542,7 @@ public class Main {
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
         main.getChildren().clear();
+        all.getChildren().add(0, ImportantGUI.generateHeader());
         Connection con = conenct();
         try {
             if (!Main.resultados.isEmpty()) {

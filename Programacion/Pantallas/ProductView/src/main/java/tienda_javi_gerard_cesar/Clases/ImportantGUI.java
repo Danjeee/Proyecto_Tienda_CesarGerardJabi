@@ -1,6 +1,12 @@
 package tienda_javi_gerard_cesar.Clases;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.KeyFrame;
@@ -19,9 +25,12 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Separator;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import tienda_javi_gerard_cesar.App;
 import tienda_javi_gerard_cesar.Main;
@@ -64,7 +73,7 @@ public class ImportantGUI {
     public static HBox generateHeader() {
         HBox a = new HBox();
         a.setAlignment(Pos.CENTER_LEFT);
-        a.setPrefHeight(125);
+        a.setPrefHeight(100);
         a.setPrefWidth(1440);
         a.setStyle("-fx-background-color: #fff");
 
@@ -154,6 +163,15 @@ public class ImportantGUI {
         return a;
 
     }
+    private static Connection conenct() {
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return con;
+    }
 
     public static Label mensaje(Double x, Double y, String texto) {
         Label a = new Label(texto);
@@ -175,9 +193,108 @@ public class ImportantGUI {
         timeline.play();
         return a;
     }
-    /*
-     * public static HBox generateFooter(){
-     * 
-     * }
-     */
+    
+    public static HBox generateFooter(){
+        HBox a = new HBox();
+        a.setPrefWidth(1440);
+        a.setPrefHeight(200);
+        a.setStyle("-fx-background-color: #f2f2f2");
+
+        VBox ayuda = new VBox();
+        ayuda.setPrefHeight(180);
+        ayuda.setPrefWidth(520);
+        ayuda.setAlignment(Pos.CENTER);
+        VBox mp = new VBox();
+        mp.setPrefHeight(200);
+        mp.setPrefWidth(460);
+        mp.setAlignment(Pos.CENTER);
+        VBox sigenos = new VBox();
+        sigenos.setPrefHeight(180);
+        sigenos.setPrefWidth(460);
+        sigenos.setAlignment(Pos.CENTER);
+        Font def = new Font("System", 12);
+        Font tit = new Font("System", 16);
+        String bold = "-fx-font-weight: bold";
+
+        /*AYUDA*/
+        Label help = new Label("AYUDA");
+        help.setFont(tit);
+        help.setStyle(bold);
+
+        Button pregFrec = new Button("Preguntas Frecuentes");
+        pregFrec.setFont(def);
+        /*pregFrec.setOnAction(e -> {
+            try {
+                App.setRoot("faq");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });*/
+
+        Button estado = new Button("Estado de mi pedido");
+        estado.setFont(def);
+        /*estado.setOnAction(e -> {
+            try {
+                App.setRoot("estado");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });*/
+
+        Button dev = new Button("Devoluciones");
+        dev.setFont(def);
+        /*dev.setOnAction(e -> {
+            try {
+                App.setRoot("devoluciones");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });*/
+
+        Button envio = new Button("Envíos");
+        envio.setFont(def);
+        /*envio.setOnAction(e -> {
+            try {
+                App.setRoot("infoenvios");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });*/
+
+        ayuda.getChildren().addAll(help, pregFrec, estado, dev, envio);
+        a.getChildren().add(ayuda);
+
+        Connection con = conenct();
+        ArrayList<String> metodos = new ArrayList<>();
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM metodo_pago");
+            while (rs.next()) {
+                metodos.add(rs.getString("descripcion"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Label mptit = new Label("MÉTODOS DE PAGO");
+        mptit.setFont(tit);
+        mptit.setStyle(bold);
+
+        FlowPane mpcont = new FlowPane();
+        mpcont.setPrefWidth(480);
+        mpcont.setAlignment(Pos.CENTER);
+        mpcont.setVgap(10);
+        mpcont.setHgap(20);
+        for (String i : metodos){
+            Label ii = new Label(i);
+            ii.setPrefWidth(50);
+            ii.setStyle("-fx-background-color: #cccccc; -fx-background-radius: 10;");
+            ii.setAlignment(Pos.CENTER);
+            mpcont.getChildren().add(ii);
+        }
+        mp.getChildren().addAll(mptit, mpcont);
+        a.getChildren().add(mp);
+        return a;
+    }
+
+     
 }

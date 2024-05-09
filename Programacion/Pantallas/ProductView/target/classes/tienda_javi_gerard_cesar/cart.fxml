@@ -18,53 +18,8 @@
 
 <AnchorPane fx:id="cont" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@styles1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.Cart">
    <children>
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0">
+      <VBox fx:id="all" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="1920.0" styleClass="hhbox" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="54.0" prefWidth="883.0">
-                     <children>
-                        <Label contentDisplay="CENTER" prefHeight="54.0" prefWidth="135.0" text="second" textAlignment="CENTER">
-                           <font>
-                              <Font name="Calibri" size="46.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="101.0" text="hand" textAlignment="CENTER">
-                           <font>
-                              <Font name="Calibri Bold" size="46.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets left="250.0" />
-                     </padding>
-                  </HBox>
-                  <TextField promptText=" 🔎 Buscar" styleClass="search">
-                     <HBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="user" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css">
-                     <HBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <FontAwesomeIconView glyphName="USER" size="30" />
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="cart" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css">
-                     <HBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <FontAwesomeIconView glyphName="SHOPPING_CART" size="30" />
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
             <HBox prefHeight="1008.0" prefWidth="1960.0" style="-fx-background-color: #fff;">
                <children>
                   <VBox alignment="CENTER" prefHeight="920.0" prefWidth="1328.0" styleClass="cartbckgr" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css">

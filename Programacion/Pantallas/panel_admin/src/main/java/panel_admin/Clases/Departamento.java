@@ -4,17 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Departamento {
-    private String codigo;
+    private int codigo;
     private String nombre;
     private Map<String, Administrador> admins = new HashMap<>();
-    public Departamento(String codigo, String nombre) {
+    public Departamento(int codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
     }
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
     public Map<String, Administrador> getAdmins() {
@@ -41,10 +41,10 @@ public class Departamento {
     }
     @Override
     public int hashCode() {
-        String nombre = this.codigo;
+        String nombre = String.valueOf(this.codigo);
             String code = "";
             for (int i = 0; i < nombre.length(); i++) {
-                code += Integer.valueOf(nombre.charAt(i));
+                code += nombre.charAt(i);
             }
             return Integer.parseInt(code);
     }
@@ -53,6 +53,6 @@ public class Departamento {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Departamento dep = (Departamento) obj;
-        return codigo.equals(dep.codigo);
+        return codigo == dep.codigo;
     }
 }

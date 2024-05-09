@@ -8,13 +8,13 @@ public abstract class Usuario {
     private String dni;
     private String nombre;
     private String apellidos;
-    private int telefono;
+    private String telefono;
     private String fechaNacimiento;
     private String direccion;
     private String email;
     private Set<MetodoPago> metodosPago = new HashSet<>();
 
-    public Usuario(String dni, String nombre, String apellidos, int telefono, String fechaNacimiento, String direccion,
+    public Usuario(String dni, String nombre, String apellidos, String telefono, String fechaNacimiento, String direccion,
             String email) {
         this.dni = dni;
         this.nombre = nombre;
@@ -46,10 +46,10 @@ public abstract class Usuario {
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
     public String getFechaNacimiento() {

@@ -49,14 +49,11 @@ public class AltaProductosController {
     @FXML
     private TextField nombre_imagen;
     @FXML
-    private ChoiceBox<Integer> material;
-    private Integer[] opciones = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    private ChoiceBox<String> material;
+    private String[] opciones = {"Algodón","Poliéster", "Seda", "Cuero", "Lana", "Pana", "Franela", "Lino", "Cachemira", "Terciopelo"};
 
     @FXML
     private Button imagen;
-
-    
-
 
     @FXML
     private App PantallaPrincipal = new App();
@@ -66,19 +63,56 @@ public class AltaProductosController {
         App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
     }
 
+    static Alert alerta = new Alert(Alert.AlertType.NONE);
+
     @FXML
     private void guardarCambios() {
 
         ConexionSQL con = new ConexionSQL();
 
-        Alert alerta = new Alert(Alert.AlertType.NONE);
+        int material_num = 0;
+
+            switch (material.getValue()) {
+                case "Algodón":
+                    material_num = 1;
+                    break;
+                case "Poliéster":
+                    material_num = 2;
+                    break;
+                case "Seda":
+                    material_num = 3;
+                    break;
+                case "Cuero":
+                    material_num = 4;
+                    break;
+                case "Lana":
+                    material_num = 5;
+                    break;
+                case "Pana":
+                    material_num = 6;
+                    break;
+                case "Franela":
+                    material_num = 7;
+                    break;
+                case "Lino":
+                    material_num = 8;
+                    break;
+                case "Cachemira":
+                    material_num = 9;
+                    break;
+                case "Terciopelo":
+                    material_num = 10;
+                    break;    
+                default:
+                    break;
+            }
 
             try {
                 Connection connection1 = con.conecta();
                 Statement st = connection1.createStatement();
 
                 st.executeUpdate("INSERT INTO articulo(nombre, precio, marca, descripcion, activo, imagen, material) VALUES "
-                + "('" + nombre.getText() + "'," + precio.getText() + ",'" + marca.getText() + "','" + descripcion.getText() + "'," + activo.isSelected() + ",'" + nombre_imagen.getText() + "'," + material.getValue() + ")");
+                + "('" + nombre.getText() + "'," + precio.getText() + ",'" + marca.getText() + "','" + descripcion.getText() + "'," + activo.isSelected() + ",'" + nombre_imagen.getText() + "'," + material_num + ")");
                 
                 alerta.setAlertType(Alert.AlertType.INFORMATION);
                 alerta.setHeaderText(null);

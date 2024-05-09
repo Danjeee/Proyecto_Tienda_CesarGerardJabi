@@ -8,10 +8,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane fx:id="cont" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="panel_admin.AdministrarEmpleadosController">
    <children>
@@ -61,7 +60,7 @@
             </Pane>
             <ScrollPane layoutX="85.0" layoutY="229.0" prefHeight="605.0" prefWidth="1290.0">
                <content>
-                  <TilePane prefHeight="605.0" prefWidth="1290.0" />
+                  <FlowPane />
                </content>
             </ScrollPane>
          </children>

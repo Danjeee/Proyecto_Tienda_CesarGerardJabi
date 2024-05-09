@@ -44,5 +44,10 @@ public class Empleado extends Usuario{
         this.departamento = departamento;
     }
 
+    public void setCant(int cantt) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCant'");
+    }
+
    
 }

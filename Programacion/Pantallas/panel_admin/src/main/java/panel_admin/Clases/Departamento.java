@@ -6,7 +6,7 @@ import java.util.Map;
 public class Departamento {
     private int codigo;
     private String nombre;
-    private Map<String, Administrador> admins = new HashMap<>();
+    private Map<String, Empleado> admins = new HashMap<>();
     public Departamento(int codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -17,10 +17,10 @@ public class Departamento {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    public Map<String, Administrador> getAdmins() {
+    public Map<String, Empleado> getAdmins() {
         return admins;
     }
-    public void setAdmins(Map<String, Administrador> admins) {
+    public void setAdmins(Map<String, Empleado> admins) {
         this.admins = admins;
     }
     public String getNombre() {
@@ -29,7 +29,7 @@ public class Departamento {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public void añadirAdmin(String dni, Administrador admin){
+    public void añadirAdmin(String dni, Empleado admin){
         admins.put(dni, admin);
     }
     public void eliminarAdmin(String dni){

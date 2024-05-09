@@ -2,14 +2,14 @@ package panel_admin.Clases;
 
 import java.time.LocalDate;
 
-public class Administrador extends Usuario{
+public class Empleado extends Usuario{
     
     public boolean tienePrivilegios;
     private boolean activo;
     private String pass;
     private Departamento departamento;
 
-    public Administrador(String dni, String nombre, String apellidos, String telefono, String fechaNacimiento,
+    public Empleado(String dni, String nombre, String apellidos, String telefono, String fechaNacimiento,
             String direccion, String email, boolean tienePrivilegios, boolean activo, String pass,
             Departamento departamento) {
         super(dni, nombre, apellidos, telefono, fechaNacimiento, direccion, email);

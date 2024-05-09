@@ -14,7 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import panel_admin.Clases.Administrador;
+import panel_admin.Clases.Empleado;
 import panel_admin.Clases.Departamento;
 import panel_admin.MenuHamburguesa.MenuHamb;
 

@@ -15,11 +15,20 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-    public static String user;
+    private static String[] last = {"0", "0"};
+
+    public static String getLast() {
+        return last[0];
+    }
+    public static String getCurrent(){
+        return last[1];
+    }
+
+    public static String user = "guest";
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("main"), 1440, 1024);
+        scene = new Scene(loadFXML("Login"), 1440, 1024);
         stage.setScene(scene);
         stage.setTitle("secondHand");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/icon.jpg")));
@@ -27,6 +36,7 @@ public class App extends Application {
     }
 
     public static void setRoot(String fxml) throws IOException {
+        reloadLast(fxml);
         scene.setRoot(loadFXML(fxml));
     }
 
@@ -37,6 +47,17 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    private static void reloadLast(String current){
+        if (last[0].equals("0")) {
+            last[0] = current;
+        } else if (last[1].equals("0")){
+            last[1] = current;
+        } else {
+            last[0] = last[1];
+            last[1] = current;
+        }
     }
 
 }

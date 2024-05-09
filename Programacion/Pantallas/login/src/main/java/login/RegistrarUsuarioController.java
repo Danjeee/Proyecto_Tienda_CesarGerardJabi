@@ -1,25 +1,26 @@
-/*
 package login;
 
-import java.beans.Statement;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.naming.spi.DirStateFactory.Result;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class RegistrarUsuarioController {
-    
+
+
     @FXML
     private TextField nombre;
-    
+
     @FXML
     private TextField apellidos;
 
@@ -40,28 +41,47 @@ public class RegistrarUsuarioController {
 
     @FXML
     private TextField direccion;
-    
+
+    @FXML
+    private CheckBox tarjetaFide;
+
     @FXML
     private App PantallaPrincipal = new App();
 
+    @FXML
+    public void cargarVentana_registro(ActionEvent actionEvent) throws IOException {
+        App.setRoot("Login");
+    }
+
+    @FXML
+    public void flecha_volver(ActionEvent actionEvent) throws IOException {
+        App.setRoot("Login");
+    }
+
+    @FXML
     private void registrar(){
 
         Connection connection = conenct();
         Alert alerta = new Alert(Alert.AlertType.NONE);
 
         try {
-            st.executeUpdate("INSERT INTO articulo(nombre, precio, marca, descripcion, activo, imagen, material) VALUES "
-            + "('" + nombre.getText() + "'," + precio.getText() + ",'" + marca.getText() + "','" + descripcion.getText() + "'," + activo.isSelected() + ",'" + nombre_imagen.getText() + "'," + material.getValue() + ")");
             
             java.sql.Statement pst = connection.createStatement();
-            ResultSet rs = pst.executeQuery("INSERT INTO CLIENTE (DNI, nombre, apellidos, telefono, f_nacimiento, direccion, email, pass, saldo_cuenta, num_pedidos, dir_envio, tarjeta_fidelizacion, activo, m_pago) VALUES "
-            + "('" +DNI.getText()+ "','" +nombre.getText()+ "','" +apellidos.getText()+ "', '" +telefono.getText()+ "','" +fechanac.getdate+ "', '" Calle Mayor, 123', 'maria.gonzalez@example.com', '123456', 1000.00, 2, 'Calle Sol, 10', true, true,1),
-            ")
-            java.sql.Statement st = connection1.createStatement();
+            ResultSet rs = pst.executeQuery("INSERT INTO CLIENTE (DNI, nombre, apellidos, telefono, f_nacimiento, direccion, email, pass, tarjeta_fidelizacion, activo) VALUES "
+            + "('" +DNI.getText()+ "','" +nombre.getText()+ "','" +apellidos.getText()+ "'," +telefono.getText()+ ",'" +fechanac.getValue()+ "','" +direccion.getText()+ "','" +email.getText()+ "'," +tarjetaFide.selectedProperty().get()+ ","+1+")");
+            alerta.setAlertType(AlertType.INFORMATION);
+            alerta.setHeaderText(null);
+            alerta.setContentText("El usuario se ha registrado correctamente.");
+            alerta.show();
 
-            st.executeQuery("null")
+            connection.close();
         } catch (Exception e) {
             // TODO: handle exception
+            System.out.println(e.getClass());
+            alerta.setAlertType(Alert.AlertType.ERROR);
+            alerta.setHeaderText(null);
+            alerta.setContentText("Error al registrar el Usuario");
+            alerta.show();
         }
 
     }
@@ -75,5 +95,6 @@ public class RegistrarUsuarioController {
         }
         return con;
     }
+
+    
 }
-*/

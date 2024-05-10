@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -41,8 +42,10 @@ public class AdministrarEmpleadosController {
     
     public ArrayList<Empleado> lista_empleados;
 
+    static Alert alerta = new Alert(Alert.AlertType.NONE);
 
-     private Connection conenct() {
+
+     private Connection conectar() {
         Connection con = null;
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
@@ -59,6 +62,7 @@ public class AdministrarEmpleadosController {
 
     private HBox createItem(String dni, String nom, String apell, String telefono, String f_nacim, String direcc,
     String email, boolean privilegios, boolean act, String pass, Departamento dpto, Empleado e) {
+        
         HBox a = new HBox();
         a.setPrefHeight(75);
         a.setPrefWidth(725);
@@ -73,10 +77,20 @@ public class AdministrarEmpleadosController {
         nombre.prefHeight(175);
         nombre.setTextFill(Color.WHITE);
         nombre.setStyle("-fx-background-color: #000");
-        nombre.setPrefWidth(225);
+        nombre.setPrefWidth(120);
         nombre.setAlignment(Pos.CENTER_LEFT);
         nombre.setPadding(new Insets(0, 0, 0, 20));
         a.getChildren().add(nombre);
+
+        Label apellidos = new Label(apell);
+        apellidos.setFont(new Font("System", 25));
+        apellidos.prefHeight(175);
+        apellidos.setTextFill(Color.WHITE);
+        apellidos.setStyle("-fx-background-color: #000");
+        apellidos.setPrefWidth(250);
+        apellidos.setAlignment(Pos.CENTER_LEFT);
+        apellidos.setPadding(new Insets(0, 0, 0, 20));
+        a.getChildren().add(apellidos);
 
         Pane sep = new Pane();
         sep.setPrefWidth(100);
@@ -110,7 +124,7 @@ public class AdministrarEmpleadosController {
 
     private ArrayList<Empleado> cargarEmpleados() {
         ArrayList<Empleado> a = new ArrayList<>();
-        Connection con = conenct();
+        Connection con = conectar();
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(
@@ -140,7 +154,7 @@ public class AdministrarEmpleadosController {
     }
 
     public Departamento obtenerDepartamentoPorCodigo(int codigoDepartamento){
-    Connection con = conenct();
+    Connection con = conectar();
     Departamento departamento = null;
     
     try {
@@ -161,42 +175,24 @@ public class AdministrarEmpleadosController {
     return departamento;
     }
 
-
-    public ArrayList<Departamento> departament(){
-
-        ArrayList<Departamento> lista_dpto = new ArrayList<>();
-        Connection con = conenct();
-
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from departamento");
-
-            while (rs.next()) {
-                int codig = rs.getInt("codigo");
-                String nom = rs.getString("nombre");
-            
-                Departamento dpto = new Departamento(codig, nom);
-                lista_dpto.add(dpto);
-            }
-
-            return lista_dpto;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return lista_dpto;
-    }
-
     @FXML
     private void delete(Empleado e) {
-        Connection con = conenct();
+        Connection con = conectar();
         try {
             Statement st = con.createStatement();
-            st.executeUpdate(
-                    "DELETE FROM empleados where nombre='" +e.getNombre()+ "'");
+            st.executeUpdate("DELETE FROM empleado where nombre='" +e.getNombre()+ "'");
+            
+            alerta.setAlertType(Alert.AlertType.INFORMATION);
+            alerta.setHeaderText(null);
+            alerta.setContentText("Se ha eliminado correctamente.");
+            alerta.show();
 
         } catch (SQLException sql) {
             sql.printStackTrace();
+            alerta.setAlertType(Alert.AlertType.ERROR);
+            alerta.setHeaderText(null);
+            alerta.setContentText("Error al eliminar empleado.");
+            alerta.show();
         }
         initialize();
     }
@@ -206,7 +202,7 @@ public class AdministrarEmpleadosController {
         cont.getChildren().add(MenuHamb.menuShadow);
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
-        
+
         lista_empleados = cargarEmpleados();
 
         for (Empleado i : lista_empleados) {

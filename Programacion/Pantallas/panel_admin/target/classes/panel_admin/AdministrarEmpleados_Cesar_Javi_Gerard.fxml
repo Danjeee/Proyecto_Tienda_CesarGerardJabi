@@ -58,7 +58,7 @@
       </Pane>
       <ScrollPane layoutX="87.0" layoutY="229.0" prefHeight="605.0" prefWidth="1290.0">
          <content>
-            <FlowPane />
+            <FlowPane fxc:id="fpane" prefHeight="609.0" prefWidth="1288.0" />
          </content>
       </ScrollPane>
    </children>

@@ -12,6 +12,34 @@
     <dependencies>
 
         <dependency>
+            <groupId>me.saharnooby</groupId>
+            <artifactId>qoi-java-awt</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.java.jinput</groupId>
+            <artifactId>awt-plugin</artifactId>
+            <version>2.0.10</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>io.github.qsy7.java.modules.notification.providers</groupId>
+            <artifactId>awt</artifactId>
+            <version>0.1.2</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>de.jensd</groupId>
             <artifactId>fontawesomefx-fontawesome</artifactId>
             <version>4.7.0-9.1.2</version>

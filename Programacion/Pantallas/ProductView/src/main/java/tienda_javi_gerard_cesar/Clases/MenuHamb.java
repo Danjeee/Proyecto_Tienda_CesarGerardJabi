@@ -1,6 +1,11 @@
 package tienda_javi_gerard_cesar.Clases;
 
+import java.sql.Statement;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.KeyFrame;
@@ -32,7 +37,7 @@ public class MenuHamb {
         ico.setGlyphName("NAVICON");
         a.setGraphic(ico);
         a.setLayoutX(25);
-        a.setLayoutY(25);
+        a.setLayoutY(21);
         a.setOnAction(e -> popupHambShow());
         return a;
     }
@@ -43,7 +48,8 @@ public class MenuHamb {
         pant.setAlignment(Pos.CENTER_LEFT);
         pant.setPrefWidth(500);
         pant.setFont(new Font("System", 20));
-        if (id.equals("Pantalon") || id.equals("Camisa") || id.equals("Chaqueta") || id.equals("Zapatos") || id.equals("Bolso")) {
+        if (id.equals("Pantalon") || id.equals("Camisa") || id.equals("Chaqueta") || id.equals("Zapatos")
+                || id.equals("Bolso")) {
             pant.setOnAction(e -> {
                 try {
                     filtrar(id, "");
@@ -52,15 +58,43 @@ public class MenuHamb {
                 }
             });
         } else {
-            /*pant.setOnAction(e -> {
-                try {
-                    App.setRoot(id);
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            });*/
+            /*
+             * pant.setOnAction(e -> {
+             * try {
+             * App.setRoot(id);
+             * } catch (IOException e1) {
+             * e1.printStackTrace();
+             * }
+             * });
+             */
         }
         return pant;
+    }
+
+    private static boolean isAdmin() {
+        Connection con = conenct();
+        try {
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT DNI, tiene_privilegios FROM empleado");
+            while (rs.next()) {
+                if (rs.getString("DNI").equals(App.user)) {
+                    return rs.getBoolean("tiene_privilegios");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private static Connection conenct() {
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return con;
     }
 
     public static void popupHambMake() {
@@ -123,11 +157,20 @@ public class MenuHamb {
         separator.setPrefHeight(500);
         popupHamb.getChildren().add(separator);
 
-        Button adminPanel = new Button("Acceso a panel de administración");
-        adminPanel.setAlignment(Pos.CENTER_LEFT);
-        adminPanel.setPrefWidth(500);
-        adminPanel.setFont(new Font("System", 25));
-        popupHamb.getChildren().add(adminPanel);
+        if (isAdmin()) {
+            Button adminPanel = new Button("Acceso a panel de administración");
+            adminPanel.setAlignment(Pos.CENTER_LEFT);
+            adminPanel.setPrefWidth(500);
+            adminPanel.setFont(new Font("System", 25));
+            adminPanel.setOnAction(e -> {
+                try {
+                    App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            });
+            popupHamb.getChildren().add(adminPanel);
+        }
 
         popupHamb.getChildren().add(smallButton("    Preguntas frecuentes", "preguntas"));
         popupHamb.getChildren().add(smallButton("    Estado de mi pedido", "estado"));
@@ -135,7 +178,8 @@ public class MenuHamb {
         popupHamb.getChildren().add(smallButton("    Envios", "envios"));
 
     }
- public static void multiFiltrar(String[] mult) throws IOException {
+
+    public static void multiFiltrar(String[] mult) throws IOException {
         Main.filtros.clear();
         for (String i : mult) {
             filtrar(i, "a");

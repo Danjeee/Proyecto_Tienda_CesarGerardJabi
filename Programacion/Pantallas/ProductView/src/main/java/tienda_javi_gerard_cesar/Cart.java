@@ -13,9 +13,13 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,11 +32,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import tienda_javi_gerard_cesar.Clases.Articulo;
+import tienda_javi_gerard_cesar.Clases.Descuento;
+import tienda_javi_gerard_cesar.Clases.ImportantGUI;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
 public class Cart {
     @FXML
     private FlowPane main;
+    @FXML
+    private VBox all;
     @FXML
     private AnchorPane cont;
     @FXML
@@ -47,8 +55,17 @@ public class Cart {
     private Label imp;
     @FXML
     private Label des;
-    private int descuento = 15;
-
+    @FXML
+    private Button codButton;
+    private ArrayList<Articulo> articulos;
+    private ArrayList<String> descuentosUsados = new ArrayList<>();
+    private Descuento descuentoActivo = new Descuento("0", 0, false);
+    private Double subtotalValor;
+    private Double totalValor;
+    private Double impValor;
+    private Double envioValor;
+    private Double descuentoValor;
+    
     private Connection conenct() {
         Connection con = null;
         try {
@@ -59,26 +76,99 @@ public class Cart {
         return con;
     }
 
-    private String setCant(String cant, int op){
+    @FXML
+    private void clearCodDes(){
+        codDes.setText("");
+        codDes.setStyle("-fx-text-inner-color: black;");
+    }
+
+    @FXML
+    private void checkCodDes(){
+        if (codDes.getText().isEmpty()) {
+            codButton.setStyle("-fx-background-color: #d3d3d3");
+            codButton.setOnAction(null);
+            codButton.setOnMouseEntered(null);
+            codButton.setOnMouseExited(null);
+        } else {
+            codButton.setStyle("-fx-background-color: #000");
+            codButton.setOnAction(e -> checkDescuento());
+            codButton.setOnMouseEntered(e -> codButton.setStyle("-fx-background-color: #808080"));
+            codButton.setOnMouseExited(e -> codButton.setStyle("-fx-background-color: #000"));
+        }
+    }
+
+    private void pagar(){
+    }
+
+    private void checkDescuento(){
+        Connection con = conenct();
+        ArrayList<Descuento> descuentos = new ArrayList<>();
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM descuentos");
+            while (rs.next()) {
+                String nombre = rs.getString("descuento");
+                int cant = rs.getInt("cant");
+                Boolean fs = rs.getBoolean("freeShip");
+                descuentos.add(new Descuento(nombre, cant, fs));
+            }
+            Boolean esta = false;
+            for (String i : descuentosUsados){
+                if (i.equals(codDes.getText())) {
+                    codDes.setText("Código ya usado");
+                    codDes.setStyle("-fx-text-inner-color: red;");
+                    esta = true;
+                    break;
+                }
+            }
+            if (!esta) {
+                for (Descuento i : descuentos){
+                    if (codDes.getText().equals(i.getNombre())){
+                        descuentoActivo  = i;
+                        codDes.setText("Código activado (Se canjeara al pagar)");
+                        codDes.setStyle("-fx-text-inner-color: green;");
+                        actualizar();
+                        break;
+                    }
+                }
+                if (descuentoActivo.getNombre().equals("0")) {
+                    codDes.setText("El codigo no existe / ha expirado");
+                    codDes.setStyle("-fx-text-inner-color: red;");
+                } else {
+                    codDes.setText("Código activo: "+descuentoActivo.getNombre());
+                    codDes.setStyle("-fx-text-inner-color: green;");
+                }
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String setCant(Articulo i, String cant, int op) {
         int cantt = Integer.parseInt(cant);
         switch (op) {
             case 0:
                 cantt += 1;
+                i.setCant(cantt);
                 return String.valueOf(cantt);
             case 1:
                 if (cantt == 1) {
+                    i.setCant(cantt);
                     return String.valueOf(cantt);
                 } else {
                     cantt -= 1;
+                    i.setCant(cantt);
                     return String.valueOf(cantt);
                 }
-        
+
             default:
+                i.setCant(cantt);
                 return String.valueOf(cantt);
         }
     }
 
-    private HBox createItem(String img, String nombre, String precio, int cant, int cod){
+    private HBox createItem(String img, String nombre, String precio, int cant, int cod, Articulo i) {
         HBox a = new HBox();
         a.setPrefHeight(75);
         a.setPrefWidth(725);
@@ -156,7 +246,7 @@ public class Cart {
         ico2.setSize("15");
         up.setGraphic(ico2);
         up.setOnAction(e -> {
-            cantt.setText(setCant(cantt.getText(), 0));
+            cantt.setText(setCant(i, cantt.getText(), 0));
         });
         butCont.getChildren().add(up);
 
@@ -174,12 +264,11 @@ public class Cart {
         ico3.setSize("15");
         down.setGraphic(ico3);
         down.setOnAction(e -> {
-            cantt.setText(setCant(cantt.getText(), 1));
+            cantt.setText(setCant(i, cantt.getText(), 1));
         });
         butCont.getChildren().add(down);
         a.getChildren().add(butCont);
 
-        
         Button trash = new Button("");
         trash.setPrefHeight(70);
         trash.setPrefWidth(125);
@@ -189,18 +278,47 @@ public class Cart {
         ico.setFill(Color.WHITE);
         ico.setSize("50");
         trash.setGraphic(ico);
+        trash.setOnAction(e -> delete(i));
         a.getChildren().add(trash);
-
         return a;
 
     }
 
-    private ArrayList<Articulo> cargarItems(){
+    private String formatDouble(Double a) {
+        String aa = String.valueOf(a);
+        if (aa.charAt(0) == ('.')) {
+            aa = "00" + aa;
+        }
+        if (!aa.contains(".")) {
+            return aa + ".00€";
+        }
+        if (aa.charAt(aa.length() - 1) == ('.')) {
+            return aa.substring(0, aa.length() - 2) + "€";
+        }
+        if (aa.charAt(1) == '.') {
+            aa = "0"+ aa;
+        }
+        for (int i = 0; i < aa.length(); i++) {
+            if (aa.charAt(i) == '.') {
+                int ii = i + 2;
+                if (aa.length() == ii) {
+                    return aa.substring(0, ii) + "0€";
+                } else {
+                    return aa.substring(0, ii) +aa.charAt(ii) +"€";
+                }
+            }
+        }
+        return aa;
+    }
+
+    private ArrayList<Articulo> cargarItems() {
         ArrayList<Articulo> a = new ArrayList<>();
         Connection con = conenct();
         try {
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT A.*, L.cantidad FROM articulo A, linea_pedido L, pedido P WHERE A.cod_art = L.cod_art and L.num_pedido = P.numero and P.DNI_cliente = "+"\""+App.user+"\" and P.estado = \"En proceso\"");
+            ResultSet rs = st.executeQuery(
+                    "SELECT A.*, L.cantidad FROM articulo A, linea_pedido L, pedido P WHERE A.cod_art = L.cod_art and L.num_pedido = P.numero and P.DNI_cliente = "
+                            + "\"" + App.user + "\" and P.estado = \"En proceso\"");
             while (rs.next()) {
                 String nom = rs.getString("nombre");
                 BigDecimal precio = rs.getBigDecimal("precio");
@@ -217,29 +335,79 @@ public class Cart {
         }
         return a;
     }
-    private String imp(){
-        Long desc = Long.valueOf(0);
-        desc = (Long.parseLong(subtotal.getText()) * Integer.toUnsignedLong(21)) / 100;
-        return String.valueOf(desc);
-    }
-    private String subtotal(ArrayList<String> precios){
-        Long subt = Long.valueOf(0);
-        for (String i : precios){
-            subt += Long.parseLong(i);
+
+    private String envio(){
+        envioValor = 0.0;
+        if (descuentoActivo.getFreeShip()) {
+            envioValor = 0.0;
+            return "GRATIS";
         }
-        return String.valueOf(subt);
+        if (subtotalValor>0.0) {
+            envioValor = 4.99;
+            return formatDouble(envioValor);
+        }
+        return formatDouble(envioValor);
     }
-    private String descuento(){
-        Long desc = Long.valueOf(0);
-        desc = (Long.parseLong(subtotal.getText()) * Integer.toUnsignedLong(descuento)) / 100;
-        return String.valueOf(desc);
+
+    private String imp() {
+        impValor = 0.0;
+        impValor = ((subtotalValor-descuentoValor)*21)/100;
+        return formatDouble(impValor);
     }
-    private String total(){
-        Long subt = Long.parseLong(subtotal.getText());
-        Long desc = Long.parseLong(des.getText());
-        Long impp = Long.parseLong(imp.getText());
-        Long total = subt + impp - desc;
-        return String.valueOf(total);
+
+    private String subtotal() {
+        subtotalValor = 0.0;
+        for (Articulo i : articulos) {
+            subtotalValor += i.getPrecio().doubleValue() * i.getCant();
+        }
+        return formatDouble(subtotalValor);
+    }
+
+    private String descuento() {
+        descuentoValor = 0.0;
+        descuentoValor = (subtotalValor * descuentoActivo.getCantidad())/100;
+        return formatDouble(descuentoValor);
+    }
+
+    private String total() {
+        totalValor = subtotalValor + impValor - descuentoValor;
+        if (totalValor<0) {
+            totalValor = 0.0;
+        }
+        return formatDouble(totalValor);
+    }
+
+    @FXML
+    private void actualizar() {
+        Connection con = conenct();
+        for (Articulo i : articulos) {
+            try {
+                Statement st = con.createStatement();
+                st.executeUpdate(
+                        "UPDATE linea_pedido SET cantidad = " + i.getCant()
+                                + " WHERE num_pedido = (SELECT DISTINCT L.num_pedido from linea_pedido L, pedido P WHERE L.num_pedido = P.numero and P.DNI_cliente = \""
+                                + App.user + "\" and P.estado = \"En proceso\") and cod_art = " + i.getCodigo());
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        initialize();
+    }
+
+    @FXML
+    private void delete(Articulo i) {
+        Connection con = conenct();
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate(
+                    "DELETE FROM linea_pedido WHERE num_pedido = (SELECT DISTINCT L.num_pedido from linea_pedido L, pedido P WHERE L.num_pedido = P.numero and P.DNI_cliente = \""
+                    + App.user + "\" and P.estado = \"En proceso\") and cod_art = " + i.getCodigo());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        initialize();
     }
 
     public void initialize() {
@@ -248,19 +416,21 @@ public class Cart {
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
         main.getChildren().clear();
-        ArrayList<String> precios = new ArrayList<>();
-        for (Articulo i : cargarItems()){
+        all.getChildren().add(0, ImportantGUI.generateHeader());
+        articulos = cargarItems();
+        for (Articulo i : articulos) {
             String nom = i.getNombre();
             int cant = i.getCant();
             String precio = i.getPrecio().toString();
-            precios.add(precio);
             String img = i.getImg();
             int cod = i.getCodigo();
-            main.getChildren().add(createItem(img, nom, precio, cant, cod));
+            main.getChildren().add(createItem(img, nom, precio, cant, cod, i));
         }
-        subtotal.setText(subtotal(precios));
-        imp.setText(imp());
+        subtotal.setText(subtotal());
         des.setText(descuento());
+        imp.setText(imp());
+        envio.setText(envio());
         total.setText(total());
+        imp.setText("Contiene " + imp() + " de impuestos");
     }
 }

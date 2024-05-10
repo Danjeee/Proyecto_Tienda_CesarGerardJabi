@@ -1,5 +1,6 @@
 package login;
 
+import java.sql.Statement;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -68,18 +69,19 @@ public class RegistrarUsuarioController {
         Alert alerta = new Alert(Alert.AlertType.NONE);
 
         try {
+       
+            Statement st = connection.createStatement();
             
-            java.sql.Statement pst = connection.createStatement();
-            ResultSet rs = pst.executeQuery("INSERT INTO CLIENTE (DNI, nombre, apellidos, telefono, f_nacimiento, direccion, email, pass, tarjeta_fidelizacion, activo) VALUES "
-            + "('" +DNI.getText()+ "','" +nombre.getText()+ "','" +apellidos.getText()+ "'," +telefono.getText()+ ",'" +fechanac.getValue()+ "','" +direccion.getText()+ "','" +email.getText()+ "'," +tarjetaFide.selectedProperty().get()+ ","+activo.isSelected()+")");
+            st.executeUpdate("INSERT INTO CLIENTE VALUES('"+DNI.getText()+"','"+nombre.getText()+"','"+apellidos.getText()+"','"+telefono.getText()+"','"+fechanac.getValue()+"','"+direccion.getText()+"','"+email.getText()+"','"+contraseña.getText()+"','0',' 0', 'Direccion',"+tarjetaFide.isSelected()+","+activo.isSelected()+",1)");
             alerta.setAlertType(AlertType.INFORMATION);
             alerta.setHeaderText(null);
             alerta.setContentText("El usuario se ha registrado correctamente.");
             alerta.show();
 
             connection.close();
-        } catch (Exception e) {
-            // TODO: handle exception
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
             System.out.println(e.getClass());
             alerta.setAlertType(Alert.AlertType.ERROR);
             alerta.setHeaderText(null);
@@ -97,7 +99,5 @@ public class RegistrarUsuarioController {
             e.printStackTrace();
         }
         return con;
-    }
-
-    
+    }    
 }

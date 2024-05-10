@@ -15,6 +15,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import login.Clases.Alertas;
 
 public class RegistrarUsuarioController {
 
@@ -82,11 +83,7 @@ public class RegistrarUsuarioController {
         } catch (SQLException e) {
             
             e.printStackTrace();
-            System.out.println(e.getClass());
-            alerta.setAlertType(Alert.AlertType.ERROR);
-            alerta.setHeaderText(null);
-            alerta.setContentText("Error al registrar el Usuario");
-            alerta.show();
+            Alertas.errorRegistrar();
         }
 
     }

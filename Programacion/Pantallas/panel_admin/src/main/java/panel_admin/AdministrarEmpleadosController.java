@@ -180,21 +180,21 @@ public class AdministrarEmpleadosController {
         Connection con = conectar();
         try {
             Statement st = con.createStatement();
-            st.executeUpdate("DELETE FROM empleado where nombre='" +e.getNombre()+ "'");
+            st.executeUpdate("UPDATE empleado set activo='0' where nombre='" +e.getNombre()+ "'");
             
             alerta.setAlertType(Alert.AlertType.INFORMATION);
             alerta.setHeaderText(null);
-            alerta.setContentText("Se ha eliminado correctamente.");
+            alerta.setContentText("Se ha desactivado el empleado correctamente.");
             alerta.show();
+            initialize();
 
         } catch (SQLException sql) {
             sql.printStackTrace();
             alerta.setAlertType(Alert.AlertType.ERROR);
             alerta.setHeaderText(null);
-            alerta.setContentText("Error al eliminar empleado.");
+            alerta.setContentText("Error al desactivar el empleado.");
             alerta.show();
         }
-        initialize();
     }
 
     public void initialize() {

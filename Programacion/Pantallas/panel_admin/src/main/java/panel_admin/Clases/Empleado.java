@@ -4,21 +4,22 @@ import java.time.LocalDate;
 
 public class Empleado extends Usuario{
     
-    public boolean tienePrivilegios;
     private boolean activo;
+    public boolean tienePrivilegios;
     private String pass;
     private Departamento departamento;
 
+    
     public Empleado(String dni, String nombre, String apellidos, String telefono, String fechaNacimiento,
-            String direccion, String email, boolean tienePrivilegios, boolean activo, String pass,
+            String direccion, String email, boolean activo, boolean tienePrivilegios, String pass,
             Departamento departamento) {
         super(dni, nombre, apellidos, telefono, fechaNacimiento, direccion, email);
-        this.tienePrivilegios = tienePrivilegios;
         this.activo = activo;
+        this.tienePrivilegios = tienePrivilegios;
         this.pass = pass;
         this.departamento = departamento;
     }
-
+    
     public boolean isTienePrivilegios() {
         return tienePrivilegios;
     }

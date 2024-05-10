@@ -1,5 +1,6 @@
 package tienda_javi_gerard_cesar;
 
+import java.awt.event.ActionEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,11 +12,14 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
@@ -38,71 +42,95 @@ public class ProductView {
     private Pane imagen;
     @FXML
     private Label nom;
+    @FXML
+    private Button addtocart;
 
     private int pedido;
 
     public int getCurrent() {
         return current;
     }
+
     @FXML
-    private void addGoing() {
-        Connection con = conenct();
-        Boolean existe = false;
-        Boolean existePedido = false;
-        
-        try {
-            Statement st = con.createStatement();
+    private void addGoing(Double x, Double y) {
+        if (!App.user.equals("guest")) {
+            Connection con = conenct();
+            Boolean existe = false;
+            Boolean existePedido = false;
+            pedido = getPedido();
+
             try {
-                Statement st2 = con.createStatement();
-                ResultSet rs1 = st2.executeQuery("SELECT num_pedido FROM linea_pedido WHERE num_pedido = " + pedido);
-                while (rs1.next()) {
-                    if (rs1.getInt("num_pedido") == pedido) {
-                        existePedido = true;
-                    }
-                }
-                if (!existePedido) {
-                    nuevoPedido();
-                    st.executeUpdate("INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
-                } else {
-                    ResultSet rs = st2.executeQuery("SELECT cod_art FROM linea_pedido WHERE num_pedido = " + pedido);
-                    while (rs.next()) {
-                        if (rs.getInt("cod_art") == ProductView.current) {
-                            existe = true;
+                Statement st = con.createStatement();
+                try {
+                    Statement st2 = con.createStatement();
+                    ResultSet rs1 = st2
+                            .executeQuery("SELECT num_pedido FROM linea_pedido WHERE num_pedido = " + pedido);
+                    while (rs1.next()) {
+                        if (rs1.getInt("num_pedido") == pedido) {
+                            existePedido = true;
                         }
                     }
-                    if (existe) {
+                    if (!existePedido) {
+                        nuevoPedido();
                         st.executeUpdate(
-                                "UPDATE linea_pedido SET cantidad = (SELECT cantidad FROM linea_pedido WHERE num_pedido = "
-                                        + pedido + " and cod_art = " + ProductView.current + ")+1 WHERE num_pedido = "
-                                        + pedido
-                                        + " and cod_art = " + ProductView.current);
+                                "INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
                     } else {
-                        st.executeUpdate("INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
+                        ResultSet rs = st2
+                                .executeQuery("SELECT cod_art FROM linea_pedido WHERE num_pedido = " + pedido);
+                        while (rs.next()) {
+                            if (rs.getInt("cod_art") == ProductView.current) {
+                                existe = true;
+                            }
+                        }
+                        if (existe) {
+                            st.executeUpdate(
+                                    "UPDATE linea_pedido SET cantidad = (SELECT cantidad FROM linea_pedido WHERE num_pedido = "
+                                            + pedido + " and cod_art = " + ProductView.current
+                                            + ")+1 WHERE num_pedido = "
+                                            + pedido
+                                            + " and cod_art = " + ProductView.current);
+                        } else {
+                            st.executeUpdate(
+                                    "INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
+                        }
                     }
+                } catch (SQLException e) {
+                    st.executeUpdate("INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
                 }
             } catch (SQLException e) {
-                st.executeUpdate("INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            App.setRoot("cart");
-        } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                App.setRoot("cart");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Label a = ImportantGUI.mensaje(x, y, "Debes iniciar sesion");
+            if (cont.getChildren().contains(a)) {
+                cont.getChildren().remove(a);
+            }
+            cont.getChildren().add(a);
         }
     }
-    private int getPedido(){
+
+    private int getPedido() {
         Connection con = conenct();
         try {
             Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT DISTINCT P.numero FROM pedido P WHERE DNI_cliente = '"+App.user+"' and estado = 'En proceso'");
-            return rs.getInt("numero");
+            ResultSet rs = stm.executeQuery("SELECT DISTINCT P.numero FROM pedido P WHERE DNI_cliente = '" + App.user
+                    + "' and estado = 'En proceso'");
+            int caca = 0;
+            while (rs.next()) {
+             caca = rs.getInt("numero");    
+            }
+            return caca;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return 0;
     }
+
     private void nuevoPedido() {
         Connection con = conenct();
         try {
@@ -129,7 +157,7 @@ public class ProductView {
     public void setCurrent(int current) {
         this.current = current;
     }
-    
+
     @FXML
     private Label where;
     @FXML
@@ -177,7 +205,7 @@ public class ProductView {
                         .executeQuery("SELECT * FROM accesorio WHERE cod_art = " + ProductView.current);
                 while (atr1.next()) {
                     String tipo = atr1.getString("tipo_accesorio");
-                    a.add("Accesorio > "+tipo +" > ");
+                    a.add("Accesorio > " + tipo + " > ");
                     a.add(atr1.getString("estilo"));
                     a.add(atr1.getString("tipo_accesorio"));
                     if (tipo.equals("Zapatos")) {
@@ -199,7 +227,7 @@ public class ProductView {
                 ResultSet atr1 = bb.executeQuery("SELECT * FROM ropa WHERE cod_art = " + ProductView.current);
                 while (atr1.next()) {
                     String tipo = atr1.getString("tipo_ropa");
-                    a.add("Ropa > "+tipo +" > ");
+                    a.add("Ropa > " + tipo + " > ");
                     a.add(atr1.getString("color"));
                     a.add(atr1.getString("tipo_cierre"));
                     a.add("Talla: " + atr1.getString("talla"));
@@ -253,15 +281,28 @@ public class ProductView {
         cont.getChildren().add(MenuHamb.menuHamb());
         all.getChildren().add(0, ImportantGUI.generateHeader());
         all.getChildren().add(ImportantGUI.generateFooter());
+        if (App.user.equals("guest")) {
+            addtocart.setStyle("-fx-background-color: #888586");
+            addtocart.setCursor(Cursor.DEFAULT);
+        }
+        addtocart.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                addGoing(event.getSceneX(), event.getSceneY());
+            }
+        });
         String[] datos = leer();
         nom.setText(datos[0]);
         precio.setText(datos[1] + "€");
         desc.setText(datos[2]);
-        /*img.setImage(new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/"+datos[3])));*/
-        
+        /*
+         * img.setImage(new
+         * Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/"+datos[3])))
+         * ;
+         */
+
         ArrayList<String> atribtxt = atributos(conenct());
         ArrayList<Label> atrib = new ArrayList<Label>();
-        where.setText(atribtxt.get(0)+nom.getText());
+        where.setText(atribtxt.get(0) + nom.getText());
         atribtxt.remove(0);
         for (String i : atribtxt) {
             Label c = new Label();
@@ -272,10 +313,10 @@ public class ProductView {
         atr.getChildren().clear();
         atr.getChildren().addAll(atrib);
 
-
     }
+
     @FXML
-    private void back() throws IOException{
+    private void back() throws IOException {
         App.setRoot(App.getLast());
     }
 }

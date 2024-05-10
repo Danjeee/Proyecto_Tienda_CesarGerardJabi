@@ -46,6 +46,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import tienda_javi_gerard_cesar.Clases.Articulo;
 import tienda_javi_gerard_cesar.Clases.ImportantGUI;
+import tienda_javi_gerard_cesar.Clases.Mail;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
 public class Main {
@@ -88,9 +89,6 @@ public class Main {
     @FXML
     private VBox all;
     private int pedido;
-
-    
-
 
     private void nuevoPedido() {
         Connection con = conenct();
@@ -467,7 +465,12 @@ public class Main {
         /* Iconos */
         plusicon.glyphNameProperty().set("PLUS");
         carticon.glyphNameProperty().set("SHOPPING_CART");
-        Color color = Color.WHITE;
+        Color color;
+        if (App.user.equals("guest")) {
+            color = Color.LIGHTGRAY;
+        } else {
+            color = Color.WHITE;
+        }
         plusicon.fillProperty().set(color);
         carticon.fillProperty().set(color);
         /*
@@ -507,20 +510,26 @@ public class Main {
         fp.getRowConstraints().add(datos);
         fp.getColumnConstraints().get(0).setPrefWidth(150);
         /* Botones */
-        plus.setStyle("-fx-background-color: #000;-fx-background-radius: 0");
-        cart.setStyle("-fx-background-color: #000;-fx-background-radius: 0");
+        if (App.user.equals("guest")) {
+            plus.setStyle("-fx-background-color: #f2f2f2;-fx-background-radius: 0");
+            cart.setStyle("-fx-background-color: #f2f2f2;-fx-background-radius: 0");
+        } else {
+            plus.setStyle("-fx-background-color: #000;-fx-background-radius: 0");
+            cart.setStyle("-fx-background-color: #000;-fx-background-radius: 0");
+            cart.setOnAction(e -> addGoing(i));
+            plus.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                public void handle(MouseEvent event) {
+                    addWOgoing(i, event.getSceneX(), event.getSceneY());
+                }
+            });
+        }
         cart.setPrefHeight(25);
         plus.setPrefWidth(25);
         plus.setPrefHeight(25);
         cart.setPrefWidth(25);
         cart.graphicProperty().set(carticon);
         plus.graphicProperty().set(plusicon);
-        cart.setOnAction(e -> addGoing(i));
-        plus.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                addWOgoing(i, event.getSceneX(), event.getSceneY());
-            }
-        });
+
         HBox botones = new HBox();
         botones.setPrefHeight(25);
         botones.setPrefWidth(50);

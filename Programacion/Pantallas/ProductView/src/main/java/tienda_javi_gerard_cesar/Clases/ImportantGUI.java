@@ -17,6 +17,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -187,6 +188,7 @@ public class ImportantGUI {
     
     public static HBox generateFooter(){
         HBox a = new HBox();
+        a.setPadding(new Insets(0, 0, 20, 0));
         a.setPrefWidth(1440);
         a.setPrefHeight(200);
         a.setStyle("-fx-background-color: #f2f2f2");

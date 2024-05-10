@@ -392,6 +392,8 @@ public class Cart {
                 e.printStackTrace();
             }
         }
+        all.getChildren().remove(all.getChildren().get(2));
+        all.getChildren().remove(all.getChildren().get(0));
         initialize();
     }
 
@@ -407,6 +409,8 @@ public class Cart {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        all.getChildren().remove(all.getChildren().get(2));
+        all.getChildren().remove(all.getChildren().get(0));
         initialize();
     }
 
@@ -417,6 +421,7 @@ public class Cart {
         cont.getChildren().add(MenuHamb.menuHamb());
         main.getChildren().clear();
         all.getChildren().add(0, ImportantGUI.generateHeader());
+        all.getChildren().add(ImportantGUI.generateFooter());
         articulos = cargarItems();
         for (Articulo i : articulos) {
             String nom = i.getNombre();

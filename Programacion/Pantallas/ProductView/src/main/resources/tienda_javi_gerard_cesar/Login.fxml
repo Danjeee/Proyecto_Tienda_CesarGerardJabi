@@ -34,7 +34,7 @@
                                           <Font name="Inter Bold" size="60.0" />
                                        </font>
                                     </Text>
-                                    <Button id="transparent" fx:id="transparente" layoutX="408.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
+                                    <Button id="transparent" fx:id="transparente" layoutX="408.0" layoutY="1.0" mnemonicParsing="false" onAction="#loginAsGuest" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
                                        <graphic>
                                           <FontAwesomeIconView fill="WHITE" glyphName="REMOVE" text="" />
                                        </graphic>

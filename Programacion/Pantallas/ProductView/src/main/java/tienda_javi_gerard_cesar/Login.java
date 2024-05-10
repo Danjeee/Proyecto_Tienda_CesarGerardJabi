@@ -141,6 +141,15 @@ public class Login {
         }
     }
 
+    @FXML
+    private void loginAsGuest(){
+        try {
+            App.setRoot("main");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private Connection conenct() {
         Connection con = null;
         try {

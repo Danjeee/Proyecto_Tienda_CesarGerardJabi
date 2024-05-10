@@ -49,6 +49,7 @@ public class ProductView {
         Connection con = conenct();
         Boolean existe = false;
         Boolean existePedido = false;
+        
         try {
             Statement st = con.createStatement();
             try {
@@ -61,26 +62,26 @@ public class ProductView {
                 }
                 if (!existePedido) {
                     nuevoPedido();
-                    st.executeUpdate("INSERT INTO linea_pedido VALUES(" + current + ", " + pedido + ", 1)");
+                    st.executeUpdate("INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
                 } else {
                     ResultSet rs = st2.executeQuery("SELECT cod_art FROM linea_pedido WHERE num_pedido = " + pedido);
                     while (rs.next()) {
-                        if (rs.getInt("cod_art") == current) {
+                        if (rs.getInt("cod_art") == ProductView.current) {
                             existe = true;
                         }
                     }
                     if (existe) {
                         st.executeUpdate(
                                 "UPDATE linea_pedido SET cantidad = (SELECT cantidad FROM linea_pedido WHERE num_pedido = "
-                                        + pedido + " and cod_art = " + current + ")+1 WHERE num_pedido = "
+                                        + pedido + " and cod_art = " + ProductView.current + ")+1 WHERE num_pedido = "
                                         + pedido
-                                        + " and cod_art = " + current);
+                                        + " and cod_art = " + ProductView.current);
                     } else {
-                        st.executeUpdate("INSERT INTO linea_pedido VALUES(" + current + ", " + pedido + ", 1)");
+                        st.executeUpdate("INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
                     }
                 }
             } catch (SQLException e) {
-                st.executeUpdate("INSERT INTO linea_pedido VALUES(" + current + ", " + pedido + ", 1)");
+                st.executeUpdate("INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -90,6 +91,17 @@ public class ProductView {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private int getPedido(){
+        Connection con = conenct();
+        try {
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT DISTINCT P.numero FROM pedido P WHERE DNI_cliente = '"+App.user+"' and estado = 'En proceso'");
+            return rs.getInt("numero");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
     private void nuevoPedido() {
         Connection con = conenct();
@@ -108,7 +120,7 @@ public class ProductView {
             st.executeUpdate("INSERT INTO pedido VALUES(" + newcol + ", \'"
                     + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "\', \"" + dir
                     + "\", \"En proceso\", \"" + App.user + "\")");
-            pedido = newcol;
+            this.pedido = newcol;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -240,6 +252,7 @@ public class ProductView {
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
         all.getChildren().add(0, ImportantGUI.generateHeader());
+        all.getChildren().add(ImportantGUI.generateFooter());
         String[] datos = leer();
         nom.setText(datos[0]);
         precio.setText(datos[1] + "€");

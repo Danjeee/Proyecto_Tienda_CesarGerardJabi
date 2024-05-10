@@ -46,6 +46,9 @@ public class RegistrarUsuarioController {
     private CheckBox tarjetaFide;
 
     @FXML
+    private CheckBox activo;
+
+    @FXML
     private App PantallaPrincipal = new App();
 
     @FXML
@@ -68,7 +71,7 @@ public class RegistrarUsuarioController {
             
             java.sql.Statement pst = connection.createStatement();
             ResultSet rs = pst.executeQuery("INSERT INTO CLIENTE (DNI, nombre, apellidos, telefono, f_nacimiento, direccion, email, pass, tarjeta_fidelizacion, activo) VALUES "
-            + "('" +DNI.getText()+ "','" +nombre.getText()+ "','" +apellidos.getText()+ "'," +telefono.getText()+ ",'" +fechanac.getValue()+ "','" +direccion.getText()+ "','" +email.getText()+ "'," +tarjetaFide.selectedProperty().get()+ ","+1+")");
+            + "('" +DNI.getText()+ "','" +nombre.getText()+ "','" +apellidos.getText()+ "'," +telefono.getText()+ ",'" +fechanac.getValue()+ "','" +direccion.getText()+ "','" +email.getText()+ "'," +tarjetaFide.selectedProperty().get()+ ","+activo.isSelected()+")");
             alerta.setAlertType(AlertType.INFORMATION);
             alerta.setHeaderText(null);
             alerta.setContentText("El usuario se ha registrado correctamente.");

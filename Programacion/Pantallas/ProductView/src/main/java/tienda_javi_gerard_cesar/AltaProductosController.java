@@ -6,9 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-
-import tienda_javi_gerard_cesar.Clases.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,6 +26,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
+import tienda_javi_gerard_cesar.Clases.*;
 
 public class AltaProductosController {
 
@@ -62,20 +60,12 @@ public class AltaProductosController {
         App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
     }
 
-    private Connection connect() {
-        Connection con = null;
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return con;
-    }
-
     static Alert alerta = new Alert(Alert.AlertType.NONE);
 
     @FXML
     private void guardarCambios() {
+
+        ConexionSQL con = new ConexionSQL();
 
         int material_num = 0;
 
@@ -115,7 +105,7 @@ public class AltaProductosController {
             }
 
             try {
-                Connection connection1 = connect();
+                Connection connection1 = con.conecta();
                 Statement st = connection1.createStatement();
 
                 st.executeUpdate("INSERT INTO articulo(nombre, precio, marca, descripcion, activo, imagen, material) VALUES "
@@ -125,6 +115,8 @@ public class AltaProductosController {
                 alerta.setHeaderText(null);
                 alerta.setContentText("El artículo se ha insertado CORRECTAMENTE.");
                 alerta.show();
+                
+                con.cerrarConexion();
 
             } catch (Exception ex) {
                 System.out.println(ex.getClass());
@@ -135,7 +127,8 @@ public class AltaProductosController {
             }
     }
 
-    public void abrirImagen(ActionEvent e){
+    @FXML
+    private void abrirImagen(ActionEvent e){
         
         Stage stage = (Stage) imagen.getScene().getWindow();
 
@@ -149,13 +142,13 @@ public class AltaProductosController {
         String nombreImag = imagenSeleccionada.getName();
         nombre_imagen.setText(nombreImag);
    
-        Image imagen2 = new Image(imagenSeleccionada.toURI().toString());
+        Image imagen2 = new Image("\""+imagenSeleccionada.getAbsolutePath()+"\"");
         
         ImageView imageView = new ImageView(imagen2);
         imageView.setFitWidth(350);
         imageView.setFitHeight(200);
-
-        imagen.setGraphic(imageView);
+        System.out.println(imagenSeleccionada.toURI().toString());
+        imagen.setGraphic(new ImageView(imagen2));
 
     }
 

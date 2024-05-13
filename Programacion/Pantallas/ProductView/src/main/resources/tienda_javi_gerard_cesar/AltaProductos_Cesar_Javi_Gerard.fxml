@@ -93,18 +93,7 @@
                   </Pane>
                </children>
             </VBox>
-            <Pane layoutX="1095.0" layoutY="875.0" prefHeight="117.0" prefWidth="270.0">
-               <children>
-                  <Button layoutX="19.0" layoutY="12.0" mnemonicParsing="false" onAction="#guardarCambios" prefHeight="95.0" prefWidth="238.0" style="-fx-background-color: #000000;" text="Guardar &#10;cambios" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="25.0" />
-                     </font>
-                     <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="DOWNLOAD" size="30" text="" wrappingWidth="53.928449630737305" />
-                     </graphic>
-                  </Button>
-               </children>
-            </Pane>
+            <Pane layoutX="1095.0" layoutY="875.0" prefHeight="117.0" prefWidth="270.0" />
             <Button layoutX="12.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: invisible;" />
             <Button layoutX="822.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: inivisible;" />
             <Button layoutX="840.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: invisible;" />
@@ -172,6 +161,14 @@
                </children>
             </VBox>
             <Line endX="-100.0" endY="455.0" layoutX="594.0" layoutY="351.0" startX="-100.0" startY="-109.66667175292969" stroke="#404040" strokeWidth="0.2" />
+            <Button layoutX="1074.0" layoutY="688.0" mnemonicParsing="false" onAction="#guardarCambios" prefHeight="95.0" prefWidth="238.0" style="-fx-background-color: #000000;" text="Guardar &#10;cambios" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="DOWNLOAD" size="30" text="" wrappingWidth="53.928449630737305" />
+               </graphic>
+            </Button>
          </children>
       </Pane>
    </children>

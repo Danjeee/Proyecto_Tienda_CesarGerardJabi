@@ -7,16 +7,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../cssprueba/BOTON.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.RegistrarUsuarioController">
+<Pane fx:id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../cssprueba/BOTON.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.Singin">
    <children>
       <Pane layoutX="1.0" prefHeight="80.0" prefWidth="1438.0">
          <children>
             <ImageView fitHeight="60.0" fitWidth="272.0" layoutX="604.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-               
+               <image>
+                  <Image url="@../IMAGENES/logosecondhand-removebg-preview.png" />
+               </image>
             </ImageView>
             <TextField layoutX="1183.0" layoutY="26.0" />
             <Button layoutX="48.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: TRANSPARENT;">
@@ -77,35 +80,35 @@
                   <Font size="26.0" />
                </font>
             </Label>
-            <TextField fx:id="nombre" layoutX="114.0" layoutY="200.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su nombre aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
-            <TextField fx:id="apellidos" layoutX="537.0" layoutY="205.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba sus apellidos aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
-            <TextField fx:id="email" layoutX="986.0" layoutY="195.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su EMIAL aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
-            <PasswordField fx:id="contraseña" layoutX="119.0" layoutY="396.0" prefHeight="41.0" prefWidth="239.0" promptText="Introduce su contraseñá aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px;" />
-            <TextField fx:id="DNI" layoutX="542.0" layoutY="406.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su DNI aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
-            <DatePicker fx:id="fechanac" layoutX="989.0" layoutY="407.0" prefHeight="34.0" prefWidth="234.0" promptText="Indique su fehca de nacimiento aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" />
-            <TextField fx:id="telefono" layoutX="126.0" layoutY="599.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su teléfono aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
-            <TextField fx:id="direccion" layoutX="544.0" layoutY="596.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su dirección aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
-            <Label layoutX="998.0" layoutY="517.0" text="Activo">
+            <TextField layoutX="114.0" layoutY="200.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su nombre aquí." style="-fx-background-color: trasnsparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
+            <TextField layoutX="537.0" layoutY="205.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba sus apellidos aquí." style="-fx-background-color: trasnsparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
+            <TextField layoutX="986.0" layoutY="195.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su EMIAL aquí." style="-fx-background-color: trasnsparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
+            <PasswordField layoutX="119.0" layoutY="396.0" prefHeight="41.0" prefWidth="239.0" promptText="Introduce su contraseñá aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px;" />
+            <TextField layoutX="542.0" layoutY="406.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su DNI aquí." style="-fx-background-color: trasnsparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
+            <DatePicker layoutX="989.0" layoutY="407.0" prefHeight="34.0" prefWidth="234.0" promptText="Indique su fehca de nacimiento aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" />
+            <TextField layoutX="126.0" layoutY="599.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su teléfono aquí." style="-fx-background-color: trasnsparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
+            <TextField layoutX="544.0" layoutY="596.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su dirección aquí." style="-fx-background-color: trasnsparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
+            <Label layoutX="998.0" layoutY="517.0" text="Activo:">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
-            <CheckBox fx:id="activo" layoutX="1107.0" layoutY="520.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="138.0" style="-fx-background-radius: 50;">
+            <CheckBox layoutX="1090.0" layoutY="520.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="138.0" style="-fx-background-radius: 50;">
                <font>
                   <Font size="20.0" />
                </font>
             </CheckBox>
-            <Label layoutX="543.0" layoutY="692.0" text="Tarjeta de fidelidad:">
+            <Label layoutX="993.0" layoutY="581.0" text="Tarjeta de fidelidad:">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
-            <CheckBox fx:id="tarjetaFide" layoutX="785.0" layoutY="694.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0">
+            <CheckBox layoutX="1245.0" layoutY="584.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0">
                <font>
                   <Font size="20.0" />
                </font>
             </CheckBox>
-            <Button layoutX="985.0" layoutY="605.0" mnemonicParsing="false" onAction="#registrar" prefHeight="19.0" prefWidth="184.0" style="-fx-background-color: black; -fx-background-radius: 0;" text="Registrarse" textFill="WHITE">
+            <Button layoutX="1075.0" layoutY="677.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="184.0" style="-fx-background-color: black; -fx-background-radius: 0;" text="Registrarse" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

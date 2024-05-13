@@ -71,7 +71,7 @@ public class Login {
 
     @FXML
     public void cargarVentana_registro(ActionEvent actionEvent) throws IOException {
-        App.setRoot("Singin");
+        App.setRoot("pantalla2");
     }
 
     @FXML

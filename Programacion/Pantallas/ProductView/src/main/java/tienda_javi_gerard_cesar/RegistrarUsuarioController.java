@@ -1,4 +1,4 @@
-package login;
+package tienda_javi_gerard_cesar;
 
 import java.sql.Statement;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import login.Clases.Alertas;
+import tienda_javi_gerard_cesar.Clases.Alertas;
 
 public class RegistrarUsuarioController {
 
@@ -71,8 +71,7 @@ public class RegistrarUsuarioController {
 
         try {
        
-            Statement st = connection.createStatement();
-            
+            Statement st = connection.createStatement();      
             st.executeUpdate("INSERT INTO CLIENTE VALUES('"+DNI.getText()+"','"+nombre.getText()+"','"+apellidos.getText()+"','"+telefono.getText()+"','"+fechanac.getValue()
             +"','"+direccion.getText()+"','"+email.getText()+"','"+contraseña.getText()+"','0',' 0', 'Direccion',"+tarjetaFide.isSelected()+","+activo.isSelected()+",1)");
             alerta.setAlertType(AlertType.INFORMATION);

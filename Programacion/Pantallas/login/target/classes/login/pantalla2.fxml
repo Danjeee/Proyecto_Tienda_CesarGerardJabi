@@ -7,8 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -16,11 +14,7 @@
    <children>
       <Pane layoutX="1.0" prefHeight="80.0" prefWidth="1438.0">
          <children>
-            <ImageView fitHeight="60.0" fitWidth="272.0" layoutX="604.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../IMAGENES/logosecondhand-removebg-preview.png" />
-               </image>
-            </ImageView>
+            
             <TextField layoutX="1183.0" layoutY="26.0" />
             <Button layoutX="48.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: TRANSPARENT;">
                <graphic>
@@ -88,22 +82,22 @@
             <DatePicker fx:id="fechanac" layoutX="989.0" layoutY="407.0" prefHeight="34.0" prefWidth="234.0" promptText="Indique su fehca de nacimiento aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" />
             <TextField fx:id="telefono" layoutX="126.0" layoutY="599.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su teléfono aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
             <TextField fx:id="direccion" layoutX="544.0" layoutY="596.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su dirección aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
-            <Label layoutX="990.0" layoutY="524.0" text="Activo:">
+            <Label layoutX="998.0" layoutY="517.0" text="Activo:">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
-            <CheckBox fx:id="activo" layoutX="1079.0" layoutY="527.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="138.0" style="-fx-background-radius: 50;">
+            <CheckBox fx:id="activo" layoutX="1103.0" layoutY="520.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="138.0" style="-fx-background-radius: 50;">
                <font>
                   <Font size="20.0" />
                </font>
             </CheckBox>
-            <Label layoutX="990.0" layoutY="597.0" text="Tarjeta de fidelidad:">
+            <Label layoutX="997.0" layoutY="595.0" text="Tarjeta de fidelidad:">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
-            <CheckBox fx:id="tarjetaFide" layoutX="1240.0" layoutY="600.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0">
+            <CheckBox fx:id="tarjetaFide" layoutX="1247.0" layoutY="598.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0">
                <font>
                   <Font size="20.0" />
                </font>

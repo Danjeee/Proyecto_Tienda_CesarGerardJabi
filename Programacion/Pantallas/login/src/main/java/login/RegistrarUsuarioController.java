@@ -73,7 +73,8 @@ public class RegistrarUsuarioController {
        
             Statement st = connection.createStatement();
             
-            st.executeUpdate("INSERT INTO CLIENTE VALUES('"+DNI.getText()+"','"+nombre.getText()+"','"+apellidos.getText()+"','"+telefono.getText()+"','"+fechanac.getValue()+"','"+direccion.getText()+"','"+email.getText()+"','"+contraseña.getText()+"','0',' 0', 'Direccion',"+tarjetaFide.isSelected()+","+activo.isSelected()+",1)");
+            st.executeUpdate("INSERT INTO CLIENTE VALUES('"+DNI.getText()+"','"+nombre.getText()+"','"+apellidos.getText()+"','"+telefono.getText()+"','"+fechanac.getValue()
+            +"','"+direccion.getText()+"','"+email.getText()+"','"+contraseña.getText()+"','0',' 0', 'Direccion',"+tarjetaFide.isSelected()+","+activo.isSelected()+",1)");
             alerta.setAlertType(AlertType.INFORMATION);
             alerta.setHeaderText(null);
             alerta.setContentText("El usuario se ha registrado correctamente.");

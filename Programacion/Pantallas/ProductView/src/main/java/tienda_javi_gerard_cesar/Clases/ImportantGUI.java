@@ -62,6 +62,23 @@ public class ImportantGUI {
         }
     }
 
+    private static boolean isAdmin(){
+        Connection con = conenct();
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT DNI FROM empleado");
+            while (rs.next()) {
+                if (App.user.equals(rs.getString("DNI"))) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static HBox generateHeader() {
         HBox a = new HBox();
         a.setAlignment(Pos.CENTER_LEFT);
@@ -135,7 +152,7 @@ public class ImportantGUI {
         cartIco.setSize("30");
         cart.setText("");
         cart.setGraphic(cartIco);
-        if (App.user.equals("guest")) {
+        if (App.user.equals("guest") || isAdmin()) {
             cartIco.setCursor(Cursor.CROSSHAIR);
             cart.setDisable(true);
         }

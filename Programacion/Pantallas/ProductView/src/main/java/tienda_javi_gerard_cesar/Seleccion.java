@@ -41,6 +41,7 @@ public class Seleccion {
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
         all.getChildren().add(0, ImportantGUI.generateHeader());
+        all.getChildren().add(ImportantGUI.generateFooter());
     }
 
     @FXML

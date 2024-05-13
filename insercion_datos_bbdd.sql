@@ -6,21 +6,21 @@ INSERT INTO DEPARTAMENTO (codigo, nombre) VALUES
 
 -- Insertar datos en la tabla EMPLEADO
 INSERT INTO EMPLEADO (DNI, nombre, apellidos, telefono, f_nacimiento, direccion, email, activo, tiene_privilegios, pass, dpto) VALUES
-('12345678A', 'Ana', 'González López', '611223344', '1990-07-15', 'Calle Mayor, 123', 'ana.gonzalez@example.com', true, TRUE, '123456', 1),
-('23456789B', 'Pedro', 'Martínez García', '633445566', '1988-09-20', 'Avenida Libertad, 45', 'pedro.martinez@example.com', true, false, '123456', 2),
-('34567890C', 'María', 'Fernández Pérez', '655667788', '1995-04-08', 'Plaza España, 7', 'maria.fernandez@example.com',  true, false, '123456', 2),
-('45678901D', 'Carlos', 'Sánchez Rodríguez', '677889900', '1993-01-25', 'Calle Gran Vía, 8', 'carlos.sanchez@example.com',  false, false, '123456', 3),
-('56789012E', 'Laura', 'Díaz Martínez', '699001122', '1992-11-10', 'Calle Sol, 10', 'laura.diaz@example.com',  true, false, '123456', 3),
-('67890123F', 'David', 'Gómez Fernández', '622334455', '1987-06-05', 'Avenida del Parque, 20', 'david.gomez@example.com',  true, false, '123456', 3),
-('78901234G', 'Sandra', 'López Martínez', '644556677', '1991-03-20', 'Calle Gran Vía, 8', 'sandra.lopez@example.com',  true, false, '123456', 3),
-('89012345H', 'Javier', 'Pérez García', '677889900', '1994-08-15', 'Avenida Libertad, 45', 'javier.perez@example.com',  true, false, '123456', 3),
-('90123456I', 'Elena', 'Hernández Ruiz', '655667788', '1989-12-10', 'Plaza España, 7', 'elena.hernandez@example.com',  true, true, '123456', 2),
-('01234567J', 'Raúl', 'González Pérez', '699001122', '1985-07-25', 'Calle Mayor, 123', 'raul.gonzalez@example.com',  true, false, '123456', 3),
-('12345678K', 'Nuria', 'Martínez Gómez', '622334455', '1993-04-10', 'Calle Sol, 10', 'nuria.martinez@example.com', true, false, '123456', 2),
-('23456789L', 'Jorge', 'Sánchez Rodríguez', '644556677', '1988-01-15', 'Avenida del Parque, 20', 'jorge.sanchez@example.com',  true,false, '123456', 2),
-('34567890M', 'Carmen', 'López Martínez', '677889900', '1992-09-20', 'Calle Gran Vía, 8', 'carmen.lopez@example.com',  true, false, '123456', 3),
-('45678901N', 'Mario', 'Pérez García', '699001122', '1987-06-05', 'Avenida Libertad, 45', 'mario.perez@example.com',  true, true, '123456', 1),
-('56789012O', 'Sofía', 'Hernández Ruiz', '622334455', '1990-03-15', 'Plaza España, 7', 'sofia.hernandez@example.com',  true, false, '123456', 2);
+('12345678A', 'Ana', 'González López', '611223344', '1990-07-15', 'Calle Mayor, 123', 'ana.gonzalez1@example.com', true, TRUE, '123456', 1),
+('23456789B', 'Pedro', 'Martínez García', '633445566', '1988-09-20', 'Avenida Libertad, 45', 'pedro.martinez1@example.com', true, false, '123456', 2),
+('34567890C', 'María', 'Fernández Pérez', '655667788', '1995-04-08', 'Plaza España, 7', 'maria.fernandez1@example.com',  true, false, '123456', 2),
+('45678901D', 'Carlos', 'Sánchez Rodríguez', '677889900', '1993-01-25', 'Calle Gran Vía, 8', 'carlos.sanchez1@example.com',  false, false, '123456', 3),
+('56789012E', 'Laura', 'Díaz Martínez', '699001122', '1992-11-10', 'Calle Sol, 10', 'laura.diaz1@example.com',  true, false, '123456', 3),
+('67890123F', 'David', 'Gómez Fernández', '622334455', '1987-06-05', 'Avenida del Parque, 20', 'david.gomez1@example.com',  true, false, '123456', 3),
+('78901234G', 'Sandra', 'López Martínez', '644556677', '1991-03-20', 'Calle Gran Vía, 8', 'sandra.lopez1@example.com',  true, false, '123456', 3),
+('89012345H', 'Javier', 'Pérez García', '677889900', '1994-08-15', 'Avenida Libertad, 45', 'javier.perez1@example.com',  true, false, '123456', 3),
+('90123456I', 'Elena', 'Hernández Ruiz', '655667788', '1989-12-10', 'Plaza España, 7', 'elena.hernandez1@example.com',  true, true, '123456', 2),
+('01234567J', 'Raúl', 'González Pérez', '699001122', '1985-07-25', 'Calle Mayor, 123', 'raul.gonzalez1@example.com',  true, false, '123456', 3),
+('12345678K', 'Nuria', 'Martínez Gómez', '622334455', '1993-04-10', 'Calle Sol, 10', 'nuria.martinez1@example.com', true, false, '123456', 2),
+('23456789L', 'Jorge', 'Sánchez Rodríguez', '644556677', '1988-01-15', 'Avenida del Parque, 20', 'jorge.sanchez1@example.com',  true,false, '123456', 2),
+('34567890M', 'Carmen', 'López Martínez', '677889900', '1992-09-20', 'Calle Gran Vía, 8', 'carmen.lopez1@example.com',  true, false, '123456', 3),
+('45678901N', 'Mario', 'Pérez García', '699001122', '1987-06-05', 'Avenida Libertad, 45', 'mario.perez1@example.com',  true, true, '123456', 1),
+('56789012O', 'Sofía', 'Hernández Ruiz', '622334455', '1990-03-15', 'Plaza España, 7', 'sofia.hernandez1@example.com',  true, false, '123456', 2);
 
 -- Insertar en descuentos
 INSERT INTO DESCUENTOS VALUES

@@ -16,7 +16,7 @@
    <children>
       <VBox fx:id="all" prefHeight="1024.0" prefWidth="1440.0">
          <children>
-            <Pane prefHeight="1024.0" prefWidth="1440.0" stylesheets="C:\Users\CicloM\Documents\GitHub\Proyecto_Tienda\Programacion\Pantallas\login\src\main\resources\login\BOTON.css">
+            <Pane prefHeight="870.0" prefWidth="1440.0" stylesheets="C:\Users\CicloM\Documents\GitHub\Proyecto_Tienda\Programacion\Pantallas\login\src\main\resources\login\BOTON.css">
                <children>
                   <ImageView id="transparente" fitHeight="869.0" fitWidth="1440.0" pickOnBounds="true" preserveRatio="true">
                      <image>

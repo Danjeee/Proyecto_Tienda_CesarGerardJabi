@@ -433,8 +433,8 @@ public class Cart {
         }
         subtotal.setText(subtotal());
         des.setText(descuento());
-        imp.setText(imp());
         envio.setText(envio());
+        imp.setText(imp());
         total.setText(total());
         imp.setText("Contiene " + imp() + " de impuestos");
     }

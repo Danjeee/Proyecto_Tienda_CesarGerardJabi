@@ -30,6 +30,7 @@ import tienda_javi_gerard_cesar.Clases.ImportantGUI;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ProductView {
 
@@ -294,11 +295,24 @@ public class ProductView {
         nom.setText(datos[0]);
         precio.setText(datos[1] + "€");
         desc.setText(datos[2]);
-        /*
-         * img.setImage(new
-         * Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/"+datos[3])))
-         * ;
-         */
+        Random rnd = new Random();
+        int imgrnd = rnd.nextInt(3);
+        String caca= "/tienda_javi_gerard_cesar/imagen1.jpg";
+        switch (imgrnd) {
+            case 0:
+            caca= "/tienda_javi_gerard_cesar/imagen0.jpg";
+                break;
+                case 1:
+            caca= "/tienda_javi_gerard_cesar/imagen2.jpg";
+                break;
+                case 2:
+            caca= "/tienda_javi_gerard_cesar/imagen3.jpg";
+                break;
+        
+            default:
+                break;
+        }
+            img.setImage(new Image(getClass().getResourceAsStream(caca)));
 
         ArrayList<String> atribtxt = atributos(conenct());
         ArrayList<Label> atrib = new ArrayList<Label>();

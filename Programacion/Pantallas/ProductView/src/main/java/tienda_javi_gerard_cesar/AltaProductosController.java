@@ -141,7 +141,7 @@ public class AltaProductosController {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar una imagen");
-        fileChooser.setInitialDirectory(new File("C:\\Users\\CicloM\\Downloads"));
+        fileChooser.setInitialDirectory(new File("C:\\Users\\alumnoM\\Downloads"));
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.png"));
         
         File imagenSeleccionada = fileChooser.showOpenDialog(stage);

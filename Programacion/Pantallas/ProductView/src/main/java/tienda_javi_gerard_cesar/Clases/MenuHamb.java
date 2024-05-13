@@ -72,6 +72,9 @@ public class MenuHamb {
     }
 
     private static boolean isAdmin() {
+        if (App.user.equals("guest")) {
+            return false;
+        }
         Connection con = conenct();
         try {
             Statement stm = con.createStatement();

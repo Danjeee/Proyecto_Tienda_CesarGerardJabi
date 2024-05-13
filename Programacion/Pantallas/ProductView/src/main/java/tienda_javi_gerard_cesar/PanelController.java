@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import tienda_javi_gerard_cesar.Clases.*;
 
 public class PanelController {
@@ -33,6 +34,9 @@ public class PanelController {
 
     @FXML
     private Button Administrar_productos;
+
+    @FXML
+    private VBox all;
 
     @FXML
     private App PantallaPrincipal = new App();
@@ -97,6 +101,7 @@ public class PanelController {
         cont.getChildren().add(MenuHamb.menuShadow);
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
+        all.getChildren().add(0, ImportantGUI.generateHeader());
 
         try {
 

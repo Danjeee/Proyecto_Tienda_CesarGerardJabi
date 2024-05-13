@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.KeyFrame;
@@ -482,13 +483,31 @@ public class Main {
         imgg.setPrefHeight(200);
         imgg.setPrefWidth(200);
         imgg.setText("");
-        if (img.equals("imagen1.jpg")) {
-            ImageView fondo = new ImageView(
-                    new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/" + img)));
-            fondo.setFitHeight(175);
-            fondo.setFitWidth(150);
-            imgg.setGraphic(fondo);
+        Random rnd = new Random();
+        int imgrnd = rnd.nextInt(3);
+        String caca= "/tienda_javi_gerard_cesar/imagen1.jpg";
+        switch (imgrnd) {
+            case 0:
+            caca= "/tienda_javi_gerard_cesar/imagen0.jpg";
+                break;
+                case 1:
+            caca= "/tienda_javi_gerard_cesar/imagen2.jpg";
+                break;
+                case 2:
+            caca= "/tienda_javi_gerard_cesar/imagen3.jpg";
+                break;
+        
+            default:
+                break;
         }
+        if (cod<40) {
+            ImageView fondo = new ImageView(
+                new Image(getClass().getResourceAsStream(caca)));
+        fondo.setFitHeight(175);
+        fondo.setFitWidth(150);
+        imgg.setGraphic(fondo);
+        }
+        
         imgg.setOnAction(e -> {
             try {
                 ProductView.current = cod;

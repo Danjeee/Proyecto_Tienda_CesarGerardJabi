@@ -2,6 +2,7 @@ package tienda_javi_gerard_cesar;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -130,6 +131,7 @@ public class AltaProductosController {
     @FXML
     private void abrirImagen(ActionEvent e){
         
+        
         Stage stage = (Stage) imagen.getScene().getWindow();
 
         FileChooser fileChooser = new FileChooser();
@@ -147,7 +149,7 @@ public class AltaProductosController {
         ImageView imageView = new ImageView(imagen2);
         imageView.setFitWidth(350);
         imageView.setFitHeight(200);
-        System.out.println(imagenSeleccionada.toURI().toString());
+        
         imagen.setGraphic(new ImageView(imagen2));
 
     }

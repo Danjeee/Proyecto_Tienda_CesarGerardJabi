@@ -4,7 +4,6 @@ import java.sql.Statement;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
@@ -19,6 +18,18 @@ import login.Clases.Alertas;
 
 public class RegistrarUsuarioController {
 
+    @FXML
+    private App PantallaPrincipal = new App();
+
+    @FXML
+    public void cargarVentana_registro(ActionEvent actionEvent) throws IOException {
+        App.setRoot("Login");
+    }
+
+    @FXML
+    public void flecha_volver(ActionEvent actionEvent) throws IOException {
+        App.setRoot("Login");
+    }
 
     @FXML
     private TextField nombre;
@@ -49,19 +60,6 @@ public class RegistrarUsuarioController {
 
     @FXML
     private CheckBox activo;
-
-    @FXML
-    private App PantallaPrincipal = new App();
-
-    @FXML
-    public void cargarVentana_registro(ActionEvent actionEvent) throws IOException {
-        App.setRoot("Login");
-    }
-
-    @FXML
-    public void flecha_volver(ActionEvent actionEvent) throws IOException {
-        App.setRoot("Login");
-    }
 
     @FXML
     private void registrar(){

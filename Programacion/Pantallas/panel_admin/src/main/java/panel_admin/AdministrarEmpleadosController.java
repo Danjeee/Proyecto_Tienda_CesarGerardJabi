@@ -60,64 +60,53 @@ public class AdministrarEmpleadosController {
         App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
     }
 
+
     private HBox createItem(String dni, String nom, String apell, String telefono, String f_nacim, String direcc,
     String email, boolean privilegios, boolean act, String pass, Departamento dpto, Empleado e) {
         
-        HBox a = new HBox();
-        a.setPrefHeight(75);
-        a.setPrefWidth(725);
-        a.setMaxHeight(75);
-        a.setMaxWidth(725);
-        a.setStyle("-fx-background-color: #000");
-        a.setAlignment(Pos.CENTER);
+        HBox hb = new HBox();
+        hb.setPrefHeight(75);
+        hb.setPrefWidth(1275);
+        hb.setMaxHeight(75);
+        hb.setSpacing(10);
+        hb.setAlignment(Pos.CENTER);
 
-        Label nombre = new Label(nom);
-        nombre.setFont(new Font("System", 25));
-        nombre.prefHeight(175);
-        nombre.setTextFill(Color.WHITE);
-        nombre.setStyle("-fx-background-color: #000");
-        nombre.setPrefWidth(120);
-        nombre.setAlignment(Pos.CENTER_LEFT);
-        nombre.setPadding(new Insets(0, 0, 0, 20));
-        a.getChildren().add(nombre);
 
-        Label apellidos = new Label(apell);
-        apellidos.setFont(new Font("System", 25));
-        apellidos.prefHeight(175);
-        apellidos.setTextFill(Color.WHITE);
-        apellidos.setStyle("-fx-background-color: #000");
-        apellidos.setPrefWidth(250);
-        apellidos.setAlignment(Pos.CENTER_LEFT);
-        apellidos.setPadding(new Insets(0, 0, 0, 20));
-        a.getChildren().add(apellidos);
+        FontAwesomeIconView usuario = new FontAwesomeIconView();
+        usuario.setGlyphName("USER");
+        usuario.setSize("45");
 
-        Pane sep = new Pane();
-        sep.setPrefWidth(100);
-        sep.setStyle("-fx-background-color: #ecf1f3");
-        a.getChildren().add(sep);
+        Label infoEmpleado = new Label(" "+ nom + " " + apell);
+        infoEmpleado.setStyle("-fx-background-color: #e1e1e1; -fx-font-size: 22px; -fx-font-weight: bold");
+        infoEmpleado.setPrefHeight(55);
+        infoEmpleado.setPrefWidth(1090);
+        infoEmpleado.setGraphic(usuario);
+        hb.getChildren().add(infoEmpleado);
 
-        VBox butCont = new VBox();
-        butCont.setPrefHeight(75);
-        butCont.setPrefWidth(35);
-        butCont.setStyle("-fx-background-color: #000");
 
-        Pane sep2 = new Pane();
-        sep2.setPrefHeight(25);
-        sep2.setStyle("-fx-background-color: rgba(0,0,0,0)");
-        butCont.getChildren().add(sep2);
+        Button editarEmpleado = new Button("");
+        editarEmpleado.setStyle("-fx-background-color: black");
+        editarEmpleado.setPrefSize(55, 55);
+        FontAwesomeIconView editar = new FontAwesomeIconView();
+        editar.setGlyphName("PENCIL");
+        editar.setFill(Color.WHITE);
+        editar.setSize("25");
+        editarEmpleado.setGraphic(editar);
+        editarEmpleado.setOnAction(i -> desactivarEmpleado(e));
+        hb.getChildren().add(editarEmpleado);
 
-        Button trash = new Button("");
-        trash.setPrefHeight(70);
-        trash.setPrefWidth(125);
-        FontAwesomeIconView ico = new FontAwesomeIconView();
-        trash.setStyle("-fx-background-color: #000");
-        ico.setGlyphName("TRASH");
-        ico.setFill(Color.WHITE);
-        ico.setSize("50");
-        trash.setGraphic(ico);
-        trash.setOnAction(i -> delete(e));
-        a.getChildren().add(trash);
-        return a;
+        Button borrarEmpleado = new Button("");
+        borrarEmpleado.setStyle("-fx-background-color: black");
+        borrarEmpleado.setPrefSize(55, 55);
+        FontAwesomeIconView papelera = new FontAwesomeIconView();
+        papelera.setGlyphName("TRASH");
+        papelera.setFill(Color.WHITE);
+        papelera.setSize("25");
+        borrarEmpleado.setGraphic(papelera);
+        borrarEmpleado.setOnAction(i -> desactivarEmpleado(e));
+        hb.getChildren().add(borrarEmpleado);
+
+        return hb;
 
     }
 
@@ -175,7 +164,7 @@ public class AdministrarEmpleadosController {
     }
 
     @FXML
-    private void delete(Empleado e) {
+    private void desactivarEmpleado(Empleado e) {
         Connection con = conectar();
         try {
             Statement st = con.createStatement();

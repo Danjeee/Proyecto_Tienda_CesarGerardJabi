@@ -35,44 +35,5 @@ public class AdministrarUsuariosController {
         cont.getChildren().add(MenuHamb.menuHamb());
     }
 
-    
-    private HBox crearTarjetaEmpleado(Empleado empleado) {
-
-
-        HBox tarjetaEmpleado = new HBox();
-        tarjetaEmpleado.setPrefHeight(60.0);
-        tarjetaEmpleado.setPrefWidth(677.0);
-        tarjetaEmpleado.setAlignment(Pos.CENTER_LEFT);
-        tarjetaEmpleado.setSpacing(10);
-
-
-        FontAwesomeIconView iconoView = new FontAwesomeIconView();
-        iconoView.setGlyphName("USER");
-        iconoView.setSize("28");
-        HBox.setMargin(iconoView, new Insets(12, 20, 40, 100)); //top, right, bottom, left
-
-        TextField textField = new TextField(empleado.getNombre() + " " + empleado.getApellidos());
-        textField.setEditable(false);
-        textField.setStyle("-fx-background-color: #E9E9E9; -fx-font-size: 22px; -fx-font-weight: bold");
-        textField.setPrefHeight(25.0);
-        textField.setPrefWidth(946.0);
-        HBox.setMargin(textField, new Insets(12, 40, 40, 20));
-
-        FontAwesomeIconView papelera = new FontAwesomeIconView();
-        papelera.setGlyphName("TRASH");
-        papelera.setSize("25");
-        papelera.setOnMouseClicked(mouseEvent -> mostrarAlertConfirmation(empleado));
-        HBox.setMargin(papelera, new Insets(12, 10, 40, 20));
-
-        FontAwesomeIconView lapiz = new FontAwesomeIconView();
-        lapiz.setGlyphName("PENCIL");
-        lapiz.setSize("25");
-        HBox.setMargin(lapiz, new Insets(12, 10, 40, 20));
-
-        tarjetaEmpleado.getChildren().addAll(iconoView, textField, lapiz, papelera);
-
-        return tarjetaEmpleado;
-    }
-
 }
 

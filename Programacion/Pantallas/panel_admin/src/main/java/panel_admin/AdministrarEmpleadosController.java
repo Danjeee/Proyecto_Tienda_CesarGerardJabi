@@ -66,23 +66,21 @@ public class AdministrarEmpleadosController {
         
         HBox hb = new HBox();
         hb.setPrefHeight(75);
-        hb.setPrefWidth(1275);
+        hb.setPrefWidth(1273);
         hb.setMaxHeight(75);
         hb.setSpacing(10);
         hb.setAlignment(Pos.CENTER);
 
-
-        FontAwesomeIconView usuario = new FontAwesomeIconView();
-        usuario.setGlyphName("USER");
-        usuario.setSize("45");
-
-        Label infoEmpleado = new Label(" "+ nom + " " + apell);
+        Label infoEmpleado = new Label("  " + nom + " " + apell);
         infoEmpleado.setStyle("-fx-background-color: #e1e1e1; -fx-font-size: 22px; -fx-font-weight: bold");
         infoEmpleado.setPrefHeight(55);
-        infoEmpleado.setPrefWidth(1090);
+        infoEmpleado.setPrefWidth(1143);
+        FontAwesomeIconView usuario = new FontAwesomeIconView();
+        usuario.setGlyphName("USER");
+        usuario.setSize("35");
         infoEmpleado.setGraphic(usuario);
+        infoEmpleado.setPadding(new Insets(0,0,0,13));
         hb.getChildren().add(infoEmpleado);
-
 
         Button editarEmpleado = new Button("");
         editarEmpleado.setStyle("-fx-background-color: black");
@@ -92,7 +90,7 @@ public class AdministrarEmpleadosController {
         editar.setFill(Color.WHITE);
         editar.setSize("25");
         editarEmpleado.setGraphic(editar);
-        editarEmpleado.setOnAction(i -> desactivarEmpleado(e));
+        editarEmpleado.setOnAction(i -> editarEmpleado(e));
         hb.getChildren().add(editarEmpleado);
 
         Button borrarEmpleado = new Button("");
@@ -144,7 +142,6 @@ public class AdministrarEmpleadosController {
     public Departamento obtenerDepartamentoPorCodigo(int codigoDepartamento){
     Connection con = conectar();
     Departamento departamento = null;
-    
     try {
         PreparedStatement ps = con.prepareStatement("select * from departamento where codigo = ?");
         ps.setInt(1, codigoDepartamento);
@@ -155,11 +152,9 @@ public class AdministrarEmpleadosController {
             String nombre = rs.getString("nombre");
             departamento = new Departamento(codigo, nombre);
         }
-
     } catch (SQLException e) {
         e.printStackTrace();
     }
-    
     return departamento;
     }
 
@@ -178,6 +173,20 @@ public class AdministrarEmpleadosController {
 
         } catch (SQLException sql) {
             sql.printStackTrace();
+            alerta.setAlertType(Alert.AlertType.ERROR);
+            alerta.setHeaderText(null);
+            alerta.setContentText("Error al desactivar el empleado.");
+            alerta.show();
+        }
+    }
+
+    @FXML
+    private void editarEmpleado(Empleado e) {
+        try {
+            App.setRoot("pantalla3");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
             alerta.setAlertType(Alert.AlertType.ERROR);
             alerta.setHeaderText(null);
             alerta.setContentText("Error al desactivar el empleado.");

@@ -41,7 +41,7 @@ public class Departamento {
     }
     @Override
     public int hashCode() {
-        String nombre = String.valueOf(this.codigo);
+            String nombre = String.valueOf(this.codigo);
             String code = "";
             for (int i = 0; i < nombre.length(); i++) {
                 code += nombre.charAt(i);

@@ -1,19 +1,19 @@
 package panel_admin.Clases;
 public class MetodoPago {
     
-    private String codigo;
+    private int codigo;
     private String descripcion;
 
     
-    public MetodoPago(String codigo, String descripcion) {
+    public MetodoPago(int codigo, String descripcion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
     public String getDescripcion() {
@@ -25,7 +25,7 @@ public class MetodoPago {
 
     @Override
     public int hashCode() {
-            String nombre = this.codigo;
+            String nombre = String.valueOf(this.codigo);
             String code = "";
             for (int i = 0; i < nombre.length(); i++) {
                 code += Integer.valueOf(nombre.charAt(i));
@@ -38,7 +38,7 @@ public class MetodoPago {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         MetodoPago metodo = (MetodoPago) obj;
-        return codigo.equals(metodo.codigo);
+        return codigo == metodo.codigo;
     }
     
 }

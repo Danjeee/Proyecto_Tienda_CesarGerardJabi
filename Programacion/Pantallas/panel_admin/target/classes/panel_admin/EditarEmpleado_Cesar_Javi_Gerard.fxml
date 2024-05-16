@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="panel_admin.EditarEmpleadoController" >
    <children>
       <Pane layoutY="-1.0" prefHeight="80.0" prefWidth="1440.0">
          <children>
@@ -33,8 +33,15 @@
             <FontAwesomeIconView glyphName="SHOPPING_CART" layoutX="1370.0" layoutY="50.0" size="25" />
          </children>
       </Pane>
-      <FontAwesomeIconView glyphName="ARROW_LEFT" layoutX="53.0" layoutY="124.0" size="25" />
-      <Label layoutX="88.0" layoutY="98.0" text="Editar empleado">
+      <Button layoutX="53.0" layoutY="124.0"  mnemonicParsing="false" onAction="#retroceder_ListaEmpleados" style="-fx-background-color: transparent;">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView glyphName="ARROW_LEFT" size="25" />
+         </graphic>
+      </Button>
+      <Label layoutX="100.0" layoutY="124.0" text="Editar empleado">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>

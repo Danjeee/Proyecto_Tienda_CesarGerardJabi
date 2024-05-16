@@ -60,7 +60,7 @@
                   </Pane>
                   <Pane prefHeight="105.0" prefWidth="354.0">
                      <children>
-                        <Button fx:id="Administrar_usuarios" layoutY="14.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarUsuarios" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;usuarios" textFill="WHITE">
+                        <Button fx:id="Administrar_usuarios" layoutY="14.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarClientes" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;usuarios" textFill="WHITE">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="23" wrappingWidth="43.6666259765625" />
                            </graphic>

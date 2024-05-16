@@ -49,8 +49,8 @@ public class PanelController {
     }
 
     @FXML
-    public void cargarVentana_AdministrarUsuarios(ActionEvent actionEvent) throws IOException {
-        App.setRoot("AdministrarUsuarios_Cesar_Javi_Gerard");
+    public void cargarVentana_AdministrarClientes(ActionEvent actionEvent) throws IOException {
+        App.setRoot("AdministrarClientes_Cesar_Javi_Gerard");
     }
 
     @FXML

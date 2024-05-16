@@ -71,7 +71,6 @@ public class AdministrarEmpleadosController {
         a.setStyle("-fx-background-color: #000");
         a.setAlignment(Pos.CENTER);
 
-
         Label nombre = new Label(nom);
         nombre.setFont(new Font("System", 25));
         nombre.prefHeight(175);

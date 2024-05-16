@@ -20,7 +20,7 @@
                <children>
                   <Pane prefHeight="90.0" prefWidth="251.0">
                      <children>
-                        <Button layoutX="2.0" layoutY="4.0" mnemonicParsing="false" onAction="#cargarVentana_AltaProducto" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Dar de alta &#10;producto" textFill="WHITE">
+                        <Button fx:id="Alta_productos" layoutX="2.0" layoutY="4.0" mnemonicParsing="false" onAction="#cargarVentana_AltaProductos" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Dar de alta &#10;producto" textFill="WHITE">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="23" wrappingWidth="43.95240116119385" />
                            </graphic>
@@ -32,7 +32,7 @@
                   </Pane>
                   <Pane prefHeight="105.0" prefWidth="334.0">
                      <children>
-                        <Button layoutX="2.0" layoutY="14.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarEmpleados" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;empleados " textFill="WHITE">
+                        <Button fx:id="Administrar_empleados" layoutX="2.0" layoutY="14.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarEmpleados" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;empleados " textFill="WHITE">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="ADDRESS_BOOK" size="23" wrappingWidth="43.666656494140625" />
                            </graphic>
@@ -48,7 +48,7 @@
                <children>
                   <Pane prefHeight="90.0" prefWidth="354.0">
                      <children>
-                        <Button layoutY="4.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarProductos" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;productos" textFill="WHITE">
+                        <Button fx:id="Administrar_productos" layoutY="4.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarProductos" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;productos" textFill="WHITE">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="TAGS" size="23" wrappingWidth="43.66668701171875" />
                            </graphic>
@@ -60,7 +60,7 @@
                   </Pane>
                   <Pane prefHeight="105.0" prefWidth="354.0">
                      <children>
-                        <Button layoutY="14.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarUsuarios" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;usuarios" textFill="WHITE">
+                        <Button fx:id="Administrar_usuarios" layoutY="14.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarUsuarios" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;usuarios" textFill="WHITE">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="23" wrappingWidth="43.6666259765625" />
                            </graphic>

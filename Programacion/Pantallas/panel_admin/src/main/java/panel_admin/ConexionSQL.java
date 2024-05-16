@@ -56,7 +56,7 @@ public class ConexionSQL {
 
     }
 
-    public void ejecutaSQL(String sql) {
+    public ResultSet ejecutaSQL(String sql) {
         try {
             // realiza la consulta y devuelve resultados
             rs = sentenciaSQL.executeQuery(sql);
@@ -64,6 +64,7 @@ public class ConexionSQL {
         } catch (SQLException ex) {
             System.out.println("ERROR: No se ha podido ejecutar la SQL: " + sql);
         }
+        return rs;
     }
 
     public int updateSQL(String sql) {

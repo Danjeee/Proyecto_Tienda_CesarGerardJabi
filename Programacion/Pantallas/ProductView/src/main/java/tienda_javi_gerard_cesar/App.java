@@ -28,7 +28,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Login"), 1440, 1024);
+        scene = new Scene(loadFXML("flappy"), 1440, 1024);
         stage.setScene(scene);
         stage.setTitle("secondHand");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/icon.jpg")));

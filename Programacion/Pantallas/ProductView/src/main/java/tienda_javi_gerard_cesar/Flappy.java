@@ -172,6 +172,13 @@ public class Flappy {
             ret.setLayoutX(450);
             ret.setLayoutY(700);
             ret.setFont(new Font("System", 32));
+            ret.setOnAction(e -> {
+                try {
+                    App.setRoot("main");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            });
             Button trya = new Button("Try Again");
             trya.setPrefWidth(200);
             trya.setStyle("-fx-background-color: #fff");
@@ -179,6 +186,13 @@ public class Flappy {
             trya.setLayoutX(750);
             trya.setLayoutY(700);
             trya.setFont(new Font("System", 32));
+            trya.setOnAction(e -> {
+                try {
+                    App.setRoot("flappy");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            });
             fondo.getChildren().addAll(ret, trya);
         }
     }
@@ -205,11 +219,13 @@ public class Flappy {
         for (Node i : fondo.getChildren()) {
             if (i instanceof VBox) {
                 i.setLayoutX(i.getLayoutX() - (yDelta * pipespeed));
+                if (i.getLayoutX() < 0) {
+                    double[] posini = { 0, 1024 };
+                    postofit = posini;
+                }
                 if (i.getLayoutX() < -100) {
                     puntuacion++;
                     puntShow.setText(textoPuntuacion());
-                    double[] posini = { 0, 1024 };
-                    postofit = posini;
                     fondo.getChildren().remove(3);
                 }
             }

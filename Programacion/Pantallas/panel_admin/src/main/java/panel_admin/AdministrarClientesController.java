@@ -2,11 +2,6 @@ package panel_admin;
 
 
 import java.io.IOException;
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
-import panel_admin.MenuHamburguesa.MenuHamb;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,23 +9,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
+import panel_admin.Clases.Clientes;
 import panel_admin.Clases.Departamento;
 import panel_admin.Clases.Empleado;
+import panel_admin.Clases.MetodoPago;
+import panel_admin.Clases.Usuario;
+import panel_admin.MenuHamburguesa.MenuHamb;
 
-public class AdministrarEmpleadosController {
-
+public class AdministrarClientesController {
     @FXML
     private App PantallaPrincipal = new App();
     @FXML
@@ -38,8 +38,9 @@ public class AdministrarEmpleadosController {
     @FXML
     private FlowPane fpane; 
     @FXML
-    public Empleado empleado;
-    public ArrayList<Empleado> lista_empleados;
+    public Clientes clientes;
+    public ArrayList<Clientes> lista_clientes;
+
 
     static Alert alerta = new Alert(Alert.AlertType.NONE);
 
@@ -58,7 +59,7 @@ public class AdministrarEmpleadosController {
         App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
     }
 
-    private HBox createItem(String nombre, String apellidos, Empleado empleado) {
+    private HBox createItem(String nombre, String apellidos, Clientes clientes) {
         
         HBox hb = new HBox();
         hb.setPrefHeight(75);
@@ -67,50 +68,50 @@ public class AdministrarEmpleadosController {
         hb.setSpacing(10);
         hb.setAlignment(Pos.CENTER);
 
-        Label infoEmpleado = new Label("  " + nombre + " " + apellidos);
-        infoEmpleado.setStyle("-fx-font-size: 25px; -fx-background-color: #e1e1e1; -fx-font-weight: bold");
-        infoEmpleado.setPrefHeight(55);
-        infoEmpleado.setPrefWidth(1143);
+        Label infoCliente = new Label("  " + nombre + " " + apellidos);
+        infoCliente.setStyle("-fx-font-size: 25px; -fx-background-color: #e1e1e1; -fx-font-weight: bold");
+        infoCliente.setPrefHeight(55);
+        infoCliente.setPrefWidth(1143);
         FontAwesomeIconView user = new FontAwesomeIconView();
-        user.setGlyphName("USER");
+        user.setGlyphName("USER_CIRCLE");
         user.setSize("35");
-        infoEmpleado.setGraphic(user);
-        infoEmpleado.setPadding(new Insets(0,0,0,13));
-        hb.getChildren().add(infoEmpleado);
+        infoCliente.setGraphic(user);
+        infoCliente.setPadding(new Insets(0,0,0,13));
+        hb.getChildren().add(infoCliente);
 
-        Button editarEmpleado = new Button("");
-        editarEmpleado.setStyle("-fx-background-color: black");
-        editarEmpleado.setPrefSize(55, 55);
+        Button editarCliente = new Button("");
+        editarCliente.setStyle("-fx-background-color: black");
+        editarCliente.setPrefSize(55, 55);
         FontAwesomeIconView editar = new FontAwesomeIconView();
         editar.setGlyphName("PENCIL");
         editar.setFill(Color.WHITE);
         editar.setSize("25");
-        editarEmpleado.setGraphic(editar);
-        editarEmpleado.setOnAction(i -> editarEmpleado(empleado));
-        hb.getChildren().add(editarEmpleado);
+        editarCliente.setGraphic(editar);
+        editarCliente.setOnAction(i -> editarCliente(clientes));
+        hb.getChildren().add(editarCliente);
 
-        Button borrarEmpleado = new Button("");
-        borrarEmpleado.setStyle("-fx-background-color: black");
-        borrarEmpleado.setPrefSize(55, 55);
+        Button borrarCliente = new Button("");
+        borrarCliente.setStyle("-fx-background-color: black");
+        borrarCliente.setPrefSize(55, 55);
         FontAwesomeIconView papelera = new FontAwesomeIconView();
         papelera.setGlyphName("TRASH");
         papelera.setFill(Color.WHITE);
         papelera.setSize("25");
-        borrarEmpleado.setGraphic(papelera);
-        borrarEmpleado.setOnAction(i -> desactivarEmpleado(empleado));
-        hb.getChildren().add(borrarEmpleado);
+        borrarCliente.setGraphic(papelera);
+        borrarCliente.setOnAction(i -> desactivarCliente(clientes));
+        hb.getChildren().add(borrarCliente);
 
         return hb;
 
     }
 
-    private ArrayList<Empleado> cargarEmpleados() {
-        ArrayList<Empleado> arrayList_Empleado = new ArrayList<>();
+    private ArrayList<Clientes> cargarClientes() {
+        ArrayList<Clientes> arrayList_Clientes = new ArrayList<>();
         
         Connection con = conectar();
         try {
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from empleado");
+            ResultSet rs = st.executeQuery("select * from cliente");
 
             while (rs.next()) {
                 String dni = rs.getString("dni");
@@ -120,98 +121,103 @@ public class AdministrarEmpleadosController {
                 String f_nacim = rs.getString("f_nacimiento");
                 String direcc = rs.getString("direccion");
                 String email = rs.getString("email");
-                boolean act = rs.getBoolean("activo");
-                boolean privilegios = rs.getBoolean("tiene_privilegios");
                 String pass = rs.getString("pass");
-                Departamento departamento = obtenerDepartamentoPorCodigo(rs.getInt("dpto"));
+                float saldo = rs.getFloat("saldo_cuenta");
+                int num_ped = rs.getInt("num_pedidos");
+                String direcc_ped = rs.getString("dir_envio");
+                boolean tarj_fide = rs.getBoolean("tarjeta_fidelizacion");
+                boolean act = rs.getBoolean("activo");
+                MetodoPago mPago = obtenerMetodoPagoPorCodigo(rs.getInt("m_pago"));
 
                 if (act == true){
-                    Empleado empleado = new Empleado(dni, nom, apell, telefono, f_nacim, direcc, email, privilegios, act, pass, departamento);
-                    arrayList_Empleado.add(empleado);             
+                    Clientes clientes = new Clientes(dni, nom, apell, telefono, f_nacim, direcc, email, pass, saldo, num_ped, direcc_ped, tarj_fide, act, mPago);
+                    arrayList_Clientes.add(clientes);             
                 } 
             }
-            return arrayList_Empleado;
+            return arrayList_Clientes;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return arrayList_Empleado;
+        return arrayList_Clientes;
     }
     
-    public Departamento obtenerDepartamentoPorCodigo(int codigoDepartamento){
-    Departamento departamento = null;
+    public MetodoPago obtenerMetodoPagoPorCodigo(int codigoMetodoPago){
+    MetodoPago m_pago = null;
 
     Connection con = conectar();
     try {
-        PreparedStatement ps = con.prepareStatement("select * from departamento where codigo = ?");
-        ps.setInt(1, codigoDepartamento);
+        PreparedStatement ps = con.prepareStatement("select * from metodo_pago where codigo = ?");
+        ps.setInt(1, codigoMetodoPago);
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
             int codigo = rs.getInt("codigo");
-            String nombre = rs.getString("nombre");
-            departamento = new Departamento(codigo, nombre);
+            String descripcion = rs.getString("descripcion");
+            m_pago = new MetodoPago(codigo, descripcion);
         }
 
     } catch (SQLException e) {
         e.printStackTrace();
     }
-    return departamento;
+    return m_pago;
     }
 
 
     @FXML
-    private void desactivarEmpleado(Empleado empleado) {
+    private void desactivarCliente(Clientes clientes) {
         Connection con = conectar();
         try {
             Statement st = con.createStatement();
-            st.executeUpdate("UPDATE empleado set activo='0' where nombre='" +empleado.getNombre()+ "'");
+            st.executeUpdate("UPDATE cliente set activo='0' where nombre='" +clientes.getNombre()+ "'");
     
             alerta.setAlertType(Alert.AlertType.INFORMATION);
             alerta.setHeaderText(null);
-            alerta.setContentText("Se ha desactivado el empleado correctamente.");
+            alerta.setContentText("Se ha desactivado el usuario correctamente.");
             alerta.show();
             
+            initialize();
 
         } catch (SQLException sql) {
             sql.printStackTrace();
             alerta.setAlertType(Alert.AlertType.ERROR);
             alerta.setHeaderText(null);
-            alerta.setContentText("Error al desactivar el empleado.");
+            alerta.setContentText("Error al desactivar el usuario.");
             alerta.show();
         }
         fpane.getChildren().clear();
         initialize();
-
     }
 
     @FXML
-    private void editarEmpleado(Empleado empleado) {
+    private void editarCliente(Clientes clientes) {
         try {
-            App.setRoot("EditarEmpleado_Cesar_Javi_Gerard");
+            App.setRoot("EditarCliente_Cesar_Javi_Gerard");
 
         } catch (Exception ex) {
             ex.printStackTrace();
             alerta.setAlertType(Alert.AlertType.ERROR);
             alerta.setHeaderText(null);
-            alerta.setContentText("Error al editar el empleado.");
+            alerta.setContentText("Error al editar el usuario.");
             alerta.show();
         }
     }
 
+    
     public void initialize() {
         MenuHamb.popupHambMake();
         cont.getChildren().add(MenuHamb.menuShadow);
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
 
-        lista_empleados = cargarEmpleados();
+        lista_clientes = cargarClientes();
 
-        for (Empleado empleado : lista_empleados) {
-            String nombre = empleado.getNombre();
-            String apellidos = empleado.getApellidos();
-            
-            fpane.getChildren().add(createItem(nombre, apellidos, empleado));
+        for (Clientes clientes : lista_clientes) {
+            String nombre = clientes.getNombre();
+            String apellidos = clientes.getApellidos();
+    
+            fpane.getChildren().add(createItem(nombre, apellidos, clientes));
         }
     }
 }
+

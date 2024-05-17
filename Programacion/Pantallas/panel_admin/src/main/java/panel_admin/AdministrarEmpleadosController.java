@@ -39,9 +39,11 @@ public class AdministrarEmpleadosController {
     private FlowPane fpane; 
     @FXML
     public Empleado empleado;
+    
     public ArrayList<Empleado> lista_empleados;
 
     static Alert alerta = new Alert(Alert.AlertType.NONE);
+
 
     private Connection conectar() {
         Connection con = null;
@@ -58,25 +60,29 @@ public class AdministrarEmpleadosController {
         App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
     }
 
-    private HBox createItem(String nombre, String apellidos, Empleado empleado) {
+
+    private HBox createItem(String dni, String nom, String apell, String telefono, String f_nacim, String direcc,
+    String email, boolean privilegios, boolean act, String pass, Departamento dpto, Empleado e) {
         
         HBox hb = new HBox();
         hb.setPrefHeight(75);
-        hb.setPrefWidth(1273);
+        hb.setPrefWidth(1275);
         hb.setMaxHeight(75);
         hb.setSpacing(10);
         hb.setAlignment(Pos.CENTER);
 
-        Label infoEmpleado = new Label("  " + nombre + " " + apellidos);
-        infoEmpleado.setStyle("-fx-font-size: 25px; -fx-background-color: #e1e1e1; -fx-font-weight: bold");
+
+        FontAwesomeIconView usuario = new FontAwesomeIconView();
+        usuario.setGlyphName("USER");
+        usuario.setSize("45");
+
+        Label infoEmpleado = new Label(" "+ nom + " " + apell);
+        infoEmpleado.setStyle("-fx-background-color: #e1e1e1; -fx-font-size: 22px; -fx-font-weight: bold");
         infoEmpleado.setPrefHeight(55);
-        infoEmpleado.setPrefWidth(1143);
-        FontAwesomeIconView user = new FontAwesomeIconView();
-        user.setGlyphName("USER");
-        user.setSize("35");
-        infoEmpleado.setGraphic(user);
-        infoEmpleado.setPadding(new Insets(0,0,0,13));
+        infoEmpleado.setPrefWidth(1090);
+        infoEmpleado.setGraphic(usuario);
         hb.getChildren().add(infoEmpleado);
+
 
         Button editarEmpleado = new Button("");
         editarEmpleado.setStyle("-fx-background-color: black");
@@ -86,7 +92,14 @@ public class AdministrarEmpleadosController {
         editar.setFill(Color.WHITE);
         editar.setSize("25");
         editarEmpleado.setGraphic(editar);
-        editarEmpleado.setOnAction(i -> editarEmpleado(empleado));
+        editarEmpleado.setOnAction(i -> {
+            EditarEmpleadoController.current = e.getDni();
+            try {
+                App.setRoot("pantalla3");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+    });
         hb.getChildren().add(editarEmpleado);
 
         Button borrarEmpleado = new Button("");
@@ -97,7 +110,7 @@ public class AdministrarEmpleadosController {
         papelera.setFill(Color.WHITE);
         papelera.setSize("25");
         borrarEmpleado.setGraphic(papelera);
-        borrarEmpleado.setOnAction(i -> desactivarEmpleado(empleado));
+        borrarEmpleado.setOnAction(i -> desactivarEmpleado(e));
         hb.getChildren().add(borrarEmpleado);
 
         return hb;
@@ -105,13 +118,12 @@ public class AdministrarEmpleadosController {
     }
 
     private ArrayList<Empleado> cargarEmpleados() {
-        ArrayList<Empleado> arrayList_Empleado = new ArrayList<>();
-        
+        ArrayList<Empleado> a = new ArrayList<>();
         Connection con = conectar();
         try {
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from empleado");
-
+            ResultSet rs = st.executeQuery(
+                    "select * from empleado");
             while (rs.next()) {
                 String dni = rs.getString("dni");
                 String nom = rs.getString("nombre");
@@ -123,25 +135,23 @@ public class AdministrarEmpleadosController {
                 boolean act = rs.getBoolean("activo");
                 boolean privilegios = rs.getBoolean("tiene_privilegios");
                 String pass = rs.getString("pass");
+
                 Departamento departamento = obtenerDepartamentoPorCodigo(rs.getInt("dpto"));
 
-                if (act == true){
-                    Empleado empleado = new Empleado(dni, nom, apell, telefono, f_nacim, direcc, email, privilegios, act, pass, departamento);
-                    arrayList_Empleado.add(empleado);             
-                } 
+                Empleado empleado = new Empleado(dni, nom, apell, telefono, f_nacim, direcc, email, privilegios, act, pass, departamento);
+                a.add(empleado);              
             }
-            return arrayList_Empleado;
-
+            return a;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return arrayList_Empleado;
+        return a;
     }
-    
-    public Departamento obtenerDepartamentoPorCodigo(int codigoDepartamento){
-    Departamento departamento = null;
 
+    public Departamento obtenerDepartamentoPorCodigo(int codigoDepartamento){
     Connection con = conectar();
+    Departamento departamento = null;
+    
     try {
         PreparedStatement ps = con.prepareStatement("select * from departamento where codigo = ?");
         ps.setInt(1, codigoDepartamento);
@@ -156,45 +166,28 @@ public class AdministrarEmpleadosController {
     } catch (SQLException e) {
         e.printStackTrace();
     }
+    
     return departamento;
     }
 
-
     @FXML
-    private void desactivarEmpleado(Empleado empleado) {
+    private void desactivarEmpleado(Empleado e) {
         Connection con = conectar();
         try {
             Statement st = con.createStatement();
-            st.executeUpdate("UPDATE empleado set activo='0' where nombre='" +empleado.getNombre()+ "'");
-    
+            st.executeUpdate("UPDATE empleado set activo='0' where nombre='" +e.getNombre()+ "'");
+            
             alerta.setAlertType(Alert.AlertType.INFORMATION);
             alerta.setHeaderText(null);
             alerta.setContentText("Se ha desactivado el empleado correctamente.");
             alerta.show();
-            
+            initialize();
 
         } catch (SQLException sql) {
             sql.printStackTrace();
             alerta.setAlertType(Alert.AlertType.ERROR);
             alerta.setHeaderText(null);
             alerta.setContentText("Error al desactivar el empleado.");
-            alerta.show();
-        }
-        fpane.getChildren().clear();
-        initialize();
-
-    }
-
-    @FXML
-    private void editarEmpleado(Empleado empleado) {
-        try {
-            App.setRoot("EditarEmpleado_Cesar_Javi_Gerard");
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            alerta.setAlertType(Alert.AlertType.ERROR);
-            alerta.setHeaderText(null);
-            alerta.setContentText("Error al editar el empleado.");
             alerta.show();
         }
     }
@@ -207,11 +200,20 @@ public class AdministrarEmpleadosController {
 
         lista_empleados = cargarEmpleados();
 
-        for (Empleado empleado : lista_empleados) {
-            String nombre = empleado.getNombre();
-            String apellidos = empleado.getApellidos();
+        for (Empleado i : lista_empleados) {
+            String dni = i.getDni();
+            String nom = i.getNombre();
+            String apell = i.getApellidos();
+            String telefono = i.getTelefono();
+            String f_nacim = i.getFechaNacimiento();
+            String direcc = i.getDireccion();
+            String email = i.getEmail();
+            boolean act = i.isActivo();
+            boolean privilegios = i.isTienePrivilegios();
+            String pass = i.getPass();
+            Departamento dpto = i.getDepartamento();
             
-            fpane.getChildren().add(createItem(nombre, apellidos, empleado));
+            fpane.getChildren().add(createItem(dni, nom, apell, telefono, f_nacim, direcc, email, privilegios, act, pass, dpto, i));
         }
     }
 }

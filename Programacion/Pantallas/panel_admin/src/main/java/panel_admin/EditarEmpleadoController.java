@@ -9,6 +9,7 @@ import panel_admin.MenuHamburguesa.MenuHamb;
 
 public class EditarEmpleadoController {
 
+    public static Object current;
     @FXML
     private App PantallaPrincipal = new App();
 

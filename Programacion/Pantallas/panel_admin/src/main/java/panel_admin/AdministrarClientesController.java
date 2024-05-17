@@ -87,7 +87,10 @@ public class AdministrarClientesController {
         editar.setFill(Color.WHITE);
         editar.setSize("25");
         editarCliente.setGraphic(editar);
-        editarCliente.setOnAction(i -> editarCliente(clientes));
+        /* editarCliente.setOnAction(i -> {
+            EditarClienteController.current = clientes.getDni();
+            App.setRoot("EditarCliente_Cesar_Javi_Gerard");
+        }); */
         hb.getChildren().add(editarCliente);
 
         Button borrarCliente = new Button("");
@@ -141,7 +144,7 @@ public class AdministrarClientesController {
         }
         return arrayList_Clientes;
     }
-    
+
     public MetodoPago obtenerMetodoPagoPorCodigo(int codigoMetodoPago){
     MetodoPago m_pago = null;
 
@@ -188,21 +191,6 @@ public class AdministrarClientesController {
         fpane.getChildren().clear();
         initialize();
     }
-
-    @FXML
-    private void editarCliente(Clientes clientes) {
-        try {
-            App.setRoot("EditarCliente_Cesar_Javi_Gerard");
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            alerta.setAlertType(Alert.AlertType.ERROR);
-            alerta.setHeaderText(null);
-            alerta.setContentText("Error al editar el usuario.");
-            alerta.show();
-        }
-    }
-
     
     public void initialize() {
         MenuHamb.popupHambMake();

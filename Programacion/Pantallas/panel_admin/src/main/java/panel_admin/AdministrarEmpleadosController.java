@@ -86,7 +86,10 @@ public class AdministrarEmpleadosController {
         editar.setFill(Color.WHITE);
         editar.setSize("25");
         editarEmpleado.setGraphic(editar);
-        editarEmpleado.setOnAction(i -> editarEmpleado(empleado));
+        /* editarEmpleado.setOnAction(i -> {
+            EditarEmpleadoController.current = empleado.getDni();
+            App.setRoot("pantalla3");
+        }); */
         hb.getChildren().add(editarEmpleado);
 
         Button borrarEmpleado = new Button("");
@@ -137,7 +140,8 @@ public class AdministrarEmpleadosController {
         }
         return arrayList_Empleado;
     }
-    
+
+
     public Departamento obtenerDepartamentoPorCodigo(int codigoDepartamento){
     Departamento departamento = null;
 
@@ -185,19 +189,6 @@ public class AdministrarEmpleadosController {
 
     }
 
-    @FXML
-    private void editarEmpleado(Empleado empleado) {
-        try {
-            App.setRoot("EditarEmpleado_Cesar_Javi_Gerard");
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            alerta.setAlertType(Alert.AlertType.ERROR);
-            alerta.setHeaderText(null);
-            alerta.setContentText("Error al editar el empleado.");
-            alerta.show();
-        }
-    }
 
     public void initialize() {
         MenuHamb.popupHambMake();

@@ -171,7 +171,6 @@ public class AdministrarEmpleadosController {
             alerta.setContentText("Se ha desactivado el empleado correctamente.");
             alerta.show();
             
-            initialize();
 
         } catch (SQLException sql) {
             sql.printStackTrace();
@@ -180,6 +179,9 @@ public class AdministrarEmpleadosController {
             alerta.setContentText("Error al desactivar el empleado.");
             alerta.show();
         }
+        fpane.getChildren().clear();
+        initialize();
+
     }
 
     @FXML

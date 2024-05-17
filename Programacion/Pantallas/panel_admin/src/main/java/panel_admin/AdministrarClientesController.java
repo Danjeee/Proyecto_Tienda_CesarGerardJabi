@@ -184,6 +184,8 @@ public class AdministrarClientesController {
             alerta.setContentText("Error al desactivar el usuario.");
             alerta.show();
         }
+        fpane.getChildren().clear();
+        initialize();
     }
 
     @FXML

@@ -96,7 +96,7 @@ public class PanelController {
             Connection connection1 = con.conecta();
             Statement st = connection1.createStatement();
 
-            ResultSet r = st.executeQuery("select E.dpto from empleado E inner join departamento D ON D.codigo = E.dpto where E.nombre='Nuria'");
+            ResultSet r = st.executeQuery("select E.dpto from empleado E inner join departamento D ON D.codigo = E.dpto where E.nombre='Ana'");
             
             int dpto = 0;
             if (r.next()){

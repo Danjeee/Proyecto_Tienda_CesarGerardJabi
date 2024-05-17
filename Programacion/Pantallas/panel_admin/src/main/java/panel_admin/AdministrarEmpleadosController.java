@@ -137,7 +137,7 @@ public class AdministrarEmpleadosController {
         }
         return arrayList_Empleado;
     }
-
+    
     public Departamento obtenerDepartamentoPorCodigo(int codigoDepartamento){
     Departamento departamento = null;
 
@@ -158,6 +158,7 @@ public class AdministrarEmpleadosController {
     }
     return departamento;
     }
+
 
     @FXML
     private void desactivarEmpleado(Empleado empleado) {

@@ -141,7 +141,7 @@ public class AdministrarClientesController {
         }
         return arrayList_Clientes;
     }
-
+    
     public MetodoPago obtenerMetodoPagoPorCodigo(int codigoMetodoPago){
     MetodoPago m_pago = null;
 
@@ -162,6 +162,7 @@ public class AdministrarClientesController {
     }
     return m_pago;
     }
+
 
     @FXML
     private void desactivarCliente(Clientes clientes) {

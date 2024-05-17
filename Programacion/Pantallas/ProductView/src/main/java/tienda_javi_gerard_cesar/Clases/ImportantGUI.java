@@ -13,14 +13,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
@@ -30,6 +35,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Separator;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -41,7 +48,6 @@ import tienda_javi_gerard_cesar.App;
 import tienda_javi_gerard_cesar.Main;
 
 public class ImportantGUI {
-
 
     private static void searchBar(ActionEvent e) {
         TextField sb = (TextField) e.getSource();
@@ -62,7 +68,7 @@ public class ImportantGUI {
         }
     }
 
-    private static boolean isAdmin(){
+    private static boolean isAdmin() {
         Connection con = conenct();
         try {
             Statement st = con.createStatement();
@@ -73,7 +79,7 @@ public class ImportantGUI {
                 }
             }
             return false;
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
@@ -172,6 +178,8 @@ public class ImportantGUI {
         return a;
 
     }
+
+
     private static Connection conenct() {
         Connection con = null;
         try {
@@ -202,8 +210,8 @@ public class ImportantGUI {
         timeline.play();
         return a;
     }
-    
-    public static HBox generateFooter(){
+
+    public static HBox generateFooter() {
         HBox a = new HBox();
         a.setPadding(new Insets(0, 0, 20, 0));
         a.setPrefWidth(1440);
@@ -226,50 +234,58 @@ public class ImportantGUI {
         Font tit = new Font("System", 16);
         String bold = "-fx-font-weight: bold";
 
-        /*AYUDA*/
+        /* AYUDA */
         Label help = new Label("AYUDA");
         help.setFont(tit);
         help.setStyle(bold);
 
         Button pregFrec = new Button("Preguntas Frecuentes");
         pregFrec.setFont(def);
-        /*pregFrec.setOnAction(e -> {
-            try {
-                App.setRoot("faq");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        });*/
+        /*
+         * pregFrec.setOnAction(e -> {
+         * try {
+         * App.setRoot("faq");
+         * } catch (IOException e1) {
+         * e1.printStackTrace();
+         * }
+         * });
+         */
 
         Button estado = new Button("Estado de mi pedido");
         estado.setFont(def);
-        /*estado.setOnAction(e -> {
-            try {
-                App.setRoot("estado");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        });*/
+        /*
+         * estado.setOnAction(e -> {
+         * try {
+         * App.setRoot("estado");
+         * } catch (IOException e1) {
+         * e1.printStackTrace();
+         * }
+         * });
+         */
 
         Button dev = new Button("Devoluciones");
         dev.setFont(def);
-        /*dev.setOnAction(e -> {
-            try {
-                App.setRoot("devoluciones");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        });*/
+        /*
+         * dev.setOnAction(e -> {
+         * try {
+         * App.setRoot("devoluciones");
+         * } catch (IOException e1) {
+         * e1.printStackTrace();
+         * }
+         * });
+         */
 
         Button envio = new Button("Envíos");
         envio.setFont(def);
-        /*envio.setOnAction(e -> {
-            try {
-                App.setRoot("infoenvios");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        });*/
+        /*
+         * envio.setOnAction(e -> {
+         * try {
+         * App.setRoot("infoenvios");
+         * } catch (IOException e1) {
+         * e1.printStackTrace();
+         * }
+         * });
+         */
 
         ayuda.getChildren().addAll(help, pregFrec, estado, dev, envio);
         a.getChildren().add(ayuda);
@@ -297,7 +313,7 @@ public class ImportantGUI {
         mpcont.setAlignment(Pos.TOP_CENTER);
         mpcont.setVgap(10);
         mpcont.setHgap(20);
-        for (String i : metodos){
+        for (String i : metodos) {
             Label ii = new Label(i);
             ii.setPrefWidth(50);
             ii.setStyle("-fx-background-color: #cccccc; -fx-background-radius: 10;");
@@ -307,13 +323,14 @@ public class ImportantGUI {
         FlowPane extra = new FlowPane();
         extra.setPrefWidth(520);
         extra.setPrefHeight(35);
-        String[] extracont = {"Politica de privacidad", "Condiciones de compras", "Politica de cookies", "Preferencias de cookies"};
-        for (int i = 0; i<extracont.length; i++){
+        String[] extracont = { "Politica de privacidad", "Condiciones de compras", "Politica de cookies",
+                "Preferencias de cookies" };
+        for (int i = 0; i < extracont.length; i++) {
             Button ee = new Button(extracont[i]);
             ee.setStyle("-fx-background-color: rgba(0,0,0,0)");
             ee.setFont(def);
             extra.getChildren().add(ee);
-            if (i!=extracont.length-1) {
+            if (i != extracont.length - 1) {
                 extra.getChildren().add(new Separator(Orientation.VERTICAL));
             }
         }
@@ -338,13 +355,13 @@ public class ImportantGUI {
         redescont.put("YOUTUBE", "https://www.youtube.com/watch?v=vXYVfk7agqU");
         redescont.put("GITHUB", "https://github.com/Danjeee/Proyecto_Tienda_CesarGerardJabi");
         redescont.put("TWITTER", "https://x.com/KFC_ES");
-        for (int i = 0; i<redescont.size(); i++){
+        for (int i = 0; i < redescont.size(); i++) {
             Button ee = new Button("");
             ee.setStyle("-fx-background-color: #fff; -fx-background-radius: 20");
             ee.setPrefSize(30, 30);
             FontAwesomeIconView rs = new FontAwesomeIconView();
-            rs.setGlyphName((String)redescont.keySet().toArray()[i]);
-            String url = (String)redescont.values().toArray()[i];
+            rs.setGlyphName((String) redescont.keySet().toArray()[i]);
+            String url = (String) redescont.values().toArray()[i];
             rs.setSize("30");
             ee.setGraphic(rs);
             ee.setOnAction(e -> urlOpener(url));
@@ -356,7 +373,8 @@ public class ImportantGUI {
 
         return a;
     }
-    private static void urlOpener(String url){
+
+    private static void urlOpener(String url) {
         try {
             URI uri = new URI(url);
             Desktop dt = Desktop.getDesktop();
@@ -364,9 +382,7 @@ public class ImportantGUI {
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }
-        
-        
+
     }
 
-     
 }

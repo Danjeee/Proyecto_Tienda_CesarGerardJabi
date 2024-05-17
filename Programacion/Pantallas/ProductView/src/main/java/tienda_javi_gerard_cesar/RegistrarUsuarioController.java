@@ -73,7 +73,7 @@ public class RegistrarUsuarioController {
        
             Statement st = connection.createStatement();      
             st.executeUpdate("INSERT INTO CLIENTE VALUES('"+DNI.getText()+"','"+nombre.getText()+"','"+apellidos.getText()+"','"+telefono.getText()+"','"+fechanac.getValue()
-            +"','"+direccion.getText()+"','"+email.getText()+"','"+contraseña.getText()+"','0',' 0', 'Direccion',"+tarjetaFide.isSelected()+","+activo.isSelected()+",1)");
+            +"','"+direccion.getText()+"','"+email.getText()+"','"+contraseña.getText()+"','0',' 0','"+direccion.getText()+"',"+tarjetaFide.isSelected()+","+activo.isSelected()+",1)");
             alerta.setAlertType(AlertType.INFORMATION);
             alerta.setHeaderText(null);
             alerta.setContentText("El usuario se ha registrado correctamente.");
@@ -91,7 +91,7 @@ public class RegistrarUsuarioController {
     private Connection conenct() {
         Connection con = null;
         try {
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "mysql23");
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
             e.printStackTrace();
         }

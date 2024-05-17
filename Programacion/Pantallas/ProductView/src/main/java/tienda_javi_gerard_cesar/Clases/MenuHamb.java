@@ -8,12 +8,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -69,6 +75,37 @@ public class MenuHamb {
              */
         }
         return pant;
+    }
+
+    public static void start(AnimationTimer startListener){
+        startListener.start();
+    }
+    private static void key(Scene scene, KeyCode e) {
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent arg0) {
+                if (arg0.getCode() == e) {
+                    System.out.println(menued);
+                    popupHambShow();
+                }
+            }
+
+        });
+    }
+
+    public static AnimationTimer keyListener(KeyCode keyC) {
+        AnimationTimer gameLoop = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                int javisegundos = 0;
+                javisegundos++;
+                if (javisegundos == 1) {
+                    key(App.scene, keyC);
+                }
+            }
+        };
+        return gameLoop;
     }
 
     private static boolean isAdmin() {

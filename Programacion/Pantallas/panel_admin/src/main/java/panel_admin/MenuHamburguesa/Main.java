@@ -43,7 +43,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
-import panel_admin.Clases.Articulo;
+import panel_admin.App;
+import panel_admin.Clases.*;
 import panel_admin.MenuHamburguesa.MenuHamb;
 
 public class Main {
@@ -301,9 +302,9 @@ public class Main {
     private void buscar() throws IOException {
         main.getChildren().clear();
         Connection con = conenct();
-        HashSet<Articulo> busq = new HashSet();
-        HashSet<Articulo> busqaux = new HashSet();
-        HashSet<Articulo> busqaux2 = new HashSet();
+        HashSet<Articulo2> busq = new HashSet();
+        HashSet<Articulo2> busqaux = new HashSet();
+        HashSet<Articulo2> busqaux2 = new HashSet();
         for (String i : resultados) {
             try {
                 Statement st = con.createStatement();
@@ -314,7 +315,7 @@ public class Main {
                     String nombre = rs.getString("nombre");
                     BigDecimal precio = rs.getBigDecimal("precio");
                     String img = rs.getString("imagen");
-                    busqaux.add(new Articulo(cod, nombre, precio, img));
+                    busqaux.add(new Articulo2(cod, nombre, precio, img));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -355,7 +356,7 @@ public class Main {
                     String nombre = rs.getString("nombre");
                     BigDecimal precio = rs.getBigDecimal("precio");
                     String img = rs.getString("imagen");
-                    busqaux2.add(new Articulo(cod, nombre, precio, img));
+                    busqaux2.add(new Articulo2(cod, nombre, precio, img));
                 }
             } catch (SQLException e1) {
                 e1.printStackTrace();
@@ -365,8 +366,8 @@ public class Main {
             if (resultados.isEmpty()) {
                 busq.addAll(busqaux2);
             } else {
-                for (Articulo i : busqaux) {
-                    for (Articulo j : busqaux2) {
+                for (Articulo2 i : busqaux) {
+                    for (Articulo2 j : busqaux2) {
                         if (i.getCodigo() == j.getCodigo()) {
                             busq.add(j);
                         }
@@ -379,7 +380,7 @@ public class Main {
                 initialize();
             }
         }
-        for (Articulo i : busq) {
+        for (Articulo2 i : busq) {
             int cod = i.getCodigo();
             String nombre = i.getNombre();
             String precio = i.getPrecio().toString();
@@ -483,7 +484,7 @@ public class Main {
         }
         imgg.setOnAction(e -> {
             try {
-                ProductView.current = cod;
+                /*ProductView.current = cod; */
                 App.setRoot("productview");
             } catch (IOException e1) {
                 e1.printStackTrace();

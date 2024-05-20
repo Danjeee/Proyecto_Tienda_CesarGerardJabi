@@ -17,21 +17,11 @@
 
 <AnchorPane fx:id="cont" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="panel_admin.AltaProductosController">
    <children>
-      <Pane layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0"> 
+      <Pane layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1457.0"> 
          <children>
-            <VBox layoutX="564.0" layoutY="257.0" prefHeight="557.0" prefWidth="360.0">
+            <VBox layoutX="548.0" layoutY="203.0" prefHeight="716.0" prefWidth="403.0">
                <children>
-                  <Pane prefHeight="194.0" prefWidth="360.0">
-                     <children>
-                        <TextArea fx:id="descripcion" layoutX="-7.0" layoutY="44.0" prefHeight="117.0" prefWidth="377.0" style="-fx-border-color: grey;" />
-                        <Label layoutX="-4.0" layoutY="5.0" text="Descripción">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane prefHeight="351.0" prefWidth="360.0">
+                  <Pane prefHeight="374.0" prefWidth="403.0">
                      <children>
                         <Pane layoutX="4.0" layoutY="9.0" prefHeight="48.0" prefWidth="272.0">
                            <children>
@@ -57,13 +47,47 @@
                         </TextField>
                      </children>
                   </Pane>
+                  <Pane prefHeight="130.0" prefWidth="310.0">
+                     <children>
+                        <Label layoutX="-1.0" layoutY="-5.0" text="Tipo de cierre">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tipoCierre" layoutX="-3.0" layoutY="31.0" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="109.0" prefWidth="403.0">
+                     <children>
+                        <Label layoutX="-1.0" layoutY="-5.0" text="Tipo de manga">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tipoManga" layoutX="-3.0" layoutY="31.0" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="97.0" prefWidth="403.0">
+                     <children>
+                        <Label layoutX="55.0" layoutY="27.0" text="Estampada">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="estampada" contentDisplay="GRAPHIC_ONLY" layoutX="5.0" layoutY="28.0" mnemonicParsing="false" selected="true" style="-fx-background-color: white;">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </CheckBox>
+                     </children>
+                  </Pane>
                </children>
             </VBox>
-            <VBox layoutX="114.0" layoutY="258.0" prefHeight="484.0" prefWidth="310.0">
+            <VBox layoutX="125.0" layoutY="223.0" prefHeight="727.0" prefWidth="310.0">
                <children>
-                  <Pane prefHeight="173.0" prefWidth="295.0">
+                  <Pane prefHeight="130.0" prefWidth="310.0">
                      <children>
-                        <TextField fx:id="nombre" layoutX="-3.0" layoutY="41.0" prefHeight="68.0" prefWidth="308.0" style="-fx-border-color: grey;" />
+                        <TextField fx:id="nombre" layoutX="-3.0" layoutY="41.0" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;" />
                         <Label layoutX="-1.0" layoutY="3.0" text="Nombre *">
                            <font>
                               <Font size="25.0" />
@@ -71,19 +95,19 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane prefHeight="164.0" prefWidth="310.0">
+                  <Pane prefHeight="130.0" prefWidth="310.0">
                      <children>
                         <Label layoutX="-1.0" layoutY="-5.0" text="Marca">
                            <font>
                               <Font size="25.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="marca" layoutX="-3.0" layoutY="31.0" prefHeight="68.0" prefWidth="308.0" style="-fx-border-color: grey;" />
+                        <TextField fx:id="marca" layoutX="-3.0" layoutY="31.0" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;" />
                      </children>
                   </Pane>
-                  <Pane prefHeight="127.0" prefWidth="295.0">
+                  <Pane prefHeight="130.0" prefWidth="310.0">
                      <children>
-                        <ChoiceBox fx:id="material" layoutX="-1.0" layoutY="35.0" prefHeight="68.0" prefWidth="308.0" style="-fx-background-color: white; -fx-border-color: grey;" />
+                        <ChoiceBox fx:id="material" layoutX="-1.0" layoutY="35.0" prefHeight="60.0" prefWidth="304.0" style="-fx-background-color: white; -fx-border-color: grey;" />
                         <Label layoutX="-1.0" layoutY="-5.0" text="Material">
                            <font>
                               <Font size="25.0" />
@@ -91,11 +115,41 @@
                         </Label>
                      </children>
                   </Pane>
+                  <Pane prefHeight="126.0" prefWidth="310.0">
+                     <children>
+                        <ChoiceBox fx:id="material11" layoutX="-1.0" layoutY="35.0" prefHeight="60.0" prefWidth="303.0" style="-fx-background-color: white; -fx-border-color: grey;" />
+                        <Label layoutX="-1.0" layoutY="-5.0" text="Tipo de articulo">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="130.0" prefWidth="310.0">
+                     <children>
+                        <Label layoutX="-1.0" layoutY="-5.0" text="Talla">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="talla" layoutX="-3.0" layoutY="31.0" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="130.0" prefWidth="310.0">
+                     <children>
+                        <Label layoutX="-1.0" layoutY="-5.0" text="Color">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="color" layoutX="-3.0" layoutY="31.0" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;" />
+                     </children>
+                  </Pane>
                </children>
             </VBox>
-            <Pane layoutX="1095.0" layoutY="875.0" prefHeight="117.0" prefWidth="270.0">
+            <Pane layoutX="1037.0" layoutY="700.0" prefHeight="117.0" prefWidth="362.0">
                <children>
-                  <Button layoutX="19.0" layoutY="12.0" mnemonicParsing="false" onAction="#guardarCambios" prefHeight="95.0" prefWidth="238.0" style="-fx-background-color: #000000;" text="Guardar &#10;cambios" textFill="WHITE">
+                  <Button layoutX="16.0" layoutY="12.0" mnemonicParsing="false" onAction="#guardarCambios" prefHeight="95.0" prefWidth="336.0" style="-fx-background-color: #000000;" text="Guardar &#10;cambios" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -108,7 +162,7 @@
             <Button layoutX="12.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: invisible;" />
             <Button layoutX="822.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: inivisible;" />
             <Button layoutX="840.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: invisible;" />
-            <Line endX="-100.0" endY="455.0" layoutX="1098.0" layoutY="350.0" startX="-100.0" startY="-109.66667175292969" stroke="#404040" strokeWidth="0.2" />
+            <Line endX="-100.0" endY="594.6666870117188" layoutX="1098.0" layoutY="350.0" startX="-100.0" startY="-140.0" stroke="#404040" strokeWidth="0.2" />
             <Pane layoutY="4.0" prefHeight="80.0" prefWidth="1440.0">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="317.0" layoutX="562.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
@@ -124,7 +178,7 @@
             </Pane>
             <Pane layoutX="53.0" layoutY="142.0" prefHeight="38.0" prefWidth="362.0">
                <children>
-                  <Label layoutX="45.0" layoutY="-2.0" text="Información de usuario">
+                  <Label layoutX="45.0" layoutY="-2.0" text="Alta de productos">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -139,30 +193,40 @@
                   </Button>
                </children>
             </Pane>
-            <VBox layoutX="1074.0" layoutY="378.0" prefHeight="267.0" prefWidth="238.0">
+            <VBox layoutX="1050.0" layoutY="219.0" prefHeight="495.0" prefWidth="345.0">
                <children>
-                  <Pane prefHeight="115.0" prefWidth="330.0">
+                  <Pane prefHeight="233.0" prefWidth="345.0">
                      <children>
-                        <TextField fx:id="precio" layoutX="5.0" layoutY="45.0" prefHeight="71.0" prefWidth="175.0" style="-fx-border-color: grey;">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </TextField>
-                        <Label layoutX="5.0" layoutY="7.0" text="Precio de venta">
+                        <TextArea fx:id="descripcion" layoutX="3.0" layoutY="44.0" prefHeight="144.0" prefWidth="333.0" style="-fx-border-color: grey;" />
+                        <Label layoutX="4.0" layoutY="5.0" prefHeight="36.0" prefWidth="152.0" text="Descripción">
                            <font>
                               <Font size="25.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane prefHeight="127.0" prefWidth="330.0">
+                  <Pane prefHeight="127.0" prefWidth="345.0">
                      <children>
-                        <Label layoutX="57.0" layoutY="65.0" text="Activar Articulo">
+                        <TextField fx:id="precio" layoutX="4.0" layoutY="45.0" prefHeight="71.0" prefWidth="333.0" style="-fx-border-color: grey;">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="5.0" layoutY="7.0" prefHeight="36.0" prefWidth="195.0" text="Precio de venta">
                            <font>
                               <Font size="25.0" />
                            </font>
                         </Label>
-                        <CheckBox fx:id="activo" contentDisplay="GRAPHIC_ONLY" layoutX="8.0" layoutY="67.0" mnemonicParsing="false" selected="true" style="-fx-background-color: white;">
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="115.0" prefWidth="345.0">
+                     <children>
+                        <Label layoutX="57.0" layoutY="39.0" text="Activar Articulo">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="activo" contentDisplay="GRAPHIC_ONLY" layoutX="5.0" layoutY="41.0" mnemonicParsing="false" selected="true" style="-fx-background-color: white;">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -171,7 +235,7 @@
                   </Pane>
                </children>
             </VBox>
-            <Line endX="-100.0" endY="455.0" layoutX="594.0" layoutY="351.0" startX="-100.0" startY="-109.66667175292969" stroke="#404040" strokeWidth="0.2" />
+            <Line endX="-100.0" endY="593.6666870117188" layoutX="594.0" layoutY="351.0" startX="-100.0" startY="-147.6666717529297" stroke="#404040" strokeWidth="0.2" />
          </children>
       </Pane>
    </children>

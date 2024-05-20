@@ -1,11 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="cont" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@styles1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.Pagar">
    <children>
-      <VBox layoutX="53.0" layoutY="-25.0" prefHeight="1024.0" prefWidth="1440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <VBox fx:id="all" layoutX="165.0" layoutY="93.0" prefHeight="780.0" prefWidth="800.0" spacing="10.0" AnchorPane.bottomAnchor="122.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" AnchorPane.topAnchor="122.0">
+         <children>
+            <ScrollPane prefHeight="506.0" prefWidth="700.0">
+               <content>
+                  <VBox fx:id="carro" prefHeight="504.0" prefWidth="696.0" />
+               </content>
+            </ScrollPane>
+            <Label prefHeight="30.0" prefWidth="718.0" text="Label">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="700.0" spacing="20.0">
+               <children>
+                  <Label text="Selecciona metodo de pago:" />
+                  <ChoiceBox fx:id="metodoscliente" prefWidth="150.0" />
+                  <Button mnemonicParsing="false" onAction="#toggleAdd" text="Añadir nuevo" />
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="737.0" style="-fx-background-color: #000;" text="Pagar" textFill="WHITE">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>

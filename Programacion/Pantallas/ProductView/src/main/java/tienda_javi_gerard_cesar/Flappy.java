@@ -43,6 +43,8 @@ public class Flappy {
     double javisegundos = 0;
     int jumpHeight = 50;
     int puntuacion = 0;
+    int diff = 0;
+    int pipespawn = 150;
     @FXML
     private Label puntShow;
 
@@ -138,7 +140,7 @@ public class Flappy {
         }
         postofit = checkPiper();
         timepipe++;
-        if (timepipe >= 150) {
+        if (timepipe >= pipespawn) {
             try {
                 VBox a = newPipe();
                 fondo.getChildren().add(a);
@@ -150,6 +152,16 @@ public class Flappy {
             }
             timepipe = 0;
         }
+        if (diff == 10){
+            if (pipespeed != 80) {
+                pipespeed+=10;
+            }
+            if (pipespawn != 90) {
+                pipespawn -= 10;
+            }
+            diff = 0;
+        }
+
         timeber++;
         javisegundos++;
         moveBirdY(yDelta * timeber);
@@ -225,6 +237,7 @@ public class Flappy {
                 }
                 if (i.getLayoutX() < -100) {
                     puntuacion++;
+                    diff++;
                     puntShow.setText(textoPuntuacion());
                     fondo.getChildren().remove(3);
                 }

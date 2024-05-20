@@ -18,6 +18,14 @@ CREATE TABLE DESCUENTOS(
     cant INT UNSIGNED,
     freeShip BOOLEAN
 );
+-- Crear table cuentas_pago
+CREATE TABLE CUENTAS_PAGO(
+	id INT UNSIGNED auto_increment primary key,
+    cuenta VARCHAR(20),
+    fecha varchar(5),
+    constraint fecha_check check(fecha like("[0-9][0-9]/[0-9][0-9]"))
+);
+
 
 -- Crear la tabla EMPLEADO
 CREATE TABLE EMPLEADO (
@@ -58,6 +66,15 @@ CREATE TABLE CLIENTE (
     activo boolean default true,
     m_pago INT NOT NULL,
     FOREIGN KEY (m_pago) REFERENCES METODO_PAGO(codigo)
+);
+
+-- Crear tabla metodos_pago_cliente
+Create table METODOS_PAGO_CLIENTE(
+	id int unsigned auto_increment primary key,
+	DNI_cliente CHAR(9) NOT NULL,
+    id_cuenta_pago INT UNSIGNED,
+    FOREIGN KEY (DNI_cliente) REFERENCES CLIENTE(DNI),
+    FOREIGN KEY (id_cuenta_pago) REFERENCES CUENTAS_PAGO(id)
 );
 
 -- Crear la tabla PEDIDO

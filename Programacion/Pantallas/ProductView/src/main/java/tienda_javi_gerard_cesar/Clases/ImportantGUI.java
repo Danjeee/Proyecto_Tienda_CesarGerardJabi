@@ -323,13 +323,21 @@ public class ImportantGUI {
         FlowPane extra = new FlowPane();
         extra.setPrefWidth(520);
         extra.setPrefHeight(35);
-        String[] extracont = { "Politica de privacidad", "Condiciones de compras", "Politica de cookies",
-                "Preferencias de cookies" };
+        String[] extracont = { "Politica de privacidad", "Condiciones de compras", "Politica de cookies", "Gana descuentos" };
         for (int i = 0; i < extracont.length; i++) {
             Button ee = new Button(extracont[i]);
             ee.setStyle("-fx-background-color: rgba(0,0,0,0)");
             ee.setFont(def);
             extra.getChildren().add(ee);
+            if (extracont[i].equals("Gana descuentos")) {
+                ee.setOnAction(e -> {
+                    try {
+                        App.setRoot("flappy");
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                });
+            }
             if (i != extracont.length - 1) {
                 extra.getChildren().add(new Separator(Orientation.VERTICAL));
             }

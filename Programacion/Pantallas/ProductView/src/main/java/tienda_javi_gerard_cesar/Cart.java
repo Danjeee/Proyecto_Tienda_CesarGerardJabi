@@ -41,6 +41,8 @@ import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
 public class Cart {
     @FXML
+    private Button pagarbutton;
+    @FXML
     private FlowPane main;
     @FXML
     private VBox all;
@@ -60,11 +62,11 @@ public class Cart {
     private Label des;
     @FXML
     private Button codButton;
-    private ArrayList<Articulo> articulos;
-    private ArrayList<String> descuentosUsados = new ArrayList<>();
-    private Descuento descuentoActivo = new Descuento("0", 0, false);
+    public static ArrayList<Articulo> articulos;
+    public static ArrayList<String> descuentosUsados = new ArrayList<>();
+    public static Descuento descuentoActivo = new Descuento("0", 0, false);
     private Double subtotalValor;
-    private Double totalValor;
+    public static Double totalValor;
     private Double impValor;
     private Double envioValor;
     private Double descuentoValor;
@@ -100,8 +102,12 @@ public class Cart {
         }
     }
 
-    private void pagar(){
-        
+    @FXML private void pagar(){
+        try {
+            App.setRoot("pagar");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void checkDescuento(){
@@ -427,6 +433,17 @@ public class Cart {
         main.getChildren().clear();
         all.getChildren().add(0, ImportantGUI.generateHeader());
         all.getChildren().add(ImportantGUI.generateFooter());
+        Connection con = conenct();
+        try {
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM descuentos_usados WHERE usado_por = '"+App.user+"'");
+            while (rs.next()) {
+                descuentosUsados.add(rs.getString("descuento"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
         articulos = cargarItems();
         for (Articulo i : articulos) {
             String nom = i.getNombre();
@@ -435,6 +452,13 @@ public class Cart {
             String img = i.getImg();
             int cod = i.getCodigo();
             main.getChildren().add(createItem(img, nom, precio, cant, cod, i));
+        }
+        if (main.getChildren().size() == 0) {
+            pagarbutton.setStyle("-fx-background-color: #808080");
+            pagarbutton.setOnAction(null);
+        } else {
+            pagarbutton.setStyle("-fx-background-color: #000");
+            pagarbutton.setOnAction(e -> pagar());
         }
         subtotal.setText(subtotal());
         des.setText(descuento());

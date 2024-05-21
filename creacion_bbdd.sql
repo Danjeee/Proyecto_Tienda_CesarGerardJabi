@@ -20,6 +20,7 @@ CREATE TABLE DESCUENTOS(
 );
 
 
+
 -- Crear la tabla EMPLEADO
 CREATE TABLE EMPLEADO (
     DNI CHAR(9) PRIMARY KEY,
@@ -61,14 +62,22 @@ CREATE TABLE CLIENTE (
     FOREIGN KEY (m_pago) REFERENCES METODO_PAGO(codigo)
 );
 
+-- Crear table descuentos usados
+CREATE TABLE DESCUENTOS_USADOS(
+	descuento VARCHAR(50) PRIMARY KEY,
+	usado_por CHAR(9) NOT NULL,
+    FOREIGN KEY (usado_por) REFERENCES CLIENTE(DNI)
+);
+
 -- Crear table cuentas_pago
 CREATE TABLE CUENTAS_PAGO(
 	id INT UNSIGNED auto_increment primary key,
     cuenta VARCHAR(20),
     fecha varchar(5),
+    tipo Varchar(10),
     DNI_cliente CHAR(9) NOT NULL,
     FOREIGN KEY (DNI_cliente) REFERENCES CLIENTE(DNI),
-    constraint fecha_check check(fecha like("[0-9][0-9]/[0-9][0-9]"))
+    constraint fecha_check check(fecha regexp '[0-9]{2}/[0-9]{2}$')
 );
 
 -- Crear la tabla PEDIDO

@@ -24,11 +24,11 @@ public class App extends Application {
         return last[1];
     }
 
-    public static String user = "guest";
+    public static String user = "23456789A";
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("pagar"), 1440, 1024);
+        scene = new Scene(loadFXML("cart"), 1440, 1024);
         stage.setScene(scene);
         stage.setTitle("secondHand");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/icon.jpg")));

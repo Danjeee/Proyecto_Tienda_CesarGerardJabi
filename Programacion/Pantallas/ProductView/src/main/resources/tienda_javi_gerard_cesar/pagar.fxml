@@ -10,37 +10,41 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="cont" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@styles1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.Pagar">
+<AnchorPane fx:id="cont" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #fff;" stylesheets="@styles1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.Pagar">
    <children>
-      <VBox fx:id="all" layoutX="165.0" layoutY="93.0" prefHeight="780.0" prefWidth="800.0" spacing="10.0" AnchorPane.bottomAnchor="122.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" AnchorPane.topAnchor="122.0">
+      <VBox fx:id="all" prefHeight="1024.0" prefWidth="1440.0">
          <children>
-            <ScrollPane prefHeight="506.0" prefWidth="700.0">
-               <content>
-                  <VBox fx:id="carro" prefHeight="504.0" prefWidth="696.0" />
-               </content>
-            </ScrollPane>
-            <Label prefHeight="30.0" prefWidth="718.0" text="Label">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="700.0" spacing="20.0">
+            <VBox prefHeight="780.0" prefWidth="700.0" spacing="10.0">
                <children>
-                  <Label text="Selecciona metodo de pago:" />
-                  <ChoiceBox fx:id="metodoscliente" prefWidth="150.0" />
-                  <Button mnemonicParsing="false" onAction="#toggleAdd" text="Añadir nuevo" />
+                  <ScrollPane prefHeight="506.0" prefWidth="700.0">
+                     <content>
+                        <HBox fx:id="carro" prefHeight="502.0" prefWidth="695.0" />
+                     </content>
+                  </ScrollPane>
+                  <Label fx:id="total" prefHeight="30.0" prefWidth="718.0" text="Label">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="700.0" spacing="20.0">
+                     <children>
+                        <Label text="Selecciona metodo de pago:" />
+                        <ChoiceBox fx:id="metodoscliente" prefWidth="150.0" />
+                        <Button mnemonicParsing="false" onAction="#toggleAdd" text="Añadir nuevo" />
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#pagar" prefHeight="66.0" prefWidth="737.0" style="-fx-background-color: #000;" text="Pagar" textFill="WHITE">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#volver" text="Volver" />
                </children>
-            </HBox>
-            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="737.0" style="-fx-background-color: #000;" text="Pagar" textFill="WHITE">
-               <font>
-                  <Font size="31.0" />
-               </font>
-            </Button>
+               <padding>
+                  <Insets bottom="50.0" left="350.0" right="350.0" top="50.0" />
+               </padding>
+            </VBox>
          </children>
-         <padding>
-            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-         </padding>
       </VBox>
    </children>
 </AnchorPane>

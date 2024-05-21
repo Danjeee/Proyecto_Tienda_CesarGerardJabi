@@ -86,7 +86,6 @@ public class MenuHamb {
             @Override
             public void handle(KeyEvent arg0) {
                 if (arg0.getCode() == e) {
-                    System.out.println(menued);
                     popupHambShow();
                 }
             }

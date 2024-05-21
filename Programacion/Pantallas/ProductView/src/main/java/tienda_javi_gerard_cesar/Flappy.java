@@ -83,7 +83,7 @@ public class Flappy {
         cont.setPrefWidth(100);
         cont.setPrefHeight(3072);
         FileInputStream pipedownimgfile = new FileInputStream(
-                "Programacion\\Pantallas\\ProductView\\src\\main\\resources\\tienda_javi_gerard_cesar\\pipe_down.png");
+                "C:\\Users\\alumnoM\\Documents\\GitHub\\Proyecto_Tienda_CesarGerardJabi\\Programacion\\Pantallas\\ProductView\\src\\main\\resources\\tienda_javi_gerard_cesar\\pipe_down.png");
         Image pipedownimg = new Image(pipedownimgfile);
         ImageView pipedown = new ImageView(pipedownimg);
         Random rnd = new Random();
@@ -92,7 +92,7 @@ public class Flappy {
         fit.setStyle("-fx-background-color: rgba(0,0,0,0)");
         fit.setPrefHeight(rnd.nextInt(200) + 200);
         FileInputStream pipeupimgfile = new FileInputStream(
-                "Programacion\\Pantallas\\ProductView\\src\\main\\resources\\tienda_javi_gerard_cesar\\pipe_up.png");
+                "C:\\Users\\alumnoM\\Documents\\GitHub\\Proyecto_Tienda_CesarGerardJabi\\Programacion\\Pantallas\\ProductView\\src\\main\\resources\\tienda_javi_gerard_cesar\\pipe_up.png");
         Image pipeupimg = new Image(pipeupimgfile);
         ImageView pipeup = new ImageView(pipeupimg);
         pipedown.setFitHeight(1024);

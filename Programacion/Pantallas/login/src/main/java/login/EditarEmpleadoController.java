@@ -89,6 +89,8 @@ public class EditarEmpleadoController {
     public static String current = "56789012E";
 
     public void initialize() {
+        dpto.setStyle("-fx-font-size: 14");
+        fechaNac.setStyle("-fx-font-size: 14");
         DNIempleado.setEditable(false);
         Connection con = conenct();
 

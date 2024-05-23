@@ -59,7 +59,7 @@ public class AdministrarClientesController {
         App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
     }
 
-    private HBox createItem(String nombre, String apellidos, Clientes clientes) {
+    private HBox crearCliente(String nombre, String apellidos, Clientes clientes) {
         
         HBox hb = new HBox();
         hb.setPrefHeight(75);
@@ -204,7 +204,7 @@ public class AdministrarClientesController {
             String nombre = clientes.getNombre();
             String apellidos = clientes.getApellidos();
     
-            fpane.getChildren().add(createItem(nombre, apellidos, clientes));
+            fpane.getChildren().add(crearCliente(nombre, apellidos, clientes));
         }
     }
 }

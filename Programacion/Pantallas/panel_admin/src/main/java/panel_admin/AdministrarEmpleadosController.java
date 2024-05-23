@@ -58,7 +58,7 @@ public class AdministrarEmpleadosController {
         App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
     }
 
-    private HBox createItem(String nombre, String apellidos, Empleado empleado) {
+    private HBox crearEmpleado(String nombre, String apellidos, Empleado empleado) {
         
         HBox hb = new HBox();
         hb.setPrefHeight(75);
@@ -104,7 +104,6 @@ public class AdministrarEmpleadosController {
         hb.getChildren().add(borrarEmpleado);
 
         return hb;
-
     }
 
     private ArrayList<Empleado> cargarEmpleados() {
@@ -202,7 +201,7 @@ public class AdministrarEmpleadosController {
             String nombre = empleado.getNombre();
             String apellidos = empleado.getApellidos();
             
-            fpane.getChildren().add(createItem(nombre, apellidos, empleado));
+            fpane.getChildren().add(crearEmpleado(nombre, apellidos, empleado));
         }
     }
 }

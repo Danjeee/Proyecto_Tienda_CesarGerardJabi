@@ -16,8 +16,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import panel_admin.Clases.ImportantGUI;
 import panel_admin.MenuHamburguesa.MenuHamb;
 
 public class AltaProductosController {
@@ -47,6 +50,9 @@ public class AltaProductosController {
     private TextField talla;
 
     @FXML
+    private TextField talla_zapatos;
+
+    @FXML
     private TextField color;
 
     @FXML
@@ -65,7 +71,7 @@ public class AltaProductosController {
     private TextField tipo_cierre;
 
     @FXML
-    private TextField tien_bolsillos;
+    private CheckBox tien_bolsillos;
 
     @FXML
     private TextField capacidad;
@@ -78,6 +84,48 @@ public class AltaProductosController {
 
     @FXML
     private CheckBox personalizado;
+
+    @FXML
+    private VBox vbox_tipoCierre;
+
+    @FXML
+    private VBox vbox_tipoManga;
+
+    @FXML
+    private VBox vbox_impermeable;
+
+    @FXML
+    private VBox vbox_tipoPantalon;
+
+    @FXML
+    private VBox vbox_capacidad;
+
+    @FXML
+    private VBox vbox_tipoSuela;
+
+    @FXML
+    private VBox vbox_estampada;
+
+    @FXML
+    private VBox vbox_tieneBolsillo;
+
+    @FXML
+    private VBox vbox_talla;
+
+    @FXML
+    private VBox vbox_estilo;
+
+    @FXML
+    private VBox vbox_color;
+
+    @FXML
+    private VBox vbox_personalizado;
+
+    @FXML
+    private VBox vbox_tallaZapatos;
+
+    @FXML
+    private VBox all;
 
 
     @FXML
@@ -192,56 +240,57 @@ public class AltaProductosController {
 
     @FXML
     private void opcionesArticulo() {
+        
+        /*Ropa*/
+        vbox_talla.setVisible(false);
+        vbox_color.setVisible(false);
+        vbox_tipoCierre.setVisible(false);
+        vbox_impermeable.setVisible(false);
+        vbox_tipoManga.setVisible(false);
+        vbox_estampada.setVisible(false);
+        vbox_tipoPantalon.setVisible(false);
+        vbox_tieneBolsillo.setVisible(false);
 
-        talla.setVisible(false);
-        color.setVisible(false);
-        tipo_cierre.setVisible(false);
-        impermeable.setVisible(false);
-        tipo_manga.setVisible(false);
-        estampada.setVisible(false);
-        tipo_pantalon.setVisible(false);
-        tien_bolsillos.setVisible(false);
-
-        estilo.setVisible(false);
-        personalizado.setVisible(false);
-        tipo_cierre.setVisible(false);
-        capacidad.setVisible(false);
-        tipo_suela.setVisible(false);
-        talla.setVisible(false);
-
+        /*Accesorios*/
+        vbox_estilo.setVisible(false);
+        vbox_personalizado.setVisible(false);
+        vbox_tipoCierre.setVisible(false);
+        vbox_capacidad.setVisible(false);
+        vbox_tipoSuela.setVisible(false);
+        vbox_tallaZapatos.setVisible(false);
 
         if (tipoArticulo.getValue() == "Camisa" || tipoArticulo.getValue() == "Chaqueta" || tipoArticulo.getValue() == "Pantalón" ){
-            talla.setVisible(true);
-            color.setVisible(true);
-        
+            vbox_talla.setVisible(true);
+            vbox_color.setVisible(true);
+            vbox_tipoCierre.setVisible(true);
         }else{
-            estilo.setVisible(true);
-            personalizado.setVisible(true);
+            vbox_estilo.setVisible(true);
+            vbox_personalizado.setVisible(true);
+            vbox_tipoCierre.setVisible(true);
         }
 
         switch (tipoArticulo.getValue()) {
             case "Camisa":
-                tipo_manga.setVisible(true);
-                estampada.setVisible(true);
+                vbox_tipoManga.setVisible(true);
+                vbox_estampada.setVisible(true);
                 break;
 
             case "Chaqueta":
-                impermeable.setVisible(true);
+                vbox_impermeable.setVisible(true);
                 break;
 
             case "Pantalón":
-                tipo_pantalon.setVisible(true);
-                tien_bolsillos.setVisible(true);
+                vbox_tipoPantalon.setVisible(true);
+                vbox_tieneBolsillo.setVisible(true);
                 break;
 
             case "Bolso":
-                tipo_cierre.setVisible(true);
-                capacidad.setVisible(true);
+                vbox_capacidad.setVisible(true);
                 break;
 
             case "Zapatos":
-                tipo_suela.setVisible(true);
-                talla.setVisible(true);
+                vbox_tipoSuela.setVisible(true);
+                vbox_tallaZapatos.setVisible(true);
                 break;
                 
             default:
@@ -254,8 +303,30 @@ public class AltaProductosController {
         cont.getChildren().add(MenuHamb.menuShadow);
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
+        all.getChildren().add(0,ImportantGUI.generateHeader());
+        all.getChildren().add(ImportantGUI.generateFooter());
+        tipoArticulo.getSelectionModel().select("Bolso");;
+        tipoArticulo.setOnAction(e -> opcionesArticulo());
 
         material.getItems().addAll(opciones_material);
         tipoArticulo.getItems().addAll(opciones_articulo);
+
+       /*Ropa*/
+       vbox_talla.setVisible(false);
+       vbox_color.setVisible(false);
+       vbox_tipoCierre.setVisible(false);
+       vbox_impermeable.setVisible(false);
+       vbox_tipoManga.setVisible(false);
+       vbox_estampada.setVisible(false);
+       vbox_tipoPantalon.setVisible(false);
+       vbox_tieneBolsillo.setVisible(false);
+
+       /*Accesorios*/
+       vbox_estilo.setVisible(false);
+       vbox_personalizado.setVisible(false);
+       vbox_tipoCierre.setVisible(false);
+       vbox_capacidad.setVisible(false);
+       vbox_tipoSuela.setVisible(false);
+       vbox_tallaZapatos.setVisible(false);
     }
 }

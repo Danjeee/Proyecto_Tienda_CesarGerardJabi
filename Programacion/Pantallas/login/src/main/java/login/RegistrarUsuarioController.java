@@ -8,12 +8,10 @@ import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import login.Clases.Alertas;
 
 public class RegistrarUsuarioController {
@@ -65,26 +63,18 @@ public class RegistrarUsuarioController {
     private void registrar(){
 
         Connection connection = conenct();
-        Alert alerta = new Alert(Alert.AlertType.NONE);
-
         try {
-       
             Statement st = connection.createStatement();
-            
             st.executeUpdate("INSERT INTO CLIENTE VALUES('"+DNI.getText()+"','"+nombre.getText()+"','"+apellidos.getText()+"','"+telefono.getText()+"','"+fechanac.getValue()
             +"','"+direccion.getText()+"','"+email.getText()+"','"+contraseña.getText()+"','0',' 0', 'Direccion',"+tarjetaFide.isSelected()+","+activo.isSelected()+",1)");
-            alerta.setAlertType(AlertType.INFORMATION);
-            alerta.setHeaderText(null);
-            alerta.setContentText("El usuario se ha registrado correctamente.");
-            alerta.show();
+            Alertas.registroCorrecto();
 
             connection.close();
+
         } catch (SQLException e) {
-            
             e.printStackTrace();
             Alertas.errorRegistrar();
         }
-
     }
 
     private Connection conenct() {

@@ -40,11 +40,6 @@ public class EditarEmpleadoController {
     }
 
     @FXML
-    private void limpiarBotonDNI(ActionEvent event) {
-        DNIempleado.setText(null);
-    }
-
-    @FXML
     private void limpiarBotonDirecc(ActionEvent event) {
         direccionEmpleado.setText(null);
     }
@@ -91,10 +86,10 @@ public class EditarEmpleadoController {
     @FXML
     private TextField numtelef;
 
-    public static String current = "12345678A";
+    public static String current = "56789012E";
 
     public void initialize() {
-
+        DNIempleado.setEditable(false);
         Connection con = conenct();
 
         try {
@@ -106,8 +101,6 @@ public class EditarEmpleadoController {
             while (rs0.next()) {
                 dpto.getItems().add(rs0.getString("codigo") + ".- " + rs0.getString("nombre"));
             }
-
-            nombreEmpleado.setText("Pepe");
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM empleado WHERE DNI = '" + current + "'");
@@ -123,7 +116,7 @@ public class EditarEmpleadoController {
                 direccionEmpleado.setText(rs.getString("direccion"));
                 privilegiosEmpleado.selectedProperty().set(rs.getBoolean("tiene_privilegios"));
                 Statement st1 = con.createStatement();
-                ResultSet rs1 = st.executeQuery("SELECT * FROM departamento WHERE codigo = "+rs.getInt("dpto"));
+                ResultSet rs1 = st1.executeQuery("SELECT * FROM departamento WHERE codigo = "+rs.getInt("dpto"));
                 while (rs1.next()) {
                     dpto.getSelectionModel().select(rs1.getString("codigo")+".- "+rs1.getString("nombre"));
                 }
@@ -135,32 +128,28 @@ public class EditarEmpleadoController {
         }
     }
 
-    
-
     @FXML
     private void editarEmpBoton(){
 
         Connection connection = conenct();
-        Alert alerta = new Alert(Alert.AlertType.NONE);
-
         try {
        
             Statement st = connection.createStatement();
-            
-            st.executeUpdate("INSERT INTO CLIENTE VALUES('"+DNI.getText()+"','"+nombre.getText()+"','"+apellidos.getText()+"','"+telefono.getText()+"','"+fechanac.getValue()
-            +"','"+direccion.getText()+"','"+email.getText()+"','"+contraseña.getText()+"','0',' 0', 'Direccion',"+tarjetaFide.isSelected()+","+activo.isSelected()+",1)");
-            alerta.setAlertType(AlertType.INFORMATION);
-            alerta.setHeaderText(null);
-            alerta.setContentText("El usuario se ha registrado correctamente.");
-            alerta.show();
 
+            /*st.executeUpdate("UPDATE EMPLEADO set ('"+DNIempleado.getText()+"','"+nombreEmpleado.getText()+"','"+apellidosEmpleado.getText()+"','"+numtelef.getText()+"','"+fechaNac.getValue()
+            +"','"+direccionEmpleado.getText()+"','"+emailEmpleado.getText()+"',1,'"+dpto.getSelectionModel().getSelectedItem()+"',"+privilegiosEmpleado.isSelected()+"where DNI = '"+current+"'");*/
+
+            st.executeUpdate("UPDATE EMPLEADO set DNI='"+DNIempleado.getText()+"', nombre='"+nombreEmpleado.getText()+"', apellidos='"+apellidosEmpleado.getText()+"', telefono='"+numtelef.getText()+"', f_nacimiento='"+fechaNac.getValue()
+            +"', direccion='"+direccionEmpleado.getText()+"', email='"+emailEmpleado.getText()+"', activo=1, dpto='"+dpto.getSelectionModel().getSelectedItem().substring(0,1)+"', tiene_privilegios="+privilegiosEmpleado.isSelected()+" WHERE DNI = '"+current+"'");
+
+            Alertas.editarEmpleado();
             connection.close();
         } catch (SQLException e) {
             
             e.printStackTrace();
             Alertas.errorRegistrar();
         }
-
+ 
     }
 
     @FXML

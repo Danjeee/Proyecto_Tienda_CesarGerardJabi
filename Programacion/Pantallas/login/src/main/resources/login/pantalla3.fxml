@@ -91,14 +91,14 @@
       <TextField fx:id="numtelef" layoutX="300.0" layoutY="540.0" prefHeight="33.0" prefWidth="210.0" promptText="Actualize su número de teléfono." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
       <TextField fx:id="emailEmpleado" layoutX="970.0" layoutY="225.0" prefHeight="33.0" prefWidth="210.0" promptText="Actualize su email." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
       <TextField fx:id="direccionEmpleado" layoutX="970.0" layoutY="330.0" prefHeight="33.0" prefWidth="210.0" promptText="Actualize su dirección." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
-      <TextField fx:id="apellidosEmpleado" layoutX="300.0" layoutY="330.0" prefHeight="33.0" prefWidth="197.0" promptText="Actualize sus aoellidos." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
+      <TextField fx:id="apellidosEmpleado" layoutX="300.0" layoutY="330.0" prefHeight="33.0" prefWidth="197.0" promptText="Actualize sus apellidos." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
       <Label layoutX="90.0" layoutY="330.0" text="Apellidos:">
          <font>
             <Font name="Inter Bold" size="20.0" />
          </font>
       </Label>
       <ChoiceBox fx:id="dpto" layoutX="879.0" layoutY="592.5" prefWidth="150.0" />
-      <Button layoutX="970.0" layoutY="743.0" mnemonicParsing="false" onAction="#editarEmpBoton" prefHeight="64.0" prefWidth="230.0" style="-fx-background-color: black;" text="Editar empleado" textFill="WHITE">
+      <Button layoutX="970.0" layoutY="743.0" mnemonicParsing="false" onAction="#editarEmpBoton" prefHeight="64.0" prefWidth="230.0" style="-fx-background-color: black;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Button>
@@ -110,11 +110,6 @@
       <Button layoutX="525.0" layoutY="330.0" mnemonicParsing="false" onAction="#limpiarBotonA" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
          <graphic>
             <FontAwesomeIconView fx:id="BOTPRUEBA1" glyphName="REMOVE" size="15" text="" />
-         </graphic>
-      </Button>
-      <Button layoutX="525.0" layoutY="435.0" mnemonicParsing="false" onAction="#limpiarBotonDNI" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
-         <graphic>
-            <FontAwesomeIconView fx:id="BOTPRUEBA11" glyphName="REMOVE" size="15" text="" />
          </graphic>
       </Button>
       <Button layoutX="525.0" layoutY="540.0" mnemonicParsing="false" onAction="#limpiarBotonTelef" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">

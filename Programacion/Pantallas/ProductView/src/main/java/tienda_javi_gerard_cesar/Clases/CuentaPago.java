@@ -38,7 +38,7 @@ public class CuentaPago {
     @Override
     public String toString() {
         if (tipo.equals("Tarjeta")) {
-            return tipo +": " +cuenta.substring(0,3)+"********";
+            return tipo +": ********" +cuenta.substring(12,16);
         } else {
             return tipo +": " +cuenta;
         }

@@ -40,6 +40,7 @@ public class Pagar {
     @FXML
     private ChoiceBox<CuentaPago> metodoscliente;
     private ArrayList<CuentaPago> cuentascliente = new ArrayList<>();
+    private boolean formOpened = false;
 
     private Connection conenct() {
         Connection con = null;
@@ -69,7 +70,10 @@ public class Pagar {
 
     @FXML
     private void toggleAdd() {
-        cont.getChildren().add(1, añadirMP());
+        if (!formOpened) {
+            cont.getChildren().add(1, añadirMP());
+            formOpened = true;
+        }
     }
 
     private VBox añadirMP() {
@@ -84,7 +88,10 @@ public class Pagar {
         HBox botones = new HBox();
         botones.setPrefWidth(500);
         Button close = new Button("Cerrar");
-        close.setOnAction(e -> cont.getChildren().remove(1));
+        close.setOnAction(e -> {
+            cont.getChildren().remove(1);
+            formOpened = false;
+        });
         Button add = new Button("Añadir");
         add.setOnAction(e -> añadirNuevaCuenta(type.getSelectionModel().getSelectedItem(), a));
         botones.getChildren().addAll(add, close);
@@ -128,11 +135,13 @@ public class Pagar {
                         Alert alert = Alertas.alerta("ERROR", null, "Error", "Tarjeta incorrecta");
                         alert.showAndWait();
                         corr = false;
+                        break;
                     }
                     if (!tfs.get(0).getText().matches("\\d{16}")) {
                         Alert alert = Alertas.alerta("ERROR", null, "Error", "Tarjeta incorrecta");
                         alert.showAndWait();
                         corr = false;
+                        break;
                     }
                     if (!tfs.get(2).getText().matches("\\d{2}/\\d{2}")) {
                         Alert alert = Alertas.alerta("ERROR", null, "Error", "Fecha incorrecta");
@@ -172,11 +181,13 @@ public class Pagar {
                         Alert alert = Alertas.alerta("ERROR", null, "Error", "Numero demasiado corto");
                         alert.showAndWait();
                         corr = false;
+                        break;
                     }
                     if (!tfs.get(0).getText().matches("\\d{9}")) {
                         Alert alert = Alertas.alerta("ERROR", null, "Error", "Caracteres/Longitud invalidos");
                         alert.showAndWait();
                         corr = false;
+                        break;
                     }
                 }
                 if (corr) {
@@ -256,12 +267,17 @@ public class Pagar {
             default:
                 break;
         }
-        metodoscliente.getItems().clear();
-        Alert alert = Alertas.alerta("INFORMATION", null, "Error", "Metodo de pago añadido correctamente");
-        alert.showAndWait();
-        cont.getChildren().remove(1);
-        cuentascliente.clear();
-        initialize();
+        if (corr) {
+            metodoscliente.getItems().clear();
+            Alert alert = Alertas.alerta("INFORMATION", null, "Error", "Metodo de pago añadido correctamente");
+            alert.showAndWait();
+            cont.getChildren().remove(1);
+            cuentascliente.clear();
+            all.getChildren().remove(all.getChildren().get(2));
+            all.getChildren().remove(all.getChildren().get(0));
+            initialize();
+            formOpened = false;
+        }
     }
 
     @FXML
@@ -286,7 +302,8 @@ public class Pagar {
                     st1.executeUpdate("INSERT INTO descuentos_usados(descuento, usado_por) VALUES('"
                             + Cart.descuentoActivo.getNombre() + "', '" + App.user + "')");
                 }
-                Alert alert = Alertas.alerta("INFORMATION", null, "Gracias por comprar con nosotros", "Pedido completado");
+                Alert alert = Alertas.alerta("INFORMATION", null, "Gracias por comprar con nosotros",
+                        "Pedido completado");
                 alert.showAndWait();
                 App.setRoot("seleccion");
             } catch (SQLException e) {
@@ -297,9 +314,11 @@ public class Pagar {
             }
         }
     }
+
     @FXML
-    private void volver(){
+    private void volver() {
         try {
+            System.out.println(App.getLast());
             App.setRoot(App.getLast());
         } catch (IOException e) {
             e.printStackTrace();

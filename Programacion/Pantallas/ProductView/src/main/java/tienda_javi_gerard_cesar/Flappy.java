@@ -48,6 +48,7 @@ public class Flappy {
     @FXML
     private Label puntShow;
 
+    //Hacer que el bicho salte al pulsar espacio
     @FXML
     void pressed(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
@@ -55,6 +56,7 @@ public class Flappy {
         }
     }
 
+    //Funcion para hacer que salte (Cambia su posicion en y en base a una fuerza llamada jumpHeight)
     @FXML
     private void fly() {
         if (ber.getLayoutY() + ber.getY() <= jumpHeight) {
@@ -67,8 +69,7 @@ public class Flappy {
 
     @FXML
     public void initialize() {
-        fondo.setOnKeyPressed(e -> pressed(e));
-        ber.setStyle("-fx-background-color: #000");
+        //Loop de juego
         gameLoop = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -78,6 +79,14 @@ public class Flappy {
         gameLoop.start();
     }
 
+    /*
+     * Creación de las tuberías
+     * Como funciona:
+     *  1.- Crea 2 VBoxes (Tuberias) y un Pane (Espacio) dentro de una VBox
+     *  2.- Inserta las VBoxes y el Pane en la VBox principal y le asigna una posición aleatoria en Y que a su vez está limitada para que el Pane (Espacio) 
+     *      siempre se encuentre dentro de la pantalla
+     *  3.- Devuelve la VBox principal
+    */
     private VBox newPipe() throws FileNotFoundException {
         VBox cont = new VBox();
         cont.setPrefWidth(100);
@@ -102,10 +111,19 @@ public class Flappy {
         return cont;
     }
 
+    //Muestra la puntuacion
     private String textoPuntuacion() {
         return "Puntuación: " + puntuacion;
     }
 
+    /*
+     * Metodo para comprobar si te has chocado
+     * Como funciona
+     *  1.- Mira todos los hijos del fondo y comprueba si son VBox
+     *  2.- Si son VBox comprueba su posición en X y si esta es menor a la posición izquierda (Posicion del bicho + su width)
+     *  3.- En caso de que esté dentro de la posición x del bicho, limita las posiciones en las que puede estar el bicho a las coordenadas del pane
+     *  4.- Si no hay ninguna VBox en esta posición, el bicho puede estar en toda la pantalla
+     */
     private double[] checkPiper() {
         double[] pos = new double[2];
         for (Node i : fondo.getChildren()) {
@@ -124,6 +142,20 @@ public class Flappy {
         return pos;
     }
 
+    /*
+     * El metodo principal, se ejecuta cada vez que el procesador lee el game loop, he denominado esta unidad de tiempo como javisegundos, 
+     * y se suma cada vez que se ejecuta esta funcion
+     * Que hace
+     *  1.- Lo primero, instancia un keyEvent en la escena que hace que el bicho salte si le das al espacio, esto lo hace unicamente en el javisegundo 0
+     *  2.- Después ejecuta el metodo que decide en que posiciones puede estar el bicho, metodo ya visto anteriormente
+     *  3.- Después suma 1 a la unidad de tiempo que se encarga de ver cuanto ha pasado desde que se ha creado una tuberia
+     *  4.- Si una tuberia se ha creado hace x tiempo (tiempo de spawn de tubería), crea otra en el limite de X y vuelve a poner el valor a 0
+     *      4.5.- La tuberia se crea con una posición Y aleatoria con limites friamente calculados para que siempre haya un espacio por el que pasar
+     *  5.- Aumenta la aceleración con la que cae el bicho (se resetea al saltar)
+     *  6.- Mueve el bicho hacia abajo según la gravedad (yDelta) y la velocidad (timeber) y las tuberias hacia la izquierda segun la velocidad de estas
+     *  7.- Comprueba si el bicho va a morir en este frame o no y en caso de que si, borra todo y crea el menu de muerte
+     *  8.- Según la puntuación aumenta la velocidad de las tuberias y disminuye el tiempo de aparicion de estas
+     */
     private void update() {
         if (javisegundos == 0) {
             Scene scene = ber.getScene();
@@ -209,6 +241,7 @@ public class Flappy {
         }
     }
 
+    //Cambia la posición del pajaro y la rotación
     private void moveBirdY(double positionChange) {
         if (ber.getY() + ber.getLayoutY() != 0) {
             ber.setY(ber.getY() + positionChange);
@@ -226,6 +259,9 @@ public class Flappy {
         }
 
     }
+
+    //Mueve todas las tuberias hacia la izquierda, si la tuberia ha pasado al pajaro, cambia la posición en la que puede estar 
+    //el pajaro a toda la pantalla (en x) y si ha llegado al limite, desaparece
 
     private void movePipesX() {
         for (Node i : fondo.getChildren()) {
@@ -245,6 +281,7 @@ public class Flappy {
         }
     }
 
+    //Comprueba si el pajaro esta en una posicion correcta y si no lo está, muere
     private boolean isBirdDead() {
         double birdY = ber.getLayoutY() + ber.getY();
         if (ber.getBoundsInParent().getCenterY() < postofit[0] || ber.getBoundsInParent().getCenterY() > postofit[1]) {
@@ -253,6 +290,7 @@ public class Flappy {
         return birdY >= fondo.getHeight();
     }
 
+    //Era una funcion para cuando no estaba el menú de muerte pero me hace gracia que esté
     private void resetBird() {
         ber.setY(0);
         timeber = 0;

@@ -81,12 +81,14 @@ public class Cart {
         return con;
     }
 
+    //Borra el texto del codigo
     @FXML
     private void clearCodDes(){
         codDes.setText("");
         codDes.setStyle("-fx-text-inner-color: black;");
     }
 
+    //Comprueba si hay texto en el codigo y si lo hay, cambia el estilo del boton de aplicar codigo
     @FXML
     private void checkCodDes(){
         if (codDes.getText().isEmpty()) {
@@ -102,6 +104,7 @@ public class Cart {
         }
     }
 
+    //Te manda a pagar, poco más
     @FXML private void pagar(){
         try {
             App.setRoot("pagar");
@@ -110,6 +113,12 @@ public class Cart {
         }
     }
 
+    /*
+     * Se ejecuta al pulsar el botón de aplicar y comprueba 3 cosas
+     *  1.- Si el codigo está en la base de datos
+     *      1.5 - En caso de que esté comprueba que te da
+     *      1.75 - En caso de que esté tambien comprueba si el usuario ya lo ha usado
+    */
     private void checkDescuento(){
         Connection con = conenct();
         ArrayList<Descuento> descuentos = new ArrayList<>();
@@ -125,8 +134,6 @@ public class Cart {
             Boolean esta = false;
             for (String i : descuentosUsados){
                 if (i.equals(codDes.getText())) {
-                    codDes.setText("Código ya usado");
-                    codDes.setStyle("-fx-text-inner-color: red;");
                     esta = true;
                     break;
                 }
@@ -148,6 +155,9 @@ public class Cart {
                     codDes.setText("Código activo: "+descuentoActivo.getNombre());
                     codDes.setStyle("-fx-text-inner-color: green;");
                 }
+            } else {
+                codDes.setText("Código ya usado");
+                codDes.setStyle("-fx-text-inner-color: red;");
             }
             
         } catch (SQLException e) {
@@ -155,6 +165,7 @@ public class Cart {
         }
     }
 
+    //Cambia la cantidad segun una operación pasada por parametro
     private String setCant(Articulo i, String cant, int op) {
         int cantt = Integer.parseInt(cant);
         switch (op) {
@@ -178,6 +189,7 @@ public class Cart {
         }
     }
 
+    //Crea cada linea del carrito como Hboxes
     private HBox createItem(String img, String nombre, String precio, int cant, int cod, Articulo i) {
         HBox a = new HBox();
         a.setPrefHeight(75);
@@ -187,6 +199,7 @@ public class Cart {
         a.setStyle("-fx-background-color: #000");
         a.setAlignment(Pos.CENTER);
 
+        //Crea la imagen del producto que a su vez es un boton
         Button imgg = new Button("");
         imgg.setPrefHeight(75);
         imgg.setPrefWidth(100);
@@ -209,6 +222,7 @@ public class Cart {
         });
         a.getChildren().add(imgg);
 
+        //Crea el nombre del producto
         Label nom = new Label(nombre);
         nom.setFont(new Font("System", 25));
         nom.prefHeight(175);
@@ -219,6 +233,7 @@ public class Cart {
         nom.setPadding(new Insets(0, 0, 0, 20));
         a.getChildren().add(nom);
 
+        //Crea el precio por unidad
         Label pr = new Label(precio + "€");
         pr.setFont(new Font("System", 30));
         pr.prefHeight(75);
@@ -228,11 +243,13 @@ public class Cart {
         pr.setAlignment(Pos.CENTER);
         a.getChildren().add(pr);
 
+        //Es un separador, original eh?
         Pane sep = new Pane();
         sep.setPrefWidth(100);
         sep.setStyle("-fx-background-color: #ecf1f3");
         a.getChildren().add(sep);
 
+        //Muestra la cantidad comprada de cada producto
         Label cantt = new Label(String.valueOf(cant));
         cantt.setFont(new Font("System", 30));
         cantt.setTextFill(Color.WHITE);
@@ -242,11 +259,13 @@ public class Cart {
         cantt.setTextAlignment(TextAlignment.RIGHT);
         a.getChildren().add(cantt);
 
+        //Contiene los botones de subir y bajar cantidad
         VBox butCont = new VBox();
         butCont.setPrefHeight(75);
         butCont.setPrefWidth(35);
         butCont.setStyle("-fx-background-color: #000");
 
+        //+1 cantidad
         Button up = new Button();
         up.setPrefHeight(25);
         up.setPrefWidth(25);
@@ -257,14 +276,17 @@ public class Cart {
         up.setGraphic(ico2);
         up.setOnAction(e -> {
             cantt.setText(setCant(i, cantt.getText(), 0));
+            actualizar();
         });
         butCont.getChildren().add(up);
 
+        //Otro separador que sino se ve feo
         Pane sep2 = new Pane();
         sep2.setPrefHeight(25);
         sep2.setStyle("-fx-background-color: rgba(0,0,0,0)");
         butCont.getChildren().add(sep2);
 
+        //-1 cantidad (limite de 1)
         Button down = new Button();
         down.setPrefHeight(25);
         down.setPrefWidth(25);
@@ -275,10 +297,12 @@ public class Cart {
         down.setGraphic(ico3);
         down.setOnAction(e -> {
             cantt.setText(setCant(i, cantt.getText(), 1));
+            actualizar();
         });
         butCont.getChildren().add(down);
         a.getChildren().add(butCont);
 
+        //chau al producto
         Button trash = new Button("");
         trash.setPrefHeight(70);
         trash.setPrefWidth(125);
@@ -294,6 +318,7 @@ public class Cart {
 
     }
 
+    //Formatea un double a que se vea como digitos.??€ y lo devuelve en strinf
     private String formatDouble(Double a) {
         String aa = String.valueOf(a);
         if (aa.charAt(0) == ('.')) {
@@ -389,6 +414,8 @@ public class Cart {
 
     @FXML
     private void actualizar() {
+        codDes.setText("");
+        descuentoActivo = new Descuento("0", 0, false);
         Connection con = conenct();
         for (Articulo i : articulos) {
             try {

@@ -68,24 +68,25 @@ public class MenuHamb {
                 }
             });
         } else {
-            /*
-             * pant.setOnAction(e -> {
-             * try {
-             * App.setRoot(id);
-             * } catch (IOException e1) {
-             * e1.printStackTrace();
-             * }
-             * });
-             */
+
+            pant.setOnAction(e -> {
+                try {
+                    App.setRoot(id);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            });
+
         }
         return pant;
     }
 
-    public static void start(AnimationTimer startListener){
+    public static void start(AnimationTimer startListener) {
         startListener.start();
     }
+
     private static void key(Scene scene, KeyCode e) {
-        
+
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
             @Override
@@ -96,7 +97,7 @@ public class MenuHamb {
             }
 
         });
-        
+
     }
 
     public static AnimationTimer keyListener(KeyCode keyC) {
@@ -138,13 +139,13 @@ public class MenuHamb {
         return con;
     }
 
-    public static void init(AnchorPane a){
+    public static void init(AnchorPane a) {
         popupHambMake();
         a.getChildren().addAll(menuShadow, popupHamb, menuHamb());
         start(keyListener(KeyCode.ESCAPE));
-        
 
     }
+
     public static void popupHambMake() {
         /* VBOX propiedades */
         popupHamb = new VBox();
@@ -220,7 +221,7 @@ public class MenuHamb {
             popupHamb.getChildren().add(adminPanel);
         }
 
-        popupHamb.getChildren().add(smallButton("    Preguntas frecuentes", "preguntas"));
+        popupHamb.getChildren().add(smallButton("    Preguntas frecuentes", "faq"));
         popupHamb.getChildren().add(smallButton("    Estado de mi pedido", "estado"));
         popupHamb.getChildren().add(smallButton("    Devoluciones", "devoluciones"));
         popupHamb.getChildren().add(smallButton("    Envios", "envios"));

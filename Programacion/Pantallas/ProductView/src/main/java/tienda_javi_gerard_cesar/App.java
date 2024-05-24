@@ -15,7 +15,7 @@ import java.io.IOException;
 public class App extends Application {
 
     public static Scene scene;
-    private static String[] last = {"0", "0"};
+    private static String[] last = {"Login", "0"};
 
     public static String getLast() {
         return last[0];

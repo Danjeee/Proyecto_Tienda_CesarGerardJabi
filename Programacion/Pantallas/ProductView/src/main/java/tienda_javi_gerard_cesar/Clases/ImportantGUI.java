@@ -67,7 +67,26 @@ public class ImportantGUI {
             }
         }
     }
-
+    public static Button defaultBack(){
+        Button a = new Button();
+        a.setText("");
+        a.setPrefHeight(30);
+        a.setPrefWidth(30);
+        FontAwesomeIconView ico = new FontAwesomeIconView();
+        ico.setSize("30");
+        ico.setGlyphName("ARROW_LEFT");
+        a.setGraphic(ico);
+        a.setLayoutX(25);
+        a.setLayoutY(21);
+        a.setOnAction(e -> {
+            try {
+                App.setRoot(App.getLast());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+        return a;
+    }
     private static boolean isAdmin() {
         Connection con = conenct();
         try {
@@ -179,7 +198,6 @@ public class ImportantGUI {
 
     }
 
-
     private static Connection conenct() {
         Connection con = null;
         try {
@@ -241,15 +259,14 @@ public class ImportantGUI {
 
         Button pregFrec = new Button("Preguntas Frecuentes");
         pregFrec.setFont(def);
-        /*
-         * pregFrec.setOnAction(e -> {
-         * try {
-         * App.setRoot("faq");
-         * } catch (IOException e1) {
-         * e1.printStackTrace();
-         * }
-         * });
-         */
+
+        pregFrec.setOnAction(e -> {
+            try {
+                App.setRoot("faq");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
 
         Button estado = new Button("Estado de mi pedido");
         estado.setFont(def);
@@ -262,30 +279,26 @@ public class ImportantGUI {
          * }
          * });
          */
-
         Button dev = new Button("Devoluciones");
         dev.setFont(def);
-        /*
-         * dev.setOnAction(e -> {
-         * try {
-         * App.setRoot("devoluciones");
-         * } catch (IOException e1) {
-         * e1.printStackTrace();
-         * }
-         * });
-         */
+        dev.setOnAction(e -> {
+            try {
+                App.setRoot("devoluciones");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
 
         Button envio = new Button("Envíos");
         envio.setFont(def);
-        /*
-         * envio.setOnAction(e -> {
-         * try {
-         * App.setRoot("infoenvios");
-         * } catch (IOException e1) {
-         * e1.printStackTrace();
-         * }
-         * });
-         */
+
+        envio.setOnAction(e -> {
+            try {
+                App.setRoot("envios");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
 
         ayuda.getChildren().addAll(help, pregFrec, estado, dev, envio);
         a.getChildren().add(ayuda);
@@ -323,7 +336,8 @@ public class ImportantGUI {
         FlowPane extra = new FlowPane();
         extra.setPrefWidth(520);
         extra.setPrefHeight(35);
-        String[] extracont = { "Politica de privacidad", "Condiciones de compras", "Politica de cookies", "Gana descuentos" };
+        String[] extracont = { "Politica de privacidad", "Condiciones de compras", "Politica de cookies",
+                "Gana descuentos" };
         for (int i = 0; i < extracont.length; i++) {
             Button ee = new Button(extracont[i]);
             ee.setStyle("-fx-background-color: rgba(0,0,0,0)");

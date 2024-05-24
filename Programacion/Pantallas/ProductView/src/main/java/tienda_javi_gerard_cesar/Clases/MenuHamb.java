@@ -1,6 +1,7 @@
 package tienda_javi_gerard_cesar.Clases;
 
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,6 +13,8 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -29,9 +32,10 @@ import tienda_javi_gerard_cesar.App;
 import tienda_javi_gerard_cesar.Main;
 
 public class MenuHamb {
-    public static VBox popupHamb;
-    public static AnchorPane menuShadow;
-    public static Boolean menued = false;
+    private static VBox popupHamb;
+    private static AnchorPane menuShadow;
+    private static Boolean menued = false;
+    private static int javisegundos;
 
     public static Button menuHamb() {
         Button a = new Button();
@@ -81,6 +85,7 @@ public class MenuHamb {
         startListener.start();
     }
     private static void key(Scene scene, KeyCode e) {
+        
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
             @Override
@@ -91,24 +96,21 @@ public class MenuHamb {
             }
 
         });
+        
     }
 
     public static AnimationTimer keyListener(KeyCode keyC) {
         AnimationTimer gameLoop = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                int javisegundos = 0;
-                javisegundos++;
-                if (javisegundos == 1) {
-                    key(App.scene, keyC);
-                }
+                key(App.scene, keyC);
             }
         };
         return gameLoop;
     }
 
     private static boolean isAdmin() {
-        if (App.user.equals("guest")) {
+        if (App.getUser().equals("guest")) {
             return false;
         }
         Connection con = conenct();
@@ -116,7 +118,7 @@ public class MenuHamb {
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery("SELECT DNI, tiene_privilegios FROM empleado");
             while (rs.next()) {
-                if (rs.getString("DNI").equals(App.user)) {
+                if (rs.getString("DNI").equals(App.getUser())) {
                     return rs.getBoolean("tiene_privilegios");
                 }
             }
@@ -136,6 +138,13 @@ public class MenuHamb {
         return con;
     }
 
+    public static void init(AnchorPane a){
+        popupHambMake();
+        a.getChildren().addAll(menuShadow, popupHamb, menuHamb());
+        start(keyListener(KeyCode.ESCAPE));
+        
+
+    }
     public static void popupHambMake() {
         /* VBOX propiedades */
         popupHamb = new VBox();

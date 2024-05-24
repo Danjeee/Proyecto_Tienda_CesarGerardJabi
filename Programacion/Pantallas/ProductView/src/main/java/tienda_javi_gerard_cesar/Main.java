@@ -95,7 +95,7 @@ public class Main {
         Connection con = conenct();
         try {
             Statement st = con.createStatement();
-            ResultSet user = st.executeQuery("SELECT * FROM cliente WHERE DNI = \"" + App.user + "\"");
+            ResultSet user = st.executeQuery("SELECT * FROM cliente WHERE DNI = \"" + App.getUser() + "\"");
             String dir = "";
             int newcol = 0;
             while (user.next()) {
@@ -107,7 +107,7 @@ public class Main {
             }
             st.executeUpdate("INSERT INTO pedido VALUES(" + newcol + ", \'"
                     + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "\', \"" + dir
-                    + "\", \"En proceso\", \"" + App.user + "\")");
+                    + "\", \"En proceso\", \"" + App.getUser() + "\")");
             pedido = newcol;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -396,10 +396,7 @@ public class Main {
 
     @FXML
     private void initialize() throws IOException {
-        MenuHamb.popupHambMake();
-        cont.getChildren().add(MenuHamb.menuShadow);
-        cont.getChildren().add(MenuHamb.popupHamb);
-        cont.getChildren().add(MenuHamb.menuHamb());
+        MenuHamb.init(cont);
         main.getChildren().clear();
         all.getChildren().add(0, ImportantGUI.generateHeader());
         all.getChildren().add(ImportantGUI.generateFooter());
@@ -421,7 +418,7 @@ public class Main {
                 }
                 rs = st.executeQuery(
                         "SELECT DISTINCT L.num_pedido from linea_pedido L, pedido P WHERE L.num_pedido = P.numero and P.DNI_cliente = \""
-                                + App.user + "\" and P.estado = \"En proceso\"");
+                                + App.getUser() + "\" and P.estado = \"En proceso\"");
                 while (rs.next()) {
                     pedido = rs.getInt("num_pedido");
                 }
@@ -467,7 +464,7 @@ public class Main {
         plusicon.glyphNameProperty().set("PLUS");
         carticon.glyphNameProperty().set("SHOPPING_CART");
         Color color;
-        if (App.user.equals("guest")) {
+        if (App.getUser().equals("guest")) {
             color = Color.LIGHTGRAY;
         } else {
             color = Color.WHITE;
@@ -510,7 +507,7 @@ public class Main {
         
         imgg.setOnAction(e -> {
             try {
-                ProductView.current = cod;
+                ProductView.setCurrentProduct(cod);
                 App.setRoot("productview");
             } catch (IOException e1) {
                 e1.printStackTrace();
@@ -529,7 +526,7 @@ public class Main {
         fp.getRowConstraints().add(datos);
         fp.getColumnConstraints().get(0).setPrefWidth(150);
         /* Botones */
-        if (App.user.equals("guest")) {
+        if (App.getUser().equals("guest")) {
             plus.setStyle("-fx-background-color: #f2f2f2;-fx-background-radius: 0");
             cart.setStyle("-fx-background-color: #f2f2f2;-fx-background-radius: 0");
         } else {

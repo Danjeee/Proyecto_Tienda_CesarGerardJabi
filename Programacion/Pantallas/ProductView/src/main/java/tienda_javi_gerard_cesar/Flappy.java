@@ -3,6 +3,7 @@ package tienda_javi_gerard_cesar;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ConcurrentModificationException;
 import java.util.Random;
 
 import javafx.animation.AnimationTimer;
@@ -92,7 +93,7 @@ public class Flappy {
         cont.setPrefWidth(100);
         cont.setPrefHeight(3072);
         FileInputStream pipedownimgfile = new FileInputStream(
-                "C:\\Users\\alumnoM\\Documents\\GitHub\\Proyecto_Tienda_CesarGerardJabi\\Programacion\\Pantallas\\ProductView\\src\\main\\resources\\tienda_javi_gerard_cesar\\pipe_down.png");
+                "Programacion\\Pantallas\\ProductView\\src\\main\\resources\\tienda_javi_gerard_cesar\\pipe_down.png");
         Image pipedownimg = new Image(pipedownimgfile);
         ImageView pipedown = new ImageView(pipedownimg);
         Random rnd = new Random();
@@ -101,7 +102,7 @@ public class Flappy {
         fit.setStyle("-fx-background-color: rgba(0,0,0,0)");
         fit.setPrefHeight(rnd.nextInt(200) + 200);
         FileInputStream pipeupimgfile = new FileInputStream(
-                "C:\\Users\\alumnoM\\Documents\\GitHub\\Proyecto_Tienda_CesarGerardJabi\\Programacion\\Pantallas\\ProductView\\src\\main\\resources\\tienda_javi_gerard_cesar\\pipe_up.png");
+                "Programacion\\Pantallas\\ProductView\\src\\main\\resources\\tienda_javi_gerard_cesar\\pipe_up.png");
         Image pipeupimg = new Image(pipeupimgfile);
         ImageView pipeup = new ImageView(pipeupimg);
         pipedown.setFitHeight(1024);
@@ -264,20 +265,24 @@ public class Flappy {
     //el pajaro a toda la pantalla (en x) y si ha llegado al limite, desaparece
 
     private void movePipesX() {
-        for (Node i : fondo.getChildren()) {
-            if (i instanceof VBox) {
-                i.setLayoutX(i.getLayoutX() - (yDelta * pipespeed));
-                if (i.getLayoutX() < 0) {
-                    double[] posini = { 0, 1024 };
-                    postofit = posini;
-                }
-                if (i.getLayoutX() < -100) {
-                    puntuacion++;
-                    diff++;
-                    puntShow.setText(textoPuntuacion());
-                    fondo.getChildren().remove(3);
+        try {
+            for (Node i : fondo.getChildren()) {
+                if (i instanceof VBox) {
+                    i.setLayoutX(i.getLayoutX() - (yDelta * pipespeed));
+                    if (i.getLayoutX() < 0) {
+                        double[] posini = { 0, 1024 };
+                        postofit = posini;
+                    }
+                    if (i.getLayoutX() < -100) {
+                        puntuacion++;
+                        diff++;
+                        puntShow.setText(textoPuntuacion());
+                        fondo.getChildren().remove(3);
+                    }
                 }
             }
+        } catch (ConcurrentModificationException e) {
+            System.out.print("");
         }
     }
 

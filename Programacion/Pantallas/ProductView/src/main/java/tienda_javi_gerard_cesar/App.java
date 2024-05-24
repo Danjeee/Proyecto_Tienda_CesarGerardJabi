@@ -24,7 +24,14 @@ public class App extends Application {
         return last[1];
     }
 
-    public static String user = "23456789A";
+    private static String user = "23456789A";
+
+    public static void setUser(String a){
+        user = a;
+    }
+    public static String getUser(){
+        return user;
+    }
 
     @Override
     public void start(Stage stage) throws IOException {

@@ -214,7 +214,7 @@ public class Cart {
         }
         imgg.setOnAction(e -> {
             try {
-                ProductView.current = cod;
+                ProductView.setCurrentProduct(cod);
                 App.setRoot("productview");
             } catch (IOException e1) {
                 e1.printStackTrace();
@@ -353,7 +353,7 @@ public class Cart {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(
                     "SELECT A.*, L.cantidad FROM articulo A, linea_pedido L, pedido P WHERE A.cod_art = L.cod_art and L.num_pedido = P.numero and P.DNI_cliente = "
-                            + "\"" + App.user + "\" and P.estado = \"En proceso\"");
+                            + "\"" + App.getUser() + "\" and P.estado = \"En proceso\"");
             while (rs.next()) {
                 String nom = rs.getString("nombre");
                 BigDecimal precio = rs.getBigDecimal("precio");
@@ -423,7 +423,7 @@ public class Cart {
                 st.executeUpdate(
                         "UPDATE linea_pedido SET cantidad = " + i.getCant()
                                 + " WHERE num_pedido = (SELECT DISTINCT L.num_pedido from linea_pedido L, pedido P WHERE L.num_pedido = P.numero and P.DNI_cliente = \""
-                                + App.user + "\" and P.estado = \"En proceso\") and cod_art = " + i.getCodigo());
+                                + App.getUser() + "\" and P.estado = \"En proceso\") and cod_art = " + i.getCodigo());
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -441,7 +441,7 @@ public class Cart {
             Statement st = con.createStatement();
             st.executeUpdate(
                     "DELETE FROM linea_pedido WHERE num_pedido = (SELECT DISTINCT L.num_pedido from linea_pedido L, pedido P WHERE L.num_pedido = P.numero and P.DNI_cliente = \""
-                    + App.user + "\" and P.estado = \"En proceso\") and cod_art = " + i.getCodigo());
+                    + App.getUser() + "\" and P.estado = \"En proceso\") and cod_art = " + i.getCodigo());
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -452,18 +452,14 @@ public class Cart {
     }
 
     public void initialize() {
-        MenuHamb.start(MenuHamb.keyListener(KeyCode.ESCAPE));
-        MenuHamb.popupHambMake();
-        cont.getChildren().add(MenuHamb.menuShadow);
-        cont.getChildren().add(MenuHamb.popupHamb);
-        cont.getChildren().add(MenuHamb.menuHamb());
+        MenuHamb.init(cont);
         main.getChildren().clear();
         all.getChildren().add(0, ImportantGUI.generateHeader());
         all.getChildren().add(ImportantGUI.generateFooter());
         Connection con = conenct();
         try {
             Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM descuentos_usados WHERE usado_por = '"+App.user+"'");
+            ResultSet rs = stm.executeQuery("SELECT * FROM descuentos_usados WHERE usado_por = '"+App.getUser()+"'");
             while (rs.next()) {
                 descuentosUsados.add(rs.getString("descuento"));
             }

@@ -36,10 +36,7 @@ public class Seleccion {
     }
     @FXML
     public void initialize(){
-        MenuHamb.popupHambMake();
-        cont.getChildren().add(MenuHamb.menuShadow);
-        cont.getChildren().add(MenuHamb.popupHamb);
-        cont.getChildren().add(MenuHamb.menuHamb());
+        MenuHamb.init(cont);
         all.getChildren().add(0, ImportantGUI.generateHeader());
         all.getChildren().add(ImportantGUI.generateFooter());
     }

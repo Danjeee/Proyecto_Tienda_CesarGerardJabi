@@ -24,10 +24,7 @@ public class AdministrarUsuariosController {
     }
     
     public void initialize() {
-        MenuHamb.popupHambMake();
-        cont.getChildren().add(MenuHamb.menuShadow);
-        cont.getChildren().add(MenuHamb.popupHamb);
-        cont.getChildren().add(MenuHamb.menuHamb());
+        MenuHamb.init(cont);
     }
 }
 

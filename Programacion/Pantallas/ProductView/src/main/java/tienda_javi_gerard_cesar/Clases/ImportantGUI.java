@@ -74,7 +74,7 @@ public class ImportantGUI {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT DNI FROM empleado");
             while (rs.next()) {
-                if (App.user.equals(rs.getString("DNI"))) {
+                if (App.getUser().equals(rs.getString("DNI"))) {
                     return true;
                 }
             }
@@ -129,7 +129,7 @@ public class ImportantGUI {
         });
         MenuItem logout = new MenuItem("Cerrar sesión");
         logout.setOnAction(e -> {
-            App.user = "guest";
+            App.setUser("guest");
             try {
                 App.setRoot("login");
             } catch (IOException e1) {
@@ -144,7 +144,7 @@ public class ImportantGUI {
                 e1.printStackTrace();
             }
         });
-        if (App.user.equals("guest")) {
+        if (App.getUser().equals("guest")) {
             user.getItems().add(login);
         } else {
             user.getItems().addAll(cuenta, new SeparatorMenuItem(), logout);
@@ -158,13 +158,13 @@ public class ImportantGUI {
         cartIco.setSize("30");
         cart.setText("");
         cart.setGraphic(cartIco);
-        if (App.user.equals("guest") || isAdmin()) {
+        if (App.getUser().equals("guest") || isAdmin()) {
             cartIco.setCursor(Cursor.CROSSHAIR);
             cart.setDisable(true);
         }
         cart.setOnAction(e -> {
             try {
-                if (App.user.equals("guest")) {
+                if (App.getUser().equals("guest")) {
                     App.setRoot("login");
                 } else {
                     App.setRoot("cart");

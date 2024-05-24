@@ -119,7 +119,7 @@ public class Login {
             for (User i : usuarios) {
                 if (i.getMail().equals(usuario.getText())) {
                     if (i.getPasw().equals(contra.getText())) {
-                        App.user = i.getDNI();
+                        App.setUser(i.getDNI());
                         try {
                             App.setRoot("seleccion");
                         } catch (IOException e) {

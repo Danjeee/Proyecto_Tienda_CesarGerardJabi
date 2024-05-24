@@ -154,7 +154,7 @@ public class Pagar {
                     try {
                         Statement st = con.createStatement();
                         st.executeUpdate("INSERT INTO cuentas_pago(cuenta, fecha, tipo, DNI_cliente) VALUES('"
-                                + tfs.get(0).getText() + "', '" + tfs.get(2).getText() + "', 'Tarjeta', '" + App.user
+                                + tfs.get(0).getText() + "', '" + tfs.get(2).getText() + "', 'Tarjeta', '" + App.getUser()
                                 + "')");
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -195,7 +195,7 @@ public class Pagar {
                     try {
                         Statement st = con.createStatement();
                         st.executeUpdate("INSERT INTO cuentas_pago(cuenta, fecha, tipo, DNI_cliente) VALUES('"
-                                + tfs.get(0).getText() + "', null, 'Bizum', '" + App.user
+                                + tfs.get(0).getText() + "', null, 'Bizum', '" + App.getUser()
                                 + "')");
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -230,7 +230,7 @@ public class Pagar {
                     try {
                         Statement st = con.createStatement();
                         st.executeUpdate("INSERT INTO cuentas_pago(cuenta, fecha, tipo, DNI_cliente) VALUES('"
-                                + tfs.get(0).getText() + "', null, 'PayPal', '" + App.user
+                                + tfs.get(0).getText() + "', null, 'PayPal', '" + App.getUser()
                                 + "')");
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -243,7 +243,7 @@ public class Pagar {
                 try {
                     Statement stm = con.createStatement();
                     ResultSet rs = stm
-                            .executeQuery("SELECT * FROM cuentas_pago WHERE DNI_cliente = '" + App.user + "'");
+                            .executeQuery("SELECT * FROM cuentas_pago WHERE DNI_cliente = '" + App.getUser() + "'");
                     while (rs.next()) {
                         if (rs.getString("Tipo").equals("Efectivo")) {
                             corr = false;
@@ -252,7 +252,7 @@ public class Pagar {
                     if (corr) {
                         stm.executeUpdate(
                                 "INSERT INTO cuentas_pago(cuenta, fecha, tipo, DNI_cliente) VALUES('', null, 'Efectivo', '"
-                                        + App.user
+                                        + App.getUser()
                                         + "')");
                     } else {
                         Alert alert = Alertas.alerta("ERROR", null, "Error",
@@ -291,7 +291,7 @@ public class Pagar {
                 Statement st = con.createStatement();
                 int current = 0;
                 ResultSet setcurrent = st.executeQuery(
-                        "SELECT numero FROM pedido WHERE estado = 'En proceso' AND DNI_cliente = '" + App.user + "'");
+                        "SELECT numero FROM pedido WHERE estado = 'En proceso' AND DNI_cliente = '" + App.getUser() + "'");
                 while (setcurrent.next()) {
                     current = setcurrent.getInt("numero");
                 }
@@ -300,7 +300,7 @@ public class Pagar {
                 if (Cart.descuentoActivo.getNombre() != "0") {
                     Statement st1 = con.createStatement();
                     st1.executeUpdate("INSERT INTO descuentos_usados(descuento, usado_por) VALUES('"
-                            + Cart.descuentoActivo.getNombre() + "', '" + App.user + "')");
+                            + Cart.descuentoActivo.getNombre() + "', '" + App.getUser() + "')");
                 }
                 Alert alert = Alertas.alerta("INFORMATION", null, "Gracias por comprar con nosotros",
                         "Pedido completado");
@@ -424,16 +424,13 @@ public class Pagar {
     }
 
     public void initialize() {
-        MenuHamb.popupHambMake();
-        cont.getChildren().add(MenuHamb.menuShadow);
-        cont.getChildren().add(MenuHamb.popupHamb);
-        cont.getChildren().add(MenuHamb.menuHamb());
+        MenuHamb.init(cont);
         all.getChildren().add(0, ImportantGUI.generateHeader());
         all.getChildren().add(ImportantGUI.generateFooter());
         Connection con = conenct();
         try {
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM cuentas_pago WHERE DNI_cliente = '" + App.user + "'");
+            ResultSet rs = st.executeQuery("SELECT * FROM cuentas_pago WHERE DNI_cliente = '" + App.getUser() + "'");
             while (rs.next()) {
                 cuentascliente.add(new CuentaPago(rs.getInt("id"), rs.getString("cuenta"), rs.getString("fecha"),
                         rs.getString("tipo")));

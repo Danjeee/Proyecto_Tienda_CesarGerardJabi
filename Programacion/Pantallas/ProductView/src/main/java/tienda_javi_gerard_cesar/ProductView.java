@@ -34,7 +34,13 @@ import java.util.Random;
 
 public class ProductView {
 
-    public static int current;
+    private static int current;
+    public static int getCurrentProduct(){
+        return current;
+    }
+    public static void setCurrentProduct(int s){
+        current = s;
+    }
     @FXML
     private VBox all;
     @FXML
@@ -54,7 +60,7 @@ public class ProductView {
 
     @FXML
     private void addGoing(Double x, Double y) {
-        if (!App.user.equals("guest")) {
+        if (!App.getUser().equals("guest")) {
             Connection con = conenct();
             Boolean existe = false;
             Boolean existePedido = false;
@@ -119,7 +125,7 @@ public class ProductView {
         Connection con = conenct();
         try {
             Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT DISTINCT P.numero FROM pedido P WHERE DNI_cliente = '" + App.user
+            ResultSet rs = stm.executeQuery("SELECT DISTINCT P.numero FROM pedido P WHERE DNI_cliente = '" + App.getUser()
                     + "' and estado = 'En proceso'");
             int caca = 0;
             while (rs.next()) {
@@ -136,7 +142,7 @@ public class ProductView {
         Connection con = conenct();
         try {
             Statement st = con.createStatement();
-            ResultSet user = st.executeQuery("SELECT * FROM cliente WHERE DNI = \"" + App.user + "\"");
+            ResultSet user = st.executeQuery("SELECT * FROM cliente WHERE DNI = \"" + App.getUser() + "\"");
             String dir = "";
             int newcol = 0;
             while (user.next()) {
@@ -148,7 +154,7 @@ public class ProductView {
             }
             st.executeUpdate("INSERT INTO pedido VALUES(" + newcol + ", \'"
                     + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "\', \"" + dir
-                    + "\", \"En proceso\", \"" + App.user + "\")");
+                    + "\", \"En proceso\", \"" + App.getUser() + "\")");
             this.pedido = newcol;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -276,13 +282,10 @@ public class ProductView {
     }
 
     public void initialize() {
-        MenuHamb.popupHambMake();
-        cont.getChildren().add(MenuHamb.menuShadow);
-        cont.getChildren().add(MenuHamb.popupHamb);
-        cont.getChildren().add(MenuHamb.menuHamb());
+        MenuHamb.init(cont);
         all.getChildren().add(0, ImportantGUI.generateHeader());
         all.getChildren().add(ImportantGUI.generateFooter());
-        if (App.user.equals("guest")) {
+        if (App.getUser().equals("guest")) {
             addtocart.setStyle("-fx-background-color: #888586");
             addtocart.setCursor(Cursor.DEFAULT);
         }

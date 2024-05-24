@@ -1,6 +1,9 @@
 package tienda_javi_gerard_cesar.Clases;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -322,9 +325,10 @@ public class ImportantGUI {
             ee.setPrefSize(30, 30);
             FontAwesomeIconView rs = new FontAwesomeIconView();
             rs.setGlyphName((String)redescont.keySet().toArray()[i]);
+            String url = (String)redescont.values().toArray()[i];
             rs.setSize("30");
             ee.setGraphic(rs);
-            /*ee.setOnAction(e -> Desktop);*/
+            ee.setOnAction(e -> urlOpener(url));
 
             redes.getChildren().add(ee);
         }
@@ -334,6 +338,14 @@ public class ImportantGUI {
         return a;
     }
     private static void urlOpener(String url){
+        try {
+            URI uri = new URI(url);
+            Desktop dt = Desktop.getDesktop();
+            dt.browse(uri);
+        } catch (URISyntaxException | IOException e) {
+            e.printStackTrace();
+        }
+        
         
     }
 

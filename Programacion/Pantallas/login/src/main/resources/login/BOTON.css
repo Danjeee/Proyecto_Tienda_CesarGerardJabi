@@ -1,0 +1,46 @@
+#button{
+
+    -fx-background-color: black;
+    -fx-background-radius: 30;
+    -fx-background-insests: 0;
+    -fx-text-fill: white;
+}
+
+#botonBlanco{
+    -fx-background-color: white;
+    -fx-background-radius: 50;
+    -fx-background-insests: 0;
+    -fx-border-color:black;
+    -fx-border-radius: 50;
+    -fx-border-width: 2px;
+}   
+
+#botonfooter{
+    -fx-background-color: rgb(224, 222, 222);
+    -fx-background-radius: 30;
+    -fx-background-insests: 0;
+    -fx-text-fill: black;
+}   
+
+#boton2footer{
+    -fx-background-color: rgb(224, 222, 222);
+    -fx-background-insests: 0;
+    -fx-text-fill: black;    
+}
+
+#fondopantalla{
+    -fx-background-color: rgb(228, 228, 228);
+}
+
+#letra{
+    -fx-text-fill: black;
+
+}
+
+#fondo{
+    -fx-background-color:white;
+}
+
+#transparente{
+    -fx-background-color: rgba(0,0,0,0);
+}   

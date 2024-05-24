@@ -18,11 +18,11 @@ public class Mail {
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "465");
         prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.socketFactory.port", "2525");
+        prop.put("mail.smtp.socketFactory.port", "465");
         prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
         String cuentaMail = "secondhand1daw@gmail.com";
-        String pass = "SecondHand45_";
+        String pass = "yxmo pked wpjo kpih";
 
         Session session = Session.getInstance(prop, new Authenticator() {
             @Override

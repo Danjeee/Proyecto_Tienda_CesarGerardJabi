@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="202.0" layoutY="121.0" prefHeight="1024.0" prefWidth="1440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="96.0" prefWidth="1440.0">
+               <children>
+                  <Label layoutX="31.0" layoutY="8.0" prefHeight="81.0" prefWidth="790.0" text="Política de devoluciones:">
+                     <font>
+                        <Font name="System Bold" size="45.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <AnchorPane prefHeight="488.0" prefWidth="1440.0">
+               <children>
+                  <TextArea layoutX="31.0" layoutY="-2.0" prefHeight="639.0" prefWidth="1408.0" text="Última actualización: Mayo, 2024&#10;&#10;Con carácter general, los productos adquiridos a través de la aplicación de Second Hand no pueden ser devueltos,&#10;salvo en aquellos casos en los que así sea pactado entre vendedor y comprador o en aquellos casos en los que la disputa se acepte desde Second Hand.&#10;&#10;Los siguientes casos están excluidos de nuestra política de devoluciones:&#10;&#10;- Desistimiento/devolución voluntaria. Es decir, cuando el producto recibido corresponde con la información detallada del anuncio &#10;(considerando título, descripción, fotografías y lo acordado entre vendedor y comprador) pero no deseas quedártelo.&#10;- Productos no permitidos en Second Hand (pulsa en el link para conocer todos los productos no permitidos).&#10;- Productos cuyo contenido o rendimiento no podamos comprobar. &#10;- Recuerda que Second Hand es una aplicación de venta de productos de segunda mano, siendo difícil comprobar el contenido o el estado de algunos de ellos. &#10;- Esto incluye, entre otros, productos no precintados que contengan líquidos o productos cuyo funcionamiento pueda&#10;verse afectado/deteriorado debido a la propia vida útil del producto.&#10;- Productos anunciados como averiados o específicamente anunciados para piezas.&#10;- Diferencias de color entre el producto recibido y el que se mostraba en el anuncio, siempre y cuando dicho color no sea evidente en las imágenes o en la descripción del producto.&#10;- Productos que presenten manchas, suciedad, marcas de uso evidentes que se puedan comprobar en las imágenes o descripción del producto, o que desprendan malos olores.&#10;- Discrepancias de medidas en ropa y calzado, cuando la talla del producto recibido corresponde con la descrita en el anuncio.&#10;- Productos en buen estado y correcto funcionamiento, pese a que la caja del producto en sí esté dañada.&#10;- Productos manipulados por parte del comprador una vez los haya recibido. Esto incluye acciones como reparar, lavar, manipular componentes internos...&#10;- Anuncios cuyas fotos no permitan ver el estado real del producto. Esto incluye anuncios con fotos de internet, de terceros, de catálogo...&#10;- Productos no originales o cuya autenticidad no se pueda probar, siempre y cuando se pueda demostrar que el comprador es conocedor de la no autenticidad.&#10;- En el momento de decidir la resolución de la disputa, Second Hand tendrá en cuenta cualquier información adicional que &#10;el vendedor haya proporcionado al comprador acerca del producto.&#10;&#10;El comprador dispone de 48 horas desde que el paquete se actualiza como «Entregado» en la plataforma para abrir una disputa o contactar con &#10;Second Hand aportando las pruebas necesarias para la gestión de una reclamación. &#10;En el caso que Second Hand requiera información adicional, se establece un nuevo plazo de 48 horas desde dicha solicitud por parte de  Second Hand&#10;para que el usuario presente las pruebas adicionales que Second Hand requiera y que no podrá ser prorrogado en caso de no respuesta por parte del usuario.">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

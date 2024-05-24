@@ -506,6 +506,7 @@ public class Main {
         } else {
             busq.addAll(busqaux);
             if (resultados.isEmpty()) {
+                all.getChildren().remove(0);
                 initialize();
             }
         }

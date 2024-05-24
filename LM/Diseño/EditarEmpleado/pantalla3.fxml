@@ -17,7 +17,7 @@
          <children>
             <ImageView fitHeight="80.0" fitWidth="317.0" layoutX="562.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@logosecondhand-removebg-preview.png" />
+                  <Image url="@../IMAGENES/logosecondhand-removebg-preview.png" />
                </image>
             </ImageView>
             <TextField layoutX="1134.0" layoutY="27.0" prefHeight="30.0" prefWidth="180.0" promptText="Buscar" />
@@ -44,17 +44,17 @@
             <Font name="Inter Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="88.0" layoutY="241.0" text="DNI:">
+      <Label layoutX="88.0" layoutY="257.0" text="DNI:">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="86.0" layoutY="299.0" text="Fecha de nacimiento:">
+      <Label layoutX="86.0" layoutY="329.0" text="Fecha de nacimiento:">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <DatePicker layoutX="293.0" layoutY="295.0" prefHeight="40.0" prefWidth="210.0" promptText="Indique su fecha de nacimiento." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px;" />
+      <DatePicker layoutX="293.0" layoutY="325.0" prefHeight="40.0" prefWidth="210.0" promptText="Indique su fecha de nacimiento." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px;" />
       <Label layoutX="88.0" layoutY="543.0" text="Número de teléfono:">
          <font>
             <Font size="20.0" />
@@ -65,7 +65,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="1060.0" layoutY="241.0" text="Privilegios">
+      <Label layoutX="1060.0" layoutY="256.0" text="Privilegios">
          <font>
             <Font size="20.0" />
          </font>
@@ -135,18 +135,18 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <CheckBox layoutX="1030.0" layoutY="244.0" mnemonicParsing="false">
+      <CheckBox layoutX="1030.0" layoutY="259.0" mnemonicParsing="false">
          <font>
             <Font size="15.0" />
          </font>
       </CheckBox>
-      <Label layoutX="1074.0" layoutY="276.0" text="Descripción ">
+      <Label layoutX="1074.0" layoutY="291.0" text="Descripción ">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <TextField layoutX="299.0" layoutY="197.0" prefHeight="33.0" prefWidth="197.0" promptText="Introduzca su nombre y apellidos." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
-      <TextField layoutX="140.0" layoutY="241.0" prefHeight="33.0" prefWidth="197.0" promptText="Introduzca su DNI." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
+      <TextField layoutX="296.0" layoutY="264.0" prefHeight="33.0" prefWidth="197.0" promptText="Introduzca su DNI." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
       <TextField layoutX="121.0" layoutY="578.0" prefHeight="33.0" prefWidth="210.0" promptText="Introduzca su número de teléfono." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
       <TextField layoutX="592.0" layoutY="578.0" prefHeight="33.0" prefWidth="210.0" promptText="Introduzca su email." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
       <TextField layoutX="1074.0" layoutY="578.0" prefHeight="33.0" prefWidth="210.0" promptText="Introduzca su dirección." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />

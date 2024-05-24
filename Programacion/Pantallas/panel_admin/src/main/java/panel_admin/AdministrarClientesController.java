@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import panel_admin.Clases.Alertas;
 import panel_admin.Clases.Clientes;
 import panel_admin.Clases.Departamento;
 import panel_admin.Clases.Empleado;
@@ -150,9 +151,8 @@ public class AdministrarClientesController {
 
     Connection con = conectar();
     try {
-        PreparedStatement ps = con.prepareStatement("select * from metodo_pago where codigo = ?");
-        ps.setInt(1, codigoMetodoPago);
-        ResultSet rs = ps.executeQuery();
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("select * from metodo_pago where codigo = " +codigoMetodoPago);
 
         if (rs.next()) {
             int codigo = rs.getInt("codigo");
@@ -174,19 +174,14 @@ public class AdministrarClientesController {
             Statement st = con.createStatement();
             st.executeUpdate("UPDATE cliente set activo='0' where nombre='" +clientes.getNombre()+ "'");
     
-            alerta.setAlertType(Alert.AlertType.INFORMATION);
-            alerta.setHeaderText(null);
-            alerta.setContentText("Se ha desactivado el usuario correctamente.");
-            alerta.show();
+            Alertas.clienteDesactivadoCorrectamente();
             
             initialize();
 
         } catch (SQLException sql) {
             sql.printStackTrace();
-            alerta.setAlertType(Alert.AlertType.ERROR);
-            alerta.setHeaderText(null);
-            alerta.setContentText("Error al desactivar el usuario.");
-            alerta.show();
+            
+            Alertas.errorDesactivarCliente();
         }
         fpane.getChildren().clear();
         initialize();

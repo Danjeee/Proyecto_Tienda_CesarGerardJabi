@@ -28,6 +28,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import panel_admin.Clases.Departamento;
 import panel_admin.Clases.Empleado;
+import panel_admin.Clases.Alertas;
 
 public class AdministrarEmpleadosController {
 
@@ -146,9 +147,8 @@ public class AdministrarEmpleadosController {
 
     Connection con = conectar();
     try {
-        PreparedStatement ps = con.prepareStatement("select * from departamento where codigo = ?");
-        ps.setInt(1, codigoDepartamento);
-        ResultSet rs = ps.executeQuery();
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("select * from metodo_pago where codigo = " +codigoDepartamento);
 
         if (rs.next()) {
             int codigo = rs.getInt("codigo");
@@ -168,20 +168,14 @@ public class AdministrarEmpleadosController {
         Connection con = conectar();
         try {
             Statement st = con.createStatement();
-            st.executeUpdate("UPDATE empleado set activo='0' where nombre='" +empleado.getNombre()+ "'");
-    
-            alerta.setAlertType(Alert.AlertType.INFORMATION);
-            alerta.setHeaderText(null);
-            alerta.setContentText("Se ha desactivado el empleado correctamente.");
-            alerta.show();
-            
+            st.executeUpdate("UPDATE empleado set activo='0' where dni='" +empleado.getDni()+ "'");
+
+            Alertas.empleadoDesactivadoCorrectamente();
 
         } catch (SQLException sql) {
             sql.printStackTrace();
-            alerta.setAlertType(Alert.AlertType.ERROR);
-            alerta.setHeaderText(null);
-            alerta.setContentText("Error al desactivar el empleado.");
-            alerta.show();
+
+            Alertas.errorDesactivarEmpleado();
         }
         fpane.getChildren().clear();
         initialize();

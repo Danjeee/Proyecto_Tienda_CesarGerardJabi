@@ -3,6 +3,8 @@ package panel_admin;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javafx.event.ActionEvent;
@@ -20,6 +22,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import panel_admin.Clases.Alertas;
 import panel_admin.Clases.ImportantGUI;
 import panel_admin.MenuHamburguesa.MenuHamb;
 
@@ -187,8 +190,6 @@ public class AltaProductosController {
                 case "Terciopelo":
                     material_num = 10;
                     break;    
-                default:
-                    break;
             }
 
             try {
@@ -198,19 +199,46 @@ public class AltaProductosController {
                 st.executeUpdate("INSERT INTO articulo(nombre, precio, marca, descripcion, activo, imagen, material) VALUES "
                 + "('" + nombre.getText() + "'," + precio.getText() + ",'" + marca.getText() + "','" + descripcion.getText() + "'," + activo.isSelected() + ",'" + nombre_imagen.getText() + "'," + material_num + ")");
                 
-                alerta.setAlertType(Alert.AlertType.INFORMATION);
-                alerta.setHeaderText(null);
-                alerta.setContentText("El artículo se ha insertado CORRECTAMENTE.");
-                alerta.show();
+                ResultSet rs = st.executeQuery("SELECT cod_art FROM articulo WHERE nombre = '" + nombre.getText() + "'");
                 
+                int cod_art_nuevo = 0;
+                if (rs.next()) {
+                    cod_art_nuevo = rs.getInt("cod_art");
+                }
+
+                switch (tipoArticulo.getValue()) {
+                    case "Camisa":
+                        st.executeUpdate("INSERT INTO ropa(cod_art, talla, color, tipo_cierre, tipo_manga, estampada, tipo_ropa) VALUES "
+                        + "(" +cod_art_nuevo+ ",'" + talla.getText() + "','" + color.getText() + "','" + tipo_cierre.getText() + "','" + tipo_manga.getText() + "'," + estampada.isSelected() + ",'" + tipoArticulo.getValue() + "')");
+                        break;
+        
+                    case "Chaqueta":
+                        st.executeUpdate("INSERT INTO ropa(cod_art, talla, color, tipo_cierre, impermeable, tipo_ropa) VALUES "
+                        + "(" +cod_art_nuevo+ ",'" + talla.getText() + "','" + color.getText() + "','" + tipo_cierre.getText() + "'," + impermeable.isSelected() + ",'" + tipoArticulo.getValue() + "')");
+                        break;
+        
+                    case "Pantalón":
+                        st.executeUpdate("INSERT INTO ropa(cod_art, talla, color, tipo_cierre, tipo_pantalon, tien_bolsillos, tipo_ropa) VALUES "
+                        + "(" +cod_art_nuevo+ ",'" + talla.getText() + "','" + color.getText() + "','" + tipo_cierre.getText() + "','" + tipo_pantalon.getText() + "'," + tien_bolsillos.isSelected() + ",'" + tipoArticulo.getValue() + "')");
+                        break;
+        
+                    case "Bolso":
+                        st.executeUpdate("INSERT INTO accesorio(cod_art, estilo, personalizado, tipo_cierre, capacidad, tipo_accesorio) VALUES "
+                        + "(" +cod_art_nuevo+ ",'" + estilo.getText() + "'," + personalizado.isSelected()  + ",'" + tipo_cierre.getText() + "'," + capacidad.getText() + ",'" + tipoArticulo.getValue() + "')");
+                        break;
+        
+                    case "Zapatos":
+                        st.executeUpdate("INSERT INTO accesorio(cod_art, estilo, personalizado, tipo_suela, talla, tipo_accesorio) VALUES "
+                        + "(" +cod_art_nuevo+ ",'" + estilo.getText() + "'," + personalizado.isSelected()  + ",'" + tipo_suela.getText() + "'," + talla_zapatos.getText() + ",'" + tipoArticulo.getValue() + "')");
+                        break;
+                }
+
+                Alertas.productoInsertadoCorrectamente();
                 con.cerrarConexion();
 
-            } catch (Exception ex) {
-                System.out.println(ex.getClass());
-                alerta.setAlertType(Alert.AlertType.ERROR);
-                alerta.setHeaderText(null);
-                alerta.setContentText("Error al insertar Articulo en la BBDD.");
-                alerta.show();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                Alertas.errorInsertarProducto();
             }
     }
 
@@ -220,7 +248,6 @@ public class AltaProductosController {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar una imagen");
-        fileChooser.setInitialDirectory(new File("C:\\Users\\CicloM\\Downloads"));
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.png"));
         
         File imagenSeleccionada = fileChooser.showOpenDialog(stage);
@@ -266,7 +293,6 @@ public class AltaProductosController {
         }else{
             vbox_estilo.setVisible(true);
             vbox_personalizado.setVisible(true);
-            vbox_tipoCierre.setVisible(true);
         }
 
         switch (tipoArticulo.getValue()) {
@@ -286,14 +312,12 @@ public class AltaProductosController {
 
             case "Bolso":
                 vbox_capacidad.setVisible(true);
+                vbox_tipoCierre.setVisible(true);
                 break;
 
             case "Zapatos":
                 vbox_tipoSuela.setVisible(true);
                 vbox_tallaZapatos.setVisible(true);
-                break;
-                
-            default:
                 break;
         }
     }
@@ -305,8 +329,6 @@ public class AltaProductosController {
         cont.getChildren().add(MenuHamb.menuHamb());
         all.getChildren().add(0,ImportantGUI.generateHeader());
         all.getChildren().add(ImportantGUI.generateFooter());
-        tipoArticulo.getSelectionModel().select("Bolso");;
-        tipoArticulo.setOnAction(e -> opcionesArticulo());
 
         material.getItems().addAll(opciones_material);
         tipoArticulo.getItems().addAll(opciones_articulo);
@@ -328,5 +350,8 @@ public class AltaProductosController {
        vbox_capacidad.setVisible(false);
        vbox_tipoSuela.setVisible(false);
        vbox_tallaZapatos.setVisible(false);
+
+       tipoArticulo.setOnAction(e -> opcionesArticulo());
+
     }
 }

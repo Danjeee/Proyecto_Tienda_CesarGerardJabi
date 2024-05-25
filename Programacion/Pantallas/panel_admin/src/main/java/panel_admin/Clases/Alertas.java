@@ -67,5 +67,26 @@ public class Alertas {
         alerta.show();
         return alerta;
     }
+
+    public static Alert productoInsertadoCorrectamente(){
+        Alert alerta = new Alert(Alert.AlertType.NONE);
+        alerta.setAlertType(Alert.AlertType.INFORMATION);
+        alerta.setHeaderText(null);
+        alerta.setContentText("El producto se ha insertado CORRECTAMENTE.");
+        alerta.show();
+        return alerta;
+    }
+
+    public static Alert errorInsertarProducto() {
+        Alert alerta = new Alert(Alert.AlertType.NONE);
+        alerta.setAlertType(Alert.AlertType.ERROR);
+        alerta.setHeaderText(null);
+        alerta.setContentText("Error al insertar producto");
+        alerta.show();
+        return alerta;
+    }
+
+
+
 }
 

@@ -51,7 +51,7 @@ public class MenuHamb {
         a.setLayoutX(25);
         a.setLayoutY(21);
         a.setOnAction(e -> {
-            if (pulsado == 0) {
+            if (pulsado != 1) {
                 pulsado = 1;
             }
             popupHambShow();
@@ -99,7 +99,7 @@ public class MenuHamb {
             @Override
             public void handle(KeyEvent arg0) {
                 if (arg0.getCode() == e) {
-                    if (pulsado == 1) {
+                    if (pulsado >= 1) {
                         popupHambShow();
                     } else {
                         error = pulsado + error;

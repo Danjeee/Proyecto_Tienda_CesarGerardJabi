@@ -60,6 +60,10 @@ public class PanelController {
     public void cargarVentana_AdministrarProductos(ActionEvent actionEvent) throws IOException {
         App.setRoot("AdministrarProductos_Cesar_Javi_Gerard");
     }
+    @FXML
+    public void cargarVentana_AdministrarClientes(ActionEvent actionEvent) throws IOException{
+        App.setRoot("AdministrarClientes_Cesar_Javi_Gerard");
+    }
 
     static Alert alerta = new Alert(Alert.AlertType.NONE);
 

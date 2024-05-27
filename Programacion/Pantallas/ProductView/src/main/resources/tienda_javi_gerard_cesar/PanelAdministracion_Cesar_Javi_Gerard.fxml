@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="cont" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@styles1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.PanelController">
+<AnchorPane fx:id="cont" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.PanelController">
    <children>
       <VBox fx:id="all" prefHeight="1024.0" prefWidth="1440.0">
          <children>
@@ -58,7 +58,7 @@
                         </Pane>
                         <Pane prefHeight="105.0" prefWidth="354.0">
                            <children>
-                              <Button fx:id="Administrar_usuarios" layoutY="14.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarUsuarios" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;usuarios" textFill="WHITE">
+                              <Button fx:id="Administrar_usuarios" layoutY="14.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarClientes" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;usuarios" textFill="WHITE">
                                  <graphic>
                                     <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="23" wrappingWidth="43.6666259765625" />
                                  </graphic>

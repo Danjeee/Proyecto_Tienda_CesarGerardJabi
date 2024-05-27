@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import tienda_javi_gerard_cesar.Clases.MenuHamb;
+import tienda_javi_gerard_cesar.Clases.*;
 
 public class AdministrarProductosController {
 

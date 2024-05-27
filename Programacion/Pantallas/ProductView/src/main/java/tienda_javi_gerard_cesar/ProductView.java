@@ -35,12 +35,15 @@ import java.util.Random;
 public class ProductView {
 
     private static int current;
-    public static int getCurrentProduct(){
+
+    public static int getCurrentProduct() {
         return current;
     }
-    public static void setCurrentProduct(int s){
+
+    public static void setCurrentProduct(int s) {
         current = s;
     }
+
     @FXML
     private VBox all;
     @FXML
@@ -61,63 +64,75 @@ public class ProductView {
     @FXML
     private void addGoing(Double x, Double y) {
         if (!App.getUser().equals("guest")) {
-            Connection con = conenct();
-            Boolean existe = false;
-            Boolean existePedido = false;
-            pedido = getPedido();
+            if (!App.userIsAdmin()) {
+                Connection con = conenct();
+                Boolean existe = false;
+                Boolean existePedido = false;
+                pedido = getPedido();
 
-            try {
-                Statement st = con.createStatement();
                 try {
-                    Statement st2 = con.createStatement();
-                    ResultSet rs1 = st2
-                            .executeQuery("SELECT num_pedido FROM linea_pedido WHERE num_pedido = " + pedido);
-                    while (rs1.next()) {
-                        if (rs1.getInt("num_pedido") == pedido) {
-                            existePedido = true;
-                        }
-                    }
-                    if (!existePedido) {
-                        nuevoPedido();
-                        st.executeUpdate(
-                                "INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
-                    } else {
-                        ResultSet rs = st2
-                                .executeQuery("SELECT cod_art FROM linea_pedido WHERE num_pedido = " + pedido);
-                        while (rs.next()) {
-                            if (rs.getInt("cod_art") == ProductView.current) {
-                                existe = true;
+                    Statement st = con.createStatement();
+                    try {
+                        Statement st2 = con.createStatement();
+                        ResultSet rs1 = st2
+                                .executeQuery("SELECT num_pedido FROM linea_pedido WHERE num_pedido = " + pedido);
+                        while (rs1.next()) {
+                            if (rs1.getInt("num_pedido") == pedido) {
+                                existePedido = true;
                             }
                         }
-                        if (existe) {
-                            st.executeUpdate(
-                                    "UPDATE linea_pedido SET cantidad = (SELECT cantidad FROM linea_pedido WHERE num_pedido = "
-                                            + pedido + " and cod_art = " + ProductView.current
-                                            + ")+1 WHERE num_pedido = "
-                                            + pedido
-                                            + " and cod_art = " + ProductView.current);
-                        } else {
+                        if (!existePedido) {
+                            nuevoPedido();
                             st.executeUpdate(
                                     "INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
+                        } else {
+                            ResultSet rs = st2
+                                    .executeQuery("SELECT cod_art FROM linea_pedido WHERE num_pedido = " + pedido);
+                            while (rs.next()) {
+                                if (rs.getInt("cod_art") == ProductView.current) {
+                                    existe = true;
+                                }
+                            }
+                            if (existe) {
+                                st.executeUpdate(
+                                        "UPDATE linea_pedido SET cantidad = (SELECT cantidad FROM linea_pedido WHERE num_pedido = "
+                                                + pedido + " and cod_art = " + ProductView.current
+                                                + ")+1 WHERE num_pedido = "
+                                                + pedido
+                                                + " and cod_art = " + ProductView.current);
+                            } else {
+                                st.executeUpdate(
+                                        "INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido
+                                                + ", 1)");
+                            }
                         }
+                    } catch (SQLException e) {
+                        st.executeUpdate(
+                                "INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
                     }
                 } catch (SQLException e) {
-                    st.executeUpdate("INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
+                    e.printStackTrace();
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
+                try {
+                    App.setRoot("cart");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                if (App.getUser().equals("guest")) {
+                Label a = ImportantGUI.mensaje(x, y, "Debes iniciar sesion");
+                if (cont.getChildren().contains(a)) {
+                    cont.getChildren().remove(a);
+                }
+                cont.getChildren().add(a);
+            } else {
+                Label a = ImportantGUI.mensaje(x, y, "Los empleados no pueden realizar pedidos");
+                if (cont.getChildren().contains(a)) {
+                    cont.getChildren().remove(a);
+                }
+                cont.getChildren().add(a);
             }
-            try {
-                App.setRoot("cart");
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-        } else {
-            Label a = ImportantGUI.mensaje(x, y, "Debes iniciar sesion");
-            if (cont.getChildren().contains(a)) {
-                cont.getChildren().remove(a);
-            }
-            cont.getChildren().add(a);
         }
     }
 
@@ -125,11 +140,12 @@ public class ProductView {
         Connection con = conenct();
         try {
             Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT DISTINCT P.numero FROM pedido P WHERE DNI_cliente = '" + App.getUser()
-                    + "' and estado = 'En proceso'");
+            ResultSet rs = stm
+                    .executeQuery("SELECT DISTINCT P.numero FROM pedido P WHERE DNI_cliente = '" + App.getUser()
+                            + "' and estado = 'En proceso'");
             int caca = 0;
             while (rs.next()) {
-             caca = rs.getInt("numero");    
+                caca = rs.getInt("numero");
             }
             return caca;
         } catch (SQLException e) {
@@ -285,7 +301,7 @@ public class ProductView {
         MenuHamb.init(cont);
         all.getChildren().add(0, ImportantGUI.generateHeader());
         all.getChildren().add(ImportantGUI.generateFooter());
-        if (App.getUser().equals("guest")) {
+        if (App.getUser().equals("guest") || App.userIsAdmin()) {
             addtocart.setStyle("-fx-background-color: #888586");
             addtocart.setCursor(Cursor.DEFAULT);
         }
@@ -300,22 +316,22 @@ public class ProductView {
         desc.setText(datos[2]);
         Random rnd = new Random();
         int imgrnd = rnd.nextInt(3);
-        String caca= "/tienda_javi_gerard_cesar/imagen1.jpg";
+        String caca = "/tienda_javi_gerard_cesar/imagen1.jpg";
         switch (imgrnd) {
             case 0:
-            caca= "/tienda_javi_gerard_cesar/imagen0.jpg";
+                caca = "/tienda_javi_gerard_cesar/imagen0.jpg";
                 break;
-                case 1:
-            caca= "/tienda_javi_gerard_cesar/imagen2.jpg";
+            case 1:
+                caca = "/tienda_javi_gerard_cesar/imagen2.jpg";
                 break;
-                case 2:
-            caca= "/tienda_javi_gerard_cesar/imagen3.jpg";
+            case 2:
+                caca = "/tienda_javi_gerard_cesar/imagen3.jpg";
                 break;
-        
+
             default:
                 break;
         }
-            img.setImage(new Image(getClass().getResourceAsStream(caca)));
+        img.setImage(new Image(getClass().getResourceAsStream(caca)));
 
         ArrayList<String> atribtxt = atributos(conenct());
         ArrayList<Label> atrib = new ArrayList<Label>();

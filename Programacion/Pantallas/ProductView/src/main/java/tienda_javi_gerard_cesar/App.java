@@ -8,6 +8,11 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * JavaFX App
@@ -15,21 +20,23 @@ import java.io.IOException;
 public class App extends Application {
 
     public static Scene scene;
-    private static String[] last = {"Login", "0"};
+    private static String[] last = { "Login", "0" };
 
     public static String getLast() {
         return last[0];
     }
-    public static String getCurrent(){
+
+    public static String getCurrent() {
         return last[1];
     }
 
     private static String user = "23456789A";
 
-    public static void setUser(String a){
+    public static void setUser(String a) {
         user = a;
     }
-    public static String getUser(){
+
+    public static String getUser() {
         return user;
     }
 
@@ -40,6 +47,33 @@ public class App extends Application {
         stage.setTitle("secondHand");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/icon.jpg")));
         stage.show();
+    }
+
+    private static Connection conenct() {
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return con;
+    }
+
+    public static boolean userIsAdmin() {
+        Connection con = conenct();
+        try {
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT DNI FROM empleado");
+            while (rs.next()) {
+                if (rs.getString("DNI").equals(App.getUser())) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public static void setRoot(String fxml) throws IOException {
@@ -56,10 +90,10 @@ public class App extends Application {
         launch();
     }
 
-    private static void reloadLast(String current){
+    private static void reloadLast(String current) {
         if (last[0].equals("0")) {
             last[0] = current;
-        } else if (last[1].equals("0")){
+        } else if (last[1].equals("0")) {
             last[1] = current;
         } else {
             last[0] = last[1];

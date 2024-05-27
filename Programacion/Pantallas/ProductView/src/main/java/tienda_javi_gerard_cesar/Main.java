@@ -526,7 +526,7 @@ public class Main {
         fp.getRowConstraints().add(datos);
         fp.getColumnConstraints().get(0).setPrefWidth(150);
         /* Botones */
-        if (App.getUser().equals("guest")) {
+        if (App.getUser().equals("guest") || App.userIsAdmin()) {
             plus.setStyle("-fx-background-color: #f2f2f2;-fx-background-radius: 0");
             cart.setStyle("-fx-background-color: #f2f2f2;-fx-background-radius: 0");
         } else {

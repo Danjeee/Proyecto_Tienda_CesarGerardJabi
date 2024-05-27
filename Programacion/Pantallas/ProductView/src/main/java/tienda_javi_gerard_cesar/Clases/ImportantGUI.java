@@ -108,6 +108,7 @@ public class ImportantGUI {
         HBox a = new HBox();
         a.setAlignment(Pos.CENTER_LEFT);
         a.setPrefHeight(100);
+        a.setMinHeight(100);
         a.setPrefWidth(1440);
         a.setStyle("-fx-background-color: #fff");
 
@@ -126,6 +127,9 @@ public class ImportantGUI {
         lupa.promptTextProperty().set(" 🔎 Buscar");
         lupa.setPrefWidth(150);
         lupa.setStyle("-fx-background-color: #fff; -fx-border-color: #000; -fx-border-width: 1;");
+        if (!Main.resultados.isEmpty()) {
+            lupa.setText(Main.resultados.get(0));
+        }
         lupa.setOnAction(e -> searchBar(e));
 
         MenuButton user = new MenuButton();
@@ -234,6 +238,7 @@ public class ImportantGUI {
         a.setPadding(new Insets(0, 0, 20, 0));
         a.setPrefWidth(1440);
         a.setPrefHeight(200);
+        a.setMinHeight(200);
         a.setStyle("-fx-background-color: #f2f2f2");
 
         VBox ayuda = new VBox();

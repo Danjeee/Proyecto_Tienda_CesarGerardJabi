@@ -30,7 +30,7 @@ public class App extends Application {
         return last[1];
     }
 
-    private static String user = "23456789A";
+    private static String user = "guest";
 
     public static void setUser(String a) {
         user = a;

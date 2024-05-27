@@ -36,6 +36,8 @@ public class MenuHamb {
     private static AnchorPane menuShadow;
     private static Boolean menued = false;
     private static int javisegundos;
+    private static int error = 0;
+    private static int pulsado = 0;
 
     public static Button menuHamb() {
         Button a = new Button();
@@ -48,7 +50,12 @@ public class MenuHamb {
         a.setGraphic(ico);
         a.setLayoutX(25);
         a.setLayoutY(21);
-        a.setOnAction(e -> popupHambShow());
+        a.setOnAction(e -> {
+            if (pulsado == 0) {
+                pulsado = 1;
+            }
+            popupHambShow();
+        });
         return a;
     }
 
@@ -92,7 +99,17 @@ public class MenuHamb {
             @Override
             public void handle(KeyEvent arg0) {
                 if (arg0.getCode() == e) {
-                    popupHambShow();
+                    if (pulsado == 1) {
+                        popupHambShow();
+                    } else {
+                        error = pulsado + error;
+                        error++;
+                        if (error == 1) {
+                            popupHambShow();
+                        } else {
+                            error = 0;
+                        }
+                    }
                 }
             }
 

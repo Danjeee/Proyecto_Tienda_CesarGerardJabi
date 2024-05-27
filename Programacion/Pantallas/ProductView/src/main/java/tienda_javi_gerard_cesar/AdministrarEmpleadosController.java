@@ -39,6 +39,9 @@ public class AdministrarEmpleadosController {
     public Empleado empleado;
     public ArrayList<Empleado> lista_empleados;
 
+    @FXML
+    private VBox all;
+
     static Alert alerta = new Alert(Alert.AlertType.NONE);
 
     private Connection conectar() {
@@ -85,7 +88,7 @@ public class AdministrarEmpleadosController {
         editar.setSize("25");
         editarEmpleado.setGraphic(editar);
         editarEmpleado.setOnAction(i -> {
-            EditarEmpleadoController.current = empleado.getDni();
+            EditarEmpleadoController.setCurrent(empleado.getDni());
             try {
                 App.setRoot("pantalla3");
             } catch (IOException e) {
@@ -186,6 +189,7 @@ public class AdministrarEmpleadosController {
 
     public void initialize() {
         MenuHamb.init(cont);
+        all.getChildren().add(0, ImportantGUI.generateHeader());
 
         lista_empleados = cargarEmpleados();
 

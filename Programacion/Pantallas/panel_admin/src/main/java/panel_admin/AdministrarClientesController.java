@@ -172,11 +172,10 @@ public class AdministrarClientesController {
         Connection con = conectar();
         try {
             Statement st = con.createStatement();
-            st.executeUpdate("UPDATE cliente set activo='0' where nombre='" +clientes.getNombre()+ "'");
+            st.executeUpdate("UPDATE cliente set activo='0' where nombre='" +clientes.getDni()+ "'");
     
             Alertas.clienteDesactivadoCorrectamente();
             
-            initialize();
 
         } catch (SQLException sql) {
             sql.printStackTrace();

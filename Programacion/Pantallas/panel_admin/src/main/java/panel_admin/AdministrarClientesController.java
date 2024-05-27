@@ -89,7 +89,7 @@ public class AdministrarClientesController {
         editar.setSize("25");
         editarCliente.setGraphic(editar);
         editarCliente.setOnAction(i -> {
-            EditarClienteController.setCurrent( clientes.getDni());
+            EditarClienteController.setCurrent(clientes.getDni());
             try {
                 App.setRoot("EditarCliente_Cesar_Javi_Gerard");
             } catch (IOException e) {

@@ -98,6 +98,7 @@
                   <FontAwesomeIconView glyphName="ARROW_LEFT" size="25" />
                </graphic>
             </Button>
+            <Button layoutX="484.0" layoutY="394.0" mnemonicParsing="false" text="Enviar" />
          </children>
       </Pane>
    </children>

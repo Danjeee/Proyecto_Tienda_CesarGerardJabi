@@ -1,10 +1,19 @@
 package tienda_javi_gerard_cesar;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import tienda_javi_gerard_cesar.Clases.*;
 
 public class EditarClienteController {
@@ -13,12 +22,118 @@ public class EditarClienteController {
     private App PantallaPrincipal = new App();
 
     @FXML
+    private AnchorPane cont;
+
+    @FXML
+    private TextField textNombre;
+
+    @FXML
+    private TextField textApellido;
+
+    @FXML
+    private TextField textDNI;
+
+    @FXML
+    private TextField textTelefono;
+
+    @FXML
+    private TextField textEmail;
+
+    @FXML
+    private TextField textNumPedidos;
+
+    @FXML
+    private TextField textFechaNacim;
+
+    @FXML
+    private TextField textDireccion;
+
+    @FXML
+    private CheckBox textTarjetaFide;
+
+    @FXML
+    private TextField textDireccionEnvio;
+
+    @FXML
+    private VBox all;
+    
+
+    public static String getCurrent() {
+        return current;
+    }
+
+    public static void setCurrent(String current) {
+        EditarClienteController.current = current;
+    }
+
+    private static String current = "";
+
+    @FXML
     public void retroceder_ListaClientes(ActionEvent actionEvent) throws IOException {
         App.setRoot("AdministrarClientes_Cesar_Javi_Gerard");
         initialize();
     }
+
+    private Connection conectar() {
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return con;
+    }
     
-    public void initialize() {
+
+
+    @FXML
+    private void guardarCambios(){
+
+        Connection connection = conectar();
+        try {
+       
+            Statement st = connection.createStatement();
+
+            st.executeUpdate("UPDATE cliente set DNI='"+textDNI.getText()+"', nombre='"+textNombre.getText()+"', apellidos='"+textApellido.getText()+"', telefono='"+textTelefono.getText()+"', f_nacimiento='"+textFechaNacim.getText()
+            +"', direccion='"+textDireccion.getText()+"', email='"+textEmail.getText()+"', dir_envio='" +textDireccionEnvio.getText()+ "', tarjeta_fidelizacion=" +textTarjetaFide.isSelected()+ ", num_pedidos = "+textNumPedidos.getText()+" where DNI = '"+current+"'");
+
+            Alertas.editarCliente();
+            connection.close();
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
+            Alertas.errorRegistrar();
+        }
+ 
     }
 
+    public void initialize() {
+        textDNI.setEditable(false);
+        MenuHamb.init(cont);
+        all.getChildren().add(0, ImportantGUI.generateHeader());
+        Connection con = conectar();
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from cliente where DNI='" +current+ "'");
+
+            while (rs.next()) {
+
+                textNombre.setText(rs.getString("nombre"));
+                textApellido.setText(rs.getString("apellidos"));
+                textDNI.setText(rs.getString("dni"));
+                textTelefono.setText(rs.getString("telefono"));
+                textEmail.setText(rs.getString("email"));
+                textNumPedidos.setText(rs.getString("num_pedidos"));
+                textFechaNacim.setText(rs.getString("f_nacimiento"));
+                textDireccion.setText(rs.getString("direccion"));
+                textTarjetaFide.selectedProperty().set(rs.getBoolean("tarjeta_fidelizacion"));
+                textDireccionEnvio.setText(rs.getString("dir_envio"));
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

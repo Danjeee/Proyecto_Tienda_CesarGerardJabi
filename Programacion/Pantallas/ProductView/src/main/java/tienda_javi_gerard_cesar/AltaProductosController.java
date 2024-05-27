@@ -323,7 +323,6 @@ public class AltaProductosController {
     public void initialize() {
         MenuHamb.init(cont);
         all.getChildren().add(0,ImportantGUI.generateHeader());
-        all.getChildren().add(ImportantGUI.generateFooter());
 
         material.getItems().addAll(opciones_material);
         tipoArticulo.getItems().addAll(opciones_articulo);

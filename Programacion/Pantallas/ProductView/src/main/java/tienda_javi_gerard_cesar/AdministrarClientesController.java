@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import tienda_javi_gerard_cesar.Clases.*;
 
@@ -33,9 +34,10 @@ public class AdministrarClientesController {
     @FXML
     private FlowPane fpane; 
     @FXML
+    private VBox all;
+    @FXML
     public Clientes clientes;
     public ArrayList<Clientes> lista_clientes;
-
 
     static Alert alerta = new Alert(Alert.AlertType.NONE);
 
@@ -82,10 +84,14 @@ public class AdministrarClientesController {
         editar.setFill(Color.WHITE);
         editar.setSize("25");
         editarCliente.setGraphic(editar);
-        /* editarCliente.setOnAction(i -> {
-            EditarClienteController.current = clientes.getDni();
-            App.setRoot("EditarCliente_Cesar_Javi_Gerard");
-        }); */
+        editarCliente.setOnAction(i -> {
+            EditarClienteController.setCurrent( clientes.getDni());
+            try {
+                App.setRoot("EditarCliente_Cesar_Javi_Gerard");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }); 
         hb.getChildren().add(editarCliente);
 
         Button borrarCliente = new Button("");
@@ -182,6 +188,7 @@ public class AdministrarClientesController {
     
     public void initialize() {
         MenuHamb.init(cont);
+        all.getChildren().add(0, ImportantGUI.generateHeader());
 
         lista_clientes = cargarClientes();
 

@@ -88,10 +88,14 @@ public class AdministrarClientesController {
         editar.setFill(Color.WHITE);
         editar.setSize("25");
         editarCliente.setGraphic(editar);
-        /* editarCliente.setOnAction(i -> {
-            EditarClienteController.current = clientes.getDni();
-            App.setRoot("EditarCliente_Cesar_Javi_Gerard");
-        }); */
+        editarCliente.setOnAction(i -> {
+            EditarClienteController.setCurrent( clientes.getDni());
+            try {
+                App.setRoot("EditarCliente_Cesar_Javi_Gerard");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }); 
         hb.getChildren().add(editarCliente);
 
         Button borrarCliente = new Button("");

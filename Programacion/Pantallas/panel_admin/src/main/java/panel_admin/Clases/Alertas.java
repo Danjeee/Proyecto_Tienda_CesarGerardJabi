@@ -87,6 +87,15 @@ public class Alertas {
     }
 
 
+    public static Alert editarCliente(){
+        Alert alerta = new Alert(Alert.AlertType.NONE);
+        alerta.setAlertType(AlertType.INFORMATION);
+        alerta.setHeaderText(null);
+        alerta.setContentText("El cliente se ha actualizado correctamente.");
+        alerta.show();
+        return alerta;
+    }
+
 
 }
 

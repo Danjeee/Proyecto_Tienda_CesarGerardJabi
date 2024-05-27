@@ -22,6 +22,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import login.Clases.Alertas;
 import login.Clases.MenuHamb;
 import login.Clases.User;
 
@@ -130,12 +131,7 @@ public class LoginController {
                 }
 
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("INICIO DE SESIÓN INCORRECTO.");
-                alert.setTitle("ERROR");
-                alert.setContentText("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
-                alert.showAndWait();
-
+                Alertas.rellenarCampos();
             }
 
         } catch (SQLException e) {

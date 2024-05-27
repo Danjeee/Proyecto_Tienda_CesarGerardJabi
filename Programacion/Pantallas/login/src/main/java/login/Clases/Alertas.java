@@ -5,6 +5,33 @@ import javafx.scene.control.Alert.AlertType;
 
 public class Alertas {
 
+    public static Alert malEmail() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("EMAIL INCORRECTO.");
+        alert.setTitle("ERROR");
+        alert.setContentText("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
+        alert.showAndWait();
+        return alert;
+    }
+
+    public static Alert bienMail() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("EMAIL CORRECTO.");
+        alert.setTitle("ENVIADO");
+        alert.setContentText("EMAIL ENVIADO CORRECTAMENTE.");
+        alert.showAndWait();
+        return alert;
+    }
+
+    public static Alert rellenarCampos() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("INICIO DE SESIÓN INCORRECTO.");
+        alert.setTitle("ERROR");
+        alert.setContentText("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
+        alert.showAndWait();
+        return alert;
+    }
+
     public static Alert errorRegistrar() {
         Alert alerta = new Alert(Alert.AlertType.NONE);
         alerta.setAlertType(Alert.AlertType.ERROR);

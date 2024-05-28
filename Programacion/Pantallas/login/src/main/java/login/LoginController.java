@@ -124,7 +124,9 @@ public class LoginController {
                 }
 
             } else {
-                Alertas.rellenarCampos();
+                
+                Alertas.error("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
+
             }
 
         } catch (SQLException e) {

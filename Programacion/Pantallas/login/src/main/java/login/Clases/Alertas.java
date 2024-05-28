@@ -1,10 +1,19 @@
 package login.Clases;
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 public class Alertas {
 
+    public static Alert error(String tipoError) {
+        Alert alerta = new Alert(Alert.AlertType.NONE);
+        alerta.setAlertType(Alert.AlertType.ERROR);
+        alerta.setHeaderText(null);
+        alerta.setContentText(tipoError);
+        alerta.show();
+        return alerta;
+    }
+
+    /*
     public static Alert malEmail() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText("EMAIL INCORRECTO.");
@@ -58,5 +67,7 @@ public class Alertas {
         alerta.show();
         return alerta;
     }    
+
+    */
 }
 

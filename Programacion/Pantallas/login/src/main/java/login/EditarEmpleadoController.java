@@ -136,13 +136,15 @@ public class EditarEmpleadoController {
        
             Statement st = connection.createStatement();
             
-            st.executeUpdate("UPDATE EMPLEADO set DNI='"+DNIempleado.getText()+"', nombre='"+nombreEmpleado.getText()+"', apellidos='"+apellidosEmpleado.getText()+"', telefono='"+numtelef.getText()+"', f_nacimiento='"+fechaNac.getValue()
-            +"', direccion='"+direccionEmpleado.getText()+"', email='"+emailEmpleado.getText()+"', activo=1, dpto='"+dpto.getSelectionModel().getSelectedItem().substring(0,1)+"', tiene_privilegios="+privilegiosEmpleado.isSelected()+" WHERE DNI = '"+current+"'");
+            st.executeUpdate("UPDATE EMPLEADO set DNI='"+DNIempleado.getText()+"', nombre='"+nombreEmpleado.getText()+"', apellidos='"
+            +apellidosEmpleado.getText()+"', telefono='"+numtelef.getText()+"', f_nacimiento='"+fechaNac.getValue()
+            +"', direccion='"+direccionEmpleado.getText()+"', email='"+emailEmpleado.getText()+"', activo=1, dpto='"
+            +dpto.getSelectionModel().getSelectedItem().substring(0,1)+"', tiene_privilegios="+privilegiosEmpleado.isSelected()+" WHERE DNI = '"
+            +current+"'");
 
             Alertas.editarEmpleado();
             connection.close();
         } catch (SQLException e) {
-            
             e.printStackTrace();
             Alertas.errorRegistrar();
         }

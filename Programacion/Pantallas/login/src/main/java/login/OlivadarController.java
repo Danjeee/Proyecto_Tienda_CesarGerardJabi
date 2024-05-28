@@ -40,28 +40,6 @@ public class OlivadarController {
     @FXML
     public void enviar() {
 
-        /*
-         * User i = buscarMail(emailArevisar);
-         * if (i != null) {
-         * 
-         * App.user = i.getDNI();
-         * try {
-         * App.setRoot("seleccion");
-         * } catch (IOException e) {
-         * e.printStackTrace();
-         * }
-         * 
-         * } else {
-         * Alert alert = new Alert(Alert.AlertType.ERROR);
-         * alert.setHeaderText("INICIO DE SESIÓN INCORRECTO.");
-         * alert.setTitle("ERROR");
-         * alert.setContentText("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
-         * alert.showAndWait();
-         * 
-         * }
-         */
-        /* */
-
         Connection connection = conenct();
 
         try {
@@ -100,8 +78,6 @@ public class OlivadarController {
             System.err.println("Error al conectar la base de datos: " + e.getMessage());
         }
     }
-
-    /* */
 
     private User buscarMail(ArrayList<User> emails) {
         User u = null;

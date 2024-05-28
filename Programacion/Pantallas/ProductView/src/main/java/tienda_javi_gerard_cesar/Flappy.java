@@ -158,7 +158,7 @@ public class Flappy {
      *  8.- Según la puntuación aumenta la velocidad de las tuberias y disminuye el tiempo de aparicion de estas
      */
     private void update() {
-        if (javisegundos == 0) {
+        if (javisegundos == 1) {
             Scene scene = ber.getScene();
             scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 

@@ -28,6 +28,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import tienda_javi_gerard_cesar.Clases.*;
 
 public class Pedidos {
@@ -128,7 +129,7 @@ public class Pedidos {
 
         VBox descuento = new VBox();
         descuento.setAlignment(Pos.CENTER);
-        descuento.setPrefWidth(300);
+        descuento.setPrefWidth(250);
         Label desc = new Label();
         if (p.getEstado().equals("Completado")) {
             desc = new Label("Descuento: " + descuentoUsado(p.getNum()));
@@ -165,7 +166,7 @@ public class Pedidos {
         }
 
         VBox totalcont = new VBox();
-        totalcont.setPrefWidth(250);
+        totalcont.setPrefWidth(200);
         totalcont.setAlignment(Pos.CENTER);
 
         double subtotal = calculartotal(p.getProductos());
@@ -181,12 +182,14 @@ public class Pedidos {
         FontAwesomeIconView ico = new FontAwesomeIconView();
         ico.setGlyphName("CARET_DOWN");
         ico.setSize("20");
+        double totalenvio = envio;
+        int desccant = curr.getCantidad();
         veritems.setGraphic(ico);
-        veritems.setContentDisplay(ContentDisplay.RIGHT);
+        veritems.setContentDisplay(ContentDisplay.LEFT);
         veritems.setFont(def);
-        veritems.setOnAction(e -> showItems(b, p));
+        veritems.setOnAction(e -> showItems(b, p, desccant, totalenvio));
         HBox rightitems = new HBox();
-        rightitems.setPrefWidth(400);
+        rightitems.setPrefWidth(500);
         rightitems.setAlignment(Pos.CENTER_RIGHT);
         rightitems.getChildren().add(veritems);
         VBox estadocont = new VBox();
@@ -195,8 +198,9 @@ public class Pedidos {
 
         switch (p.getEstado()) {
             case "En proceso":
-                Button pagar = new Button();
-                pagar.setPrefWidth(75);
+                Button pagar = new Button("Pagar");
+                pagar.setFont(def);
+                pagar.setPrefWidth(125);
                 pagar.setOnAction(e -> {
                     try {
                         App.setRoot("cart");
@@ -284,8 +288,8 @@ public class Pedidos {
         if (art.getImg().equals("imagen1.jpg")) {
             ImageView fondo = new ImageView(
                     new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/" + art.getImg())));
-            fondo.setFitHeight(75);
-            fondo.setFitWidth(100);
+            fondo.setFitHeight(50);
+            fondo.setFitWidth(75);
             producto.setGraphic(fondo);
         }
         producto.setOnAction(e -> {
@@ -312,7 +316,7 @@ public class Pedidos {
         return a;
     }
 
-    private void showItems(VBox a, Pedido p) {
+    private void showItems(VBox a, Pedido p, int d, double env) {
         if (a.getChildren().size() == 1) {
             a.setPrefHeight(500);
             a.setAlignment(Pos.TOP_LEFT);
@@ -323,6 +327,50 @@ public class Pedidos {
             sp.setPrefWidth(a.getWidth() - 100);
             sp.setPrefHeight(350);
             content.setStyle("-fx-background-color: #fff");
+            HBox info = new HBox();
+            info.setPrefWidth(a.getWidth()-120);
+            info.setPrefHeight(75);
+            info.setSpacing(50);
+            Label img = new Label("Imagen");
+            Label cod= new Label("Codigo");
+            Label nom = new Label("Nombre");
+            Label precio = new Label("Precio");
+            Label cant = new Label("Cant");
+            Label tot = new Label("Total");
+            info.getChildren().addAll(img,cod,nom,precio,cant,tot);
+            info.setAlignment(Pos.CENTER);
+            for (Node i : info.getChildren()){
+                Label ii = (Label)i;
+                ii.setFont(new Font("System", 18));
+                ii.setPrefWidth((a.getWidth()-120)/6);
+                ii.setAlignment(Pos.CENTER);
+                if (ii.getText().equals("Codigo")) {
+                    ii.setPrefWidth(((a.getWidth()-120)/6)-50);
+                }
+                if (ii.getText().equals("Nombre")) {
+                    ii.setPrefWidth(((a.getWidth()-120)/6)+100);
+                }
+                if (ii.getText().equals("Cant")) {
+                    ii.setPrefWidth(((a.getWidth()-120)/6)-50);
+                }
+            }
+            
+            Label descuento = new Label("Descuento:    "+formatDouble(calculartotal(p.getProductos())*d/100));
+            descuento.setFont(new Font("System", 18));
+            descuento.setPrefHeight(75);
+            descuento.setPrefWidth((a.getWidth()-120)/6);
+            descuento.setAlignment(Pos.CENTER);
+            Label impuesto = new Label("IVA (21%):    "+formatDouble((calculartotal(p.getProductos())-(calculartotal(p.getProductos())*d/100))*21/100));
+            impuesto.setFont(new Font("System", 18));
+            impuesto.setPrefHeight(75);
+            impuesto.setPrefWidth((a.getWidth()-120)/6);
+            impuesto.setAlignment(Pos.CENTER);
+            Label envio = new Label("Envio:    "+formatDouble(env));
+            envio.setFont(new Font("System", 18));
+            envio.setPrefHeight(75);
+            envio.setPrefWidth((a.getWidth()-120)/6);
+            envio.setAlignment(Pos.CENTER);
+            content.getChildren().addAll(descuento, impuesto, envio, info);
             for (Articulo i : p.getProductos()) {
                 content.getChildren().add(crearArticulo(i, content));
             }

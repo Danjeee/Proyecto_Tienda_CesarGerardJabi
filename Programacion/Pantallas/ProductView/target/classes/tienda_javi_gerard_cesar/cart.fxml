@@ -139,11 +139,6 @@
                                     <Font size="23.0" />
                                  </font>
                               </Label>
-                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#actualizar" prefHeight="46.0" prefWidth="223.0" style="-fx-background-color: #000;" styleClass="default" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css" text="Actualizar carrito" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font name="System Bold" size="22.0" />
-                                 </font>
-                              </Button>
                               <Button fx:id="pagarbutton" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" style="-fx-background-color: #000;" styleClass="default" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css" text="Pagar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="System Bold" size="22.0" />

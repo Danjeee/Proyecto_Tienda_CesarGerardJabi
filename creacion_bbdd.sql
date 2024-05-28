@@ -66,6 +66,7 @@ CREATE TABLE CLIENTE (
 CREATE TABLE DESCUENTOS_USADOS(
 	descuento VARCHAR(50) PRIMARY KEY,
 	usado_por CHAR(9) NOT NULL,
+    pedido int unsigned,
     FOREIGN KEY (usado_por) REFERENCES CLIENTE(DNI)
 );
 

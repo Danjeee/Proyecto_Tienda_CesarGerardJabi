@@ -157,6 +157,8 @@ public class MenuHamb {
     }
 
     public static void init(AnchorPane a) {
+        error = 0;
+        pulsado = 0;
         popupHambMake();
         a.getChildren().addAll(menuShadow, popupHamb, menuHamb());
         start(keyListener(KeyCode.ESCAPE));
@@ -239,7 +241,7 @@ public class MenuHamb {
         }
 
         popupHamb.getChildren().add(smallButton("    Preguntas frecuentes", "faq"));
-        popupHamb.getChildren().add(smallButton("    Estado de mi pedido", "estado"));
+        popupHamb.getChildren().add(smallButton("    Estado de mi pedido", "pedidos"));
         popupHamb.getChildren().add(smallButton("    Devoluciones", "devoluciones"));
         popupHamb.getChildren().add(smallButton("    Envios", "envios"));
 

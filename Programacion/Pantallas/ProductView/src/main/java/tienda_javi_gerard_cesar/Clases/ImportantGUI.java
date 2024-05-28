@@ -67,7 +67,8 @@ public class ImportantGUI {
             }
         }
     }
-    public static Button defaultBack(){
+
+    public static Button defaultBack() {
         Button a = new Button();
         a.setText("");
         a.setPrefHeight(30);
@@ -87,6 +88,7 @@ public class ImportantGUI {
         });
         return a;
     }
+
     private static boolean isAdmin() {
         Connection con = conenct();
         try {
@@ -275,15 +277,15 @@ public class ImportantGUI {
 
         Button estado = new Button("Estado de mi pedido");
         estado.setFont(def);
-        /*
-         * estado.setOnAction(e -> {
-         * try {
-         * App.setRoot("estado");
-         * } catch (IOException e1) {
-         * e1.printStackTrace();
-         * }
-         * });
-         */
+
+        estado.setOnAction(e -> {
+            try {
+                App.setRoot("pedidos");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+
         Button dev = new Button("Devoluciones");
         dev.setFont(def);
         dev.setOnAction(e -> {

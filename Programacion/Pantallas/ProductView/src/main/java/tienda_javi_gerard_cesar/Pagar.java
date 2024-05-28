@@ -299,11 +299,12 @@ public class Pagar {
                 stm.executeUpdate("UPDATE pedido SET estado = 'Completado' WHERE numero = " + current);
                 if (Cart.descuentoActivo.getNombre() != "0") {
                     Statement st1 = con.createStatement();
-                    st1.executeUpdate("INSERT INTO descuentos_usados(descuento, usado_por) VALUES('"
-                            + Cart.descuentoActivo.getNombre() + "', '" + App.getUser() + "')");
+                    st1.executeUpdate("INSERT INTO descuentos_usados(descuento, usado_por, pedido) VALUES('"
+                            + Cart.descuentoActivo.getNombre() + "', '" + App.getUser() + "',"+current+")");
                 }
                 Alert alert = Alertas.alerta("INFORMATION", null, "Gracias por comprar con nosotros",
                         "Pedido completado");
+                Cart.descuentoActivo = new Descuento("0", 0, false);
                 alert.showAndWait();
                 App.setRoot("seleccion");
             } catch (SQLException e) {

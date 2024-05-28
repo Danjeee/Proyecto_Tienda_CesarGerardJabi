@@ -70,7 +70,7 @@ public class Cart {
     private Double impValor;
     private Double envioValor;
     private Double descuentoValor;
-    
+
     private Connection conenct() {
         Connection con = null;
         try {
@@ -81,16 +81,17 @@ public class Cart {
         return con;
     }
 
-    //Borra el texto del codigo
+    // Borra el texto del codigo
     @FXML
-    private void clearCodDes(){
+    private void clearCodDes() {
         codDes.setText("");
         codDes.setStyle("-fx-text-inner-color: black;");
     }
 
-    //Comprueba si hay texto en el codigo y si lo hay, cambia el estilo del boton de aplicar codigo
+    // Comprueba si hay texto en el codigo y si lo hay, cambia el estilo del boton
+    // de aplicar codigo
     @FXML
-    private void checkCodDes(){
+    private void checkCodDes() {
         if (codDes.getText().isEmpty()) {
             codButton.setStyle("-fx-background-color: #d3d3d3");
             codButton.setOnAction(null);
@@ -104,8 +105,9 @@ public class Cart {
         }
     }
 
-    //Te manda a pagar, poco más
-    @FXML private void pagar(){
+    // Te manda a pagar, poco más
+    @FXML
+    private void pagar() {
         try {
             App.setRoot("pagar");
         } catch (IOException e) {
@@ -115,11 +117,11 @@ public class Cart {
 
     /*
      * Se ejecuta al pulsar el botón de aplicar y comprueba 3 cosas
-     *  1.- Si el codigo está en la base de datos
-     *      1.5 - En caso de que esté comprueba que te da
-     *      1.75 - En caso de que esté tambien comprueba si el usuario ya lo ha usado
-    */
-    private void checkDescuento(){
+     * 1.- Si el codigo está en la base de datos
+     * 1.5 - En caso de que esté comprueba que te da
+     * 1.75 - En caso de que esté tambien comprueba si el usuario ya lo ha usado
+     */
+    private void checkDescuento() {
         Connection con = conenct();
         ArrayList<Descuento> descuentos = new ArrayList<>();
         try {
@@ -132,40 +134,43 @@ public class Cart {
                 descuentos.add(new Descuento(nombre, cant, fs));
             }
             Boolean esta = false;
-            for (String i : descuentosUsados){
+            for (String i : descuentosUsados) {
                 if (i.equals(codDes.getText())) {
                     esta = true;
                     break;
                 }
             }
+            boolean corr = false;
             if (!esta) {
-                for (Descuento i : descuentos){
-                    if (codDes.getText().equals(i.getNombre())){
-                        descuentoActivo  = i;
+                for (Descuento i : descuentos) {
+                    if (codDes.getText().equals(i.getNombre())) {
+                        descuentoActivo = i;
                         codDes.setText("Código activado (Se canjeara al pagar)");
-                        codDes.setStyle("-fx-text-inner-color: green;");
-                        actualizar();
-                        break;
+                        codDes.setStyle("-fx-text-inner-color: green;"); 
+                        corr = true;
+                        actualizar(corr);
                     }
                 }
-                if (descuentoActivo.getNombre().equals("0")) {
-                    codDes.setText("El codigo no existe / ha expirado");
-                    codDes.setStyle("-fx-text-inner-color: red;");
-                } else {
-                    codDes.setText("Código activo: "+descuentoActivo.getNombre());
-                    codDes.setStyle("-fx-text-inner-color: green;");
+                if (!corr) {
+                    if (descuentoActivo.getNombre().equals("0")) {
+                        codDes.setText("El codigo no existe / ha expirado");
+                        codDes.setStyle("-fx-text-inner-color: red;");
+                    } else {
+                        codDes.setText("Código activo: " + descuentoActivo.getNombre());
+                        codDes.setStyle("-fx-text-inner-color: green;");
+                    }
                 }
             } else {
                 codDes.setText("Código ya usado");
                 codDes.setStyle("-fx-text-inner-color: red;");
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    //Cambia la cantidad segun una operación pasada por parametro
+    // Cambia la cantidad segun una operación pasada por parametro
     private String setCant(Articulo i, String cant, int op) {
         int cantt = Integer.parseInt(cant);
         switch (op) {
@@ -189,7 +194,7 @@ public class Cart {
         }
     }
 
-    //Crea cada linea del carrito como Hboxes
+    // Crea cada linea del carrito como Hboxes
     private HBox createItem(String img, String nombre, String precio, int cant, int cod, Articulo i) {
         HBox a = new HBox();
         a.setPrefHeight(75);
@@ -199,7 +204,7 @@ public class Cart {
         a.setStyle("-fx-background-color: #000");
         a.setAlignment(Pos.CENTER);
 
-        //Crea la imagen del producto que a su vez es un boton
+        // Crea la imagen del producto que a su vez es un boton
         Button imgg = new Button("");
         imgg.setPrefHeight(75);
         imgg.setPrefWidth(100);
@@ -222,7 +227,7 @@ public class Cart {
         });
         a.getChildren().add(imgg);
 
-        //Crea el nombre del producto
+        // Crea el nombre del producto
         Label nom = new Label(nombre);
         nom.setFont(new Font("System", 25));
         nom.prefHeight(175);
@@ -233,7 +238,7 @@ public class Cart {
         nom.setPadding(new Insets(0, 0, 0, 20));
         a.getChildren().add(nom);
 
-        //Crea el precio por unidad
+        // Crea el precio por unidad
         Label pr = new Label(precio + "€");
         pr.setFont(new Font("System", 30));
         pr.prefHeight(75);
@@ -243,13 +248,13 @@ public class Cart {
         pr.setAlignment(Pos.CENTER);
         a.getChildren().add(pr);
 
-        //Es un separador, original eh?
+        // Es un separador, original eh?
         Pane sep = new Pane();
         sep.setPrefWidth(100);
         sep.setStyle("-fx-background-color: #ecf1f3");
         a.getChildren().add(sep);
 
-        //Muestra la cantidad comprada de cada producto
+        // Muestra la cantidad comprada de cada producto
         Label cantt = new Label(String.valueOf(cant));
         cantt.setFont(new Font("System", 30));
         cantt.setTextFill(Color.WHITE);
@@ -259,13 +264,13 @@ public class Cart {
         cantt.setTextAlignment(TextAlignment.RIGHT);
         a.getChildren().add(cantt);
 
-        //Contiene los botones de subir y bajar cantidad
+        // Contiene los botones de subir y bajar cantidad
         VBox butCont = new VBox();
         butCont.setPrefHeight(75);
         butCont.setPrefWidth(35);
         butCont.setStyle("-fx-background-color: #000");
 
-        //+1 cantidad
+        // +1 cantidad
         Button up = new Button();
         up.setPrefHeight(25);
         up.setPrefWidth(25);
@@ -276,17 +281,17 @@ public class Cart {
         up.setGraphic(ico2);
         up.setOnAction(e -> {
             cantt.setText(setCant(i, cantt.getText(), 0));
-            actualizar();
+            actualizar(false);
         });
         butCont.getChildren().add(up);
 
-        //Otro separador que sino se ve feo
+        // Otro separador que sino se ve feo
         Pane sep2 = new Pane();
         sep2.setPrefHeight(25);
         sep2.setStyle("-fx-background-color: rgba(0,0,0,0)");
         butCont.getChildren().add(sep2);
 
-        //-1 cantidad (limite de 1)
+        // -1 cantidad (limite de 1)
         Button down = new Button();
         down.setPrefHeight(25);
         down.setPrefWidth(25);
@@ -297,12 +302,12 @@ public class Cart {
         down.setGraphic(ico3);
         down.setOnAction(e -> {
             cantt.setText(setCant(i, cantt.getText(), 1));
-            actualizar();
+            actualizar(false);
         });
         butCont.getChildren().add(down);
         a.getChildren().add(butCont);
 
-        //chau al producto
+        // chau al producto
         Button trash = new Button("");
         trash.setPrefHeight(70);
         trash.setPrefWidth(125);
@@ -318,7 +323,7 @@ public class Cart {
 
     }
 
-    //Formatea un double a que se vea como digitos.??€ y lo devuelve en strinf
+    // Formatea un double a que se vea como digitos.??€ y lo devuelve en strinf
     private String formatDouble(Double a) {
         String aa = String.valueOf(a);
         if (aa.charAt(0) == ('.')) {
@@ -331,7 +336,7 @@ public class Cart {
             return aa.substring(0, aa.length() - 2) + "€";
         }
         if (aa.charAt(1) == '.') {
-            aa = "0"+ aa;
+            aa = "0" + aa;
         }
         for (int i = 0; i < aa.length(); i++) {
             if (aa.charAt(i) == '.') {
@@ -339,7 +344,7 @@ public class Cart {
                 if (aa.length() == ii) {
                     return aa.substring(0, ii) + "0€";
                 } else {
-                    return aa.substring(0, ii) +aa.charAt(ii) +"€";
+                    return aa.substring(0, ii) + aa.charAt(ii) + "€";
                 }
             }
         }
@@ -371,13 +376,13 @@ public class Cart {
         return a;
     }
 
-    private String envio(){
+    private String envio() {
         envioValor = 0.0;
         if (descuentoActivo.getFreeShip()) {
             envioValor = 0.0;
             return "GRATIS";
         }
-        if (subtotalValor>0.0) {
+        if (subtotalValor > 0.0) {
             envioValor = 4.99;
             return formatDouble(envioValor);
         }
@@ -386,7 +391,7 @@ public class Cart {
 
     private String imp() {
         impValor = 0.0;
-        impValor = ((subtotalValor-descuentoValor)*21)/100;
+        impValor = ((subtotalValor - descuentoValor) * 21) / 100;
         return formatDouble(impValor);
     }
 
@@ -400,22 +405,24 @@ public class Cart {
 
     private String descuento() {
         descuentoValor = 0.0;
-        descuentoValor = (subtotalValor * descuentoActivo.getCantidad())/100;
+        descuentoValor = (subtotalValor * descuentoActivo.getCantidad()) / 100;
         return formatDouble(descuentoValor);
     }
 
     private String total() {
-        totalValor = subtotalValor + impValor - descuentoValor;
-        if (totalValor<0) {
+        totalValor = subtotalValor + impValor - descuentoValor + envioValor;
+        if (totalValor < 0) {
             totalValor = 0.0;
         }
         return formatDouble(totalValor);
     }
 
     @FXML
-    private void actualizar() {
-        codDes.setText("");
-        descuentoActivo = new Descuento("0", 0, false);
+    private void actualizar(Boolean corr) {
+        if (!corr) {
+            codDes.setText("");
+            descuentoActivo = new Descuento("0", 0, false);
+        }
         Connection con = conenct();
         for (Articulo i : articulos) {
             try {
@@ -441,7 +448,7 @@ public class Cart {
             Statement st = con.createStatement();
             st.executeUpdate(
                     "DELETE FROM linea_pedido WHERE num_pedido = (SELECT DISTINCT L.num_pedido from linea_pedido L, pedido P WHERE L.num_pedido = P.numero and P.DNI_cliente = \""
-                    + App.getUser() + "\" and P.estado = \"En proceso\") and cod_art = " + i.getCodigo());
+                            + App.getUser() + "\" and P.estado = \"En proceso\") and cod_art = " + i.getCodigo());
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -459,14 +466,15 @@ public class Cart {
         Connection con = conenct();
         try {
             Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM descuentos_usados WHERE usado_por = '"+App.getUser()+"'");
+            ResultSet rs = stm
+                    .executeQuery("SELECT * FROM descuentos_usados WHERE usado_por = '" + App.getUser() + "'");
             while (rs.next()) {
                 descuentosUsados.add(rs.getString("descuento"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    
+
         articulos = cargarItems();
         for (Articulo i : articulos) {
             String nom = i.getNombre();

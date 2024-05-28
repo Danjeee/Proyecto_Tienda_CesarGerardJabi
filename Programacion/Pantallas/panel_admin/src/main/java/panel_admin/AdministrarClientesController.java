@@ -61,7 +61,6 @@ public class AdministrarClientesController {
     }
 
     private HBox crearCliente(String nombre, String apellidos, Clientes clientes) {
-        
         HBox hb = new HBox();
         hb.setPrefHeight(75);
         hb.setPrefWidth(1273);
@@ -108,7 +107,6 @@ public class AdministrarClientesController {
         borrarCliente.setGraphic(papelera);
         borrarCliente.setOnAction(i -> desactivarCliente(clientes));
         hb.getChildren().add(borrarCliente);
-
         return hb;
 
     }
@@ -176,7 +174,7 @@ public class AdministrarClientesController {
         Connection con = conectar();
         try {
             Statement st = con.createStatement();
-            st.executeUpdate("UPDATE cliente set activo='0' where nombre='" +clientes.getDni()+ "'");
+            st.executeUpdate("UPDATE cliente set activo='0' where dni='" +clientes.getDni()+ "'");
     
             Alertas.clienteDesactivadoCorrectamente();
             

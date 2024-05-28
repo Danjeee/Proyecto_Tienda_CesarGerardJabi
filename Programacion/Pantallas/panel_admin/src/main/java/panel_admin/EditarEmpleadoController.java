@@ -13,6 +13,16 @@ public class EditarEmpleadoController {
     @FXML
     private App PantallaPrincipal = new App();
 
+    
+
+    public static Object getCurrent() {
+        return current;
+    }
+
+    public static void setCurrent(Object current) {
+        EditarEmpleadoController.current = current;
+    }
+
     @FXML
     public void retroceder_ListaEmpleados(ActionEvent actionEvent) throws IOException {
         App.setRoot("AdministrarEmpleados_Cesar_Javi_Gerard");

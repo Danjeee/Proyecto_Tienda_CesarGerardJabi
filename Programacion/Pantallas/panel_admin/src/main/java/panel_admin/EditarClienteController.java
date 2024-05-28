@@ -95,7 +95,8 @@ public class EditarClienteController {
             Statement st = connection.createStatement();
 
             st.executeUpdate("UPDATE cliente set nombre='"+textNombre.getText()+"', apellidos='"+textApellido.getText()+"', telefono='"+textTelefono.getText()+"', f_nacimiento='"+textFechaNacim.getText()
-            +"', direccion='"+textDireccion.getText()+"', email='"+textEmail.getText()+"', dir_envio='" +textDireccionEnvio.getText()+ "', tarjeta_fidelizacion=" +textTarjetaFide.isSelected()+ ", where DNI = '"+current+"'");
+            +"', direccion='"+textDireccion.getText()+"', email='"+textEmail.getText()+"', num_pedidos='" +textNumPedidos.getText()+ "', dir_envio='" +textDireccionEnvio.getText()+ "', tarjeta_fidelizacion=" +textTarjetaFide.isSelected()
+            + " where DNI = '"+current+"'");
 
             Alertas.editarCliente();
             connection.close();

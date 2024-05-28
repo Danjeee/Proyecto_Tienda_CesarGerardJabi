@@ -60,7 +60,6 @@ public class AdministrarEmpleadosController {
     }
 
     private HBox crearEmpleado(String nombre, String apellidos, Empleado empleado) {
-        
         HBox hb = new HBox();
         hb.setPrefHeight(75);
         hb.setPrefWidth(1273);
@@ -88,8 +87,12 @@ public class AdministrarEmpleadosController {
         editar.setSize("25");
         editarEmpleado.setGraphic(editar);
         /* editarEmpleado.setOnAction(i -> {
-            EditarEmpleadoController.current = empleado.getDni();
-            App.setRoot("pantalla3");
+        EditarEmpleadoController.setCurrent(empleado.getDni());
+            try {
+                App.setRoot("pantalla3");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }); */
         hb.getChildren().add(editarEmpleado);
 
@@ -103,7 +106,6 @@ public class AdministrarEmpleadosController {
         borrarEmpleado.setGraphic(papelera);
         borrarEmpleado.setOnAction(i -> desactivarEmpleado(empleado));
         hb.getChildren().add(borrarEmpleado);
-
         return hb;
     }
 

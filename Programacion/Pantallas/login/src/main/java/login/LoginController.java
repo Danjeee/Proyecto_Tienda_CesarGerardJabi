@@ -111,7 +111,7 @@ public class LoginController {
                 String DNI = rs2.getString("DNI");
                 usuarios.add(new User(mail, pass, DNI));
             }
-            ;
+            ;   
 
             User i = buscarUser(usuarios);
             if (i != null) {

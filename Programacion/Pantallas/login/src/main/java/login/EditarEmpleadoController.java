@@ -11,12 +11,10 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import login.Clases.Alertas;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 
 public class EditarEmpleadoController {
@@ -137,10 +135,7 @@ public class EditarEmpleadoController {
         try {
        
             Statement st = connection.createStatement();
-
-            /*st.executeUpdate("UPDATE EMPLEADO set ('"+DNIempleado.getText()+"','"+nombreEmpleado.getText()+"','"+apellidosEmpleado.getText()+"','"+numtelef.getText()+"','"+fechaNac.getValue()
-            +"','"+direccionEmpleado.getText()+"','"+emailEmpleado.getText()+"',1,'"+dpto.getSelectionModel().getSelectedItem()+"',"+privilegiosEmpleado.isSelected()+"where DNI = '"+current+"'");*/
-
+            
             st.executeUpdate("UPDATE EMPLEADO set DNI='"+DNIempleado.getText()+"', nombre='"+nombreEmpleado.getText()+"', apellidos='"+apellidosEmpleado.getText()+"', telefono='"+numtelef.getText()+"', f_nacimiento='"+fechaNac.getValue()
             +"', direccion='"+direccionEmpleado.getText()+"', email='"+emailEmpleado.getText()+"', activo=1, dpto='"+dpto.getSelectionModel().getSelectedItem().substring(0,1)+"', tiene_privilegios="+privilegiosEmpleado.isSelected()+" WHERE DNI = '"+current+"'");
 

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.CuentaController">
+   <children>
+      <VBox layoutX="709.0" layoutY="317.0" prefHeight="1024.0" prefWidth="1440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="866.0" prefWidth="1440.0">
+               <children>
+                  <Label layoutX="120.0" layoutY="58.0" prefHeight="32.0" prefWidth="111.0" text="Cuenta">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="81.0" layoutY="55.0" mnemonicParsing="false" style="-fx-background-color: transparent;" />
+                  <FontAwesomeIconView fx:id="flechaVolver" glyphName="ARROW_LEFT" layoutX="87.0" layoutY="85.0" size="25" />
+                  <TextField fx:id="nombreCliente" layoutX="589.0" layoutY="172.0" prefHeight="39.0" prefWidth="262.0" promptText="Nombre del usuario." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="484.0" layoutY="180.0" prefHeight="30.0" prefWidth="95.0" text="Nombre:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="apellidosCliente" layoutX="589.0" layoutY="300.0" prefHeight="39.0" prefWidth="262.0" promptText="Apellidos del usuario." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="484.0" layoutY="308.0" prefHeight="30.0" prefWidth="95.0" text="Apellidos:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="numerotelef" layoutX="1121.0" layoutY="172.0" prefHeight="39.0" prefWidth="262.0" promptText="Teléfono del usuario." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="893.0" layoutY="179.0" prefHeight="30.0" prefWidth="215.0" text="Número de Teléfono:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="DNICliente" layoutX="589.0" layoutY="415.0" prefHeight="39.0" prefWidth="262.0" promptText="DNI del usuario." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="484.0" layoutY="423.0" prefHeight="30.0" prefWidth="95.0" text="DNI:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="893.0" layoutY="307.0" prefHeight="30.0" prefWidth="227.0" text="Tarjeta de Fidelización:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="emailCliente" layoutX="589.0" layoutY="546.0" prefHeight="39.0" prefWidth="262.0" promptText="EMAIL del usuario." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="484.0" layoutY="554.0" prefHeight="30.0" prefWidth="95.0" text="EMAIL:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="893.0" layoutY="682.0" prefHeight="30.0" prefWidth="217.0" text="Fecha de Nacimiento:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="nacCliente" layoutX="1121.0" layoutY="674.0" prefHeight="39.0" prefWidth="262.0" promptText="Actualize su fecha de nacimiento." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px;" />
+                  <CheckBox fx:id="tarjetaFide" layoutX="1127.0" layoutY="309.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="265.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </CheckBox>
+                  <TextField fx:id="saldoCliente" layoutX="1121.0" layoutY="415.0" prefHeight="39.0" prefWidth="262.0" promptText="DNI del usuario." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="893.0" layoutY="423.0" prefHeight="30.0" prefWidth="228.0" text="Saldo de la cuenta:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="numPedidos" layoutX="1121.0" layoutY="546.0" prefHeight="39.0" prefWidth="262.0" promptText="EMAIL del usuario." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="893.0" layoutY="554.0" prefHeight="30.0" prefWidth="224.0" text="Número de Pedidos:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="direccionCliente" layoutX="589.0" layoutY="676.0" prefHeight="39.0" prefWidth="262.0" promptText="EMAIL del usuario." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="484.0" layoutY="684.0" prefHeight="30.0" prefWidth="95.0" text="Dirección:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="143.0" layoutY="672.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="197.0" style="-fx-background-color: black;" text="Editar Cliente" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font></Button>
+                  <Button layoutX="143.0" layoutY="542.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="197.0" style="-fx-background-color: black;" text="Ver Pedidos" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="314.0" fitWidth="285.0" layoutX="102.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@1361728.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

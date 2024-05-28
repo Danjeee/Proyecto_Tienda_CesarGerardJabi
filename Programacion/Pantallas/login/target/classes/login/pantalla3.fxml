@@ -34,7 +34,6 @@
             <FontAwesomeIconView glyphName="SHOPPING_CART" layoutX="1370.0" layoutY="50.0" size="25" />
          </children>
       </Pane>
-      <FontAwesomeIconView fx:id="flechaVolver" glyphName="ARROW_LEFT" layoutX="53.0" layoutY="124.0" size="25" />
       <Label layoutX="88.0" layoutY="98.0" text="Editar empleado">
          <font>
             <Font name="System Bold" size="25.0" />
@@ -148,6 +147,11 @@
       <Button layoutX="1240.0" layoutY="330.0" mnemonicParsing="false" onAction="#limpiarBotonDirecc" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
          <graphic>
             <FontAwesomeIconView fx:id="BOTPRUEBA21" glyphName="REMOVE" size="15" text="" />
+         </graphic>
+      </Button>
+      <Button layoutX="50.0" layoutY="100.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+         <graphic>
+            <FontAwesomeIconView fx:id="flechaVolver" glyphName="ARROW_LEFT" size="25" />
          </graphic>
       </Button>
    </children>

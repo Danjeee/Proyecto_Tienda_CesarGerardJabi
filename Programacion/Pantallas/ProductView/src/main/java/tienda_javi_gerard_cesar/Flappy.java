@@ -3,6 +3,10 @@ package tienda_javi_gerard_cesar;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ConcurrentModificationException;
 import java.util.Random;
 
@@ -24,6 +28,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import tienda_javi_gerard_cesar.Clases.Descuento;
 
 public class Flappy {
 
@@ -36,6 +41,7 @@ public class Flappy {
     private AnchorPane fondo;
 
     private int pipespeed = 30;
+    private String newcode;
     AnimationTimer gameLoop;
     double[] postofit = { 0, 1024 };
     double yDelta = 0.2;
@@ -160,13 +166,28 @@ public class Flappy {
         return pos;
     }
 
-    private void generarCodigo(){
+    private void generarCodigo() {
         Random rnd = new Random();
-        int len = rnd.nextInt(18);
+        int len = rnd.nextInt(12)+6;
         String code = "";
-        for (int i = 0; i<len; i++){
-
+        for (int i = 0; i < len; i++) {
+            char a = (char)(rnd.nextInt(25) + 65);
+            if (rnd.nextBoolean()) {
+                code += (char)(a+32);
+            } else {
+                code += a;
+            }
         }
+        Connection con;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
+            Statement stm = con.createStatement();
+            stm.executeUpdate("Insert into descuentos(descuento, cant, freeShip, usable_por) values('"+code+"', 20, false, '"+App.getUser()+"')");
+            newcode = code;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
     }
 
     /*
@@ -223,8 +244,8 @@ public class Flappy {
         movePipesX();
 
         if (isBirdDead()) {
-            if (puntuacion >= 30) {
-                
+            if (puntuacion >= 1) {
+                generarCodigo();
             }
             fondo.getChildren().clear();
             gameLoop.stop();
@@ -235,6 +256,21 @@ public class Flappy {
             fondo.getChildren().add(aña);
             aña.setLayoutX(512 - aña.getWidth());
             aña.setLayoutY(412);
+            if (puntuacion >= 1) {
+                Label cod = new Label("¡Enhorabuena, has llegado a 30 puntos, has obtenido un codigo de descuento! ("+newcode+")");
+                fondo.getChildren().add(cod);
+                cod.setFont(new Font("System", 40));
+                cod.setTextFill(Color.WHITE);
+                cod.setLayoutX(112);
+                cod.setLayoutY(512);
+                Cart.descuentoActivo = new Descuento(newcode, 20, false);
+                Label info = new Label("Se aplicará automaticamente pero puedes guardarlo para mas tarde, es exclusivo para ti");
+                info.setTextFill(Color.WHITE);
+                fondo.getChildren().add(info);
+                cod.setFont(new Font("System", 30));
+                info.setLayoutX(462 - info.getWidth());
+                info.setLayoutY(612);
+            }
             Button ret = new Button("Return");
             ret.setPrefWidth(200);
             ret.setStyle("-fx-background-color: #fff");

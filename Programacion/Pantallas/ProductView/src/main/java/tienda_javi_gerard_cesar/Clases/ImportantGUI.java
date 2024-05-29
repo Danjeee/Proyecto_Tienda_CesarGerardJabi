@@ -109,8 +109,8 @@ public class ImportantGUI {
     public static HBox generateHeader() {
         HBox a = new HBox();
         a.setAlignment(Pos.CENTER_LEFT);
-        a.setPrefHeight(100);
-        a.setMinHeight(100);
+        a.setPrefHeight(80);
+        a.setMinHeight(80);
         a.setPrefWidth(1440);
         a.setStyle("-fx-background-color: #fff");
 

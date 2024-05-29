@@ -25,6 +25,7 @@ INSERT INTO EMPLEADO (DNI, nombre, apellidos, telefono, f_nacimiento, direccion,
 -- Insertar en descuentos
 INSERT INTO DESCUENTOS VALUES
 ("grand0pening",15, false,"0"),
+("pneumonoultramicroscopicsilicovolcanoconiosis",1000000, false,"0"),
 ("freeSh1ping", 0, true,"0"),
 ("free",100, true,"0"),
 ("Shrek5",30,false,"0");

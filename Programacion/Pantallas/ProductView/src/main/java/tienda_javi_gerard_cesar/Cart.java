@@ -198,10 +198,10 @@ public class Cart {
     private HBox createItem(String img, String nombre, String precio, int cant, int cod, Articulo i) {
         HBox a = new HBox();
         a.setPrefHeight(75);
-        a.setPrefWidth(725);
+        a.setPrefWidth(700);
         a.setMaxHeight(75);
         a.setMaxWidth(725);
-        a.setStyle("-fx-background-color: #000");
+        a.setStyle("-fx-background-color: #000; -fx-background-radius: 10");
         a.setAlignment(Pos.CENTER);
 
         // Crea la imagen del producto que a su vez es un boton

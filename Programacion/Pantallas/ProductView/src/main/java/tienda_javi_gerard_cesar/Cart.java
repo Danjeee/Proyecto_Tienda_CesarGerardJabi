@@ -64,7 +64,7 @@ public class Cart {
     private Button codButton;
     public static ArrayList<Articulo> articulos;
     public static ArrayList<String> descuentosUsados = new ArrayList<>();
-    public static Descuento descuentoActivo = new Descuento("0", 0, false);
+    public static Descuento descuentoActivo = new Descuento("0", 0, false, "0");
     private Double subtotalValor;
     public static Double totalValor;
     private Double impValor;
@@ -131,7 +131,8 @@ public class Cart {
                 String nombre = rs.getString("descuento");
                 int cant = rs.getInt("cant");
                 Boolean fs = rs.getBoolean("freeShip");
-                descuentos.add(new Descuento(nombre, cant, fs));
+                String usablepor = rs.getString("usable_por");
+                descuentos.add(new Descuento(nombre, cant, fs, usablepor));
             }
             Boolean esta = false;
             for (String i : descuentosUsados) {
@@ -144,11 +145,16 @@ public class Cart {
             if (!esta) {
                 for (Descuento i : descuentos) {
                     if (codDes.getText().equals(i.getNombre())) {
-                        descuentoActivo = i;
-                        codDes.setText("Código activado (Se canjeara al pagar)");
-                        codDes.setStyle("-fx-text-inner-color: green;"); 
-                        corr = true;
-                        actualizar(corr);
+                        if (i.getUsablepor().equals("0") || i.getUsablepor().equals(App.getUser())) {
+                            descuentoActivo = i;
+                            codDes.setText("Código activado (Se canjeara al pagar)");
+                            codDes.setStyle("-fx-text-inner-color: green;");
+                            corr = true;
+                            actualizar(corr);
+                        } else {
+                            codDes.setText("El codigo no existe / ha expirado");
+                            codDes.setStyle("-fx-text-inner-color: red;");
+                        }
                     }
                 }
                 if (!corr) {
@@ -421,7 +427,7 @@ public class Cart {
     private void actualizar(Boolean corr) {
         if (!corr) {
             codDes.setText("");
-            descuentoActivo = new Descuento("0", 0, false);
+            descuentoActivo = new Descuento("0", 0, false, "0");
         }
         Connection con = conenct();
         for (Articulo i : articulos) {

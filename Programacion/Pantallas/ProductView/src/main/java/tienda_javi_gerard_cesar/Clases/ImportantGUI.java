@@ -45,6 +45,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Window;
 import javafx.util.Duration;
 import tienda_javi_gerard_cesar.App;
+import tienda_javi_gerard_cesar.Cart;
 import tienda_javi_gerard_cesar.Main;
 
 public class ImportantGUI {
@@ -154,6 +155,7 @@ public class ImportantGUI {
         });
         MenuItem logout = new MenuItem("Cerrar sesión");
         logout.setOnAction(e -> {
+            Cart.descuentoActivo = new Descuento("0", 0, false, "0");
             App.setUser("guest");
             try {
                 App.setRoot("login");

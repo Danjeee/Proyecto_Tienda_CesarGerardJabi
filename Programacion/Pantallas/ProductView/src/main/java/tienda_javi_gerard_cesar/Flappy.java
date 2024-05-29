@@ -244,7 +244,7 @@ public class Flappy {
         movePipesX();
 
         if (isBirdDead()) {
-            if (puntuacion >= 1) {
+            if (puntuacion >= 0) {
                 generarCodigo();
             }
             fondo.getChildren().clear();
@@ -256,14 +256,14 @@ public class Flappy {
             fondo.getChildren().add(aña);
             aña.setLayoutX(512 - aña.getWidth());
             aña.setLayoutY(412);
-            if (puntuacion >= 1) {
+            if (puntuacion >= 0) {
                 Label cod = new Label("¡Enhorabuena, has llegado a 30 puntos, has obtenido un codigo de descuento! ("+newcode+")");
                 fondo.getChildren().add(cod);
                 cod.setFont(new Font("System", 40));
                 cod.setTextFill(Color.WHITE);
                 cod.setLayoutX(112);
                 cod.setLayoutY(512);
-                Cart.descuentoActivo = new Descuento(newcode, 20, false);
+                Cart.descuentoActivo = new Descuento(newcode, 20, false, App.getUser());
                 Label info = new Label("Se aplicará automaticamente pero puedes guardarlo para mas tarde, es exclusivo para ti");
                 info.setTextFill(Color.WHITE);
                 fondo.getChildren().add(info);

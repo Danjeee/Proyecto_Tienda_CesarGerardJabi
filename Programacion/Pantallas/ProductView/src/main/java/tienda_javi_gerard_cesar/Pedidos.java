@@ -143,7 +143,7 @@ public class Pedidos {
         descuento.getChildren().add(desc);
         a.getChildren().add(descuento);
 
-        Descuento curr = new Descuento("0", 0, false);
+        Descuento curr = new Descuento("0", 0, false, "0");
 
         if (!descuentoUsado(p.getNum()).isBlank()) {
             Connection con = conenct();
@@ -152,7 +152,7 @@ public class Pedidos {
                 ResultSet rs = st.executeQuery("SELECT * FROM descuentos");
                 while (rs.next()) {
                     if (rs.getString("descuento").equals(descuentoUsado(p.getNum()))) {
-                        curr = new Descuento(rs.getString("descuento"), rs.getInt("cant"), rs.getBoolean("freeShip"));
+                        curr = new Descuento(rs.getString("descuento"), rs.getInt("cant"), rs.getBoolean("freeShip"), rs.getString("usable_por"));
                     }
                 }
             } catch (SQLException e) {

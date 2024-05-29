@@ -304,7 +304,7 @@ public class Pagar {
                 }
                 Alert alert = Alertas.alerta("INFORMATION", null, "Gracias por comprar con nosotros",
                         "Pedido completado");
-                Cart.descuentoActivo = new Descuento("0", 0, false);
+                Cart.descuentoActivo = new Descuento("0", 0, false, "0");
                 alert.showAndWait();
                 App.setRoot("seleccion");
             } catch (SQLException e) {

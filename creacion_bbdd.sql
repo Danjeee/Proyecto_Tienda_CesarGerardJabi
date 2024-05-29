@@ -16,7 +16,8 @@ CREATE TABLE DEPARTAMENTO (
 CREATE TABLE DESCUENTOS(
 	descuento VARCHAR(50) PRIMARY KEY,
     cant INT UNSIGNED,
-    freeShip BOOLEAN
+    freeShip BOOLEAN,
+    usable_por Varchar(9) default "0"
 );
 
 

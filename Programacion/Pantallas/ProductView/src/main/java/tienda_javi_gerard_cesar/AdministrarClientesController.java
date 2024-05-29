@@ -46,14 +46,18 @@ public class AdministrarClientesController {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
 
     @FXML
-    public void retroceder_PanelAdmin(ActionEvent actionEvent) throws IOException {
-        App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
+    public void retroceder_PanelAdmin(ActionEvent actionEvent){
+        try {
+            App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 
     private HBox crearCliente(String nombre, String apellidos, Clientes clientes) {
@@ -88,8 +92,8 @@ public class AdministrarClientesController {
             EditarClienteController.setCurrent( clientes.getDni());
             try {
                 App.setRoot("EditarCliente_Cesar_Javi_Gerard");
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                Logs.createIOLog(e);
             }
         }); 
         hb.getChildren().add(editarCliente);
@@ -141,7 +145,7 @@ public class AdministrarClientesController {
             return arrayList_Clientes;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return arrayList_Clientes;
     }
@@ -161,7 +165,7 @@ public class AdministrarClientesController {
         }
 
     } catch (SQLException e) {
-        e.printStackTrace();
+        Logs.createSQLLog(e);
     }
     return m_pago;
     }
@@ -178,7 +182,7 @@ public class AdministrarClientesController {
             
 
         } catch (SQLException sql) {
-            sql.printStackTrace();
+            Logs.createSQLLog(sql);
             
             Alertas.errorDesactivarCliente();
         }

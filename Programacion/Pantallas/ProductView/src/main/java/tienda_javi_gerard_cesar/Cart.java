@@ -37,6 +37,7 @@ import javafx.scene.text.TextAlignment;
 import tienda_javi_gerard_cesar.Clases.Articulo;
 import tienda_javi_gerard_cesar.Clases.Descuento;
 import tienda_javi_gerard_cesar.Clases.ImportantGUI;
+import tienda_javi_gerard_cesar.Clases.Logs;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
 public class Cart {
@@ -76,7 +77,7 @@ public class Cart {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
@@ -110,8 +111,8 @@ public class Cart {
     private void pagar() {
         try {
             App.setRoot("pagar");
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Logs.createIOLog(e);
         }
     }
 
@@ -172,7 +173,7 @@ public class Cart {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
     }
 
@@ -377,7 +378,7 @@ public class Cart {
             }
             return a;
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return a;
     }
@@ -439,7 +440,7 @@ public class Cart {
                                 + App.getUser() + "\" and P.estado = \"En proceso\") and cod_art = " + i.getCodigo());
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                Logs.createSQLLog(e);
             }
         }
         all.getChildren().remove(all.getChildren().get(2));
@@ -457,7 +458,7 @@ public class Cart {
                             + App.getUser() + "\" and P.estado = \"En proceso\") and cod_art = " + i.getCodigo());
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         all.getChildren().remove(all.getChildren().get(2));
         all.getChildren().remove(all.getChildren().get(0));
@@ -478,7 +479,7 @@ public class Cart {
                 descuentosUsados.add(rs.getString("descuento"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
 
         articulos = cargarItems();

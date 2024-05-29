@@ -29,6 +29,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import tienda_javi_gerard_cesar.Clases.Descuento;
+import tienda_javi_gerard_cesar.Clases.Logs;
 
 public class Flappy {
 
@@ -185,7 +186,7 @@ public class Flappy {
             stm.executeUpdate("Insert into descuentos(descuento, cant, freeShip, usable_por) values('"+code+"', 20, false, '"+App.getUser()+"')");
             newcode = code;
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         
     }
@@ -281,8 +282,8 @@ public class Flappy {
             ret.setOnAction(e -> {
                 try {
                     App.setRoot("main");
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                } catch (Exception e1) {
+                    Logs.createIOLog(e1);
                 }
             });
             Button trya = new Button("Try Again");
@@ -295,8 +296,8 @@ public class Flappy {
             trya.setOnAction(e -> {
                 try {
                     App.setRoot("flappy");
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                } catch (Exception e1) {
+                    Logs.createIOLog(e1);
                 }
             });
             fondo.getChildren().addAll(ret, trya);

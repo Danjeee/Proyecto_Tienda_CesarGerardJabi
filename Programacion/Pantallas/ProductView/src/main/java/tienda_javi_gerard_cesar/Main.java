@@ -47,6 +47,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import tienda_javi_gerard_cesar.Clases.Articulo;
 import tienda_javi_gerard_cesar.Clases.ImportantGUI;
+import tienda_javi_gerard_cesar.Clases.Logs;
 import tienda_javi_gerard_cesar.Clases.Mail;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
@@ -110,7 +111,7 @@ public class Main {
                     + "\", \"En proceso\", \"" + App.getUser() + "\")");
             pedido = newcol;
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
     }
 
@@ -152,7 +153,7 @@ public class Main {
                 st.executeUpdate("INSERT INTO linea_pedido VALUES(" + i.getCodigo() + ", " + pedido + ", 1)");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         Label a = ImportantGUI.mensaje(x, y, "Añadido al carrito");
         if (cont.getChildren().contains(a)) {
@@ -199,17 +200,17 @@ public class Main {
                 st.executeUpdate("INSERT INTO linea_pedido VALUES(" + i.getCodigo() + ", " + pedido + ", 1)");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         try {
             App.setRoot("cart");
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Logs.createIOLog(e);
         }
     }
 
     @FXML
-    private void searchBar(ActionEvent e) throws IOException {
+    private void searchBar(ActionEvent e){
         TextField sb = (TextField) e.getSource();
         Main.resultados.clear();
         if (sb.getText().isEmpty()) {
@@ -222,14 +223,14 @@ public class Main {
     }
 
     /*
-     * private void multiFiltrar(String[] mult) throws IOException {
+     * private void multiFiltrar(String[] mult){
      * Main.filtros.clear();
      * for (String i : mult) {
      * filtrar(i, "a");
      * }
      * }
      * 
-     * private void filtrar(String word, String mult) throws IOException {
+     * private void filtrar(String word, String mult){
      * Boolean esta = false;
      * if (mult.isEmpty()) {
      * Main.filtros.clear();
@@ -253,7 +254,7 @@ public class Main {
      * }
      */
     @FXML
-    private void filtro(ActionEvent e) throws IOException {
+    private void filtro(ActionEvent e){
         Button src = (Button) e.getSource();
         String word = src.getId().toString();
         Boolean esta = false;
@@ -285,7 +286,7 @@ public class Main {
     }
 
     @FXML
-    private void buscar() throws IOException {
+    private void buscar(){
         main.getChildren().clear();
         Connection con = conenct();
         HashSet<Articulo> busq = new HashSet();
@@ -304,7 +305,7 @@ public class Main {
                     busqaux.add(new Articulo(cod, nombre, precio, img));
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                Logs.createSQLLog(e);
             }
         }
         for (Node i : filtCont.getChildren()) {
@@ -345,7 +346,7 @@ public class Main {
                     busqaux2.add(new Articulo(cod, nombre, precio, img));
                 }
             } catch (SQLException e1) {
-                e1.printStackTrace();
+                Logs.createSQLLog(e1);
             }
         }
         if (!filtros.isEmpty()) {
@@ -389,13 +390,13 @@ public class Main {
     private void cartButton() {
         try {
             App.setRoot("cart");
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Logs.createIOLog(e);
         }
     }
 
     @FXML
-    private void initialize() throws IOException {
+    private void initialize(){
         MenuHamb.init(cont);
         main.getChildren().clear();
         all.getChildren().add(0, ImportantGUI.generateHeader());
@@ -424,7 +425,7 @@ public class Main {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         if (!resultados.isEmpty() || !filtros.isEmpty()) {
             buscar();
@@ -436,7 +437,7 @@ public class Main {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
@@ -509,8 +510,8 @@ public class Main {
             try {
                 ProductView.setCurrentProduct(cod);
                 App.setRoot("productview");
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
         /* Grid2 */

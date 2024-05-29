@@ -27,6 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import tienda_javi_gerard_cesar.Clases.Articulo;
 import tienda_javi_gerard_cesar.Clases.ImportantGUI;
+import tienda_javi_gerard_cesar.Clases.Logs;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
 import java.util.ArrayList;
@@ -111,12 +112,12 @@ public class ProductView {
                                 "INSERT INTO linea_pedido VALUES(" + ProductView.current + ", " + pedido + ", 1)");
                     }
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    Logs.createSQLLog(e);
                 }
                 try {
                     App.setRoot("cart");
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (Exception e) {
+                    Logs.createIOLog(e);
                 }
             } else {
                 if (App.getUser().equals("guest")) {
@@ -149,7 +150,7 @@ public class ProductView {
             }
             return caca;
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return 0;
     }
@@ -173,7 +174,7 @@ public class ProductView {
                     + "\", \"En proceso\", \"" + App.getUser() + "\")");
             this.pedido = newcol;
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
     }
 
@@ -197,7 +198,7 @@ public class ProductView {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
@@ -273,7 +274,7 @@ public class ProductView {
             return a;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return a;
     }
@@ -292,7 +293,7 @@ public class ProductView {
                 datos[3] = rs.getString("imagen");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return datos;
     }
@@ -349,7 +350,11 @@ public class ProductView {
     }
 
     @FXML
-    private void back() throws IOException {
-        App.setRoot(App.getLast());
+    private void back(){
+        try {
+            App.setRoot(App.getLast());
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 }

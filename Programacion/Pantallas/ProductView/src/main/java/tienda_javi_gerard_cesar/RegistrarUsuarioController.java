@@ -16,9 +16,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import tienda_javi_gerard_cesar.Clases.Alertas;
+import tienda_javi_gerard_cesar.Clases.Logs;
 
 public class RegistrarUsuarioController {
-
 
     @FXML
     private TextField nombre;
@@ -54,26 +54,37 @@ public class RegistrarUsuarioController {
     private App PantallaPrincipal = new App();
 
     @FXML
-    public void cargarVentana_registro(ActionEvent actionEvent) throws IOException {
-        App.setRoot("Login");
+    public void cargarVentana_registro(ActionEvent actionEvent) {
+        try {
+            App.setRoot("Login");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 
     @FXML
-    public void flecha_volver(ActionEvent actionEvent) throws IOException {
-        App.setRoot("Login");
+    public void flecha_volver(ActionEvent actionEvent) {
+        try {
+            App.setRoot("Login");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 
     @FXML
-    private void registrar(){
+    private void registrar() {
 
         Connection connection = conenct();
         Alert alerta = new Alert(Alert.AlertType.NONE);
 
         try {
-       
-            Statement st = connection.createStatement();      
-            st.executeUpdate("INSERT INTO CLIENTE VALUES('"+DNI.getText()+"','"+nombre.getText()+"','"+apellidos.getText()+"','"+telefono.getText()+"','"+fechanac.getValue()
-            +"','"+direccion.getText()+"','"+email.getText()+"','"+contraseña.getText()+"','0',' 0','"+direccion.getText()+"',"+tarjetaFide.isSelected()+","+activo.isSelected()+",1)");
+
+            Statement st = connection.createStatement();
+            st.executeUpdate("INSERT INTO CLIENTE VALUES('" + DNI.getText() + "','" + nombre.getText() + "','"
+                    + apellidos.getText() + "','" + telefono.getText() + "','" + fechanac.getValue()
+                    + "','" + direccion.getText() + "','" + email.getText() + "','" + contraseña.getText()
+                    + "','0',' 0','" + direccion.getText() + "'," + tarjetaFide.isSelected() + "," + activo.isSelected()
+                    + ",1)");
             alerta.setAlertType(AlertType.INFORMATION);
             alerta.setHeaderText(null);
             alerta.setContentText("El usuario se ha registrado correctamente.");
@@ -81,8 +92,8 @@ public class RegistrarUsuarioController {
 
             connection.close();
         } catch (SQLException e) {
-            
-            e.printStackTrace();
+
+            Logs.createSQLLog(e);
             Alertas.errorRegistrar();
         }
 
@@ -93,8 +104,8 @@ public class RegistrarUsuarioController {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
-    }    
+    }
 }

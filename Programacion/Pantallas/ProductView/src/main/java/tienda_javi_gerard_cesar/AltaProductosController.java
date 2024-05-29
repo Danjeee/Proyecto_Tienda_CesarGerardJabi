@@ -144,8 +144,12 @@ public class AltaProductosController {
     private App PantallaPrincipal = new App();
 
     @FXML
-    public void retroceder_PanelAdmin(ActionEvent actionEvent) throws IOException {
-        App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
+    public void retroceder_PanelAdmin(ActionEvent actionEvent){
+        try {
+            App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 
     static Alert alerta = new Alert(Alert.AlertType.NONE);
@@ -235,7 +239,7 @@ public class AltaProductosController {
                 con.cerrarConexion();
 
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                Logs.createSQLLog(ex);
                 Alertas.errorInsertarProducto();
             }
     }

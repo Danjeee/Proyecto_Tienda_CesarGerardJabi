@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import tienda_javi_gerard_cesar.Clases.ImportantGUI;
+import tienda_javi_gerard_cesar.Clases.Logs;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
 public class Seleccion {
@@ -20,8 +21,8 @@ public class Seleccion {
         try {
             MenuHamb.multiFiltrar(multifiltro);
             App.setRoot("main");
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Logs.createIOLog(e);
         }
     }
     @FXML
@@ -30,8 +31,8 @@ public class Seleccion {
         try {
             MenuHamb.multiFiltrar(multifiltro);
             App.setRoot("main");
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Logs.createIOLog(e);
         }
     }
     @FXML
@@ -42,7 +43,11 @@ public class Seleccion {
     }
 
     @FXML
-    public void cargarVentana_seleccion(ActionEvent actionEvent) throws IOException {
-        App.setRoot("Login");
+    public void cargarVentana_seleccion(ActionEvent actionEvent){
+        try {
+            App.setRoot("Login");
+        } catch (IOException e) {
+            Logs.createIOLog(e);
+        }
     }
 }

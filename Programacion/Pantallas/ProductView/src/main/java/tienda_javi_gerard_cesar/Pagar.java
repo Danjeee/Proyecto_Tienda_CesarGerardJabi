@@ -47,7 +47,7 @@ public class Pagar {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
@@ -63,7 +63,7 @@ public class Pagar {
             }
             return a;
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return a;
     }
@@ -157,7 +157,7 @@ public class Pagar {
                                 + tfs.get(0).getText() + "', '" + tfs.get(2).getText() + "', 'Tarjeta', '" + App.getUser()
                                 + "')");
                     } catch (SQLException e) {
-                        e.printStackTrace();
+                        Logs.createSQLLog(e);
                     }
                 }
                 break;
@@ -198,7 +198,7 @@ public class Pagar {
                                 + tfs.get(0).getText() + "', null, 'Bizum', '" + App.getUser()
                                 + "')");
                     } catch (SQLException e) {
-                        e.printStackTrace();
+                        Logs.createSQLLog(e);
                     }
                 }
                 break;
@@ -233,7 +233,7 @@ public class Pagar {
                                 + tfs.get(0).getText() + "', null, 'PayPal', '" + App.getUser()
                                 + "')");
                     } catch (SQLException e) {
-                        e.printStackTrace();
+                        Logs.createSQLLog(e);
                     }
                 }
                 break;
@@ -260,7 +260,7 @@ public class Pagar {
                         alert.showAndWait();
                     }
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    Logs.createSQLLog(e);
                 }
                 break;
 
@@ -309,9 +309,9 @@ public class Pagar {
                 App.setRoot("seleccion");
             } catch (SQLException e) {
 
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+                Logs.createSQLLog(e);
+            } catch (Exception e) {
+                Logs.createIOLog(e);
             }
         }
     }
@@ -442,7 +442,7 @@ public class Pagar {
             }
             metodoscliente.getSelectionModel().select(metodoscliente.getItems().size() - 1);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
     }
 

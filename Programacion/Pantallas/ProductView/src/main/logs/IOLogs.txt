@@ -1,0 +1,28 @@
+---------------------------------------------------------------  
+FECHA: 29/05/2024 21:39
+Archivo faltante: C:\Users\javis\OneDrive\Documentos\GitHub\Proyecto_Tienda\Programacion\Pantallas\ProductView\src\main\resources\OlvidarContraseñaa.fxml
+Nombre archivo: OlvidarContraseñaa.fxml
+IllegalStateException
+class java.lang.IllegalStateException: null
+Metodo: javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2459)
+Linea: 2459
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Login.cargarVentana_olvidar(Login.java:62)
+Linea: 62
+---------------------------------------------------------------  
+FECHA: 29/05/2024 21:40
+Archivo faltante: C:\Users\javis\OneDrive\Documentos\GitHub\Proyecto_Tienda\Programacion\Pantallas\ProductView\src\main\resources\OlvidarContraseñaa.fxml
+Nombre archivo: OlvidarContraseñaa.fxml
+IllegalStateException
+class java.lang.IllegalStateException: null
+Metodo: javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2459)
+Linea: 2459
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Login.cargarVentana_olvidar(Login.java:62)
+Linea: 62

@@ -27,8 +27,12 @@ public class EditarEmpleadoController {
     private App PantallaPrincipal = new App();
 
     @FXML
-    public void cargarVentana_registro(ActionEvent actionEvent) throws IOException {
-        App.setRoot("Login");
+    public void cargarVentana_registro(ActionEvent actionEvent){
+        try {
+            App.setRoot("Login");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -142,7 +146,7 @@ public class EditarEmpleadoController {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
     }
 
@@ -164,7 +168,7 @@ public class EditarEmpleadoController {
             connection.close();
         } catch (SQLException e) {
             
-            e.printStackTrace();
+            Logs.createSQLLog(e);
             Alertas.errorRegistrar();
         }
  
@@ -183,7 +187,7 @@ public class EditarEmpleadoController {
             connection.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
             Alertas.errorRegistrar();
 
         }
@@ -203,7 +207,7 @@ public class EditarEmpleadoController {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }

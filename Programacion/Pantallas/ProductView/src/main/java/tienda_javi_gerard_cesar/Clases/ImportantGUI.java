@@ -56,15 +56,15 @@ public class ImportantGUI {
         if (sb.getText().isEmpty()) {
             try {
                 App.setRoot("main");
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         } else {
             Main.resultados.add(sb.getText());
             try {
                 App.setRoot("main");
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         }
     }
@@ -83,8 +83,8 @@ public class ImportantGUI {
         a.setOnAction(e -> {
             try {
                 App.setRoot(App.getLast());
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
         return a;
@@ -102,7 +102,7 @@ public class ImportantGUI {
             }
             return false;
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return false;
     }
@@ -149,8 +149,8 @@ public class ImportantGUI {
         cuenta.setOnAction(e -> {
             try {
                 App.setRoot("cart");
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
         MenuItem logout = new MenuItem("Cerrar sesión");
@@ -159,16 +159,16 @@ public class ImportantGUI {
             App.setUser("guest");
             try {
                 App.setRoot("login");
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
         MenuItem login = new MenuItem("Iniciar sesión");
         login.setOnAction(e -> {
             try {
                 App.setRoot("login");
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
         if (App.getUser().equals("guest")) {
@@ -196,8 +196,8 @@ public class ImportantGUI {
                 } else {
                     App.setRoot("cart");
                 }
-            } catch (IOException ee) {
-                ee.printStackTrace();
+            } catch (Exception ee) {
+                Logs.createIOLog(ee);
             }
         });
 
@@ -211,7 +211,7 @@ public class ImportantGUI {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
@@ -272,8 +272,8 @@ public class ImportantGUI {
         pregFrec.setOnAction(e -> {
             try {
                 App.setRoot("faq");
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
 
@@ -283,8 +283,8 @@ public class ImportantGUI {
         estado.setOnAction(e -> {
             try {
                 App.setRoot("pedidos");
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
 
@@ -293,8 +293,8 @@ public class ImportantGUI {
         dev.setOnAction(e -> {
             try {
                 App.setRoot("devoluciones");
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
 
@@ -304,8 +304,8 @@ public class ImportantGUI {
         envio.setOnAction(e -> {
             try {
                 App.setRoot("envios");
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
 
@@ -321,7 +321,7 @@ public class ImportantGUI {
                 metodos.add(rs.getString("descripcion"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         Label mptit = new Label("MÉTODOS DE PAGO");
         mptit.setFont(tit);
@@ -356,8 +356,8 @@ public class ImportantGUI {
                 ee.setOnAction(e -> {
                     try {
                         App.setRoot("flappy");
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
+                    } catch (Exception e1) {
+                        Logs.createIOLog(e1);
                     }
                 });
             }
@@ -410,8 +410,8 @@ public class ImportantGUI {
             URI uri = new URI(url);
             Desktop dt = Desktop.getDesktop();
             dt.browse(uri);
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Logs.createIOLog(e);
         }
 
     }

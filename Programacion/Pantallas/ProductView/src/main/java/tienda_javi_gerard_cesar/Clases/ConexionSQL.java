@@ -20,7 +20,7 @@ public class ConexionSQL {
                     return (conn);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
 
         return (conn);
@@ -51,7 +51,7 @@ public class ConexionSQL {
             }
             System.out.println("\nConexión cerrada con éxito.");
         } catch (SQLException ex) {
-            System.out.println("\nERROR: NO se ha PODIDO CERRAR la conexión.");
+            Logs.createSQLLog(ex);
         }
 
     }
@@ -62,7 +62,7 @@ public class ConexionSQL {
             rs = sentenciaSQL.executeQuery(sql);
             System.out.println("SQL ejecuta correctamente");
         } catch (SQLException ex) {
-            System.out.println("ERROR: No se ha podido ejecutar la SQL: " + sql);
+            Logs.createSQLLog(ex);
         }
         return rs;
     }
@@ -74,6 +74,7 @@ public class ConexionSQL {
             upd = sentenciaSQL.executeUpdate(sql);
         } catch (SQLException e) {
             upd = -1;
+            Logs.createSQLLog(e);
         }
         return upd;
     }

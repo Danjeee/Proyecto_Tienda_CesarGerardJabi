@@ -44,7 +44,7 @@ public class Pedidos {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
@@ -78,7 +78,7 @@ public class Pedidos {
             }
             return p;
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return p;
     }
@@ -92,7 +92,7 @@ public class Pedidos {
                 return rs.getString("descuento");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return "No usado";
     }
@@ -152,11 +152,12 @@ public class Pedidos {
                 ResultSet rs = st.executeQuery("SELECT * FROM descuentos");
                 while (rs.next()) {
                     if (rs.getString("descuento").equals(descuentoUsado(p.getNum()))) {
-                        curr = new Descuento(rs.getString("descuento"), rs.getInt("cant"), rs.getBoolean("freeShip"), rs.getString("usable_por"));
+                        curr = new Descuento(rs.getString("descuento"), rs.getInt("cant"), rs.getBoolean("freeShip"),
+                                rs.getString("usable_por"));
                     }
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                Logs.createSQLLog(e);
             }
         }
 
@@ -205,8 +206,8 @@ public class Pedidos {
                     try {
                         App.setRoot("cart");
                         App.setRoot("pagar");
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
+                    } catch (Exception e1) {
+                        Logs.createIOLog(e1);
                     }
                 });
                 estadocont.getChildren().add(pagar);
@@ -296,8 +297,8 @@ public class Pedidos {
             try {
                 ProductView.setCurrentProduct(art.getCodigo());
                 App.setRoot("productview");
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
         imgcont.getChildren().add(producto);
@@ -328,47 +329,48 @@ public class Pedidos {
             sp.setPrefHeight(350);
             content.setStyle("-fx-background-color: #fff");
             HBox info = new HBox();
-            info.setPrefWidth(a.getWidth()-120);
+            info.setPrefWidth(a.getWidth() - 120);
             info.setPrefHeight(75);
             info.setSpacing(50);
             Label img = new Label("Imagen");
-            Label cod= new Label("Codigo");
+            Label cod = new Label("Codigo");
             Label nom = new Label("Nombre");
             Label precio = new Label("Precio");
             Label cant = new Label("Cant");
             Label tot = new Label("Total");
-            info.getChildren().addAll(img,cod,nom,precio,cant,tot);
+            info.getChildren().addAll(img, cod, nom, precio, cant, tot);
             info.setAlignment(Pos.CENTER);
-            for (Node i : info.getChildren()){
-                Label ii = (Label)i;
+            for (Node i : info.getChildren()) {
+                Label ii = (Label) i;
                 ii.setFont(new Font("System", 18));
-                ii.setPrefWidth((a.getWidth()-120)/6);
+                ii.setPrefWidth((a.getWidth() - 120) / 6);
                 ii.setAlignment(Pos.CENTER);
                 if (ii.getText().equals("Codigo")) {
-                    ii.setPrefWidth(((a.getWidth()-120)/6)-50);
+                    ii.setPrefWidth(((a.getWidth() - 120) / 6) - 50);
                 }
                 if (ii.getText().equals("Nombre")) {
-                    ii.setPrefWidth(((a.getWidth()-120)/6)+100);
+                    ii.setPrefWidth(((a.getWidth() - 120) / 6) + 100);
                 }
                 if (ii.getText().equals("Cant")) {
-                    ii.setPrefWidth(((a.getWidth()-120)/6)-50);
+                    ii.setPrefWidth(((a.getWidth() - 120) / 6) - 50);
                 }
             }
-            
-            Label descuento = new Label("Descuento:    "+formatDouble(calculartotal(p.getProductos())*d/100));
+
+            Label descuento = new Label("Descuento:    " + formatDouble(calculartotal(p.getProductos()) * d / 100));
             descuento.setFont(new Font("System", 18));
             descuento.setPrefHeight(75);
-            descuento.setPrefWidth((a.getWidth()-120)/6);
+            descuento.setPrefWidth((a.getWidth() - 120) / 6);
             descuento.setAlignment(Pos.CENTER);
-            Label impuesto = new Label("IVA (21%):    "+formatDouble((calculartotal(p.getProductos())-(calculartotal(p.getProductos())*d/100))*21/100));
+            Label impuesto = new Label("IVA (21%):    " + formatDouble(
+                    (calculartotal(p.getProductos()) - (calculartotal(p.getProductos()) * d / 100)) * 21 / 100));
             impuesto.setFont(new Font("System", 18));
             impuesto.setPrefHeight(75);
-            impuesto.setPrefWidth((a.getWidth()-120)/6);
+            impuesto.setPrefWidth((a.getWidth() - 120) / 6);
             impuesto.setAlignment(Pos.CENTER);
-            Label envio = new Label("Envio:    "+formatDouble(env));
+            Label envio = new Label("Envio:    " + formatDouble(env));
             envio.setFont(new Font("System", 18));
             envio.setPrefHeight(75);
-            envio.setPrefWidth((a.getWidth()-120)/6);
+            envio.setPrefWidth((a.getWidth() - 120) / 6);
             envio.setAlignment(Pos.CENTER);
             content.getChildren().addAll(descuento, impuesto, envio, info);
             for (Articulo i : p.getProductos()) {

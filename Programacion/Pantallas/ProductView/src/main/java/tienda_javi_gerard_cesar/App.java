@@ -6,7 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import tienda_javi_gerard_cesar.Clases.Logs;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,6 +23,7 @@ public class App extends Application {
 
     public static Scene scene;
     private static String[] last = { "Login", "0" };
+    private static String currentRoot;
 
     public static String getLast() {
         return last[0];
@@ -28,6 +31,10 @@ public class App extends Application {
 
     public static String getCurrent() {
         return last[1];
+    }
+
+    public static String getRoot(){
+        return currentRoot;
     }
 
     private static String user = "23456789A";
@@ -38,6 +45,11 @@ public class App extends Application {
 
     public static String getUser() {
         return user;
+    }
+    public static String getResourcesPath(){
+        File app = new File("Programacion\\Pantallas\\ProductView\\src\\main\\java\\tienda_javi_gerard_cesar\\App.java");
+        String last = "java\\tienda_javi_gerard_cesar\\App.java";
+        return app.getAbsolutePath().substring(0, app.getAbsolutePath().length()-last.length())+"resources\\";
     }
 
     @Override
@@ -54,7 +66,7 @@ public class App extends Application {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
@@ -71,13 +83,14 @@ public class App extends Application {
             }
             return false;
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return false;
     }
 
     public static void setRoot(String fxml) throws IOException {
         reloadLast(fxml);
+        currentRoot = fxml + ".fxml";
         scene.setRoot(loadFXML(fxml));
     }
 

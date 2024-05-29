@@ -49,14 +49,18 @@ public class AdministrarEmpleadosController {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
 
     @FXML
-    public void retroceder_PanelAdmin(ActionEvent actionEvent) throws IOException {
-        App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
+    public void retroceder_PanelAdmin(ActionEvent actionEvent){
+        try {
+            App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 
     private HBox crearEmpleado(String nombre, String apellidos, Empleado empleado) {
@@ -91,8 +95,8 @@ public class AdministrarEmpleadosController {
             EditarEmpleadoController.setCurrent(empleado.getDni());
             try {
                 App.setRoot("pantalla3");
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                Logs.createIOLog(e);
             }
         });
         hb.getChildren().add(editarEmpleado);
@@ -140,7 +144,7 @@ public class AdministrarEmpleadosController {
             return arrayList_Empleado;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return arrayList_Empleado;
     }
@@ -161,7 +165,7 @@ public class AdministrarEmpleadosController {
         }
 
     } catch (SQLException e) {
-        e.printStackTrace();
+        Logs.createSQLLog(e);
     }
     return departamento;
     }
@@ -177,7 +181,7 @@ public class AdministrarEmpleadosController {
             Alertas.empleadoDesactivadoCorrectamente();
 
         } catch (SQLException sql) {
-            sql.printStackTrace();
+            Logs.createSQLLog(sql);
 
             Alertas.errorDesactivarEmpleado();
         }

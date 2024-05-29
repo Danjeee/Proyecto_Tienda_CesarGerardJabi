@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import tienda_javi_gerard_cesar.Clases.Logs;
 
 public class Olivadar {
 
@@ -11,12 +12,20 @@ public class Olivadar {
     private App PantallaPrincipal = new App();
 
     @FXML
-    public void cargarVentana_olvidar(ActionEvent actionEvent) throws IOException {
+    public void cargarVentana_olvidar(ActionEvent actionEvent){
+        try {
         App.setRoot("Login");
+    } catch (Exception e){
+        Logs.createIOLog(e);
     }
+}
 
     @FXML
-    public void flecha_volver(ActionEvent actionEvent) throws IOException {
+    public void flecha_volver(ActionEvent actionEvent){
+        try {
         App.setRoot("Login");
+    } catch (Exception e){
+        Logs.createIOLog(e);
     }
+}
 }

@@ -70,8 +70,8 @@ public class MenuHamb {
             pant.setOnAction(e -> {
                 try {
                     filtrar(id, "");
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                } catch (Exception e1) {
+                    Logs.createIOLog(e1);
                 }
             });
         } else {
@@ -79,8 +79,8 @@ public class MenuHamb {
             pant.setOnAction(e -> {
                 try {
                     App.setRoot(id);
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                } catch (Exception e1) {
+                    Logs.createIOLog(e1);
                 }
             });
 
@@ -141,7 +141,7 @@ public class MenuHamb {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return false;
     }
@@ -151,7 +151,7 @@ public class MenuHamb {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
@@ -191,8 +191,8 @@ public class MenuHamb {
         ropa.setOnAction(e -> {
             try {
                 multiFiltrar(multifiltro);
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
         popupHamb.getChildren().add(ropa);
@@ -211,8 +211,8 @@ public class MenuHamb {
         acc.setOnAction(e -> {
             try {
                 multiFiltrar(multifiltro2);
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
         popupHamb.getChildren().add(acc);
@@ -233,8 +233,8 @@ public class MenuHamb {
             adminPanel.setOnAction(e -> {
                 try {
                     App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                } catch (Exception e1) {
+                    Logs.createIOLog(e1);
                 }
             });
             popupHamb.getChildren().add(adminPanel);
@@ -247,14 +247,14 @@ public class MenuHamb {
 
     }
 
-    public static void multiFiltrar(String[] mult) throws IOException {
+    public static void multiFiltrar(String[] mult){
         Main.filtros.clear();
         for (String i : mult) {
             filtrar(i, "a");
         }
     }
 
-    public static void filtrar(String word, String mult) throws IOException {
+    public static void filtrar(String word, String mult){
         Boolean esta = false;
         if (mult.isEmpty()) {
             Main.filtros.clear();
@@ -274,7 +274,11 @@ public class MenuHamb {
         if (menued) {
             popupHambShow();
         }
-        App.setRoot("main");
+        try {
+            App.setRoot("main");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 
     public static void popupHambShow() {

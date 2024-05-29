@@ -69,8 +69,12 @@ public class EditarClienteController {
     private static String current = "";
 
     @FXML
-    public void retroceder_ListaClientes(ActionEvent actionEvent) throws IOException {
-        App.setRoot("AdministrarClientes_Cesar_Javi_Gerard");
+    public void retroceder_ListaClientes(ActionEvent actionEvent){
+        try {
+            App.setRoot("AdministrarClientes_Cesar_Javi_Gerard");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
         initialize();
     }
 
@@ -79,7 +83,7 @@ public class EditarClienteController {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
@@ -101,7 +105,7 @@ public class EditarClienteController {
             connection.close();
         } catch (SQLException e) {
             
-            e.printStackTrace();
+            Logs.createSQLLog(e);
             Alertas.errorRegistrar();
         }
  
@@ -132,7 +136,7 @@ public class EditarClienteController {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
 
     }

@@ -28,16 +28,23 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import panel_admin.Clases.Departamento;
 import panel_admin.Clases.Empleado;
+import panel_admin.Clases.ImportantGUI;
 import panel_admin.Clases.Alertas;
 
 public class AdministrarEmpleadosController {
 
     @FXML
     private App PantallaPrincipal = new App();
+
     @FXML
     private AnchorPane cont;
+
+    @FXML
+    private VBox all;
+
     @FXML
     private FlowPane fpane; 
+
     @FXML
     public Empleado empleado;
     public ArrayList<Empleado> lista_empleados;
@@ -190,7 +197,9 @@ public class AdministrarEmpleadosController {
         cont.getChildren().add(MenuHamb.menuShadow);
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
-
+        all.getChildren().add(0,ImportantGUI.generateHeader());
+        all.getChildren().add(ImportantGUI.generateFooter());
+        
         lista_empleados = cargarEmpleados();
 
         for (Empleado empleado : lista_empleados) {

@@ -150,8 +150,6 @@ public class AltaProductosController {
         App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
     }
 
-    static Alert alerta = new Alert(Alert.AlertType.NONE);
-
     @FXML
     private void guardarCambios() {
 

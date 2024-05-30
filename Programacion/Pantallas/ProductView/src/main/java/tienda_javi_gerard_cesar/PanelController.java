@@ -87,6 +87,7 @@ public class PanelController {
         try {
             App.setRoot("logsView");
         } catch (Exception e) {
+            e.printStackTrace();
             Logs.createIOLog(e);
         }
     }
@@ -95,6 +96,14 @@ public class PanelController {
     public void cargarVentana_AdministrarClientes(ActionEvent actionEvent) {
         try {
             App.setRoot("AdministrarClientes_Cesar_Javi_Gerard");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
+    }
+    @FXML
+    public void cargarVentana_AltaEmpleados(ActionEvent actionEvent) {
+        try {
+            App.setRoot("AltaEmpleados_Cesar_Javi_Gerard");
         } catch (Exception e) {
             Logs.createIOLog(e);
         }

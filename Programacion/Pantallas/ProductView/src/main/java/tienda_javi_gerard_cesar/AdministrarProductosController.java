@@ -40,8 +40,8 @@ public class AdministrarProductosController {
     private FlowPane fpane; 
 
     @FXML
-    public Articulo articulo;
-    public ArrayList<Articulo> lista_articulos;
+    public Producto Producto;
+    public ArrayList<Producto> lista_Productos;
 
     @FXML
     public void retroceder_PanelAdmin(ActionEvent actionEvent) throws IOException {
@@ -58,7 +58,7 @@ public class AdministrarProductosController {
         return con;
     }
 
-    private HBox crearArticulo(String nombre, String marca, Articulo articulo) {
+    private HBox crearProducto(String nombre, String marca, Producto Producto) {
         HBox hb = new HBox();
         hb.setPrefHeight(75);
         hb.setPrefWidth(1273);
@@ -66,51 +66,51 @@ public class AdministrarProductosController {
         hb.setSpacing(10);
         hb.setAlignment(Pos.CENTER);
 
-        Label infoArticulo = new Label(" " +nombre+ " (" +marca+ ")");
-        infoArticulo.setStyle("-fx-font-size: 25px; -fx-background-color: #e1e1e1; -fx-font-weight: bold");
-        infoArticulo.setPrefHeight(55);
-        infoArticulo.setPrefWidth(1143);
+        Label infoProducto = new Label(" " +nombre+ " (" +marca+ ")");
+        infoProducto.setStyle("-fx-font-size: 25px; -fx-background-color: #e1e1e1; -fx-font-weight: bold");
+        infoProducto.setPrefHeight(55);
+        infoProducto.setPrefWidth(1143);
         FontAwesomeIconView user = new FontAwesomeIconView();
         user.setGlyphName("TAG");
         user.setSize("35");
-        infoArticulo.setGraphic(user);
-        infoArticulo.setPadding(new Insets(0,0,0,13));
-        hb.getChildren().add(infoArticulo);
+        infoProducto.setGraphic(user);
+        infoProducto.setPadding(new Insets(0,0,0,13));
+        hb.getChildren().add(infoProducto);
 
-        Button editarArticulo = new Button("");
-        editarArticulo.setStyle("-fx-background-color: black");
-        editarArticulo.setPrefSize(55, 55);
+        Button editarProducto = new Button("");
+        editarProducto.setStyle("-fx-background-color: black");
+        editarProducto.setPrefSize(55, 55);
         FontAwesomeIconView editar = new FontAwesomeIconView();
         editar.setGlyphName("PENCIL");
         editar.setFill(Color.WHITE);
         editar.setSize("25");
-        editarArticulo.setGraphic(editar);
-        editarArticulo.setOnAction(i -> {
-            EditarClienteController.setCurrent(articulo.getCod_art());
+        editarProducto.setGraphic(editar);
+        editarProducto.setOnAction(i -> {
+            EditarClienteController.setCurrent(Producto.getCod_art());
             try {
                 App.setRoot("EditarProducto_Cesar_Javi_Gerard");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }); 
-        hb.getChildren().add(editarArticulo);
+        hb.getChildren().add(editarProducto);
 
-        Button borrarArticulo = new Button("");
-        borrarArticulo.setStyle("-fx-background-color: black");
-        borrarArticulo.setPrefSize(55, 55);
+        Button borrarProducto = new Button("");
+        borrarProducto.setStyle("-fx-background-color: black");
+        borrarProducto.setPrefSize(55, 55);
         FontAwesomeIconView papelera = new FontAwesomeIconView();
         papelera.setGlyphName("TRASH");
         papelera.setFill(Color.WHITE);
         papelera.setSize("25");
-        borrarArticulo.setGraphic(papelera);
-        borrarArticulo.setOnAction(i -> desactivarCliente(articulo));
-        hb.getChildren().add(borrarArticulo);
+        borrarProducto.setGraphic(papelera);
+        borrarProducto.setOnAction(i -> desactivarCliente(Producto));
+        hb.getChildren().add(borrarProducto);
         return hb;
 
     }
 
-    private ArrayList<Articulo> cargarArticulo() {
-        ArrayList<Articulo> arrayList_Articulo = new ArrayList<>();
+    private ArrayList<Producto> cargarProducto() {
+        ArrayList<Producto> arrayList_Producto = new ArrayList<>();
         
         Connection con = conectar();
         try {
@@ -118,7 +118,7 @@ public class AdministrarProductosController {
             ResultSet rs = st.executeQuery("select * from articulo");
 
             while (rs.next()) {
-                String cod_articulo = rs.getString("cod_art");
+                String cod_Producto = rs.getString("cod_art");
                 String nom = rs.getString("nombre");
                 double precio = rs.getDouble("precio");
                 String marca = rs.getString("marca");
@@ -128,16 +128,16 @@ public class AdministrarProductosController {
                 Material mat = obtenerMaterialPorCodigo(rs.getInt("material"));
 
                 if (act == true){
-                    Articulo articulo = new Articulo(cod_articulo, nom, precio, marca, descripcion, act, nom_imagen, mat);
-                    arrayList_Articulo.add(articulo);             
+                    Producto Producto = new Producto(cod_Producto, nom, precio, marca, descripcion, act, nom_imagen, mat);
+                    arrayList_Producto.add(Producto);             
                 } 
             }
-            return arrayList_Articulo;
+            return arrayList_Producto;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return arrayList_Articulo;
+        return arrayList_Producto;
     }
 
     public Material obtenerMaterialPorCodigo(int codigoMaterial){
@@ -151,7 +151,7 @@ public class AdministrarProductosController {
         if (rs.next()) {
             int codigo = rs.getInt("codigo");
             String denominacion = rs.getString("denominacion");
-            mat = new Material(codigo, denominacion);
+            mat = new Material(String.valueOf(codigo), denominacion);
         }
 
     } catch (SQLException e) {
@@ -162,11 +162,11 @@ public class AdministrarProductosController {
 
 
     @FXML
-    private void desactivarCliente(Articulo articulo) {
+    private void desactivarCliente(Producto Producto) {
         Connection con = conectar();
         try {
             Statement st = con.createStatement();
-            st.executeUpdate("UPDATE articulo set activo='0' where cod_art='" +articulo.getCod_art()+ "'");
+            st.executeUpdate("UPDATE articulo set activo='0' where cod_art='" +Producto.getCod_art()+ "'");
     
             Alertas.informacion("El articulo se ha desactivado correctamente.");
             
@@ -187,13 +187,13 @@ public class AdministrarProductosController {
         all.getChildren().add(0,ImportantGUI.generateHeader());
         all.getChildren().add(ImportantGUI.generateFooter());
 
-        lista_articulos = cargarArticulo();
+        lista_Productos = cargarProducto();
 
-        for (Articulo articulo : lista_articulos) {
-            String nombre = articulo.getNombre();
-            String marca = articulo.getMarca();
+        for (Producto Producto : lista_Productos) {
+            String nombre = Producto.getNombre();
+            String marca = Producto.getMarca();
     
-            fpane.getChildren().add(crearArticulo(nombre, marca, articulo));
+            fpane.getChildren().add(crearProducto(nombre, marca, Producto));
         }
     }
 }

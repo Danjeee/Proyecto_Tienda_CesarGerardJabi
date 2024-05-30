@@ -95,7 +95,7 @@ public class Logs {
     }
     public static ArrayList<String> employeeToLogs(String[] datoscli){
         ArrayList<String> a = new ArrayList<>();
-        String[] col = {"DNI: ", "Nombre: ", "Apellidos: ", "Tlf: ", "Fecha Nacimiento: ", "Direccion: ", "Email: ", "Pass: ", "Saldo: ", "Num_pedidos: ", "Dir_envio: ", "Fidelizacion: ", "Activo: "};
+        String[] col = {"DNI: ", "Nombre: ", "Apellidos: ", "Tlf: ", "Fecha Nacimiento: ", "Direccion: ", "Email: ", "Pass: ","DPTO: ", "Tiene Privilegios: ", "Activo: "};
         for (int i = 0; i<datoscli.length; i++){
             if (!datoscli[i].isEmpty()) {
                 a.add(col[i] + datoscli[i]);

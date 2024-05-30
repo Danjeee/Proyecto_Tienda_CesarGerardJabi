@@ -182,7 +182,7 @@ public class EditarEmpleadoController {
             for (int i = 0; i<olddatos1.length; i++){
                 olddatos1[i] = olddatos.get(i);
             }
-            Logs.createAdminLog('m', 'e', Logs.userToLogs(olddatos1), Logs.userToLogs(newdatos));
+            Logs.createAdminLog('m', 'e', Logs.employeeToLogs(olddatos1), Logs.employeeToLogs(newdatos));
             Alertas.editarEmpleado();
             connection.close();
         } catch (SQLException e) {

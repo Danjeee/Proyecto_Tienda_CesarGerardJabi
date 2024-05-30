@@ -73,7 +73,7 @@ public class AltaEmpleadosController {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
@@ -98,13 +98,19 @@ public class AltaEmpleadosController {
         try {
             Statement st = connection.createStatement();
             st.executeUpdate("INSERT INTO empleado VALUES('"+dni.getText()+"','"+nombre.getText()+"','"+apellidos.getText()+"','"+telefono.getText()+"','"+fecha_nacimiento.getValue()
-            +"','"+direccion.getText()+"','"+email.getText()+"'," +activo.isSelected()+ "," +privilegios.isSelected()+ ",'" +contraseña.getText()+ "'," +dpto_num+ ")");
-            
+            +"','"+direccion.getText()+"','"+email.getText()+"'," +activo.isSelected()+ "," +privilegios.isSelected()+ ",'" +Cifrado.shiftCifrado(contraseña.getText())+ "'," +dpto_num+ ")");
+            String[] datos = {dni.getText(), nombre.getText(), apellidos.getText(), telefono.getText(),fecha_nacimiento.getValue().toString(), direccion.getText(),email.getText(), "******",String.valueOf(dpto_num), Boolean.toString(privilegios.isSelected()) };
+            Logs.createAdminLog('a', 'e', null, Logs.employeeToLogs(datos));
             Alertas.informacion("El empleado se ha creado correctamente.");
+            try {
+                App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
+            } catch (Exception e) {
+                Logs.createIOLog(e);
+            }
             connection.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
             Alertas.error("Error al crear el empleado.");
         }
     }
@@ -112,7 +118,6 @@ public class AltaEmpleadosController {
     public void initialize() {
         MenuHamb.init(cont);
         all.getChildren().add(0,ImportantGUI.generateHeader());
-        all.getChildren().add(ImportantGUI.generateFooter());
 
         departamento.getItems().addAll(opciones_departamento);
 

@@ -60,7 +60,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="AltaEmpleadoButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Dar de alta&#10;empleado" textFill="WHITE">
+                        <Button fx:id="AltaEmpleadoButton" mnemonicParsing="false" onAction="#cargarVentana_AltaEmpleados" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Dar de alta&#10;empleado" textFill="WHITE">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="ID_BADGE" size="23" wrappingWidth="43.66668701171875" />
                            </graphic>

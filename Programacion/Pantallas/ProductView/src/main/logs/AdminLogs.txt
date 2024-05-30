@@ -1,57 +1,20 @@
 ---------------------------------------------------------------  
-FECHA: 30/05/2024 12:24
-Se ha modificado cliente: DNI: 01234567I
-OLD ->: Apellidos: Hernández Ruiz -----> Apellidos: Hernández Rui <- NEW
-OLD ->: Pass: ****** -----> Pass: ******* <- NEW
-OLD ->: Saldo: 1800.0 -----> Saldo: 0 <- NEW
-OLD ->: Fidelizacion: 1 -----> Fidelizacion: true <- NEW
+FECHA: 30/05/2024 20:02
+Se ha modificado empleado:  DNI: 11223344Y: Nombre: Hola
+OLD ->: Apellidos: adios -----> Apellidos: adi <- NEW
 ---------------------------------------------------------------  
-FECHA: 30/05/2024 12:26
-Se ha modificado cliente: DNI: 01234567I
-OLD ->: Apellidos: Hernández Rui -----> Apellidos: Hernández Ruiz <- NEW
-OLD ->: Pass: ****** -----> Pass: ******* <- NEW
-OLD ->: Saldo: 1800.0 -----> Saldo: 0 <- NEW
+FECHA: 30/05/2024 20:02
+Se ha desactivado empleado:  11223344Y: Hola adi
 ---------------------------------------------------------------  
-FECHA: 30/05/2024 12:29
-Se ha modificado cliente: DNI: 01234567I
-OLD ->: Apellidos: Hernández Ruiz -----> Apellidos: Hernández Ru <- NEW
-OLD ->: Saldo: 1800.0 -----> Saldo: 0 <- NEW
-OLD ->: Fidelizacion: 1 -----> Fidelizacion: true <- NEW
-OLD ->: Activo: 1 -----> Activo: true <- NEW
----------------------------------------------------------------  
-FECHA: 30/05/2024 12:32
-Se ha modificado cliente: DNI: 01234567I
-OLD ->: Apellidos: Hernández Ru -----> Apellidos: Hernández Ruiz <- NEW
----------------------------------------------------------------  
-FECHA: 30/05/2024 12:50
-Se ha modificado empleado:  DNI: 01234567J: Nombre: Raúl
-OLD ->: Apellidos: González Pérez -----> Apellidos: González Pére <- NEW
-OLD ->: DPTO: 3 -----> DPTO: Almacé <- NEW
----------------------------------------------------------------  
-FECHA: 30/05/2024 12:51
-Se ha modificado empleado:  DNI: 01234567J: Nombre: Raúl
-OLD ->: Apellidos: González Pére -----> Apellidos: González Pérez <- NEW
----------------------------------------------------------------  
-FECHA: 30/05/2024 13:07
-Se ha desactivado cliente: 11223344J: a aasdasdasd
----------------------------------------------------------------  
-FECHA: 30/05/2024 13:08
-Se ha desactivado cliente: 12345678J: Raúl González Pérez
----------------------------------------------------------------  
-FECHA: 30/05/2024 13:08
-Se ha desactivado cliente: 11223344J: a aasdasdasd
----------------------------------------------------------------  
-FECHA: 30/05/2024 13:09
-Se ha desactivado cliente: 11223344J: a aasdasdasd
----------------------------------------------------------------  
-FECHA: 30/05/2024 13:09
-Se ha desactivado cliente: 01234567I: Elena Hernández Ruiz
----------------------------------------------------------------  
-FECHA: 30/05/2024 13:09
-Se ha desactivado cliente: 11223344J: a aasdasdasd
----------------------------------------------------------------  
-FECHA: 30/05/2024 13:10
-Se ha desactivado cliente: 11223344J: a aasdasdasd
----------------------------------------------------------------  
-FECHA: 30/05/2024 13:16
-Se ha desactivado empleado:  12345678K: Nuria Martínez Gómez
+FECHA: 30/05/2024 20:03
+Se ha creado empleado:  DNI: 11223344T: Nombre: asd
+NEW DNI: 11223344T
+NEW Nombre: asd
+NEW Apellidos: dasd
+NEW Tlf: 111222333
+NEW Fecha Nacimiento: 2024-05-10
+NEW Direccion: as
+NEW Email: asd@g.com
+NEW Pass: ******
+NEW DPTO: 2
+NEW Tiene Privilegios: true

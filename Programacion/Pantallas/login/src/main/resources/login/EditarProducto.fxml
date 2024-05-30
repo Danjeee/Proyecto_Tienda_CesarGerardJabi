@@ -15,11 +15,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="cont" prefHeight="1024.0" prefWidth="1464.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.EditarProductoController">
-
 <AnchorPane fx:id="cont" prefHeight="1024.0" prefWidth="1464.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="panel_admin.AltaProductosController">
-
    <children>
       <VBox fx:id="all" prefHeight="1024.0" prefWidth="1440.0">
          <children>
@@ -27,10 +23,7 @@
                <children>
                   <VBox prefHeight="1024.0" prefWidth="480.0" spacing="20.0">
                      <children>
-                        <Label text="Alta de productos">
-
-                        <Label text="Editar Producto">
-
+                        <Label text="Editar productos">
                            <font>
                               <Font name="System Bold" size="27.0" />
                            </font>
@@ -38,7 +31,7 @@
                               <Insets bottom="-75.0" left="40.0" />
                            </padding>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#retroceder_PanelAdmin" style="-fx-background-color: transparent;">
+                        <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -58,8 +51,6 @@
                            </VBox.margin>
                         </Label>
                         <TextField fx:id="nombreProd" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;">
-
-                        <TextField fx:id="nombre" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;">
                            <VBox.margin>
                               <Insets top="-20.0" />
                            </VBox.margin>
@@ -69,10 +60,7 @@
                               <Font size="25.0" />
                            </font>
                         </Label>
-
                         <TextField fx:id="marcaProd" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;">
-
-                        <TextField fx:id="marca" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;">
                            <VBox.margin>
                               <Insets top="-20.0" />
                            </VBox.margin>
@@ -83,8 +71,6 @@
                            </font>
                         </Label>
                         <ChoiceBox fx:id="materialProd" prefHeight="60.0" prefWidth="430.0" style="-fx-background-color: white; -fx-border-color: grey;">
-
-                        <ChoiceBox fx:id="material" prefHeight="60.0" prefWidth="430.0" style="-fx-background-color: white; -fx-border-color: grey;">
                            <VBox.margin>
                               <Insets top="-20.0" />
                            </VBox.margin>
@@ -95,8 +81,6 @@
                            </font>
                         </Label>
                         <ChoiceBox fx:id="tipoArticuloProd" prefHeight="60.0" prefWidth="430.0" style="-fx-background-color: white; -fx-border-color: grey;">
-
-                        <ChoiceBox fx:id="tipoArticulo" prefHeight="60.0" prefWidth="430.0" style="-fx-background-color: white; -fx-border-color: grey;">
                            <VBox.margin>
                               <Insets top="-20.0" />
                            </VBox.margin>
@@ -111,8 +95,6 @@
                                        </font>
                                     </Label>
                                     <TextField fx:id="tallaProd" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;" />
-
-                                    <TextField fx:id="talla" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;" />
                                  </children>
                               </VBox>
                               <VBox fx:id="vbox_estilo" prefHeight="87.0" prefWidth="380.0">
@@ -123,9 +105,6 @@
                                        </font>
                                     </Label>
                                     <TextField fx:id="estiloProd" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;" />
-
-                                    <TextField fx:id="estilo" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;" />
- 
                                  </children>
                               </VBox>
                            </children>
@@ -140,8 +119,6 @@
                                        </font>
                                     </Label>
                                     <TextField fx:id="colorProd" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;" />
-
-                                    <TextField fx:id="color" prefHeight="60.0" prefWidth="308.0" style="-fx-border-color: grey;" />
                                  </children>
                               </VBox>
                               <VBox fx:id="vbox_personalizado" prefHeight="87.0" prefWidth="380.0">
@@ -154,7 +131,7 @@
                                           <Insets left="40.0" top="20.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <CheckBox fx:id="personalizado" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" style="-fx-background-color: white;">
+                                    <CheckBox fx:id="personalizadoProd" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" style="-fx-background-color: white;">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
@@ -179,15 +156,11 @@
                            </font>
                         </Label>
                         <TextField fx:id="nombre_imagenProd" prefHeight="42.0" prefWidth="377.0" promptText="Nombre del archivo" style="-fx-border-color: grey;">
-
-                        <TextField fx:id="nombre_imagen" prefHeight="42.0" prefWidth="377.0" promptText="Nombre del archivo" style="-fx-border-color: grey;">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </TextField>
                         <Button fx:id="imagenProd" mnemonicParsing="false" onAction="#abrirImagen" prefHeight="220.0" prefWidth="430.0" style="-fx-border-color: grey;">
-
-                        <Button fx:id="imagen" mnemonicParsing="false" onAction="#abrirImagen" prefHeight="220.0" prefWidth="430.0" style="-fx-border-color: grey;">
                            <graphic>
                               <FontAwesomeIconView glyphName="PHOTO" />
                            </graphic>
@@ -353,9 +326,10 @@
                            </VBox.margin>
                         </Label>
                         <TextField fx:id="precioProd" prefHeight="71.0" prefWidth="333.0" style="-fx-border-color: grey;">
-
-                        <TextField fx:id="precio" prefHeight="71.0" prefWidth="333.0" style="-fx-border-color: grey;">
                            <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
                               <Insets top="-15.0" />
                            </VBox.margin>
                         </TextField>
@@ -375,7 +349,7 @@
                               <Insets top="-10.0" />
                            </VBox.margin>
                         </CheckBox>
-                        <Button mnemonicParsing="false" onAction="#guardarCambios" prefHeight="95.0" prefWidth="380.0" style="-fx-background-color: #000000;" text="Guardar &#10;cambios" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="380.0" style="-fx-background-color: #000000;" text="Guardar &#10;cambios" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>

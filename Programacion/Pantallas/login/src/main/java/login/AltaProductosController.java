@@ -53,7 +53,7 @@ public class AltaProductosController {
     private TextField talla;
 
     @FXML
-    private TextField talla_zapatos;
+    private TextField talla_zapatos; 
 
     @FXML
     private TextField color;

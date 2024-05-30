@@ -234,7 +234,7 @@ public class EditarProductoController {
                     Statement st4 = connection.createStatement();
                     ResultSet rs4 = st4.executeQuery("SELECT * FROM ropa WHERE codigo = " + rs.getInt("tipoArticuloProd"));
                     while (rs1.next()) {
-                        tipoArticuloProd.getSelectionModel().select(rs1.getString("codigo") + ".- " + rs1.getString("tipo_ropa"));
+                        tipoArticuloProd.getSelectionModel().select(rs1.getString("codigo") + ".- " + rs4.getString("tipo_ropa"));
                     }
                 }
             }

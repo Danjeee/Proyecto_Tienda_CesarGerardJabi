@@ -142,11 +142,11 @@ public class EditarEmpleadoController {
             +dpto.getSelectionModel().getSelectedItem().substring(0,1)+"', tiene_privilegios="+privilegiosEmpleado.isSelected()+" WHERE DNI = '"
             +current+"'");
 
-            Alertas.editarEmpleado();
+            Alertas.informacion("EL EMPLEADO HA SIDO ACTUALIZADO CORERCTAMENTE");
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            Alertas.errorRegistrar();
+            Alertas.error("ERROR AL EDITAR EL EMPLEADO");
         }
  
     }
@@ -165,7 +165,7 @@ public class EditarEmpleadoController {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            Alertas.errorRegistrar();
+            Alertas.error("ERRROR AL EDITAR EL EMPLEADO");
 
         }
     }

@@ -41,49 +41,58 @@ public class PanelController {
     private App PantallaPrincipal = new App();
 
     @FXML
-    public void cargarVentana_AltaProductos(ActionEvent actionEvent){
+    public void cargarVentana_AltaProductos(ActionEvent actionEvent) {
         try {
-        App.setRoot("AltaProductos_Cesar_Javi_Gerard");
-    } catch (Exception e){
-        Logs.createIOLog(e);
+            App.setRoot("AltaProductos_Cesar_Javi_Gerard");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
-}
 
     @FXML
-    public void cargarVentana_AdministrarEmpleados(ActionEvent actionEvent){
+    public void cargarVentana_AdministrarEmpleados(ActionEvent actionEvent) {
         try {
-        App.setRoot("AdministrarEmpleados_Cesar_Javi_Gerard");
-    } catch (Exception e){
-        Logs.createIOLog(e);
+            App.setRoot("AdministrarEmpleados_Cesar_Javi_Gerard");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
-}
 
     @FXML
-    public void cargarVentana_AdministrarUsuarios(ActionEvent actionEvent){
+    public void cargarVentana_AdministrarUsuarios(ActionEvent actionEvent) {
         try {
-        App.setRoot("AdministrarUsuarios_Cesar_Javi_Gerard");
-    } catch (Exception e){
-        Logs.createIOLog(e);
+            App.setRoot("AdministrarUsuarios_Cesar_Javi_Gerard");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
-}
 
     @FXML
-    public void cargarVentana_AdministrarProductos(ActionEvent actionEvent){
+    public void cargarVentana_AdministrarProductos(ActionEvent actionEvent) {
         try {
-        App.setRoot("AdministrarProductos_Cesar_Javi_Gerard");
-    } catch (Exception e){
-        Logs.createIOLog(e);
+            App.setRoot("AdministrarProductos_Cesar_Javi_Gerard");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
-}
 
     @FXML
-    public void cargarVentana_AdministrarClientes(ActionEvent actionEvent){
+    public void cargarVentana_Logs(ActionEvent actionEvent) {
         try {
-        App.setRoot("AdministrarClientes_Cesar_Javi_Gerard");
-    } catch (Exception e){
-        Logs.createIOLog(e);
+            App.setRoot("logsView");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
-}
+
+    @FXML
+    public void cargarVentana_AdministrarClientes(ActionEvent actionEvent) {
+        try {
+            App.setRoot("AdministrarClientes_Cesar_Javi_Gerard");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
+    }
 
     static Alert alerta = new Alert(Alert.AlertType.NONE);
 
@@ -116,7 +125,7 @@ public class PanelController {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
@@ -140,7 +149,7 @@ public class PanelController {
 
             privilegiosAdmin(dpto);
         } catch (SQLException e) {
-            e.printStackTrace();
+           Logs.createSQLLog(e);
 
         }
     }

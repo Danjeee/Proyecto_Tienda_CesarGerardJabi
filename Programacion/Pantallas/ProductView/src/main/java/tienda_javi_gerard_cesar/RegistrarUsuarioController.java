@@ -89,6 +89,14 @@ public class RegistrarUsuarioController {
             alerta.setHeaderText(null);
             alerta.setContentText("El usuario se ha registrado correctamente.");
             alerta.show();
+            App.setUser(DNI.getText());
+            String[] datos = {DNI.getText(), nombre.getText(), apellidos.getText(), telefono.getText(), fechanac.getValue().toString(), direccion.getText(), email.getText(), contraseña.getText(), "0", "0", String.valueOf(tarjetaFide.isSelected()), String.valueOf(activo.isSelected())};
+            Logs.createAdminLog('a', 'c', null, Logs.userToLogs(datos));
+            try {
+                App.setRoot("seleccion");
+            } catch (Exception e) {
+                Logs.createIOLog(e);
+            }
 
             connection.close();
         } catch (SQLException e) {

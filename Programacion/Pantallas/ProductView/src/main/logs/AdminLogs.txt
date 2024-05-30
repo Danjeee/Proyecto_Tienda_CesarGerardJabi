@@ -1,0 +1,33 @@
+---------------------------------------------------------------  
+FECHA: 30/05/2024 12:24
+Se ha modificado cliente: DNI: 01234567I
+OLD ->: Apellidos: Hernández Ruiz -----> Apellidos: Hernández Rui <- NEW
+OLD ->: Pass: ****** -----> Pass: ******* <- NEW
+OLD ->: Saldo: 1800.0 -----> Saldo: 0 <- NEW
+OLD ->: Fidelizacion: 1 -----> Fidelizacion: true <- NEW
+---------------------------------------------------------------  
+FECHA: 30/05/2024 12:26
+Se ha modificado cliente: DNI: 01234567I
+OLD ->: Apellidos: Hernández Rui -----> Apellidos: Hernández Ruiz <- NEW
+OLD ->: Pass: ****** -----> Pass: ******* <- NEW
+OLD ->: Saldo: 1800.0 -----> Saldo: 0 <- NEW
+---------------------------------------------------------------  
+FECHA: 30/05/2024 12:29
+Se ha modificado cliente: DNI: 01234567I
+OLD ->: Apellidos: Hernández Ruiz -----> Apellidos: Hernández Ru <- NEW
+OLD ->: Saldo: 1800.0 -----> Saldo: 0 <- NEW
+OLD ->: Fidelizacion: 1 -----> Fidelizacion: true <- NEW
+OLD ->: Activo: 1 -----> Activo: true <- NEW
+---------------------------------------------------------------  
+FECHA: 30/05/2024 12:32
+Se ha modificado cliente: DNI: 01234567I
+OLD ->: Apellidos: Hernández Ru -----> Apellidos: Hernández Ruiz <- NEW
+---------------------------------------------------------------  
+FECHA: 30/05/2024 12:50
+Se ha modificado empleado:  DNI: 01234567J: Nombre: Raúl
+OLD ->: Apellidos: González Pérez -----> Apellidos: González Pére <- NEW
+OLD ->: DPTO: 3 -----> DPTO: Almacé <- NEW
+---------------------------------------------------------------  
+FECHA: 30/05/2024 12:51
+Se ha modificado empleado:  DNI: 01234567J: Nombre: Raúl
+OLD ->: Apellidos: González Pére -----> Apellidos: González Pérez <- NEW

@@ -224,8 +224,8 @@ public class Flappy {
                 Random rnd = new Random();
                 a.setLayoutY(-(rnd.nextInt(800) + 200));
                 a.setLayoutX(1340);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                Logs.createIOLog(e);
             }
             timepipe = 0;
         }

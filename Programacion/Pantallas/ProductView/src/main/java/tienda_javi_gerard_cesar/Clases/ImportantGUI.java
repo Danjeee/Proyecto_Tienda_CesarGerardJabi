@@ -322,6 +322,8 @@ public class ImportantGUI {
             }
         } catch (SQLException e) {
             Logs.createSQLLog(e);
+        } catch (NullPointerException e){
+            System.out.print("");
         }
         Label mptit = new Label("MÉTODOS DE PAGO");
         mptit.setFont(tit);

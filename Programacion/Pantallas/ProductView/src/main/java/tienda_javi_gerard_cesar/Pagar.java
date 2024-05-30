@@ -321,8 +321,8 @@ public class Pagar {
         try {
             System.out.println(App.getLast());
             App.setRoot(App.getLast());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Logs.createIOLog(e);
         }
     }
 

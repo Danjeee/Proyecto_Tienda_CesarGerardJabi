@@ -26,3 +26,129 @@ Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
 Linea: 94
 Metodo: productview/tienda_javi_gerard_cesar.Login.cargarVentana_olvidar(Login.java:62)
 Linea: 62
+---------------------------------------------------------------  
+FECHA: 30/05/2024 10:18
+Archivo faltante: C:\Users\alumnoM\Documents\GitHub\Proyecto_Tienda_CesarGerardJabi\Programacion\Pantallas\ProductView\src\main\resources\seleccion.fxml
+Nombre archivo: seleccion.fxml
+LoadException
+class javafx.fxml.LoadException: java.lang.reflect.InvocationTargetException
+Metodo: javafx.fxml/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2625)
+Linea: 2625
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Login.loginAsGuest(Login.java:159)
+Linea: 159
+---------------------------------------------------------------  
+FECHA: 30/05/2024 10:18
+Archivo faltante: C:\Users\alumnoM\Documents\GitHub\Proyecto_Tienda_CesarGerardJabi\Programacion\Pantallas\ProductView\src\main\resources\faq.fxml
+Nombre archivo: faq.fxml
+LoadException
+class javafx.fxml.LoadException: java.lang.reflect.InvocationTargetException
+Metodo: javafx.fxml/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2625)
+Linea: 2625
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.lambda$6(ImportantGUI.java:274)
+Linea: 274
+---------------------------------------------------------------  
+FECHA: 30/05/2024 10:18
+Archivo faltante: C:\Users\alumnoM\Documents\GitHub\Proyecto_Tienda_CesarGerardJabi\Programacion\Pantallas\ProductView\src\main\resources\pedidos.fxml
+Nombre archivo: pedidos.fxml
+LoadException
+class javafx.fxml.LoadException: java.lang.reflect.InvocationTargetException
+Metodo: javafx.fxml/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2625)
+Linea: 2625
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.lambda$7(ImportantGUI.java:285)
+Linea: 285
+---------------------------------------------------------------  
+FECHA: 30/05/2024 11:52
+Archivo faltante: C:\Users\alumnoM\Documents\GitHub\Proyecto_Tienda_CesarGerardJabi\Programacion\Pantallas\ProductView\src\main\resources\pantalla2.fxml
+Nombre archivo: pantalla2.fxml
+FileNotFoundException
+class java.io.FileNotFoundException: null
+Metodo: java.base/java.io.FileInputStream.open0(Native Method)
+Linea: -2
+Metodo: productview/tienda_javi_gerard_cesar.Clases.Logs.createAdminLog(Logs.java:102)
+Linea: 102
+Metodo: productview/tienda_javi_gerard_cesar.RegistrarUsuarioController.registrar(RegistrarUsuarioController.java:94)
+Linea: 94
+---------------------------------------------------------------  
+FECHA: 30/05/2024 12:05
+Archivo faltante: C:\Users\alumnoM\Documents\GitHub\Proyecto_Tienda_CesarGerardJabi\Programacion\Pantallas\ProductView\src\main\resources\EditarCliente_Cesar_Javi_Gerard.fxml
+Nombre archivo: EditarCliente_Cesar_Javi_Gerard.fxml
+FileNotFoundException
+class java.io.FileNotFoundException: null
+Metodo: java.base/java.io.FileInputStream.open0(Native Method)
+Linea: -2
+Metodo: productview/tienda_javi_gerard_cesar.Clases.Logs.createAdminLog(Logs.java:101)
+Linea: 101
+Metodo: productview/tienda_javi_gerard_cesar.EditarClienteController.guardarCambios(EditarClienteController.java:105)
+Linea: 105
+---------------------------------------------------------------  
+FECHA: 30/05/2024 12:07
+Archivo faltante: C:\Users\alumnoM\Documents\GitHub\Proyecto_Tienda_CesarGerardJabi\Programacion\Pantallas\ProductView\src\main\resources\EditarCliente_Cesar_Javi_Gerard.fxml
+Nombre archivo: EditarCliente_Cesar_Javi_Gerard.fxml
+IndexOutOfBoundsException
+class java.lang.IndexOutOfBoundsException: null
+Metodo: java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+Linea: 100
+Metodo: productview/tienda_javi_gerard_cesar.Clases.Logs.createAdminLog(Logs.java:154)
+Linea: 154
+Metodo: productview/tienda_javi_gerard_cesar.EditarClienteController.guardarCambios(EditarClienteController.java:105)
+Linea: 105
+---------------------------------------------------------------  
+FECHA: 30/05/2024 12:12
+Archivo faltante: C:\Users\alumnoM\Documents\GitHub\Proyecto_Tienda_CesarGerardJabi\Programacion\Pantallas\ProductView\src\main\resources\EditarCliente_Cesar_Javi_Gerard.fxml
+Nombre archivo: EditarCliente_Cesar_Javi_Gerard.fxml
+IndexOutOfBoundsException
+class java.lang.IndexOutOfBoundsException: null
+Metodo: java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+Linea: 100
+Metodo: productview/tienda_javi_gerard_cesar.Clases.Logs.createAdminLog(Logs.java:154)
+Linea: 154
+Metodo: productview/tienda_javi_gerard_cesar.EditarClienteController.guardarCambios(EditarClienteController.java:111)
+Linea: 111
+---------------------------------------------------------------  
+FECHA: 30/05/2024 12:14
+Archivo faltante: C:\Users\alumnoM\Documents\GitHub\Proyecto_Tienda_CesarGerardJabi\Programacion\Pantallas\ProductView\src\main\resources\EditarCliente_Cesar_Javi_Gerard.fxml
+Nombre archivo: EditarCliente_Cesar_Javi_Gerard.fxml
+IndexOutOfBoundsException
+class java.lang.IndexOutOfBoundsException: null
+Metodo: java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+Linea: 100
+Metodo: productview/tienda_javi_gerard_cesar.Clases.Logs.createAdminLog(Logs.java:154)
+Linea: 154
+Metodo: productview/tienda_javi_gerard_cesar.EditarClienteController.guardarCambios(EditarClienteController.java:111)
+Linea: 111
+---------------------------------------------------------------  
+FECHA: 30/05/2024 12:15
+Archivo faltante: C:\Users\alumnoM\Documents\GitHub\Proyecto_Tienda_CesarGerardJabi\Programacion\Pantallas\ProductView\src\main\resources\EditarCliente_Cesar_Javi_Gerard.fxml
+Nombre archivo: EditarCliente_Cesar_Javi_Gerard.fxml
+IndexOutOfBoundsException
+class java.lang.IndexOutOfBoundsException: null
+Metodo: java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+Linea: 100
+Metodo: productview/tienda_javi_gerard_cesar.Clases.Logs.createAdminLog(Logs.java:154)
+Linea: 154
+Metodo: productview/tienda_javi_gerard_cesar.EditarClienteController.guardarCambios(EditarClienteController.java:111)
+Linea: 111
+---------------------------------------------------------------  
+FECHA: 30/05/2024 12:23
+Archivo faltante: C:\Users\alumnoM\Documents\GitHub\Proyecto_Tienda_CesarGerardJabi\Programacion\Pantallas\ProductView\src\main\resources\EditarCliente_Cesar_Javi_Gerard.fxml
+Nombre archivo: EditarCliente_Cesar_Javi_Gerard.fxml
+IndexOutOfBoundsException
+class java.lang.IndexOutOfBoundsException: null
+Metodo: java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+Linea: 100
+Metodo: productview/tienda_javi_gerard_cesar.Clases.Logs.createAdminLog(Logs.java:154)
+Linea: 154
+Metodo: productview/tienda_javi_gerard_cesar.EditarClienteController.guardarCambios(EditarClienteController.java:111)
+Linea: 111

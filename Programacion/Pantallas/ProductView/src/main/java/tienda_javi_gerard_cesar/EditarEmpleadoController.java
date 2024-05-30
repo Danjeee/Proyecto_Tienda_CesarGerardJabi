@@ -31,7 +31,7 @@ public class EditarEmpleadoController {
         try {
             App.setRoot("Login");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logs.createIOLog(e);
         }
     }
 
@@ -99,6 +99,7 @@ public class EditarEmpleadoController {
     private VBox all;
 
     private static String current = "";
+    private ArrayList<String> olddatos = new ArrayList<>();
 
     public static String getCurrent(){
         return current;
@@ -137,6 +138,19 @@ public class EditarEmpleadoController {
                 fechaNac.setValue(LocalDate.parse(rs.getString("f_nacimiento")));
                 direccionEmpleado.setText(rs.getString("direccion"));
                 privilegiosEmpleado.selectedProperty().set(rs.getBoolean("tiene_privilegios"));
+
+                olddatos.add(rs.getString("dni"));
+                olddatos.add(rs.getString("nombre"));
+                olddatos.add(rs.getString("apellidos"));
+                olddatos.add(rs.getString("telefono"));
+                olddatos.add(rs.getString("f_nacimiento"));
+                olddatos.add(rs.getString("direccion"));
+                olddatos.add(rs.getString("email"));
+                olddatos.add("******");
+                olddatos.add(rs.getString("dpto"));
+                olddatos.add(Boolean.toString(rs.getBoolean("tiene_privilegios")));
+                olddatos.add(Boolean.toString(rs.getBoolean("activo")));
+
                 Statement st1 = con.createStatement();
                 ResultSet rs1 = st1.executeQuery("SELECT * FROM departamento WHERE codigo = "+rs.getInt("dpto"));
                 while (rs1.next()) {
@@ -163,7 +177,12 @@ public class EditarEmpleadoController {
 
             st.executeUpdate("UPDATE EMPLEADO set DNI='"+DNIempleado.getText()+"', nombre='"+nombreEmpleado.getText()+"', apellidos='"+apellidosEmpleado.getText()+"', telefono='"+numtelef.getText()+"', f_nacimiento='"+fechaNac.getValue()
             +"', direccion='"+direccionEmpleado.getText()+"', email='"+emailEmpleado.getText()+"', activo=1, dpto='"+dpto.getSelectionModel().getSelectedItem().substring(0,1)+"', tiene_privilegios="+privilegiosEmpleado.isSelected()+" WHERE DNI = '"+current+"'");
-
+            String[] newdatos = {DNIempleado.getText(), nombreEmpleado.getText(), apellidosEmpleado.getText(), numtelef.getText(), fechaNac.getValue().toString(), direccionEmpleado.getText(), emailEmpleado.getText(), "******", dpto.getSelectionModel().getSelectedItem().substring(0,1), Boolean.toString(privilegiosEmpleado.isSelected()), "true"};
+            String [] olddatos1 = new String[olddatos.size()];
+            for (int i = 0; i<olddatos1.length; i++){
+                olddatos1[i] = olddatos.get(i);
+            }
+            Logs.createAdminLog('m', 'e', Logs.userToLogs(olddatos1), Logs.userToLogs(newdatos));
             Alertas.editarEmpleado();
             connection.close();
         } catch (SQLException e) {

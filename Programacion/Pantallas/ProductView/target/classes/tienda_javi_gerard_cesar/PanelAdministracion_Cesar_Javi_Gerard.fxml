@@ -14,60 +14,60 @@
          <children>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0">
                <children>
-                  <VBox layoutX="518.0" layoutY="403.0" prefHeight="205.0" prefWidth="202.0">
+                  <VBox layoutX="518.0" layoutY="403.0" prefHeight="340.0" prefWidth="202.0" spacing="20.0">
                      <children>
-                        <Pane prefHeight="90.0" prefWidth="251.0">
-                           <children>
-                              <Button fx:id="Alta_productos" layoutX="2.0" layoutY="4.0" mnemonicParsing="false" onAction="#cargarVentana_AltaProductos" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Dar de alta &#10;producto" textFill="WHITE">
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="23" wrappingWidth="43.95240116119385" />
-                                 </graphic>
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="105.0" prefWidth="334.0">
-                           <children>
-                              <Button fx:id="Administrar_empleados" layoutX="2.0" layoutY="14.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarEmpleados" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;empleados " textFill="WHITE">
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="ADDRESS_BOOK" size="23" wrappingWidth="43.666656494140625" />
-                                 </graphic>
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </Pane>
+                        <Button fx:id="Administrar_empleados" mnemonicParsing="false" onAction="#cargarVentana_AdministrarEmpleados" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;empleados " textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="ADDRESS_BOOK" size="23" wrappingWidth="43.666656494140625" />
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="Alta_productos" mnemonicParsing="false" onAction="#cargarVentana_AltaProductos" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Dar de alta &#10;producto" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="23" wrappingWidth="43.95240116119385" />
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#cargarVentana_Logs" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Logs&#10;" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="COGS" size="23" wrappingWidth="43.666656494140625" />
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
                      </children>
                   </VBox>
-                  <VBox layoutX="742.0" layoutY="403.0" prefHeight="205.0" prefWidth="201.0">
+                  <VBox layoutX="742.0" layoutY="403.0" prefHeight="340.0" prefWidth="201.0" spacing="20.0">
                      <children>
-                        <Pane prefHeight="90.0" prefWidth="354.0">
-                           <children>
-                              <Button fx:id="Administrar_productos" layoutY="4.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarProductos" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;productos" textFill="WHITE">
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="TAGS" size="23" wrappingWidth="43.66668701171875" />
-                                 </graphic>
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="105.0" prefWidth="354.0">
-                           <children>
-                              <Button fx:id="Administrar_usuarios" layoutY="14.0" mnemonicParsing="false" onAction="#cargarVentana_AdministrarClientes" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;usuarios" textFill="WHITE">
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="23" wrappingWidth="43.6666259765625" />
-                                 </graphic>
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </Pane>
+                        <Button fx:id="Administrar_usuarios" mnemonicParsing="false" onAction="#cargarVentana_AdministrarClientes" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;usuarios" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="23" wrappingWidth="43.6666259765625" />
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="Administrar_productos" mnemonicParsing="false" onAction="#cargarVentana_AdministrarProductos" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Administrar &#10;productos" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="TAGS" size="23" wrappingWidth="43.66668701171875" />
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Dar de alta&#10;empleado" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="ID_BADGE" size="23" wrappingWidth="43.66668701171875" />
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
                      </children>
                   </VBox>
                   <Pane layoutX="56.0" layoutY="139.0" prefHeight="38.0" prefWidth="362.0">
@@ -91,7 +91,7 @@
                   <Button layoutX="822.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: inivisible;" />
                   <Button layoutX="840.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: invisible;" />
                   <Pane layoutX="186.0" layoutY="117.0" prefHeight="38.0" prefWidth="206.0" />
-                  <Label layoutX="547.0" layoutY="282.0" text="¡bienvenidx, User!">
+                  <Label layoutX="547.0" layoutY="249.0" text="¡bienvenidx, User!">
                      <font>
                         <Font size="47.0" />
                      </font>

@@ -67,6 +67,7 @@ public class EditarClienteController {
     }
 
     private static String current = "";
+    private ArrayList<String> olddatos = new ArrayList<>();
 
     @FXML
     public void retroceder_ListaClientes(ActionEvent actionEvent){
@@ -100,11 +101,16 @@ public class EditarClienteController {
 
             st.executeUpdate("UPDATE cliente set DNI='"+textDNI.getText()+"', nombre='"+textNombre.getText()+"', apellidos='"+textApellido.getText()+"', telefono='"+textTelefono.getText()+"', f_nacimiento='"+textFechaNacim.getText()
             +"', direccion='"+textDireccion.getText()+"', email='"+textEmail.getText()+"', dir_envio='" +textDireccionEnvio.getText()+ "', tarjeta_fidelizacion=" +textTarjetaFide.isSelected()+ ", num_pedidos = "+textNumPedidos.getText()+" where DNI = '"+current+"'");
-
+            String[] newdatos = {textDNI.getText(), textNombre.getText(), textApellido.getText(), textTelefono.getText(), textFechaNacim.getText(), textDireccion.getText(), textEmail.getText(), "******", olddatos.get(8), textNumPedidos.getText(), textDireccionEnvio.getText(),Boolean.toString(textTarjetaFide.isSelected()), "true"};
+            String [] olddatos1 = new String[olddatos.size()];
+            for (int i = 0; i<olddatos1.length; i++){
+                olddatos1[i] = olddatos.get(i);
+            }
+            Logs.createAdminLog('m', 'c', Logs.userToLogs(olddatos1), Logs.userToLogs(newdatos));
             Alertas.editarCliente();
             connection.close();
         } catch (SQLException e) {
-            
+            e.printStackTrace();
             Logs.createSQLLog(e);
             Alertas.errorRegistrar();
         }
@@ -132,6 +138,20 @@ public class EditarClienteController {
                 textDireccion.setText(rs.getString("direccion"));
                 textTarjetaFide.selectedProperty().set(rs.getBoolean("tarjeta_fidelizacion"));
                 textDireccionEnvio.setText(rs.getString("dir_envio"));
+
+                olddatos.add(rs.getString("dni"));
+                olddatos.add(rs.getString("nombre"));
+                olddatos.add(rs.getString("apellidos"));
+                olddatos.add(rs.getString("telefono"));
+                olddatos.add(rs.getString("f_nacimiento"));
+                olddatos.add(rs.getString("direccion"));
+                olddatos.add(rs.getString("email"));
+                olddatos.add("******");
+                olddatos.add(rs.getString("saldo_cuenta"));
+                olddatos.add(rs.getString("num_pedidos"));
+                olddatos.add(rs.getString("dir_envio"));
+                olddatos.add(Boolean.toString(rs.getBoolean("tarjeta_fidelizacion")));
+                olddatos.add(Boolean.toString(rs.getBoolean("activo")));
 
             }
 

@@ -228,8 +228,8 @@ public class Cart {
             try {
                 ProductView.setCurrentProduct(cod);
                 App.setRoot("productview");
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
         a.getChildren().add(imgg);

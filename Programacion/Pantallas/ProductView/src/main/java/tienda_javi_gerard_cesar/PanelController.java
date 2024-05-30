@@ -109,10 +109,7 @@ public class PanelController {
         }
     }
 
-    static Alert alerta = new Alert(Alert.AlertType.NONE);
-
     public void privilegiosAdmin(int dpto) {
-
         if (dpto == 1) {
             Alta_productos.setVisible(true);
             Administrar_productos.setVisible(true);
@@ -132,10 +129,7 @@ public class PanelController {
         } else {
             cont.setVisible(false);
             ;
-            alerta.setAlertType(Alert.AlertType.ERROR);
-            alerta.setHeaderText(null);
-            alerta.setContentText("No tienes permisos.");
-            alerta.show();
+            Alertas.error("No tienes permisos.");
         }
     }
 
@@ -158,8 +152,7 @@ public class PanelController {
             Connection connection1 = connect();
             Statement st = connection1.createStatement();
 
-            ResultSet r = st.executeQuery(
-                    "select E.dpto from empleado E inner join departamento D ON D.codigo = E.dpto where E.dni='"+App.getUser()+"'");
+            ResultSet r = st.executeQuery("select E.dpto from empleado E inner join departamento D ON D.codigo = E.dpto where E.dni='"+App.getUser()+"'");
 
             int dpto = 0;
             if (r.next()) {
@@ -167,6 +160,7 @@ public class PanelController {
             }
 
             privilegiosAdmin(dpto);
+            
         } catch (SQLException e) {
            Logs.createSQLLog(e);
 

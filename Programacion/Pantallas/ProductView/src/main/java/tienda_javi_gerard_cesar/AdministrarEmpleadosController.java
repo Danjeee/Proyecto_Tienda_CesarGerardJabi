@@ -42,9 +42,9 @@ public class AdministrarEmpleadosController {
     @FXML
     private VBox all;
 
-    static Alert alerta = new Alert(Alert.AlertType.NONE);
 
     private Connection conectar() {
+
         Connection con = null;
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
@@ -150,7 +150,7 @@ public class AdministrarEmpleadosController {
     }
 
 
-    public Departamento obtenerDepartamentoPorCodigo(int codigoDepartamento){
+    private Departamento obtenerDepartamentoPorCodigo(int codigoDepartamento){
     Departamento departamento = null;
 
     Connection con = conectar();
@@ -181,17 +181,16 @@ public class AdministrarEmpleadosController {
             disableduser.add(empleado.getDni());
             disableduser.add(empleado.getNombre()+" "+empleado.getApellidos());
             Logs.createAdminLog('d', 'e', null, disableduser);
-            Alertas.empleadoDesactivadoCorrectamente();
+
+            Alertas.informacion("El empleado se ha desactivado correctamente.");
 
         } catch (SQLException sql) {
             Logs.createSQLLog(sql);
-
-            Alertas.errorDesactivarEmpleado();
+            Alertas.error("Error al desactivar el empleado");
         }
         fpane.getChildren().clear();
         all.getChildren().remove(0);
         initialize();
-
     }
 
 

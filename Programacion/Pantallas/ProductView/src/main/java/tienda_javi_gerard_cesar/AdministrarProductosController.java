@@ -59,6 +59,7 @@ public class AdministrarProductosController {
     }
 
     private HBox crearProducto(String nombre, String marca, Producto Producto) {
+
         HBox hb = new HBox();
         hb.setPrefHeight(75);
         hb.setPrefWidth(1273);
@@ -106,6 +107,7 @@ public class AdministrarProductosController {
         borrarProducto.setGraphic(papelera);
         borrarProducto.setOnAction(i -> desactivarCliente(Producto));
         hb.getChildren().add(borrarProducto);
+        
         return hb;
 
     }
@@ -141,7 +143,7 @@ public class AdministrarProductosController {
         return arrayList_Producto;
     }
 
-    public Material obtenerMaterialPorCodigo(int codigoMaterial){
+    private Material obtenerMaterialPorCodigo(int codigoMaterial){
     Material mat = null;
 
     Connection con = conectar();
@@ -171,10 +173,8 @@ public class AdministrarProductosController {
     
             Alertas.informacion("El articulo se ha desactivado correctamente.");
             
-
         } catch (SQLException sql) {
             sql.printStackTrace();
-            
             Alertas.error("Error al desactivar el articulo");
         }
         fpane.getChildren().clear();

@@ -152,8 +152,6 @@ public class AltaProductosController {
         }
     }
 
-    static Alert alerta = new Alert(Alert.AlertType.NONE);
-
     @FXML
     private void guardarCambios() {
 
@@ -196,13 +194,13 @@ public class AltaProductosController {
 
             try {
                 Connection connection1 = con.conecta();
-                Statement st = connection1.createStatement();
+                Statement statement = connection1.createStatement();
 
-                st.executeUpdate("INSERT INTO articulo(nombre, precio, marca, descripcion, activo, imagen, material) VALUES "
-                + "('" + nombre.getText() + "'," + precio.getText() + ",'" + marca.getText() + "','" + descripcion.getText() + "'," + activo.isSelected() + ",'" + nombre_imagen.getText() + "'," + material_num + ")");
+                statement.executeUpdate("INSERT INTO articulo(nombre, precio, marca, descripcion, activo, imagen, material) VALUES "
+                + "('" + nombre.getText() + "'," + precio.getText() + ",'" + marca.getText() + "','" + descripcion.getText() 
+                + "'," + activo.isSelected() + ",'" + nombre_imagen.getText() + "'," + material_num + ")");
                 
-                ResultSet rs = st.executeQuery("SELECT cod_art FROM articulo WHERE nombre = '" + nombre.getText() + "'");
-                
+                ResultSet rs = statement.executeQuery("SELECT cod_art FROM articulo WHERE nombre = '" + nombre.getText() + "'");
                 int cod_art_nuevo = 0;
                 if (rs.next()) {
                     cod_art_nuevo = rs.getInt("cod_art");
@@ -210,28 +208,33 @@ public class AltaProductosController {
 
                 switch (tipoArticulo.getValue()) {
                     case "Camisa":
-                        st.executeUpdate("INSERT INTO ropa(cod_art, talla, color, tipo_cierre, tipo_manga, estampada, tipo_ropa) VALUES "
-                        + "(" +cod_art_nuevo+ ",'" + talla.getText() + "','" + color.getText() + "','" + tipo_cierre.getText() + "','" + tipo_manga.getText() + "'," + estampada.isSelected() + ",'" + tipoArticulo.getValue() + "')");
+                    statement.executeUpdate("INSERT INTO ropa(cod_art, talla, color, tipo_cierre, tipo_manga, estampada, tipo_ropa) VALUES "
+                        + "(" +cod_art_nuevo+ ",'" + talla.getText() + "','" + color.getText() + "','" + tipo_cierre.getText() + "','" 
+                        + tipo_manga.getText() + "'," + estampada.isSelected() + ",'" + tipoArticulo.getValue() + "')");
                         break;
         
                     case "Chaqueta":
-                        st.executeUpdate("INSERT INTO ropa(cod_art, talla, color, tipo_cierre, impermeable, tipo_ropa) VALUES "
-                        + "(" +cod_art_nuevo+ ",'" + talla.getText() + "','" + color.getText() + "','" + tipo_cierre.getText() + "'," + impermeable.isSelected() + ",'" + tipoArticulo.getValue() + "')");
+                    statement.executeUpdate("INSERT INTO ropa(cod_art, talla, color, tipo_cierre, impermeable, tipo_ropa) VALUES "
+                        + "(" +cod_art_nuevo+ ",'" + talla.getText() + "','" + color.getText() + "','" + tipo_cierre.getText() 
+                        + "'," + impermeable.isSelected() + ",'" + tipoArticulo.getValue() + "')");
                         break;
         
                     case "Pantalón":
-                        st.executeUpdate("INSERT INTO ropa(cod_art, talla, color, tipo_cierre, tipo_pantalon, tien_bolsillos, tipo_ropa) VALUES "
-                        + "(" +cod_art_nuevo+ ",'" + talla.getText() + "','" + color.getText() + "','" + tipo_cierre.getText() + "','" + tipo_pantalon.getText() + "'," + tien_bolsillos.isSelected() + ",'" + tipoArticulo.getValue() + "')");
+                    statement.executeUpdate("INSERT INTO ropa(cod_art, talla, color, tipo_cierre, tipo_pantalon, tien_bolsillos, tipo_ropa) VALUES "
+                        + "(" +cod_art_nuevo+ ",'" + talla.getText() + "','" + color.getText() + "','" + tipo_cierre.getText() + "','" 
+                        + tipo_pantalon.getText() + "'," + tien_bolsillos.isSelected() + ",'" + tipoArticulo.getValue() + "')");
                         break;
         
                     case "Bolso":
-                        st.executeUpdate("INSERT INTO accesorio(cod_art, estilo, personalizado, tipo_cierre, capacidad, tipo_accesorio) VALUES "
-                        + "(" +cod_art_nuevo+ ",'" + estilo.getText() + "'," + personalizado.isSelected()  + ",'" + tipo_cierre.getText() + "'," + capacidad.getText() + ",'" + tipoArticulo.getValue() + "')");
+                    statement.executeUpdate("INSERT INTO accesorio(cod_art, estilo, personalizado, tipo_cierre, capacidad, tipo_accesorio) VALUES "
+                        + "(" +cod_art_nuevo+ ",'" + estilo.getText() + "'," + personalizado.isSelected()  + ",'" + tipo_cierre.getText() 
+                        + "'," + capacidad.getText() + ",'" + tipoArticulo.getValue() + "')");
                         break;
         
                     case "Zapatos":
-                        st.executeUpdate("INSERT INTO accesorio(cod_art, estilo, personalizado, tipo_suela, talla, tipo_accesorio) VALUES "
-                        + "(" +cod_art_nuevo+ ",'" + estilo.getText() + "'," + personalizado.isSelected()  + ",'" + tipo_suela.getText() + "'," + talla_zapatos.getText() + ",'" + tipoArticulo.getValue() + "')");
+                    statement.executeUpdate("INSERT INTO accesorio(cod_art, estilo, personalizado, tipo_suela, talla, tipo_accesorio) VALUES "
+                        + "(" +cod_art_nuevo+ ",'" + estilo.getText() + "'," + personalizado.isSelected()  + ",'" + tipo_suela.getText() 
+                        + "'," + talla_zapatos.getText() + ",'" + tipoArticulo.getValue() + "')");
                         break;
                 }
 
@@ -245,7 +248,6 @@ public class AltaProductosController {
     }
 
     public void abrirImagen(ActionEvent e){
-        
         Stage stage = (Stage) imagen.getScene().getWindow();
 
         FileChooser fileChooser = new FileChooser();
@@ -264,13 +266,11 @@ public class AltaProductosController {
         imageView.setFitHeight(200);
 
         imagen.setGraphic(imageView);
-
     }
 
     @FXML
     private void opcionesArticulo() {
-        
-        /*Ropa*/
+        /*Opciones de Ropa*/
         vbox_talla.setVisible(false);
         vbox_color.setVisible(false);
         vbox_tipoCierre.setVisible(false);
@@ -280,7 +280,7 @@ public class AltaProductosController {
         vbox_tipoPantalon.setVisible(false);
         vbox_tieneBolsillo.setVisible(false);
 
-        /*Accesorios*/
+        /*Opciones de Accesorios*/
         vbox_estilo.setVisible(false);
         vbox_personalizado.setVisible(false);
         vbox_tipoCierre.setVisible(false);

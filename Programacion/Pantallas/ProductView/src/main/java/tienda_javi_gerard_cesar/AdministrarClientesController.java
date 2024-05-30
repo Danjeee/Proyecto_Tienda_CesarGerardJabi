@@ -39,8 +39,6 @@ public class AdministrarClientesController {
     public Clientes clientes;
     public ArrayList<Clientes> lista_clientes;
 
-    static Alert alerta = new Alert(Alert.AlertType.NONE);
-
     private Connection conectar() {
         Connection con = null;
         try {
@@ -61,7 +59,7 @@ public class AdministrarClientesController {
     }
 
     private HBox crearCliente(String nombre, String apellidos, Clientes clientes) {
-        
+
         HBox hb = new HBox();
         hb.setPrefHeight(75);
         hb.setPrefWidth(1273);
@@ -110,7 +108,6 @@ public class AdministrarClientesController {
         hb.getChildren().add(borrarCliente);
 
         return hb;
-
     }
 
     private ArrayList<Clientes> cargarClientes() {
@@ -150,7 +147,7 @@ public class AdministrarClientesController {
         return arrayList_Clientes;
     }
 
-    public MetodoPago obtenerMetodoPagoPorCodigo(int codigoMetodoPago){
+    private MetodoPago obtenerMetodoPagoPorCodigo(int codigoMetodoPago){
     MetodoPago m_pago = null;
 
     Connection con = conectar();
@@ -182,13 +179,11 @@ public class AdministrarClientesController {
             disableduser.add(clientes.getNombre() + " " +clientes.getApellidos());
             Logs.createAdminLog('d', 'c', null, disableduser);
     
-            Alertas.clienteDesactivadoCorrectamente();
+            Alertas.informacion("El cliente se ha desactivado correctamente.");
             
-
         } catch (SQLException sql) {
             Logs.createSQLLog(sql);
-            
-            Alertas.errorDesactivarCliente();
+            Alertas.error("Error al desactivar el cliente");
         }
         fpane.getChildren().clear();
         all.getChildren().remove(0);

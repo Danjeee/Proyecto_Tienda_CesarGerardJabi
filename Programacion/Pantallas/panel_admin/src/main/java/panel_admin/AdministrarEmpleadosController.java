@@ -177,12 +177,12 @@ public class AdministrarEmpleadosController {
             Statement st = con.createStatement();
             st.executeUpdate("UPDATE empleado set activo='0' where dni='" +empleado.getDni()+ "'");
 
-            Alertas.empleadoDesactivadoCorrectamente();
+            Alertas.informacion("El empleado se ha desactivado correctamente.");
 
         } catch (SQLException sql) {
             sql.printStackTrace();
 
-            Alertas.errorDesactivarEmpleado();
+            Alertas.error("Error al desactivar el empleado");
         }
         fpane.getChildren().clear();
         all.getChildren().remove(0);

@@ -15,12 +15,35 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="cont" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="panel_admin.AltaEmpleadoController">
+<AnchorPane fx:id="cont" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="panel_admin.AltaEmpleadosController">
    <children>
       <Pane fx:id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../cssprueba/BOTON.css">
          <children>
-            <VBox fx:id="all" layoutX="101.0" layoutY="198.0">
+            <VBox fx:id="all" layoutX="-5.0" layoutY="-4.0" prefHeight="1024.0" prefWidth="1440.0">
                <children>
+                  <Pane prefHeight="38.0" prefWidth="362.0">
+                     <children>
+                        <Label layoutX="45.0" layoutY="-2.0" text="Lista de empleados">
+                           <font>
+                              <Font name="System Bold" size="27.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="-6.0" mnemonicParsing="false" onAction="#retroceder_PanelAdmin" style="-fx-background-color: transparent;">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="ARROW_LEFT" size="25" />
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="80.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="40.0" top="70.0" />
+                     </VBox.margin>
+                  </Pane>
                   <HBox prefHeight="712.0" prefWidth="1261.0">
                      <children>
                         <VBox prefHeight="712.0" prefWidth="483.0" spacing="85.0">
@@ -62,7 +85,7 @@
                                     <Insets bottom="-75.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="email" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su EMIAL aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;">
+                              <TextField fx:id="email" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su EMAIL aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -137,7 +160,7 @@
                                     <Insets bottom="-75.0" />
                                  </VBox.margin>
                               </Label>
-                              <PasswordField fx:id="contraseña" prefHeight="41.0" prefWidth="239.0" promptText="Introduce su contraseñá aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px;">
+                              <PasswordField fx:id="contraseña" prefHeight="41.0" prefWidth="239.0" promptText="Introduce su contraseña aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px;">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -181,7 +204,7 @@
                                     <Insets />
                                  </VBox.margin>
                               </ChoiceBox>
-                              <Button mnemonicParsing="false" onAction="#registrar" prefHeight="82.0" prefWidth="315.0" style="-fx-background-color: black; -fx-background-radius: 0;" text="Registrar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#botonRegistrar" prefHeight="82.0" prefWidth="315.0" style="-fx-background-color: black; -fx-background-radius: 0;" text="Registrar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -195,26 +218,12 @@
                            </padding>
                         </VBox>
                      </children>
+                     <VBox.margin>
+                        <Insets left="100.0" right="100.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>
-            <Pane layoutX="64.0" layoutY="95.0" prefHeight="38.0" prefWidth="362.0">
-               <children>
-                  <Label layoutX="45.0" layoutY="-2.0" text="Lista de empleados">
-                     <font>
-                        <Font name="System Bold" size="27.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="-6.0" mnemonicParsing="false" onAction="#retroceder_PanelAdmin" style="-fx-background-color: transparent;">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <graphic>
-                        <FontAwesomeIconView glyphName="ARROW_LEFT" size="25" />
-                     </graphic>
-                  </Button>
-               </children>
-            </Pane>
          </children>
       </Pane>
    </children>

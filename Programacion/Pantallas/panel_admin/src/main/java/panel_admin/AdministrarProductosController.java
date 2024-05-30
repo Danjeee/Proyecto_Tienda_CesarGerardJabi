@@ -174,13 +174,13 @@ public class AdministrarProductosController {
             Statement st = con.createStatement();
             st.executeUpdate("UPDATE articulo set activo='0' where cod_art='" +articulo.getCod_art()+ "'");
     
-            Alertas.clienteDesactivadoCorrectamente();
+            Alertas.informacion("El articulo se ha desactivado correctamente.");
             
 
         } catch (SQLException sql) {
             sql.printStackTrace();
             
-            Alertas.errorDesactivarCliente();
+            Alertas.error("Error al desactivar el articulo");
         }
         fpane.getChildren().clear();
         all.getChildren().remove(0);

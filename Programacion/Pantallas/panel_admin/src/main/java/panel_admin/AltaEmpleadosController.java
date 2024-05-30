@@ -19,7 +19,7 @@ import panel_admin.Clases.Alertas;
 import panel_admin.Clases.ImportantGUI;
 import panel_admin.MenuHamburguesa.MenuHamb;
 
-public class AltaEmpleadoController {
+public class AltaEmpleadosController {
 
     @FXML
     private App PantallaPrincipal = new App();
@@ -65,6 +65,11 @@ public class AltaEmpleadoController {
     private String[] opciones_departamento = {"Administración", "Ventas", "Almacén"};
 
 
+    @FXML
+    public void retroceder_PanelAdmin(ActionEvent actionEvent) throws IOException {
+        App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
+    }
+
     private Connection conectar() {
         Connection con = null;
         try {
@@ -79,7 +84,6 @@ public class AltaEmpleadoController {
     private void botonRegistrar(){
 
         int dpto_num = 0;
-
             switch (departamento.getValue()) {
                 case "Administración":
                     dpto_num = 1;
@@ -98,7 +102,7 @@ public class AltaEmpleadoController {
             st.executeUpdate("INSERT INTO empleado VALUES('"+dni.getText()+"','"+nombre.getText()+"','"+apellidos.getText()+"','"+telefono.getText()+"','"+fecha_nacimiento.getValue()
             +"','"+direccion.getText()+"','"+email.getText()+"'," +activo.isSelected()+ "," +privilegios.isSelected()+ ",'" +contraseña.getText()+ "'," +dpto_num+ ")");
             
-            Alertas.confirmacion("El empleado se ha creado correctamente.");
+            Alertas.informacion("El empleado se ha creado correctamente.");
             connection.close();
 
         } catch (SQLException e) {

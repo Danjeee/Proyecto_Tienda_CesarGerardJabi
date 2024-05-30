@@ -181,13 +181,13 @@ public class AdministrarClientesController {
             Statement st = con.createStatement();
             st.executeUpdate("UPDATE cliente set activo='0' where dni='" +clientes.getDni()+ "'");
     
-            Alertas.clienteDesactivadoCorrectamente();
+            Alertas.informacion("El cliente se ha desactivado correctamente.");
             
 
         } catch (SQLException sql) {
             sql.printStackTrace();
             
-            Alertas.errorDesactivarCliente();
+            Alertas.informacion("Error al desactivar el cliente");
         }
         fpane.getChildren().clear();
         all.getChildren().remove(0);

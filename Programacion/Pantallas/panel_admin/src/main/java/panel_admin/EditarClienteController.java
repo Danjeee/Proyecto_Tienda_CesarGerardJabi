@@ -13,8 +13,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import panel_admin.Clases.Alertas;
 import panel_admin.Clases.Clientes;
+import panel_admin.Clases.ImportantGUI;
 import panel_admin.Clases.MetodoPago;
 import panel_admin.MenuHamburguesa.MenuHamb;
 
@@ -25,6 +27,9 @@ public class EditarClienteController {
 
     @FXML
     private AnchorPane cont;
+
+    @FXML
+    private VBox all;
 
     @FXML
     private TextField textNombre;
@@ -98,17 +103,24 @@ public class EditarClienteController {
             +"', direccion='"+textDireccion.getText()+"', email='"+textEmail.getText()+"', num_pedidos='" +textNumPedidos.getText()+ "', dir_envio='" +textDireccionEnvio.getText()+ "', tarjeta_fidelizacion=" +textTarjetaFide.isSelected()
             + " where DNI = '"+current+"'");
 
-            Alertas.editarCliente();
+            Alertas.informacion("Se han guardado los cambios correctamente.");
             connection.close();
         } catch (SQLException e) {
             
             e.printStackTrace();
-            Alertas.errorRegistrar();
+            Alertas.error("Error al guardar los cambios.");
         }
  
     }
 
     public void initialize() {
+        MenuHamb.popupHambMake();
+        cont.getChildren().add(MenuHamb.menuShadow);
+        cont.getChildren().add(MenuHamb.popupHamb);
+        cont.getChildren().add(MenuHamb.menuHamb());
+        all.getChildren().add(0,ImportantGUI.generateHeader());
+        all.getChildren().add(ImportantGUI.generateFooter());
+
         textDNI.setEditable(false);
         Connection con = conectar();
         try {

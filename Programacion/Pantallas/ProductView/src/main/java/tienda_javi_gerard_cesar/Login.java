@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import tienda_javi_gerard_cesar.Clases.Cifrado;
 import tienda_javi_gerard_cesar.Clases.ImportantGUI;
 import tienda_javi_gerard_cesar.Clases.Logs;
 import tienda_javi_gerard_cesar.Clases.Mail;
@@ -108,15 +109,16 @@ public class Login {
         try {
 
             Statement pst = connection.createStatement();
-            ResultSet rs = pst.executeQuery("Select email, pass, DNI from cliente");
+            ResultSet rs = pst.executeQuery("Select email, pass, DNI, activo from cliente");
             Statement st2 = connection.createStatement();
-            ResultSet rs2 = st2.executeQuery("Select email, pass, DNI from empleado");
+            ResultSet rs2 = st2.executeQuery("Select email, pass, DNI, activo from empleado");
             ArrayList<User> usuarios = new ArrayList<>();
             while (rs.next()) {
                 String mail = rs.getString("email");
                 String pass = rs.getString("pass");
                 String DNI = rs.getString("DNI");
-                usuarios.add(new User(mail, pass, DNI));
+                boolean act = rs.getBoolean("activo");
+                usuarios.add(new User(mail, pass, DNI, act));
             }
             ;
 
@@ -124,13 +126,16 @@ public class Login {
                 String mail = rs2.getString("email");
                 String pass = rs2.getString("pass");
                 String DNI = rs2.getString("DNI");
-                usuarios.add(new User(mail, pass, DNI));
+                boolean act = rs2.getBoolean("activo");
+                usuarios.add(new User(mail, pass, DNI, act));
             }
-            ;
 
             for (User i : usuarios) {
+               
                 if (i.getMail().equals(usuario.getText())) {
-                    if (i.getPasw().equals(contra.getText())) {
+                    System.out.println(i.getPasw());
+                    System.out.println(Cifrado.shiftCifrado(contra.getText()));
+                    if (i.getPasw().equals(Cifrado.shiftCifrado(contra.getText())) && i.isAct()) {
                         App.setUser(i.getDNI());
                         try {
                             App.setRoot("seleccion");
@@ -142,7 +147,12 @@ public class Login {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText("INICIO DE SESIÓN INCORRECTO.");
                         alert.setTitle("ERROR");
-                        alert.setContentText("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
+                        if (i.isAct()) {
+                            alert.setContentText("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
+                        } else {
+                            alert.setContentText("Usuario inactivo");
+                        }
+                        
                         alert.showAndWait();
                         break;
                     }

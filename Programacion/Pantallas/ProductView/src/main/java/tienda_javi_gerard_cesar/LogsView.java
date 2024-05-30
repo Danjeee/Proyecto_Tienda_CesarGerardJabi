@@ -6,9 +6,17 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import tienda_javi_gerard_cesar.Clases.*;
 
 public class LogsView {
+    @FXML
+    private AnchorPane cont;
+    @FXML
+    private VBox all;
+
     @FXML
     private void checkSQLLog() {
         File file = new File("Programacion\\Pantallas\\ProductView\\src\\main\\logs\\SQLLogs.txt");
@@ -86,5 +94,14 @@ public class LogsView {
         Alert a = Alertas.alerta("INFORMATION", null, "Completado",
                 "Se han limpiado los logs de ficheros");
         a.showAndWait();
+    }
+    @FXML
+    public void initialize(){
+        MenuHamb.init(cont);
+        all.getChildren().add(0, ImportantGUI.generateHeader());
+        Button back = ImportantGUI.defaultBack();
+        back.setLayoutX(200);
+        back.setLayoutY(300);
+        cont.getChildren().add(back);
     }
 }

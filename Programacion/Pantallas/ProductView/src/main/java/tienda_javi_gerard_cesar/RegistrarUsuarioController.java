@@ -16,6 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import tienda_javi_gerard_cesar.Clases.Alertas;
+import tienda_javi_gerard_cesar.Clases.Cifrado;
 import tienda_javi_gerard_cesar.Clases.Logs;
 
 public class RegistrarUsuarioController {
@@ -82,7 +83,7 @@ public class RegistrarUsuarioController {
             Statement st = connection.createStatement();
             st.executeUpdate("INSERT INTO CLIENTE VALUES('" + DNI.getText() + "','" + nombre.getText() + "','"
                     + apellidos.getText() + "','" + telefono.getText() + "','" + fechanac.getValue()
-                    + "','" + direccion.getText() + "','" + email.getText() + "','" + contraseña.getText()
+                    + "','" + direccion.getText() + "','" + email.getText() + "','" + Cifrado.shiftCifrado(contraseña.getText())
                     + "','0',' 0','" + direccion.getText() + "'," + tarjetaFide.isSelected() + "," + activo.isSelected()
                     + ",1)");
             alerta.setAlertType(AlertType.INFORMATION);
@@ -101,6 +102,7 @@ public class RegistrarUsuarioController {
             connection.close();
         } catch (SQLException e) {
 
+            e.printStackTrace();
             Logs.createSQLLog(e);
             Alertas.errorRegistrar();
         }

@@ -177,7 +177,10 @@ public class AdministrarEmpleadosController {
         try {
             Statement st = con.createStatement();
             st.executeUpdate("UPDATE empleado set activo='0' where dni='" +empleado.getDni()+ "'");
-
+            ArrayList<String> disableduser= new ArrayList<>();
+            disableduser.add(empleado.getDni());
+            disableduser.add(empleado.getNombre()+" "+empleado.getApellidos());
+            Logs.createAdminLog('d', 'e', null, disableduser);
             Alertas.empleadoDesactivadoCorrectamente();
 
         } catch (SQLException sql) {
@@ -186,6 +189,7 @@ public class AdministrarEmpleadosController {
             Alertas.errorDesactivarEmpleado();
         }
         fpane.getChildren().clear();
+        all.getChildren().remove(0);
         initialize();
 
     }

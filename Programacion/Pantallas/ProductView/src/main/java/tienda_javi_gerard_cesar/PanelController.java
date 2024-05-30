@@ -38,6 +38,12 @@ public class PanelController {
     private VBox all;
 
     @FXML
+    private Button AltaEmpleadoButton;
+
+    @FXML
+    private Button LogsButton;
+
+    @FXML
     private App PantallaPrincipal = new App();
 
     @FXML
@@ -81,6 +87,7 @@ public class PanelController {
         try {
             App.setRoot("logsView");
         } catch (Exception e) {
+            e.printStackTrace();
             Logs.createIOLog(e);
         }
     }
@@ -89,6 +96,14 @@ public class PanelController {
     public void cargarVentana_AdministrarClientes(ActionEvent actionEvent) {
         try {
             App.setRoot("AdministrarClientes_Cesar_Javi_Gerard");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
+    }
+    @FXML
+    public void cargarVentana_AltaEmpleados(ActionEvent actionEvent) {
+        try {
+            App.setRoot("AltaEmpleados_Cesar_Javi_Gerard");
         } catch (Exception e) {
             Logs.createIOLog(e);
         }
@@ -103,12 +118,16 @@ public class PanelController {
             Administrar_productos.setVisible(true);
             Administrar_empleados.setVisible(true);
             Administrar_usuarios.setVisible(true);
+            LogsButton.setVisible(true);
+            AltaEmpleadoButton.setVisible(true);
 
         } else if (dpto == 2) {
             Alta_productos.setVisible(true);
             Administrar_productos.setVisible(true);
             Administrar_empleados.setVisible(false);
             Administrar_usuarios.setVisible(false);
+            LogsButton.setVisible(false);
+            AltaEmpleadoButton.setVisible(false);
 
         } else {
             cont.setVisible(false);
@@ -140,7 +159,7 @@ public class PanelController {
             Statement st = connection1.createStatement();
 
             ResultSet r = st.executeQuery(
-                    "select E.dpto from empleado E inner join departamento D ON D.codigo = E.dpto where E.nombre='Ana'");
+                    "select E.dpto from empleado E inner join departamento D ON D.codigo = E.dpto where E.dni='"+App.getUser()+"'");
 
             int dpto = 0;
             if (r.next()) {

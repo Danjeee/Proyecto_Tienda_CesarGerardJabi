@@ -23,7 +23,7 @@
                <children>
                   <VBox prefHeight="1024.0" prefWidth="480.0" spacing="20.0">
                      <children>
-                        <Label text="Editar Producto">
+                        <Label text="Alta de productos">
                            <font>
                               <Font name="System Bold" size="27.0" />
                            </font>

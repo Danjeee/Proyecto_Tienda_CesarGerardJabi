@@ -67,13 +67,13 @@ public class RegistrarUsuarioController {
             Statement st = connection.createStatement();
             st.executeUpdate("INSERT INTO CLIENTE VALUES('"+DNI.getText()+"','"+nombre.getText()+"','"+apellidos.getText()+"','"+telefono.getText()+"','"+fechanac.getValue()
             +"','"+direccion.getText()+"','"+email.getText()+"','"+contraseña.getText()+"','0',' 0', 'Direccion',"+tarjetaFide.isSelected()+","+activo.isSelected()+",1)");
-            Alertas.registroCorrecto();
+            Alertas.informacion("EL USUARIO SE HA REGISTRADO CORRECTAMENTE");
 
             connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            Alertas.errorRegistrar();
+            Alertas.error("ERROR AL REGISTRAR EL USUARIO");
         }
     }
 

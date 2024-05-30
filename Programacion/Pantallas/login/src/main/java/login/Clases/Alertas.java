@@ -1,6 +1,7 @@
 package login.Clases;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class Alertas {
 
@@ -9,6 +10,33 @@ public class Alertas {
         alerta.setAlertType(Alert.AlertType.ERROR);
         alerta.setHeaderText(null);
         alerta.setContentText(tipoError);
+        alerta.show();
+        return alerta;
+    }
+
+    public static Alert informacion(String tipoInformacion) {
+        Alert alerta = new Alert(Alert.AlertType.NONE);
+        alerta.setAlertType(Alert.AlertType.INFORMATION);
+        alerta.setHeaderText(null);
+        alerta.setContentText(tipoInformacion);
+        alerta.show();
+        return alerta;
+    }
+
+    public static Alert confirmacion(String tipoConfirmacion) {
+        Alert alerta = new Alert(Alert.AlertType.NONE);
+        alerta.setAlertType(Alert.AlertType.CONFIRMATION);
+        alerta.setHeaderText(null);
+        alerta.setContentText(tipoConfirmacion);
+        alerta.show();
+        return alerta;
+    }
+
+    public static Alert warning(String tipoWarning) {
+        Alert alerta = new Alert(Alert.AlertType.NONE);
+        alerta.setAlertType(Alert.AlertType.WARNING);
+        alerta.setHeaderText(null);
+        alerta.setContentText(tipoWarning);
         alerta.show();
         return alerta;
     }

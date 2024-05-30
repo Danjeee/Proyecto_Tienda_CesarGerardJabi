@@ -183,6 +183,8 @@ public class AdministrarProductosController {
             Alertas.errorDesactivarCliente();
         }
         fpane.getChildren().clear();
+        all.getChildren().remove(0);
+        all.getChildren().remove(1);
         initialize();
     }
 

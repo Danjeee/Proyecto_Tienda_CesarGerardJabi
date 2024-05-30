@@ -3,6 +3,7 @@ package panel_admin;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -150,6 +151,7 @@ public class AltaProductosController {
         App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
     }
 
+
     @FXML
     private void guardarCambios() {
 
@@ -231,12 +233,12 @@ public class AltaProductosController {
                         break;
                 }
 
-                Alertas.productoInsertadoCorrectamente();
+                Alertas.informacion("El producto se ha creado correctamente.");
                 con.cerrarConexion();
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                Alertas.errorInsertarProducto();
+                Alertas.error("Error al crear el producto.");
             }
     }
 

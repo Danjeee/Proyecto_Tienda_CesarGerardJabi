@@ -8,7 +8,7 @@ public class Articulo {
     private String descripcion;
     private boolean activo = true;
     private String nombre_imagen;
-    public Material material;
+    private Material material;
 
     public Articulo(String cod_art, String nombre, double precio, String marca, String descripcion, boolean activo,
             String nombre_imagen, Material material) {

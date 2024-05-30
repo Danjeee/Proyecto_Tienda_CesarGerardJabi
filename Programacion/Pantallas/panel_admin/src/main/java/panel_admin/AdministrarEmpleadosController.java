@@ -49,8 +49,6 @@ public class AdministrarEmpleadosController {
     public Empleado empleado;
     public ArrayList<Empleado> lista_empleados;
 
-    static Alert alerta = new Alert(Alert.AlertType.NONE);
-
     private Connection conectar() {
         Connection con = null;
         try {
@@ -187,6 +185,8 @@ public class AdministrarEmpleadosController {
             Alertas.errorDesactivarEmpleado();
         }
         fpane.getChildren().clear();
+        all.getChildren().remove(0);
+        all.getChildren().remove(1);
         initialize();
 
     }

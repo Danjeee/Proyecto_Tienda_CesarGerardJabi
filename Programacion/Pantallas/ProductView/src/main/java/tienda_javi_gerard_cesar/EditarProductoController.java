@@ -206,11 +206,12 @@ public class EditarProductoController {
             Statement st = connection1.createStatement();
             String[] artcols = { "nombre", "precio", "marca", "descripcion", "activo", "imagen", "material" };
             String[] datcol = { nombreProd.getText(), precioProd.getText(), marcaProd.getText(),
-                    descripcionProd.getText(), String.valueOf(activoProd.isSelected()), imagenProd.getText(),
+                    descripcionProd.getText(), String.valueOf(activoProd.isSelected()), nombre_imagenProd.getText(),
                     String.valueOf(material_num) };
             for (int i = 0; i < artcols.length; i++) {
 
                  st.executeUpdate(setSQL("articulo", artcols[i], datcol[i])); 
+                 System.out.println(setSQL("articulo", artcols[i], datcol[i]));
 
             }
 
@@ -353,7 +354,7 @@ public class EditarProductoController {
             /* */
 
             Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM articulo WHERE cod_art = '" + current + "'");
+            ResultSet rs = st.executeQuery("SELECT * FROM articulo WHERE cod_art = " + current);
 
             while (rs.next()) {
 

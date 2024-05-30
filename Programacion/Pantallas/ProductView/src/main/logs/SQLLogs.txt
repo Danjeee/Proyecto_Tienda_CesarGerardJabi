@@ -62,3 +62,11 @@ Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:1
 Linea: 118
 Metodo: productview/tienda_javi_gerard_cesar.EditarProductoController.guardarCambios(EditarProductoController.java:210)
 Linea: 210
+---------------------------------------------------------------  
+FECHA: 31/05/2024 00:56
+SQLSyntaxErrorException
+1064: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+Linea: 121
+Metodo: productview/tienda_javi_gerard_cesar.EditarProductoController.guardarCambios(EditarProductoController.java:269)
+Linea: 269

@@ -13,7 +13,7 @@ public class Alertas {
         return alerta;
     }
 
-    /*
+    
     public static Alert malEmail() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText("EMAIL INCORRECTO.");
@@ -52,7 +52,7 @@ public class Alertas {
 
     public static Alert registroCorrecto(){
         Alert alerta = new Alert(Alert.AlertType.NONE);
-        alerta.setAlertType(AlertType.INFORMATION);
+        alerta.setAlertType(Alert.AlertType.INFORMATION);
         alerta.setHeaderText(null);
         alerta.setContentText("El usuario se ha registrado correctamente.");
         alerta.show();
@@ -61,13 +61,13 @@ public class Alertas {
 
     public static Alert editarEmpleado(){
         Alert alerta = new Alert(Alert.AlertType.NONE);
-        alerta.setAlertType(AlertType.INFORMATION);
+        alerta.setAlertType(Alert.AlertType.INFORMATION);
         alerta.setHeaderText(null);
         alerta.setContentText("El empleado se ha actualizado correctamente.");
         alerta.show();
         return alerta;
     }    
 
-    */
+    
 }
 

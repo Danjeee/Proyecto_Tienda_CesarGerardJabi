@@ -1,4 +1,4 @@
-package panel_admin;
+package login;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,9 +22,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import panel_admin.Clases.Alertas;
-import panel_admin.Clases.ImportantGUI;
-import panel_admin.MenuHamburguesa.MenuHamb;
+import login.Clases.Alertas;
+//import login.Clases.ImportantGUI;
+import login.Clases.MenuHamb;
 
 public class AltaProductosController {
 
@@ -233,12 +233,12 @@ public class AltaProductosController {
                         break;
                 }
 
-                Alertas.productoInsertadoCorrectamente();
+                //Alertas.productoInsertadoCorrectamente();
                 con.cerrarConexion();
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                Alertas.errorInsertarProducto();
+                //Alertas.errorInsertarProducto();
             }
     }
 
@@ -323,7 +323,7 @@ public class AltaProductosController {
     }
 
     public void initialize() {
-        MenuHamb.popupHambMake();
+        /*MenuHamb.popupHambMake();
         cont.getChildren().add(MenuHamb.menuShadow);
         cont.getChildren().add(MenuHamb.popupHamb);
         cont.getChildren().add(MenuHamb.menuHamb());
@@ -331,7 +331,7 @@ public class AltaProductosController {
         all.getChildren().add(ImportantGUI.generateFooter());
 
         material.getItems().addAll(opciones_material);
-        tipoArticulo.getItems().addAll(opciones_articulo);
+        tipoArticulo.getItems().addAll(opciones_articulo);*/
 
        /*Ropa*/
        vbox_talla.setVisible(false);

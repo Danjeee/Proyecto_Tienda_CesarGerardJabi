@@ -68,11 +68,11 @@ public class OlivadarController {
             User i = buscarMail(usuarios);
             if (i != null) {
                 App.user = i.getDNI();
-                Alertas.bienMail();
+                Alertas.error("EMAIL ENVIADO CORRECTAMENTE");
                 Mail.send(null, "Restablecer la contraseña",
                         "Se ha enviado el mail para poder restablecer la contraseña");
             } else {
-                Alertas.malEmail();
+                Alertas.error("RECUERDE RELLLENAR LOS CAMPOS CORRECTAMENTE");
             }
         } catch (SQLException e) {
             System.err.println("Error al conectar la base de datos: " + e.getMessage());

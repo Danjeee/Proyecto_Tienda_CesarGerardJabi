@@ -144,12 +144,17 @@ public class ImportantGUI {
         userIco.setSize("30");
         user.setText("");
         user.setGraphic(userIco);
+        if (isAdmin()) {
+            user.setDisable(true);
+            userIco.setCursor(Cursor.CROSSHAIR);
+        }
 
         MenuItem cuenta = new MenuItem("Cuenta");
         cuenta.setOnAction(e -> {
             try {
-                App.setRoot("cart");
+                App.setRoot("cuenta");
             } catch (Exception e1) {
+                e1.printStackTrace();
                 Logs.createIOLog(e1);
             }
         });
@@ -243,7 +248,7 @@ public class ImportantGUI {
         a.setPrefWidth(1440);
         a.setPrefHeight(200);
         a.setMinHeight(200);
-        a.setStyle("-fx-background-color: #f2f2f2");
+        a.setStyle("-fx-background-color: #fff");
 
         VBox ayuda = new VBox();
         ayuda.setPrefHeight(180);

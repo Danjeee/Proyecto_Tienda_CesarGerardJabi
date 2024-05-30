@@ -88,7 +88,8 @@ public class AdministrarProductosController {
         editarProducto.setOnAction(i -> {
             EditarClienteController.setCurrent(Producto.getCod_art());
             try {
-                App.setRoot("EditarProducto_Cesar_Javi_Gerard");
+                EditarProductoController.setCurrent(Integer.parseInt(Producto.getCod_art()));
+                App.setRoot("EditarProducto");
             } catch (IOException e) {
                 e.printStackTrace();
             }

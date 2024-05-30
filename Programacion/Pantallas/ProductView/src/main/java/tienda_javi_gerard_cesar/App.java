@@ -37,7 +37,7 @@ public class App extends Application {
         return currentRoot;
     }
 
-    private static String user = "23456789A";
+    private static String user = "guest";
 
     public static void setUser(String a) {
         user = a;
@@ -54,7 +54,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Login"), 1440, 1024);
+        scene = new Scene(loadFXML("AdministrarProductos_Cesar_Javi_Gerard"), 1440, 1024);
         stage.setScene(scene);
         stage.setTitle("secondHand");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/icon.jpg")));

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="cont" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.AltaEmpleadosController">
+   <children>
+      <Pane fx:id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../cssprueba/BOTON.css">
+         <children>
+            <VBox fx:id="all" layoutX="-5.0" layoutY="-4.0" prefHeight="1024.0" prefWidth="1440.0">
+               <children>
+                  <Pane prefHeight="38.0" prefWidth="362.0">
+                     <children>
+                        <Label layoutX="45.0" layoutY="-2.0" text="Lista de empleados">
+                           <font>
+                              <Font name="System Bold" size="27.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="-6.0" mnemonicParsing="false" onAction="#retroceder_PanelAdmin" style="-fx-background-color: transparent;">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="ARROW_LEFT" size="25" />
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="80.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="40.0" top="70.0" />
+                     </VBox.margin>
+                  </Pane>
+                  <HBox prefHeight="712.0" prefWidth="1261.0">
+                     <children>
+                        <VBox prefHeight="712.0" prefWidth="483.0" spacing="85.0">
+                           <children>
+                              <Label text="Nombre:">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="-75.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="nombre" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su nombre aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                              <Label text="Apellidos:">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="-75.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="apellidos" prefHeight="34.0" prefWidth="234.0" promptText="Escriba sus apellidos aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                              <Label text="Email:">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="-75.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="email" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su EMAIL aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                              <Label text="Teléfono:">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="-75.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="telefono" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su teléfono aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets right="100.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="712.0" prefWidth="420.0" spacing="85.0">
+                           <children>
+                              <Label text="DNI:">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="-75.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="dni" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su DNI aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                              <Label text="Dirección:">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="-75.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="direccion" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su dirección aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                              <Label text="Fecha de nacimiento:">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="-75.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <DatePicker fx:id="fecha_nacimiento" prefHeight="44.0" prefWidth="320.0" promptText="Indique su fecha de nacimiento aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </DatePicker>
+                              <Label text="Contraseña:">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="-75.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <PasswordField fx:id="contraseña" prefHeight="41.0" prefWidth="239.0" promptText="Introduce su contraseña aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px;">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </PasswordField>
+                           </children>
+                           <padding>
+                              <Insets right="100.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="712.0" prefWidth="355.0" spacing="85.0">
+                           <children>
+                              <CheckBox fx:id="privilegios" mnemonicParsing="false" prefHeight="38.0" prefWidth="179.0" style="-fx-background-radius: 50;" text="Privilegios">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="120.0" />
+                                 </VBox.margin>
+                              </CheckBox>
+                              <CheckBox fx:id="activo" mnemonicParsing="false" prefHeight="38.0" prefWidth="179.0" style="-fx-background-radius: 50;" text="Activo">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="-10.0" />
+                                 </VBox.margin>
+                              </CheckBox>
+                              <Label text="Departamento">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="-75.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <ChoiceBox fx:id="departamento" prefHeight="51.0" prefWidth="315.0" style="-fx-background-color: white; -fx-border-color: grey;">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ChoiceBox>
+                              <Button mnemonicParsing="false" onAction="#botonRegistrar" prefHeight="82.0" prefWidth="315.0" style="-fx-background-color: black; -fx-background-radius: 0;" text="Registrar" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="100.0" right="100.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

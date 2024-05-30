@@ -176,7 +176,11 @@ public class AdministrarClientesController {
         Connection con = conectar();
         try {
             Statement st = con.createStatement();
-            st.executeUpdate("UPDATE cliente set activo='0' where nombre='" +clientes.getDni()+ "'");
+            st.executeUpdate("UPDATE cliente set activo=0 where DNI='" +clientes.getDni()+ "'");
+            ArrayList<String> disableduser = new ArrayList<>();
+            disableduser.add(clientes.getDni());
+            disableduser.add(clientes.getNombre() + " " +clientes.getApellidos());
+            Logs.createAdminLog('d', 'c', null, disableduser);
     
             Alertas.clienteDesactivadoCorrectamente();
             
@@ -187,6 +191,7 @@ public class AdministrarClientesController {
             Alertas.errorDesactivarCliente();
         }
         fpane.getChildren().clear();
+        all.getChildren().remove(0);
         initialize();
     }
     

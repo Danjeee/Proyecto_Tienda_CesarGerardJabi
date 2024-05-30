@@ -31,3 +31,27 @@ OLD ->: DPTO: 3 -----> DPTO: Almacé <- NEW
 FECHA: 30/05/2024 12:51
 Se ha modificado empleado:  DNI: 01234567J: Nombre: Raúl
 OLD ->: Apellidos: González Pére -----> Apellidos: González Pérez <- NEW
+---------------------------------------------------------------  
+FECHA: 30/05/2024 13:07
+Se ha desactivado cliente: 11223344J: a aasdasdasd
+---------------------------------------------------------------  
+FECHA: 30/05/2024 13:08
+Se ha desactivado cliente: 12345678J: Raúl González Pérez
+---------------------------------------------------------------  
+FECHA: 30/05/2024 13:08
+Se ha desactivado cliente: 11223344J: a aasdasdasd
+---------------------------------------------------------------  
+FECHA: 30/05/2024 13:09
+Se ha desactivado cliente: 11223344J: a aasdasdasd
+---------------------------------------------------------------  
+FECHA: 30/05/2024 13:09
+Se ha desactivado cliente: 01234567I: Elena Hernández Ruiz
+---------------------------------------------------------------  
+FECHA: 30/05/2024 13:09
+Se ha desactivado cliente: 11223344J: a aasdasdasd
+---------------------------------------------------------------  
+FECHA: 30/05/2024 13:10
+Se ha desactivado cliente: 11223344J: a aasdasdasd
+---------------------------------------------------------------  
+FECHA: 30/05/2024 13:16
+Se ha desactivado empleado:  12345678K: Nuria Martínez Gómez

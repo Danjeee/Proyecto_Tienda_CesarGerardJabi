@@ -4,6 +4,7 @@ public class User {
     private String mail;
     private String pasw;
     private String DNI;
+    private boolean act;
    
     public String getMail() {
         return mail;
@@ -17,15 +18,22 @@ public class User {
     public void setPasw(String pasw) {
         this.pasw = pasw;
     }
-    public User(String mail, String pasw, String dNI) {
+    public User(String mail, String pasw, String dNI, boolean act) {
         this.mail = mail;
         this.pasw = pasw;
-        DNI = dNI;
+        this.DNI = dNI;
+        this.act = act;
     }
     public String getDNI() {
         return DNI;
     }
     public void setDNI(String dNI) {
         DNI = dNI;
+    }
+    public boolean isAct() {
+        return act;
+    }
+    public void setAct(boolean act) {
+        this.act = act;
     }
 }

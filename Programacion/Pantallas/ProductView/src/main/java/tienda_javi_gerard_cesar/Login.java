@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import tienda_javi_gerard_cesar.Clases.ImportantGUI;
+import tienda_javi_gerard_cesar.Clases.Logs;
 import tienda_javi_gerard_cesar.Clases.Mail;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 import tienda_javi_gerard_cesar.Clases.User;
@@ -40,8 +41,8 @@ public class Login {
     @FXML
     private PasswordField contra;
 
-   @FXML
-    public void initialize(){
+    @FXML
+    public void initialize() {
         all.getChildren().add(ImportantGUI.generateFooter());
     }
 
@@ -58,25 +59,37 @@ public class Login {
     @FXML
     public void cargarVentana_olvidar(ActionEvent actionEvent) {
         try {
-            App.setRoot("OlvidarContraseña");
-        } catch (IOException e) {
-            e.printStackTrace();
+            App.setRoot("OlvidarContraseñaa");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
         }
     }
 
     @FXML
-    public void cargarVentana_seleccion(ActionEvent actionEvent) throws IOException {
-        App.setRoot("seleccion");
+    public void cargarVentana_seleccion(ActionEvent actionEvent) {
+        try {
+            App.setRoot("seleccion");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 
     @FXML
-    public void cargarVentana_registro(ActionEvent actionEvent) throws IOException {
-        App.setRoot("pantalla2");
+    public void cargarVentana_registro(ActionEvent actionEvent) {
+        try {
+            App.setRoot("pantalla2");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 
     @FXML
-    public void flecha_volver(ActionEvent actionEvent) throws IOException {
-        App.setRoot("Login");
+    public void flecha_volver(ActionEvent actionEvent) {
+        try {
+            App.setRoot("Login");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 
     @FXML
@@ -90,7 +103,6 @@ public class Login {
 
     @FXML
     private void comprobarLog() {
-
         Connection connection = conenct();
 
         try {
@@ -119,11 +131,11 @@ public class Login {
             for (User i : usuarios) {
                 if (i.getMail().equals(usuario.getText())) {
                     if (i.getPasw().equals(contra.getText())) {
-                        App.user = i.getDNI();
+                        App.setUser(i.getDNI());
                         try {
                             App.setRoot("seleccion");
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        } catch (Exception e) {
+                            Logs.createIOLog(e);
                         }
                         break;
                     } else {
@@ -137,7 +149,16 @@ public class Login {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error al conectar la base de datos: " + e.getMessage());
+            Logs.createSQLLog(e);
+        }
+    }
+
+    @FXML
+    private void loginAsGuest() {
+        try {
+            App.setRoot("seleccion");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
         }
     }
 
@@ -146,7 +167,7 @@ public class Login {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }

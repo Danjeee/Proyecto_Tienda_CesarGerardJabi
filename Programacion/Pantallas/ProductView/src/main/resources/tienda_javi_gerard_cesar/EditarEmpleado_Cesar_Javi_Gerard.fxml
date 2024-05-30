@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.EditarEmpleadoController" >
+   <children>
+      <Pane layoutY="-1.0" prefHeight="80.0" prefWidth="1440.0">
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="317.0" layoutX="562.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logosecondhand-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <TextField layoutX="1134.0" layoutY="27.0" prefHeight="30.0" prefWidth="180.0" promptText="Buscar" />
+            <FontAwesomeIconView glyphName="SEARCH" layoutX="1089.0" layoutY="51.0" size="30" text="" />
+            <Button layoutX="42.0" layoutY="23.0" mnemonicParsing="false" style="-fx-background-color: TRANSPARENT;">
+               <graphic>
+                  <FontAwesomeIconView glyphName="NAVICON" size="25" />
+               </graphic>
+            </Button>
+            <Button layoutX="996.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: transparent;" />
+            <Button layoutX="269.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: transparent;" />
+            <FontAwesomeIconView glyphName="USER" layoutX="1331.0" layoutY="50.0" size="25" />
+            <FontAwesomeIconView glyphName="SHOPPING_CART" layoutX="1370.0" layoutY="50.0" size="25" />
+         </children>
+      </Pane>
+      <Button layoutX="53.0" layoutY="124.0"  mnemonicParsing="false" onAction="#retroceder_ListaEmpleados" style="-fx-background-color: transparent;">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView glyphName="ARROW_LEFT" size="25" />
+         </graphic>
+      </Button>
+      <Label layoutX="100.0" layoutY="124.0" text="Editar empleado">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="88.0" layoutY="189.0" text="Nombre y apellidos:">
+         <font>
+            <Font name="Inter Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="88.0" layoutY="241.0" text="DNI:">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="86.0" layoutY="299.0" text="Fecha de nacimiento:">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <DatePicker layoutX="293.0" layoutY="295.0" prefHeight="40.0" prefWidth="210.0" promptText="Indique su fecha de nacimiento." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px;" />
+      <Label layoutX="88.0" layoutY="543.0" text="Número de teléfono:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="582.0" layoutY="543.0" text="Email:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="1060.0" layoutY="241.0" text="Privilegios">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="88.0" layoutY="730.0" text="Rol:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <CheckBox layoutX="94.0" layoutY="766.0" mnemonicParsing="false" text="User1">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox layoutX="94.0" layoutY="796.0" mnemonicParsing="false" text="User2">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox layoutX="94.0" layoutY="826.0" mnemonicParsing="false" text="User3">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <Label layoutX="582.0" layoutY="730.0" text="Nivel de acceso:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="1060.0" layoutY="730.0" text="Departamento:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <CheckBox layoutX="595.0" layoutY="766.0" mnemonicParsing="false" text="Level1">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox layoutX="595.0" layoutY="796.0" mnemonicParsing="false" text="Level2">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox layoutX="595.0" layoutY="826.0" mnemonicParsing="false" text="Level3">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox layoutX="1077.0" layoutY="766.0" mnemonicParsing="false" text="Mark">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox layoutX="1077.0" layoutY="796.0" mnemonicParsing="false" text="Ventas">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox layoutX="1077.0" layoutY="826.0" mnemonicParsing="false" text="Programador">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <Label layoutX="1060.0" layoutY="533.0" text="Dirección:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <CheckBox layoutX="1030.0" layoutY="244.0" mnemonicParsing="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <Label layoutX="1074.0" layoutY="276.0" text="Descripción ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="299.0" layoutY="197.0" prefHeight="33.0" prefWidth="197.0" promptText="Introduzca su nombre y apellidos." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
+      <TextField layoutX="140.0" layoutY="241.0" prefHeight="33.0" prefWidth="197.0" promptText="Introduzca su DNI." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
+      <TextField layoutX="121.0" layoutY="578.0" prefHeight="33.0" prefWidth="210.0" promptText="Introduzca su número de teléfono." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
+      <TextField layoutX="592.0" layoutY="578.0" prefHeight="33.0" prefWidth="210.0" promptText="Introduzca su email." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
+      <TextField layoutX="1074.0" layoutY="578.0" prefHeight="33.0" prefWidth="210.0" promptText="Introduzca su dirección." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;" />
+   </children>
+</Pane>

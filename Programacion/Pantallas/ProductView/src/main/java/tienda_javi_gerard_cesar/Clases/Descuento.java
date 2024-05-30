@@ -4,10 +4,18 @@ public class Descuento {
     private String nombre;
     private int cantidad;
     private Boolean freeShip;
-    public Descuento(String nombre, int cantidad, Boolean freeShip) {
+    private String usablepor;
+    public Descuento(String nombre, int cantidad, Boolean freeShip, String usablepor) {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.freeShip = freeShip;
+        this.usablepor = usablepor;
+    }
+    public String getUsablepor() {
+        return usablepor;
+    }
+    public void setUsablepor(String usablepor) {
+        this.usablepor = usablepor;
     }
     public String getNombre() {
         return nombre;

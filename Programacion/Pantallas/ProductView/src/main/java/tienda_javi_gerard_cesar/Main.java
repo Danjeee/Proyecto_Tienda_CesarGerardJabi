@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.KeyFrame;
@@ -46,6 +47,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import tienda_javi_gerard_cesar.Clases.Articulo;
 import tienda_javi_gerard_cesar.Clases.ImportantGUI;
+import tienda_javi_gerard_cesar.Clases.Logs;
+import tienda_javi_gerard_cesar.Clases.Mail;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 
 public class Main {
@@ -89,156 +92,11 @@ public class Main {
     private VBox all;
     private int pedido;
 
-    
-
-    /*
-     * @FXML
-     * 
-     * private Button menuHamb() {
-     * Button a = new Button();
-     * a.setText("");
-     * a.setPrefHeight(30);
-     * a.setPrefWidth(30);
-     * FontAwesomeIconView ico = new FontAwesomeIconView();
-     * ico.setSize("30");
-     * ico.setGlyphName("NAVICON");
-     * a.setGraphic(ico);
-     * a.setLayoutX(25);
-     * a.setLayoutY(25);
-     * a.setOnAction(e -> popupHambShow());
-     * return a;
-     * }
-     * 
-     * private Button smallButton(String texto, String id) {
-     * Button pant = new Button(texto);
-     * pant.setId(id);
-     * pant.setAlignment(Pos.CENTER_LEFT);
-     * pant.setPrefWidth(500);
-     * pant.setFont(new Font("System", 20));
-     * if (id.equals("Pantalon") || id.equals("Camisa") || id.equals("Chaqueta") ||
-     * id.equals("Zapatos") || id.equals("Bolso")) {
-     * pant.setOnAction(e -> {
-     * try {
-     * filtrar(id, "");
-     * } catch (IOException e1) {
-     * e1.printStackTrace();
-     * }
-     * });
-     * } else {
-     * /*pant.setOnAction(e -> {
-     * try {
-     * App.setRoot(id);
-     * } catch (IOException e1) {
-     * e1.printStackTrace();
-     * }
-     * });
-     * }
-     * return pant;
-     * }
-     * 
-     * private void popupHambMake() {
-     * /* VBOX propiedades
-     * popupHamb = new VBox();
-     * popupHamb.setLayoutX(-500);
-     * popupHamb.setPrefHeight(1024);
-     * popupHamb.setPrefWidth(500);
-     * popupHamb.setDisable(false);
-     * popupHamb.setPadding(new Insets(80, 20, 20, 20));
-     * popupHamb.setStyle("-fx-background-color: #fff");
-     * /* Shadow
-     * menuShadow = new AnchorPane();
-     * menuShadow.setLayoutX(0);
-     * menuShadow.setPrefHeight(1024);
-     * menuShadow.setPrefWidth(1440);
-     * menuShadow.setOpacity(0);
-     * menuShadow.setDisable(true);
-     * menuShadow.setStyle("-fx-background-color: #000");
-     * /* Botones
-     * Button ropa = new Button("Ropa");
-     * ropa.setAlignment(Pos.CENTER_LEFT);
-     * ropa.setPrefWidth(500);
-     * ropa.setFont(new Font("System", 25));
-     * String[] multifiltro = { "Camisa", "Pantalon", "Chaqueta" };
-     * ropa.setOnAction(e -> {
-     * try {
-     * multiFiltrar(multifiltro);
-     * } catch (IOException e1) {
-     * e1.printStackTrace();
-     * }
-     * });
-     * popupHamb.getChildren().add(ropa);
-     * 
-     * popupHamb.getChildren().add(smallButton("     Chaquetas", "Chaqueta"));
-     * 
-     * popupHamb.getChildren().add(smallButton("     Pantalones", "Pantalon"));
-     * 
-     * popupHamb.getChildren().add(smallButton("     Camisas", "Camisa"));
-     * 
-     * Button acc = new Button("Accesorios");
-     * acc.setAlignment(Pos.CENTER_LEFT);
-     * acc.setPrefWidth(500);
-     * acc.setFont(new Font("System", 25));
-     * String[] multifiltro2 = { "Zapatos", "Bolso" };
-     * acc.setOnAction(e -> {
-     * try {
-     * multiFiltrar(multifiltro2);
-     * } catch (IOException e1) {
-     * e1.printStackTrace();
-     * }
-     * });
-     * popupHamb.getChildren().add(acc);
-     * 
-     * popupHamb.getChildren().add(smallButton("     Zapatos", "Zapatos"));
-     * 
-     * popupHamb.getChildren().add(smallButton("     Bolsos", "Bolso"));
-     * 
-     * Pane separator = new Pane();
-     * separator.setPrefHeight(500);
-     * popupHamb.getChildren().add(separator);
-     * 
-     * Button adminPanel = new Button("Acceso a panel de administración");
-     * adminPanel.setAlignment(Pos.CENTER_LEFT);
-     * adminPanel.setPrefWidth(500);
-     * adminPanel.setFont(new Font("System", 25));
-     * popupHamb.getChildren().add(adminPanel);
-     * 
-     * popupHamb.getChildren().add(smallButton("    Preguntas frecuentes",
-     * "preguntas"));
-     * popupHamb.getChildren().add(smallButton("    Estado de mi pedido",
-     * "estado"));
-     * popupHamb.getChildren().add(smallButton("    Devoluciones", "devoluciones"));
-     * popupHamb.getChildren().add(smallButton("    Envios", "envios"));
-     * 
-     * }
-     * 
-     * private void popupHambShow() {
-     * if (menued) {
-     * final Timeline timeline = new Timeline();
-     * timeline.setCycleCount(1);
-     * final KeyValue kv = new KeyValue(popupHamb.layoutXProperty(), -500);
-     * final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
-     * timeline.getKeyFrames().add(kf);
-     * timeline.play();
-     * menuShadow.setOpacity(0);
-     * menued = false;
-     * } else {
-     * final Timeline timeline = new Timeline();
-     * timeline.setCycleCount(1);
-     * final KeyValue kv = new KeyValue(popupHamb.layoutXProperty(), 0);
-     * final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
-     * timeline.getKeyFrames().add(kf);
-     * timeline.play();
-     * menuShadow.setOpacity(0.2);
-     * popupHamb.setLayoutX(0);
-     * menued = true;
-     * }
-     * }
-     */
     private void nuevoPedido() {
         Connection con = conenct();
         try {
             Statement st = con.createStatement();
-            ResultSet user = st.executeQuery("SELECT * FROM cliente WHERE DNI = \"" + App.user + "\"");
+            ResultSet user = st.executeQuery("SELECT * FROM cliente WHERE DNI = \"" + App.getUser() + "\"");
             String dir = "";
             int newcol = 0;
             while (user.next()) {
@@ -250,10 +108,10 @@ public class Main {
             }
             st.executeUpdate("INSERT INTO pedido VALUES(" + newcol + ", \'"
                     + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "\', \"" + dir
-                    + "\", \"En proceso\", \"" + App.user + "\")");
+                    + "\", \"En proceso\", \"" + App.getUser() + "\")");
             pedido = newcol;
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
     }
 
@@ -295,7 +153,7 @@ public class Main {
                 st.executeUpdate("INSERT INTO linea_pedido VALUES(" + i.getCodigo() + ", " + pedido + ", 1)");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         Label a = ImportantGUI.mensaje(x, y, "Añadido al carrito");
         if (cont.getChildren().contains(a)) {
@@ -342,17 +200,17 @@ public class Main {
                 st.executeUpdate("INSERT INTO linea_pedido VALUES(" + i.getCodigo() + ", " + pedido + ", 1)");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         try {
             App.setRoot("cart");
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Logs.createIOLog(e);
         }
     }
 
     @FXML
-    private void searchBar(ActionEvent e) throws IOException {
+    private void searchBar(ActionEvent e){
         TextField sb = (TextField) e.getSource();
         Main.resultados.clear();
         if (sb.getText().isEmpty()) {
@@ -365,14 +223,14 @@ public class Main {
     }
 
     /*
-     * private void multiFiltrar(String[] mult) throws IOException {
+     * private void multiFiltrar(String[] mult){
      * Main.filtros.clear();
      * for (String i : mult) {
      * filtrar(i, "a");
      * }
      * }
      * 
-     * private void filtrar(String word, String mult) throws IOException {
+     * private void filtrar(String word, String mult){
      * Boolean esta = false;
      * if (mult.isEmpty()) {
      * Main.filtros.clear();
@@ -396,7 +254,7 @@ public class Main {
      * }
      */
     @FXML
-    private void filtro(ActionEvent e) throws IOException {
+    private void filtro(ActionEvent e){
         Button src = (Button) e.getSource();
         String word = src.getId().toString();
         Boolean esta = false;
@@ -428,7 +286,7 @@ public class Main {
     }
 
     @FXML
-    private void buscar() throws IOException {
+    private void buscar(){
         main.getChildren().clear();
         Connection con = conenct();
         HashSet<Articulo> busq = new HashSet();
@@ -447,7 +305,7 @@ public class Main {
                     busqaux.add(new Articulo(cod, nombre, precio, img));
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                Logs.createSQLLog(e);
             }
         }
         for (Node i : filtCont.getChildren()) {
@@ -488,7 +346,7 @@ public class Main {
                     busqaux2.add(new Articulo(cod, nombre, precio, img));
                 }
             } catch (SQLException e1) {
-                e1.printStackTrace();
+                Logs.createSQLLog(e1);
             }
         }
         if (!filtros.isEmpty()) {
@@ -506,7 +364,8 @@ public class Main {
         } else {
             busq.addAll(busqaux);
             if (resultados.isEmpty()) {
-                all.getChildren().remove(0);
+                all.getChildren().remove(all.getChildren().get(3));
+                all.getChildren().remove(all.getChildren().get(0));
                 initialize();
             }
         }
@@ -531,19 +390,17 @@ public class Main {
     private void cartButton() {
         try {
             App.setRoot("cart");
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Logs.createIOLog(e);
         }
     }
 
     @FXML
-    private void initialize() throws IOException {
-        MenuHamb.popupHambMake();
-        cont.getChildren().add(MenuHamb.menuShadow);
-        cont.getChildren().add(MenuHamb.popupHamb);
-        cont.getChildren().add(MenuHamb.menuHamb());
+    private void initialize(){
+        MenuHamb.init(cont);
         main.getChildren().clear();
         all.getChildren().add(0, ImportantGUI.generateHeader());
+        all.getChildren().add(ImportantGUI.generateFooter());
         Connection con = conenct();
         try {
             if (!Main.resultados.isEmpty()) {
@@ -562,13 +419,13 @@ public class Main {
                 }
                 rs = st.executeQuery(
                         "SELECT DISTINCT L.num_pedido from linea_pedido L, pedido P WHERE L.num_pedido = P.numero and P.DNI_cliente = \""
-                                + App.user + "\" and P.estado = \"En proceso\"");
+                                + App.getUser() + "\" and P.estado = \"En proceso\"");
                 while (rs.next()) {
                     pedido = rs.getInt("num_pedido");
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         if (!resultados.isEmpty() || !filtros.isEmpty()) {
             buscar();
@@ -580,7 +437,7 @@ public class Main {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }
@@ -607,7 +464,12 @@ public class Main {
         /* Iconos */
         plusicon.glyphNameProperty().set("PLUS");
         carticon.glyphNameProperty().set("SHOPPING_CART");
-        Color color = Color.WHITE;
+        Color color;
+        if (App.getUser().equals("guest")) {
+            color = Color.LIGHTGRAY;
+        } else {
+            color = Color.WHITE;
+        }
         plusicon.fillProperty().set(color);
         carticon.fillProperty().set(color);
         /*
@@ -619,19 +481,37 @@ public class Main {
         imgg.setPrefHeight(200);
         imgg.setPrefWidth(200);
         imgg.setText("");
-        if (img.equals("imagen1.jpg")) {
-            ImageView fondo = new ImageView(
-                    new Image(getClass().getResourceAsStream("/tienda_javi_gerard_cesar/" + img)));
-            fondo.setFitHeight(175);
-            fondo.setFitWidth(150);
-            imgg.setGraphic(fondo);
+        Random rnd = new Random();
+        int imgrnd = rnd.nextInt(3);
+        String caca= "/tienda_javi_gerard_cesar/imagen1.jpg";
+        switch (imgrnd) {
+            case 0:
+            caca= "/tienda_javi_gerard_cesar/imagen0.jpg";
+                break;
+                case 1:
+            caca= "/tienda_javi_gerard_cesar/imagen2.jpg";
+                break;
+                case 2:
+            caca= "/tienda_javi_gerard_cesar/imagen3.jpg";
+                break;
+        
+            default:
+                break;
         }
+        if (cod<40) {
+            ImageView fondo = new ImageView(
+                new Image(getClass().getResourceAsStream(caca)));
+        fondo.setFitHeight(175);
+        fondo.setFitWidth(150);
+        imgg.setGraphic(fondo);
+        }
+        
         imgg.setOnAction(e -> {
             try {
-                ProductView.current = cod;
+                ProductView.setCurrentProduct(cod);
                 App.setRoot("productview");
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
         /* Grid2 */
@@ -647,20 +527,26 @@ public class Main {
         fp.getRowConstraints().add(datos);
         fp.getColumnConstraints().get(0).setPrefWidth(150);
         /* Botones */
-        plus.setStyle("-fx-background-color: #000;-fx-background-radius: 0");
-        cart.setStyle("-fx-background-color: #000;-fx-background-radius: 0");
+        if (App.getUser().equals("guest") || App.userIsAdmin()) {
+            plus.setStyle("-fx-background-color: #f2f2f2;-fx-background-radius: 0");
+            cart.setStyle("-fx-background-color: #f2f2f2;-fx-background-radius: 0");
+        } else {
+            plus.setStyle("-fx-background-color: #000;-fx-background-radius: 0");
+            cart.setStyle("-fx-background-color: #000;-fx-background-radius: 0");
+            cart.setOnAction(e -> addGoing(i));
+            plus.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                public void handle(MouseEvent event) {
+                    addWOgoing(i, event.getSceneX(), event.getSceneY());
+                }
+            });
+        }
         cart.setPrefHeight(25);
         plus.setPrefWidth(25);
         plus.setPrefHeight(25);
         cart.setPrefWidth(25);
         cart.graphicProperty().set(carticon);
         plus.graphicProperty().set(plusicon);
-        cart.setOnAction(e -> addGoing(i));
-        plus.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                addWOgoing(i, event.getSceneX(), event.getSceneY());
-            }
-        });
+
         HBox botones = new HBox();
         botones.setPrefHeight(25);
         botones.setPrefWidth(50);

@@ -1,6 +1,7 @@
 package tienda_javi_gerard_cesar.Clases;
 
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,12 +9,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -23,9 +32,12 @@ import tienda_javi_gerard_cesar.App;
 import tienda_javi_gerard_cesar.Main;
 
 public class MenuHamb {
-    public static VBox popupHamb;
-    public static AnchorPane menuShadow;
-    public static Boolean menued = false;
+    private static VBox popupHamb;
+    private static AnchorPane menuShadow;
+    private static Boolean menued = false;
+    private static int javisegundos;
+    private static int error = 0;
+    private static int pulsado = 0;
 
     public static Button menuHamb() {
         Button a = new Button();
@@ -38,7 +50,12 @@ public class MenuHamb {
         a.setGraphic(ico);
         a.setLayoutX(25);
         a.setLayoutY(21);
-        a.setOnAction(e -> popupHambShow());
+        a.setOnAction(e -> {
+            if (pulsado != 1) {
+                pulsado = 1;
+            }
+            popupHambShow();
+        });
         return a;
     }
 
@@ -53,36 +70,78 @@ public class MenuHamb {
             pant.setOnAction(e -> {
                 try {
                     filtrar(id, "");
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                } catch (Exception e1) {
+                    Logs.createIOLog(e1);
                 }
             });
         } else {
-            /*
-             * pant.setOnAction(e -> {
-             * try {
-             * App.setRoot(id);
-             * } catch (IOException e1) {
-             * e1.printStackTrace();
-             * }
-             * });
-             */
+
+            pant.setOnAction(e -> {
+                try {
+                    App.setRoot(id);
+                } catch (Exception e1) {
+                    Logs.createIOLog(e1);
+                }
+            });
+
         }
         return pant;
     }
 
+    public static void start(AnimationTimer startListener) {
+        startListener.start();
+    }
+
+    private static void key(Scene scene, KeyCode e) {
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent arg0) {
+                if (arg0.getCode() == e) {
+                    if (pulsado >= 1) {
+                        popupHambShow();
+                    } else {
+                        error = pulsado + error;
+                        error++;
+                        if (error == 1) {
+                            popupHambShow();
+                        } else {
+                            error = 0;
+                        }
+                    }
+                }
+            }
+
+        });
+
+    }
+
+    public static AnimationTimer keyListener(KeyCode keyC) {
+        AnimationTimer gameLoop = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                key(App.scene, keyC);
+            }
+        };
+        return gameLoop;
+    }
+
     private static boolean isAdmin() {
+        if (App.getUser().equals("guest")) {
+            return false;
+        }
         Connection con = conenct();
         try {
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery("SELECT DNI, tiene_privilegios FROM empleado");
             while (rs.next()) {
-                if (rs.getString("DNI").equals(App.user)) {
+                if (rs.getString("DNI").equals(App.getUser())) {
                     return rs.getBoolean("tiene_privilegios");
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return false;
     }
@@ -92,9 +151,18 @@ public class MenuHamb {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
+    }
+
+    public static void init(AnchorPane a) {
+        error = 0;
+        pulsado = 0;
+        popupHambMake();
+        a.getChildren().addAll(menuShadow, popupHamb, menuHamb());
+        start(keyListener(KeyCode.ESCAPE));
+
     }
 
     public static void popupHambMake() {
@@ -123,8 +191,8 @@ public class MenuHamb {
         ropa.setOnAction(e -> {
             try {
                 multiFiltrar(multifiltro);
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
         popupHamb.getChildren().add(ropa);
@@ -143,8 +211,8 @@ public class MenuHamb {
         acc.setOnAction(e -> {
             try {
                 multiFiltrar(multifiltro2);
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (Exception e1) {
+                Logs.createIOLog(e1);
             }
         });
         popupHamb.getChildren().add(acc);
@@ -165,28 +233,28 @@ public class MenuHamb {
             adminPanel.setOnAction(e -> {
                 try {
                     App.setRoot("PanelAdministracion_Cesar_Javi_Gerard");
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                } catch (Exception e1) {
+                    Logs.createIOLog(e1);
                 }
             });
             popupHamb.getChildren().add(adminPanel);
         }
 
-        popupHamb.getChildren().add(smallButton("    Preguntas frecuentes", "preguntas"));
-        popupHamb.getChildren().add(smallButton("    Estado de mi pedido", "estado"));
+        popupHamb.getChildren().add(smallButton("    Preguntas frecuentes", "faq"));
+        popupHamb.getChildren().add(smallButton("    Estado de mi pedido", "pedidos"));
         popupHamb.getChildren().add(smallButton("    Devoluciones", "devoluciones"));
         popupHamb.getChildren().add(smallButton("    Envios", "envios"));
 
     }
 
-    public static void multiFiltrar(String[] mult) throws IOException {
+    public static void multiFiltrar(String[] mult){
         Main.filtros.clear();
         for (String i : mult) {
             filtrar(i, "a");
         }
     }
 
-    public static void filtrar(String word, String mult) throws IOException {
+    public static void filtrar(String word, String mult){
         Boolean esta = false;
         if (mult.isEmpty()) {
             Main.filtros.clear();
@@ -206,7 +274,11 @@ public class MenuHamb {
         if (menued) {
             popupHambShow();
         }
-        App.setRoot("main");
+        try {
+            App.setRoot("main");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 
     public static void popupHambShow() {

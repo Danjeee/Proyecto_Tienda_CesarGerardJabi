@@ -88,37 +88,27 @@
             <DatePicker layoutX="989.0" layoutY="407.0" prefHeight="34.0" prefWidth="234.0" promptText="Indique su fehca de nacimiento aquí." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" />
             <TextField layoutX="126.0" layoutY="599.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su teléfono aquí." style="-fx-background-color: trasnsparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
             <TextField layoutX="544.0" layoutY="596.0" prefHeight="34.0" prefWidth="234.0" promptText="Escriba su dirección aquí." style="-fx-background-color: trasnsparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-border-color: black;" />
-            <Label layoutX="998.0" layoutY="517.0" text="Género:">
+            <Label layoutX="998.0" layoutY="517.0" text="Activo:">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
-            <CheckBox layoutX="1001.0" layoutY="590.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="138.0" style="-fx-background-radius: 50;" text="Hombre">
+            <CheckBox layoutX="1090.0" layoutY="520.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="138.0" style="-fx-background-radius: 50;">
                <font>
                   <Font size="20.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="1134.0" layoutY="589.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="122.0" text="Mujer">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </CheckBox>
-            <Label layoutX="543.0" layoutY="692.0" text="Tarjeta de fidelidad:">
+            <Label layoutX="993.0" layoutY="581.0" text="Tarjeta de fidelidad:">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
-            <CheckBox layoutX="546.0" layoutY="765.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" text="SÍ">
+            <CheckBox layoutX="1245.0" layoutY="584.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0">
                <font>
                   <Font size="20.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="627.0" layoutY="765.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" text="NO">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </CheckBox>
-            <Button layoutX="1148.0" layoutY="763.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="184.0" style="-fx-background-color: black; -fx-background-radius: 0;" text="Registrarse" textFill="WHITE">
+            <Button layoutX="1075.0" layoutY="677.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="184.0" style="-fx-background-color: black; -fx-background-radius: 0;" text="Registrarse" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.LogsView">
+   <children>
+      <VBox prefHeight="1024.0" prefWidth="1440.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1440.0" spacing="50.0">
+               <VBox.margin>
+                  <Insets top="412.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#checkSQLLog" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="SQL&#10;Logs" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="DATABASE" size="23" wrappingWidth="43.66668701171875" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#checkIOLog" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="File Error&#10;Logs" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="FILE" size="23" wrappingWidth="43.66668701171875" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#checkAdminLog" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Admin&#10;Logs" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="USER" size="23" wrappingWidth="43.66668701171875" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1440.0" spacing="50.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#clearSQLLogs" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Clear&#10;SQL Logs" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="23" wrappingWidth="43.66668701171875" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#clearIOLogs" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Clear&#10;File Logs" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="23" wrappingWidth="43.66668701171875" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Clear&#10;Admin Logs" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="23" wrappingWidth="43.66668701171875" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

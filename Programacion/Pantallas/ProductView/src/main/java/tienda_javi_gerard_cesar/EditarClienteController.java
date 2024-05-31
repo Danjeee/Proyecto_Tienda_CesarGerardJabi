@@ -66,7 +66,7 @@ public class EditarClienteController {
         EditarClienteController.current = current;
     }
 
-    private static String current = "";
+    private static String current;
     private ArrayList<String> olddatos = new ArrayList<>();
 
     @FXML

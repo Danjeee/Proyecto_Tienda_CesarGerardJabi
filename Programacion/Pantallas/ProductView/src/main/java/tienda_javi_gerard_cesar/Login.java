@@ -102,14 +102,25 @@ public class Login {
     @FXML
     private Button btnLogin;
 
+    private static boolean tarjetaFide;
+
+    public static boolean isTarjetaFide() {
+        return tarjetaFide;
+    }
+
+    public static void setTarjetaFide(boolean tarjetaFide) {
+        Login.tarjetaFide = tarjetaFide;
+    }
+
     @FXML
     private void comprobarLog() {
         Connection connection = conenct();
+        
 
         try {
 
             Statement pst = connection.createStatement();
-            ResultSet rs = pst.executeQuery("Select email, pass, DNI, activo from cliente");
+            ResultSet rs = pst.executeQuery("Select email, pass, DNI, tarjeta_fidelizacion, activo from cliente");
             Statement st2 = connection.createStatement();
             ResultSet rs2 = st2.executeQuery("Select email, pass, DNI, activo from empleado");
             ArrayList<User> usuarios = new ArrayList<>();
@@ -118,6 +129,7 @@ public class Login {
                 String pass = rs.getString("pass");
                 String DNI = rs.getString("DNI");
                 boolean act = rs.getBoolean("activo");
+                tarjetaFide = rs.getBoolean("tarjeta_fidelizacion");
                 usuarios.add(new User(mail, pass, DNI, act));
             }
             ;
@@ -127,6 +139,7 @@ public class Login {
                 String pass = rs2.getString("pass");
                 String DNI = rs2.getString("DNI");
                 boolean act = rs2.getBoolean("activo");
+                tarjetaFide = false;
                 usuarios.add(new User(mail, pass, DNI, act));
             }
 

@@ -169,6 +169,9 @@ public class Cart {
                     if (codDes.getText().equals(i.getNombre())) {
                         if (i.getUsablepor().equals("0") || i.getUsablepor().equals(App.getUser())) {
                             descuentoActivo = i;
+                            if (Login.isTarjetaFide() && descuentoActivo.getCantidad() != 100) {
+                                descuentoActivo.setCantidad(descuentoActivo.getCantidad()+15);
+                            }
                             codDes.setText("Código activado (Se canjeara al pagar)");
                             codDes.setStyle("-fx-text-inner-color: green;");
                             corr = true;
@@ -450,6 +453,9 @@ public class Cart {
         if (!corr) {
             codDes.setText("");
             descuentoActivo = new Descuento("0", 0, false, "0");
+            if (Login.isTarjetaFide() || descuentoActivo.getCantidad() != 100) {
+                descuentoActivo.setCantidad(descuentoActivo.getCantidad()+15);
+            }
         }
         Connection con = conenct();
         for (Articulo i : articulos) {
@@ -487,6 +493,9 @@ public class Cart {
     }
 
     public void initialize() {
+        if (Login.isTarjetaFide() || descuentoActivo.getCantidad() != 100) {
+            descuentoActivo.setCantidad(descuentoActivo.getCantidad()+15);
+        }
         MenuHamb.init(cont);
         main.getChildren().clear();
         all.getChildren().add(0, ImportantGUI.generateHeader());

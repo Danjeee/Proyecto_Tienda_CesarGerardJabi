@@ -98,3 +98,35 @@ Metodo: com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQL
 Linea: 104
 Metodo: productview/tienda_javi_gerard_cesar.RegistrarUsuarioController.registrar(RegistrarUsuarioController.java:85)
 Linea: 85
+---------------------------------------------------------------  
+FECHA: 31/05/2024 11:42
+SQLException
+0: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+Linea: 130
+Metodo: productview/tienda_javi_gerard_cesar.Login.comprobarLog(Login.java:132)
+Linea: 132
+---------------------------------------------------------------  
+FECHA: 31/05/2024 11:42
+SQLException
+0: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+Linea: 130
+Metodo: productview/tienda_javi_gerard_cesar.Login.comprobarLog(Login.java:132)
+Linea: 132
+---------------------------------------------------------------  
+FECHA: 31/05/2024 11:42
+SQLException
+0: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+Linea: 130
+Metodo: productview/tienda_javi_gerard_cesar.Login.comprobarLog(Login.java:132)
+Linea: 132
+---------------------------------------------------------------  
+FECHA: 31/05/2024 11:44
+SQLException
+0: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+Linea: 130
+Metodo: productview/tienda_javi_gerard_cesar.Login.comprobarLog(Login.java:132)
+Linea: 132

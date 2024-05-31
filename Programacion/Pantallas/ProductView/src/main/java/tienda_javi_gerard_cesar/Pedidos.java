@@ -156,6 +156,9 @@ public class Pedidos {
                                 rs.getString("usable_por"));
                     }
                 }
+                if (Login.isTarjetaFide() || curr.getCantidad() != 100) {
+                    curr.setCantidad(curr.getCantidad()+15);
+                }
             } catch (SQLException e) {
                 Logs.createSQLLog(e);
             }

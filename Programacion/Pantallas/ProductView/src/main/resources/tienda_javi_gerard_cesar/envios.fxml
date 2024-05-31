@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="cont" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@styles1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.ExtraController">
+   <children>
+      <VBox fx:id="all" layoutX="202.0" layoutY="121.0" prefHeight="1024.0" prefWidth="1440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="116.0" prefWidth="1440.0">
+               <children>
+                  <Label layoutX="50.0" layoutY="20.0" prefHeight="81.0" prefWidth="790.0" text="Precios de paquetería Second Hand:">
+                     <font>
+                        <Font name="System Bold" size="45.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane prefHeight="516.0" prefWidth="1440.0">
+               <children>
+                  <Pane layoutX="52.0" layoutY="143.0" prefHeight="371.0" prefWidth="360.0">
+                     <children>
+                        <Label layoutX="26.0" layoutY="9.0" prefHeight="39.0" prefWidth="362.0" text="PAQ PREMIUM ">
+                           <font>
+                              <Font name="Arial" size="44.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="67.0" layoutY="115.0" prefHeight="141.0" prefWidth="313.0" text="6.99€">
+                           <font>
+                              <Font size="96.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="555.0" layoutY="143.0" prefHeight="371.0" prefWidth="360.0">
+                     <children>
+                        <Label layoutX="3.0" layoutY="9.0" prefHeight="52.0" prefWidth="364.0" text="PAQ ESTÁNDAR">
+                           <font>
+                              <Font name="Arial" size="44.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="43.0" layoutY="113.0" prefHeight="141.0" prefWidth="305.0" text="4.99 €">
+                           <font>
+                              <Font size="96.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="1021.0" layoutY="143.0" prefHeight="371.0" prefWidth="360.0">
+                     <children>
+                        <Label layoutX="20.0" layoutY="9.0" prefHeight="52.0" prefWidth="328.0" text="PAQ RETORNO">
+                           <font>
+                              <Font name="Arial" size="44.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="66.0" layoutY="115.0" prefHeight="141.0" prefWidth="271.0" text="2.99 €">
+                           <font>
+                              <Font size="96.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

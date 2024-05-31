@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="cont" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@styles1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda_javi_gerard_cesar.EditarEmpleadoController">
+   <children>
+      <VBox fx:id="all" layoutX="335.0" layoutY="96.0" prefHeight="1024.0" prefWidth="1440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0">
+               <children>
+                  <Button layoutX="60.0" layoutY="98.0" mnemonicParsing="false" onAction="#back" prefHeight="39.0" prefWidth="42.0">
+                     <graphic>
+                        <FontAwesomeIconView fx:id="flechaVolver" glyphName="ARROW_LEFT" size="25" />
+                     </graphic>
+                  </Button>
+                  <Label layoutX="111.0" layoutY="99.0" text="Editar empleado">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="90.0" layoutY="225.0" text="Nombre:">
+                     <font>
+                        <Font name="Inter Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="90.0" layoutY="435.0" text="DNI:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="90.0" layoutY="645.0" text="Fecha de nacimiento:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="90.0" layoutY="540.0" text="Número de teléfono:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="850.0" layoutY="225.0" text="Email:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="850.0" layoutY="435.0" text="Privilegios:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="850.0" layoutY="540.0" text="Departamento:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="850.0" layoutY="330.0" text="Dirección:">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="nombreEmpleado" layoutX="300.0" layoutY="216.0" prefHeight="39.0" prefWidth="262.0" promptText="Actualize su nombre." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="DNIempleado" layoutX="300.0" layoutY="431.0" prefHeight="39.0" prefWidth="262.0" promptText="Actualize su DNI." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <DatePicker fx:id="fechaNac" layoutX="300.0" layoutY="638.0" prefHeight="39.0" prefWidth="262.0" promptText="Actualize su fecha de nacimiento." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px;" />
+                  <CheckBox fx:id="privilegiosEmpleado" layoutX="969.0" layoutY="436.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </CheckBox>
+                  <TextField fx:id="numtelef" layoutX="300.0" layoutY="533.0" prefHeight="39.0" prefWidth="262.0" promptText="Actualize su número de teléfono." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="emailEmpleado" layoutX="970.0" layoutY="217.0" prefHeight="39.0" prefWidth="262.0" promptText="Actualize su email." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="direccionEmpleado" layoutX="970.0" layoutY="325.0" prefHeight="39.0" prefWidth="262.0" promptText="Actualize su dirección." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="apellidosEmpleado" layoutX="300.0" layoutY="325.0" prefHeight="39.0" prefWidth="262.0" promptText="Actualize sus apellidos." style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden; -fx-border-color: black; -fx-border-width: 2px;">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="90.0" layoutY="330.0" text="Apellidos:">
+                     <font>
+                        <Font name="Inter Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="dpto" layoutX="879.0" layoutY="592.5" prefWidth="150.0" />
+                  <Button layoutX="970.0" layoutY="743.0" mnemonicParsing="false" onAction="#editarEmpBoton" prefHeight="64.0" prefWidth="230.0" style="-fx-background-color: black;" text="Guardar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="565.0" layoutY="225.0" mnemonicParsing="false" onAction="#limpiarBotonE" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <FontAwesomeIconView fx:id="BOTPRUEBA" glyphName="REMOVE" size="15" text="" />
+                     </graphic>
+                  </Button>
+                  <Button layoutX="565.0" layoutY="330.0" mnemonicParsing="false" onAction="#limpiarBotonA" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <FontAwesomeIconView fx:id="BOTPRUEBA1" glyphName="REMOVE" size="15" text="" />
+                     </graphic>
+                  </Button>
+                  <Button layoutX="565.0" layoutY="540.0" mnemonicParsing="false" onAction="#limpiarBotonTelef" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <FontAwesomeIconView fx:id="BOTPRUEBA111" glyphName="REMOVE" size="15" text="" />
+                     </graphic>
+                  </Button>
+                  <Button layoutX="565.0" layoutY="645.0" mnemonicParsing="false" onAction="#limpiarBotonFe" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <FontAwesomeIconView fx:id="BOTPRUEBA1111" glyphName="REMOVE" size="15" text="" />
+                     </graphic>
+                  </Button>
+                  <Button layoutX="1240.0" layoutY="221.0" mnemonicParsing="false" onAction="#limpiarBotonEmai" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <FontAwesomeIconView fx:id="BOTPRUEBA2" glyphName="REMOVE" size="15" text="" />
+                     </graphic>
+                  </Button>
+                  <Button layoutX="1240.0" layoutY="330.0" mnemonicParsing="false" onAction="#limpiarBotonDirecc" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <FontAwesomeIconView fx:id="BOTPRUEBA21" glyphName="REMOVE" size="15" text="" />
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

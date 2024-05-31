@@ -21,7 +21,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import tienda_javi_gerard_cesar.Clases.Cifrado;
 import tienda_javi_gerard_cesar.Clases.ImportantGUI;
+import tienda_javi_gerard_cesar.Clases.Logs;
 import tienda_javi_gerard_cesar.Clases.Mail;
 import tienda_javi_gerard_cesar.Clases.MenuHamb;
 import tienda_javi_gerard_cesar.Clases.User;
@@ -40,10 +42,10 @@ public class Login {
     @FXML
     private PasswordField contra;
 
-   /*@FXML
-    public void initialize(){
+    @FXML
+    public void initialize() {
         all.getChildren().add(ImportantGUI.generateFooter());
-    }*/
+    }
 
     @FXML
     public void limpiarBotonUser(ActionEvent Event) {
@@ -58,25 +60,37 @@ public class Login {
     @FXML
     public void cargarVentana_olvidar(ActionEvent actionEvent) {
         try {
-            App.setRoot("OlvidarContraseña");
-        } catch (IOException e) {
-            e.printStackTrace();
+            App.setRoot("OlvidarContraseñaa");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
         }
     }
 
     @FXML
-    public void cargarVentana_seleccion(ActionEvent actionEvent) throws IOException {
-        App.setRoot("seleccion");
+    public void cargarVentana_seleccion(ActionEvent actionEvent) {
+        try {
+            App.setRoot("seleccion");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 
     @FXML
-    public void cargarVentana_registro(ActionEvent actionEvent) throws IOException {
-        App.setRoot("pantalla2");
+    public void cargarVentana_registro(ActionEvent actionEvent) {
+        try {
+            App.setRoot("pantalla2");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 
     @FXML
-    public void flecha_volver(ActionEvent actionEvent) throws IOException {
-        App.setRoot("Login");
+    public void flecha_volver(ActionEvent actionEvent) {
+        try {
+            App.setRoot("Login");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
+        }
     }
 
     @FXML
@@ -88,23 +102,35 @@ public class Login {
     @FXML
     private Button btnLogin;
 
+    private static boolean tarjetaFide;
+
+    public static boolean isTarjetaFide() {
+        return tarjetaFide;
+    }
+
+    public static void setTarjetaFide(boolean tarjetaFide) {
+        Login.tarjetaFide = tarjetaFide;
+    }
+
     @FXML
     private void comprobarLog() {
-
         Connection connection = conenct();
+        
 
         try {
 
             Statement pst = connection.createStatement();
-            ResultSet rs = pst.executeQuery("Select email, pass, DNI from cliente");
+            ResultSet rs = pst.executeQuery("Select email, pass, DNI, tarjeta_fidelizacion, activo from cliente");
             Statement st2 = connection.createStatement();
-            ResultSet rs2 = st2.executeQuery("Select email, pass, DNI from empleado");
+            ResultSet rs2 = st2.executeQuery("Select email, pass, DNI, activo from empleado");
             ArrayList<User> usuarios = new ArrayList<>();
             while (rs.next()) {
                 String mail = rs.getString("email");
                 String pass = rs.getString("pass");
                 String DNI = rs.getString("DNI");
-                usuarios.add(new User(mail, pass, DNI));
+                boolean act = rs.getBoolean("activo");
+                tarjetaFide = rs.getBoolean("tarjeta_fidelizacion");
+                usuarios.add(new User(mail, pass, DNI, act));
             }
             ;
 
@@ -112,32 +138,48 @@ public class Login {
                 String mail = rs2.getString("email");
                 String pass = rs2.getString("pass");
                 String DNI = rs2.getString("DNI");
-                usuarios.add(new User(mail, pass, DNI));
+                boolean act = rs2.getBoolean("activo");
+                tarjetaFide = false;
+                usuarios.add(new User(mail, pass, DNI, act));
             }
-            ;
 
             for (User i : usuarios) {
+               
                 if (i.getMail().equals(usuario.getText())) {
-                    if (i.getPasw().equals(contra.getText())) {
-                        App.user = i.getDNI();
+                    if (i.getPasw().equals(Cifrado.shiftCifrado(contra.getText())) && i.isAct()) {
+                        App.setUser(i.getDNI());
                         try {
                             App.setRoot("seleccion");
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        } catch (Exception e) {
+                            Logs.createIOLog(e);
                         }
                         break;
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText("INICIO DE SESIÓN INCORRECTO.");
                         alert.setTitle("ERROR");
-                        alert.setContentText("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
+                        if (i.isAct()) {
+                            alert.setContentText("RECUERDE RELLENAR CORRECTAMENTE LOS CAMPOS.");
+                        } else {
+                            alert.setContentText("Usuario inactivo");
+                        }
+                        
                         alert.showAndWait();
                         break;
                     }
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error al conectar la base de datos: " + e.getMessage());
+            Logs.createSQLLog(e);
+        }
+    }
+
+    @FXML
+    private void loginAsGuest() {
+        try {
+            App.setRoot("seleccion");
+        } catch (Exception e) {
+            Logs.createIOLog(e);
         }
     }
 
@@ -146,7 +188,7 @@ public class Login {
         try {
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:4000/tienda_ropa", "root", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logs.createSQLLog(e);
         }
         return con;
     }

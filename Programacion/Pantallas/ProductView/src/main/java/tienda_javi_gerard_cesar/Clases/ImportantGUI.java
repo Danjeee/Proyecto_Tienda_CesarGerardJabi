@@ -144,10 +144,7 @@ public class ImportantGUI {
         userIco.setSize("30");
         user.setText("");
         user.setGraphic(userIco);
-        if (isAdmin()) {
-            user.setDisable(true);
-            userIco.setCursor(Cursor.CROSSHAIR);
-        }
+        
 
         MenuItem cuenta = new MenuItem("Cuenta");
         cuenta.setOnAction(e -> {
@@ -178,6 +175,8 @@ public class ImportantGUI {
         });
         if (App.getUser().equals("guest")) {
             user.getItems().add(login);
+        } else if (isAdmin()) {
+            user.getItems().add(logout);
         } else {
             user.getItems().addAll(cuenta, new SeparatorMenuItem(), logout);
         }

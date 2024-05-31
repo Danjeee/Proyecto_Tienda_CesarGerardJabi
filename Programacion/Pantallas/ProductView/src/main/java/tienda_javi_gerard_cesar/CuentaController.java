@@ -24,7 +24,7 @@ public class CuentaController {
     @FXML
     public void cargarVentana_EditarCliente(ActionEvent actionEvent) throws IOException {
         EditarClienteController.setCurrent(App.getUser());
-        App.setRoot("pantalla3");
+        App.setRoot("EditarCliente_Cesar_Javi_Gerard");
     }
 
     @FXML

@@ -78,3 +78,73 @@ Metodo: productview/tienda_javi_gerard_cesar.Clases.Logs.createAdminLog(Logs.jav
 Linea: 161
 Metodo: productview/tienda_javi_gerard_cesar.AltaEmpleadosController.botonRegistrar(AltaEmpleadosController.java:103)
 Linea: 103
+---------------------------------------------------------------  
+FECHA: 30/05/2024 20:13
+Archivo faltante: C:\Users\javis\OneDrive\Documentos\GitHub\Proyecto_Tienda\Programacion\Pantallas\ProductView\src\main\resources\cuenta.fxml
+Nombre archivo: cuenta.fxml
+LoadException
+class javafx.fxml.LoadException: java.lang.ClassNotFoundException: login.CuentaController
+Metodo: javafx.fxml/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2625)
+Linea: 2625
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.lambda$2(ImportantGUI.java:151)
+Linea: 151
+---------------------------------------------------------------  
+FECHA: 30/05/2024 20:14
+Archivo faltante: C:\Users\javis\OneDrive\Documentos\GitHub\Proyecto_Tienda\Programacion\Pantallas\ProductView\src\main\resources\cuenta.fxml
+Nombre archivo: cuenta.fxml
+LoadException
+class javafx.fxml.LoadException: java.lang.reflect.InvocationTargetException
+Metodo: javafx.fxml/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2625)
+Linea: 2625
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.lambda$2(ImportantGUI.java:151)
+Linea: 151
+---------------------------------------------------------------  
+FECHA: 30/05/2024 20:15
+Archivo faltante: C:\Users\javis\OneDrive\Documentos\GitHub\Proyecto_Tienda\Programacion\Pantallas\ProductView\src\main\resources\cuenta.fxml
+Nombre archivo: cuenta.fxml
+LoadException
+class javafx.fxml.LoadException: java.lang.reflect.InvocationTargetException
+Metodo: javafx.fxml/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2625)
+Linea: 2625
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.lambda$2(ImportantGUI.java:151)
+Linea: 151
+---------------------------------------------------------------  
+FECHA: 30/05/2024 20:17
+Archivo faltante: C:\Users\javis\OneDrive\Documentos\GitHub\Proyecto_Tienda\Programacion\Pantallas\ProductView\src\main\resources\cuenta.fxml
+Nombre archivo: cuenta.fxml
+LoadException
+class javafx.fxml.LoadException: java.lang.reflect.InvocationTargetException
+Metodo: javafx.fxml/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2625)
+Linea: 2625
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.lambda$2(ImportantGUI.java:151)
+Linea: 151
+---------------------------------------------------------------  
+FECHA: 30/05/2024 20:17
+Archivo faltante: C:\Users\javis\OneDrive\Documentos\GitHub\Proyecto_Tienda\Programacion\Pantallas\ProductView\src\main\resources\cuenta.fxml
+Nombre archivo: cuenta.fxml
+LoadException
+class javafx.fxml.LoadException: java.lang.reflect.InvocationTargetException
+Metodo: javafx.fxml/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2625)
+Linea: 2625
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.lambda$2(ImportantGUI.java:151)
+Linea: 151

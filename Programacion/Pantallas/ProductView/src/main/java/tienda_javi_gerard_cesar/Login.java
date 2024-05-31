@@ -133,8 +133,6 @@ public class Login {
             for (User i : usuarios) {
                
                 if (i.getMail().equals(usuario.getText())) {
-                    System.out.println(i.getPasw());
-                    System.out.println(Cifrado.shiftCifrado(contra.getText()));
                     if (i.getPasw().equals(Cifrado.shiftCifrado(contra.getText())) && i.isAct()) {
                         App.setUser(i.getDNI());
                         try {

@@ -1,0 +1,72 @@
+---------------------------------------------------------------  
+FECHA: 30/05/2024 22:48
+SQLIntegrityConstraintViolationException
+1062: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:118)
+Linea: 118
+Metodo: productview/tienda_javi_gerard_cesar.EditarProductoController.guardarCambios(EditarProductoController.java:213)
+Linea: 213
+---------------------------------------------------------------  
+FECHA: 30/05/2024 23:32
+SQLIntegrityConstraintViolationException
+1062: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:118)
+Linea: 118
+Metodo: productview/tienda_javi_gerard_cesar.EditarProductoController.guardarCambios(EditarProductoController.java:211)
+Linea: 211
+---------------------------------------------------------------  
+FECHA: 30/05/2024 23:44
+SQLIntegrityConstraintViolationException
+1062: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:118)
+Linea: 118
+Metodo: productview/tienda_javi_gerard_cesar.EditarProductoController.guardarCambios(EditarProductoController.java:223)
+Linea: 223
+---------------------------------------------------------------  
+FECHA: 30/05/2024 23:49
+SQLIntegrityConstraintViolationException
+1062: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:118)
+Linea: 118
+Metodo: productview/tienda_javi_gerard_cesar.EditarProductoController.guardarCambios(EditarProductoController.java:223)
+Linea: 223
+---------------------------------------------------------------  
+FECHA: 30/05/2024 23:50
+SQLIntegrityConstraintViolationException
+1062: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:118)
+Linea: 118
+Metodo: productview/tienda_javi_gerard_cesar.EditarProductoController.guardarCambios(EditarProductoController.java:223)
+Linea: 223
+---------------------------------------------------------------  
+FECHA: 31/05/2024 00:29
+SQLSyntaxErrorException
+1054: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+Linea: 121
+Metodo: productview/tienda_javi_gerard_cesar.EditarProductoController.guardarCambios(EditarProductoController.java:210)
+Linea: 210
+---------------------------------------------------------------  
+FECHA: 31/05/2024 00:29
+SQLSyntaxErrorException
+1054: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+Linea: 121
+Metodo: productview/tienda_javi_gerard_cesar.EditarProductoController.guardarCambios(EditarProductoController.java:210)
+Linea: 210
+---------------------------------------------------------------  
+FECHA: 31/05/2024 00:30
+SQLIntegrityConstraintViolationException
+1452: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:118)
+Linea: 118
+Metodo: productview/tienda_javi_gerard_cesar.EditarProductoController.guardarCambios(EditarProductoController.java:210)
+Linea: 210
+---------------------------------------------------------------  
+FECHA: 31/05/2024 00:56
+SQLSyntaxErrorException
+1064: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+Linea: 121
+Metodo: productview/tienda_javi_gerard_cesar.EditarProductoController.guardarCambios(EditarProductoController.java:269)
+Linea: 269

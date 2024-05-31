@@ -44,6 +44,9 @@ public class PanelController {
     private Button LogsButton;
 
     @FXML
+    private TextField nombreUser;
+
+    @FXML
     private App PantallaPrincipal = new App();
 
     @FXML
@@ -160,6 +163,17 @@ public class PanelController {
             }
 
             privilegiosAdmin(dpto);
+
+
+            ResultSet rs = st.executeQuery("select nombre from empleado where dni='"+App.getUser()+"'");
+            nombreUser.setEditable(false);
+
+            String nom;
+            if (rs.next()) {
+                nom = rs.getString("nombre");
+                nombreUser.setText(nom+ "!");
+            }
+
             
         } catch (SQLException e) {
            Logs.createSQLLog(e);

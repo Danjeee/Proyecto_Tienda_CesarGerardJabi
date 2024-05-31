@@ -107,12 +107,12 @@ public class EditarClienteController {
                 olddatos1[i] = olddatos.get(i);
             }
             Logs.createAdminLog('m', 'c', Logs.userToLogs(olddatos1), Logs.userToLogs(newdatos));
-            Alertas.editarCliente();
+            Alertas.informacion("Se han guardado los cambios correctamene.");
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
             Logs.createSQLLog(e);
-            Alertas.errorRegistrar();
+            Alertas.error("No se ha podido guardar los cambios.");
         }
  
     }

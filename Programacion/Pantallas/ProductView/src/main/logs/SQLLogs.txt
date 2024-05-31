@@ -70,3 +70,107 @@ Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:1
 Linea: 121
 Metodo: productview/tienda_javi_gerard_cesar.EditarProductoController.guardarCambios(EditarProductoController.java:269)
 Linea: 269
+---------------------------------------------------------------  
+FECHA: 31/05/2024 08:50
+CommunicationsException
+0: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:175)
+Linea: 175
+Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.conenct(ImportantGUI.java:217)
+Linea: 217
+Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.isAdmin(ImportantGUI.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.generateHeader(ImportantGUI.java:147)
+Linea: 147
+Metodo: productview/tienda_javi_gerard_cesar.AdministrarProductosController.initialize(AdministrarProductosController.java:188)
+Linea: 188
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.start(App.java:57)
+Linea: 57
+---------------------------------------------------------------  
+FECHA: 31/05/2024 09:00
+SQLException
+0: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+Linea: 130
+Metodo: productview/tienda_javi_gerard_cesar.PanelController.initialize(PanelController.java:169)
+Linea: 169
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:100)
+Linea: 100
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:95)
+Linea: 95
+Metodo: productview/tienda_javi_gerard_cesar.Clases.MenuHamb.lambda$5(MenuHamb.java:235)
+Linea: 235
+---------------------------------------------------------------  
+FECHA: 31/05/2024 09:01
+SQLException
+0: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+Linea: 130
+Metodo: productview/tienda_javi_gerard_cesar.PanelController.initialize(PanelController.java:170)
+Linea: 170
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:100)
+Linea: 100
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:95)
+Linea: 95
+Metodo: productview/tienda_javi_gerard_cesar.Clases.MenuHamb.lambda$5(MenuHamb.java:235)
+Linea: 235
+---------------------------------------------------------------  
+FECHA: 31/05/2024 09:02
+SQLException
+0: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+Linea: 130
+Metodo: productview/tienda_javi_gerard_cesar.PanelController.initialize(PanelController.java:170)
+Linea: 170
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:100)
+Linea: 100
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:95)
+Linea: 95
+Metodo: productview/tienda_javi_gerard_cesar.Clases.MenuHamb.lambda$5(MenuHamb.java:235)
+Linea: 235
+---------------------------------------------------------------  
+FECHA: 31/05/2024 09:02
+SQLException
+0: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+Linea: 130
+Metodo: productview/tienda_javi_gerard_cesar.PanelController.initialize(PanelController.java:170)
+Linea: 170
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:100)
+Linea: 100
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:95)
+Linea: 95
+Metodo: productview/tienda_javi_gerard_cesar.Clases.MenuHamb.lambda$5(MenuHamb.java:235)
+Linea: 235
+---------------------------------------------------------------  
+FECHA: 31/05/2024 09:03
+SQLException
+0: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+Linea: 130
+Metodo: productview/tienda_javi_gerard_cesar.PanelController.initialize(PanelController.java:171)
+Linea: 171
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:100)
+Linea: 100
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:95)
+Linea: 95
+Metodo: productview/tienda_javi_gerard_cesar.Clases.MenuHamb.lambda$5(MenuHamb.java:235)
+Linea: 235
+---------------------------------------------------------------  
+FECHA: 31/05/2024 09:05
+SQLException
+0: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+Linea: 130
+Metodo: productview/tienda_javi_gerard_cesar.PanelController.initialize(PanelController.java:171)
+Linea: 171
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:100)
+Linea: 100
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:95)
+Linea: 95
+Metodo: productview/tienda_javi_gerard_cesar.Clases.MenuHamb.lambda$5(MenuHamb.java:235)
+Linea: 235

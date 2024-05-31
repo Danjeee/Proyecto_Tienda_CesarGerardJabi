@@ -87,6 +87,14 @@ public class LogsView {
                 "Se han limpiado los logs de SQL");
         a.showAndWait();
     }
+    @FXML
+    private void clearAdminogs() {
+        Logs.clearAdminLogs();
+        Alert a = Alertas.alerta("INFORMATION", null, "Completado",
+                "Se han limpiado los logs de SQL");
+        a.showAndWait();
+    }
+
 
     @FXML
     private void clearIOLogs() {

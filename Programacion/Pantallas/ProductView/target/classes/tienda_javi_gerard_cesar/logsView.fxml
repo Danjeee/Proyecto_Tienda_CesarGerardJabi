@@ -61,7 +61,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Clear&#10;Admin Logs" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#clearAdminogs" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #000000;" text="Clear&#10;Admin Logs" textFill="WHITE">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="23" wrappingWidth="43.66668701171875" />
                      </graphic>

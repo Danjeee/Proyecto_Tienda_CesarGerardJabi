@@ -68,6 +68,19 @@ public class Logs {
             Logs.createIOLog(e);
         }
     }
+    public static void clearAdminLogs() {
+        File log = new File("Programacion\\Pantallas\\ProductView\\src\\main\\logs\\AdminLogs.txt");
+        if (!log.getParentFile().exists()) {
+            log.getParentFile().mkdirs();
+        }
+        try {
+            FileWriter fw = new FileWriter(log);
+            fw.write("");
+            fw.close();
+        } catch (IOException e) {
+            Logs.createIOLog(e);
+        }
+    }
 
     public static void clearIOLogs() {
         File log = new File("Programacion\\Pantallas\\ProductView\\src\\main\\logs\\IOLogs.txt");

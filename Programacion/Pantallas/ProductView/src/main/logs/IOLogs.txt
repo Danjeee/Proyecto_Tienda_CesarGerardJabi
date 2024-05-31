@@ -148,3 +148,31 @@ Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
 Linea: 94
 Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.lambda$2(ImportantGUI.java:151)
 Linea: 151
+---------------------------------------------------------------  
+FECHA: 31/05/2024 10:52
+Archivo faltante: C:\Users\CicloM\Documents\GitHub\Proyecto_Tienda_CesarGerardJabi\Programacion\Pantallas\ProductView\src\main\resources\PanelAdministracion_Cesar_Javi_Gerard.fxml
+Nombre archivo: PanelAdministracion_Cesar_Javi_Gerard.fxml
+LoadException
+class javafx.fxml.LoadException: java.lang.IllegalArgumentException: Can not set java.awt.Label field tienda_javi_gerard_cesar.PanelController.nombreUser to javafx.scene.control.Label
+Metodo: javafx.fxml/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2625)
+Linea: 2625
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Clases.MenuHamb.lambda$5(MenuHamb.java:235)
+Linea: 235
+---------------------------------------------------------------  
+FECHA: 31/05/2024 10:52
+Archivo faltante: C:\Users\CicloM\Documents\GitHub\Proyecto_Tienda_CesarGerardJabi\Programacion\Pantallas\ProductView\src\main\resources\PanelAdministracion_Cesar_Javi_Gerard.fxml
+Nombre archivo: PanelAdministracion_Cesar_Javi_Gerard.fxml
+LoadException
+class javafx.fxml.LoadException: java.lang.IllegalArgumentException: Can not set java.awt.Label field tienda_javi_gerard_cesar.PanelController.nombreUser to javafx.scene.control.Label
+Metodo: javafx.fxml/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2625)
+Linea: 2625
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.setRoot(App.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Clases.MenuHamb.lambda$5(MenuHamb.java:235)
+Linea: 235

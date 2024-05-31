@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -36,6 +37,9 @@ public class PanelController {
 
     @FXML
     private VBox all;
+
+    @FXML
+    private Label nombreUser;
 
     @FXML
     private Button AltaEmpleadoButton;
@@ -160,6 +164,14 @@ public class PanelController {
             }
 
             privilegiosAdmin(dpto);
+
+            ResultSet rs = st.executeQuery("select nombre from empleado where dni='"+App.getUser()+"'");
+
+            String nom;
+            if (rs.next()) {
+                nom = rs.getString("nombre");
+                nombreUser.setText("¡bienvenidx, "+nom+ "!");
+            }
             
         } catch (SQLException e) {
            Logs.createSQLLog(e);

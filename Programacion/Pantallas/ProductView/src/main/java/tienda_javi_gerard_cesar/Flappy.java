@@ -45,7 +45,7 @@ public class Flappy {
     private String newcode;
     AnimationTimer gameLoop;
     double[] postofit = { 0, 1024 };
-    double yDelta = 0.2;
+    double yDelta = 0.3;
     double timeber = 0;
     double timepipe = 0;
     double javisegundos = 0;

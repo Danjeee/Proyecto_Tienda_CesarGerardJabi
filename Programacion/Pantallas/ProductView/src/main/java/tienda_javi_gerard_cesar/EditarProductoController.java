@@ -162,6 +162,15 @@ public class EditarProductoController {
     }
 
     @FXML
+    private void back(){
+        try {
+            App.setRoot(App.getLast());
+        } catch (Exception e1) {
+            Logs.createIOLog(e1);
+        }
+    }
+
+    @FXML
     private void guardarCambios() {
 
         ConexionSQL con = new ConexionSQL();

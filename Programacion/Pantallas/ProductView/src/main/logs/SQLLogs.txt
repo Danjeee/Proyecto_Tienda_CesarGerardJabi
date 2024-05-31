@@ -70,3 +70,31 @@ Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:1
 Linea: 121
 Metodo: productview/tienda_javi_gerard_cesar.EditarProductoController.guardarCambios(EditarProductoController.java:269)
 Linea: 269
+---------------------------------------------------------------  
+FECHA: 31/05/2024 08:56
+CommunicationsException
+0: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+Metodo: com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:175)
+Linea: 175
+Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.conenct(ImportantGUI.java:217)
+Linea: 217
+Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.isAdmin(ImportantGUI.java:94)
+Linea: 94
+Metodo: productview/tienda_javi_gerard_cesar.Clases.ImportantGUI.generateHeader(ImportantGUI.java:147)
+Linea: 147
+Metodo: productview/tienda_javi_gerard_cesar.AdministrarProductosController.initialize(AdministrarProductosController.java:188)
+Linea: 188
+Metodo: productview/tienda_javi_gerard_cesar.App.loadFXML(App.java:99)
+Linea: 99
+Metodo: productview/tienda_javi_gerard_cesar.App.start(App.java:57)
+Linea: 57
+---------------------------------------------------------------  
+FECHA: 31/05/2024 08:59
+MysqlDataTruncation
+1292: null
+Metodo: com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:104)
+Linea: 104
+Metodo: productview/tienda_javi_gerard_cesar.RegistrarUsuarioController.registrar(RegistrarUsuarioController.java:85)
+Linea: 85

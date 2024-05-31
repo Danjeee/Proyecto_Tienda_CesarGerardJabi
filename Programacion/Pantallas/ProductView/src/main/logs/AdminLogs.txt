@@ -18,3 +18,18 @@ NEW Email: asd@g.com
 NEW Pass: ******
 NEW DPTO: 2
 NEW Tiene Privilegios: true
+---------------------------------------------------------------  
+FECHA: 31/05/2024 09:02
+Se ha creado cliente: DNI: 12345678L: Nombre: a
+NEW DNI: 12345678L
+NEW Nombre: a
+NEW Apellidos: a
+NEW Tlf: 111222333
+NEW Fecha Nacimiento: 2024-05-14
+NEW Direccion: a
+NEW Email: a@a.com
+NEW Pass: 111
+NEW Saldo: 0
+NEW Num Pedidos: 0
+NEW Dir envio: false
+NEW Tarjeta fidelizacion: true

@@ -18,6 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 import tienda_javi_gerard_cesar.Clases.Alertas;
 import tienda_javi_gerard_cesar.Clases.Cifrado;
 import tienda_javi_gerard_cesar.Clases.Logs;
+import tienda_javi_gerard_cesar.Clases.Mail;
 
 public class RegistrarUsuarioController {
 
@@ -89,6 +90,7 @@ public class RegistrarUsuarioController {
             alerta.setAlertType(AlertType.INFORMATION);
             alerta.setHeaderText(null);
             alerta.setContentText("El usuario se ha registrado correctamente.");
+            Mail.send(email.getText(), "Te has registrado correctamente en secondHand, te damos la bienvenida y esperemos que lo pases bien", "¡Bienvenidx!");
             alerta.show();
             App.setUser(DNI.getText());
             String[] datos = {DNI.getText(), nombre.getText(), apellidos.getText(), telefono.getText(), fechanac.getValue().toString(), direccion.getText(), email.getText(), contraseña.getText(), "0", "0", String.valueOf(tarjetaFide.isSelected()), String.valueOf(activo.isSelected())};

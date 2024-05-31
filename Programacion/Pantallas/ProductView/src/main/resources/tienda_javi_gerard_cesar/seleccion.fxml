@@ -33,7 +33,11 @@
 -->
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -45,15 +49,41 @@
          <children>
             <HBox prefHeight="764.0" prefWidth="1920.0" stylesheets="@../../../../target/classes/tienda_javi_gerard_cesar/styles1.css">
                <children>
-                  <Button mnemonicParsing="false" onAction="#ropaButton" prefHeight="764.0" prefWidth="960.0" styleClass="ropa" text="Ropa" textFill="WHITE">
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#ropaButton" prefHeight="764.0" prefWidth="960.0" styleClass="ropa" text="Ropa" textFill="WHITE" HBox.hgrow="NEVER">
                      <font>
                         <Font name="DejaVu Serif Condensed Bold" size="96.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="764.0" fitWidth="724.0" pickOnBounds="true">
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                           <image>
+                              <Image url="@ropa.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-75.0" left="-210.0" right="-210.0" top="-75.0" />
+                     </padding>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#accButton" prefHeight="764.0" prefWidth="960.0" styleClass="acc" text="Accesorios" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#accButton" prefHeight="764.0" prefWidth="960.0" styleClass="acc" text="Accesorios" textFill="WHITE">
                      <font>
                         <Font name="DejaVu Serif Condensed Bold" size="96.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="764.0" fitWidth="724.0" pickOnBounds="true">
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                           <image>
+                              <Image url="@acc.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="-75.0" left="-210.0" right="-210.0" top="-75.0" />
+                     </padding>
                   </Button>
                </children>
             </HBox>

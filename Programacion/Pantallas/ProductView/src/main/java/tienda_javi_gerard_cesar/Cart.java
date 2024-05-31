@@ -106,6 +106,27 @@ public class Cart {
         }
     }
 
+    @FXML
+    private void cancelar(){
+        Connection con = conenct();
+            try {
+                Statement st = con.createStatement();
+                int current = 0;
+                ResultSet setcurrent = st.executeQuery(
+                        "SELECT numero FROM pedido WHERE estado = 'En proceso' AND DNI_cliente = '" + App.getUser() + "'");
+                while (setcurrent.next()) {
+                    current = setcurrent.getInt("numero");
+                }
+                Statement stm = con.createStatement();
+                stm.executeUpdate("UPDATE pedido SET estado = 'Cancelado' WHERE numero = " + current);
+                all.getChildren().remove(0);
+                all.getChildren().remove(1);
+                initialize();
+            } catch (SQLException e) {
+                Logs.createSQLLog(e);
+            }
+    }
+
     // Te manda a pagar, poco más
     @FXML
     private void pagar() {

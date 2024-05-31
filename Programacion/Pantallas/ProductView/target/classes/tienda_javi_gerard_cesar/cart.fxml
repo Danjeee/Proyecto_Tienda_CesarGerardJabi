@@ -134,7 +134,7 @@
                                     <Insets left="250.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button fx:id="pagarbutton1" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" style="-fx-background-color: #000;" styleClass="default" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css" text="Cancelar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <Button fx:id="pagarbutton1" alignment="CENTER" mnemonicParsing="false" onAction="#cancelar" prefHeight="50.0" prefWidth="125.0" style="-fx-background-color: #000;" styleClass="default" stylesheets="@../../../../../../../LM/Diseño/css/styles1.css" text="Cancelar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="System Bold" size="22.0" />
                                  </font>
